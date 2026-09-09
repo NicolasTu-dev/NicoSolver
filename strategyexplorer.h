@@ -48,6 +48,7 @@ private:
     RoughStrategyViewerModel * roughStrategyViewerModel;
     RoughStrategyItemDelegate * roughStrategyItemDelegate;
     vector<Card> cards;
+    bool advancedMode = false;
     void process_treeclick(TreeItem* treeitem);
     void process_board(TreeItem* treeitem);
 public slots:
@@ -65,6 +66,7 @@ private slots:
     void on_oopRangeButtom_clicked();
     void on_evModeButtom_clicked();
     void on_evOnlyModeButtom_clicked();
+    void on_advancedModeCheck_toggled(bool checked);
 };
 
 #endif // STRATEGYEXPLORER_H

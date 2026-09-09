@@ -273,13 +273,19 @@ void StrategyExplorer::onMouseMoveEvent(int i,int j){
                     else if(one_action.getAction() == GameTreeNode::PokerActions::BET) action_name = QString("%1 %2").arg(tr("BET"),QString::number(one_action.getAmount()));
                     else if(one_action.getAction() == GameTreeNode::PokerActions::RAISE) action_name = QString("%1 %2").arg(tr("RAISE"),QString::number(one_action.getAmount()));
 
-                    QString ev_str;
-                    if(has_evs){
-                        ev_str = evs[k] != evs[k] ? tr("Can't calculate") : QString::number(evs[k],'f',2);
-                    }
+                    // EV/equity detail is only shown in "advanced mode" — the basic tooltip
+                    // (combo + action %) always shows regardless of this->advancedMode.
+                    if(this->advancedMode){
+                        QString ev_str;
+                        if(has_evs){
+                            ev_str = evs[k] != evs[k] ? tr("Can't calculate") : QString::number(evs[k],'f',2);
+                        }
 
-                    if(has_evs){
-                        tooltip_text += QString("%1: %2%   %3 %4\n").arg(action_name,QString::number(one_strategy,'f',1),tr("EV"),ev_str);
+                        if(has_evs){
+                            tooltip_text += QString("%1: %2%   %3 %4\n").arg(action_name,QString::number(one_strategy,'f',1),tr("EV"),ev_str);
+                        }else{
+                            tooltip_text += QString("%1: %2%\n").arg(action_name,QString::number(one_strategy,'f',1));
+                        }
                     }else{
                         tooltip_text += QString("%1: %2%\n").arg(action_name,QString::number(one_strategy,'f',1));
                     }
@@ -337,4 +343,11 @@ void StrategyExplorer::on_evOnlyModeButtom_clicked()
     this->ui->detailView->viewport()->update();
     this->roughStrategyViewerModel->onchanged();
     this->ui->roughStrategyView->viewport()->update();
+}
+
+void StrategyExplorer::on_advancedModeCheck_toggled(bool checked)
+{
+    this->advancedMode = checked;
+    this->ui->strategyTableView->viewport()->update();
+    this->ui->detailView->viewport()->update();
 }

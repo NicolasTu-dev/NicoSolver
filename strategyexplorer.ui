@@ -175,7 +175,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="10,2,10,40">
+    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="10,2,0,10,40">
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
@@ -229,6 +229,16 @@
         </layout>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="advancedModeCheck">
+       <property name="text">
+        <string>Modo avanzado (mostrar EV)</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="modeChoseLayout" stretch="1,1">
