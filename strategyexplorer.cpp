@@ -278,7 +278,7 @@ void StrategyExplorer::onMouseMoveEvent(int i,int j){
                     if(this->advancedMode){
                         QString ev_str;
                         if(has_evs){
-                            ev_str = evs[k] != evs[k] ? tr("Can't calculate") : QString::number(evs[k],'f',2);
+                            ev_str = evs[k] != evs[k] ? tr("Can't calculate") : QString::number(evs[k],'f',1);
                         }
 
                         if(has_evs){
