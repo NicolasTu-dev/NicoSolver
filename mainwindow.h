@@ -36,6 +36,7 @@ private slots:
     void on_buildTreeButtom_clicked();
     void on_actionjson_triggered();
     void on_actionimport_triggered();
+    void on_wizardLoadConfigButton_clicked();
     void import_from_file(QString from);
     void on_actionexport_triggered();
     void on_actionSettings_triggered();

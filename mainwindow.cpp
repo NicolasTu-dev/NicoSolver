@@ -320,6 +320,19 @@ void MainWindow::on_actionimport_triggered(){
     this->ui->oopRangeTableView->setFocus();
 }
 
+void MainWindow::on_wizardLoadConfigButton_clicked(){
+    QString fileName =  QFileDialog::getOpenFileName(
+              this,
+              tr("Open parameters file"),
+              QDir::currentPath(),
+              tr("Text files (*.txt)"));
+    this->import_from_file(fileName);
+    this->ui->IpRangeTableView->update();
+    this->ui->oopRangeTableView->update();
+    this->ui->IpRangeTableView->setFocus();
+    this->ui->oopRangeTableView->setFocus();
+}
+
 void MainWindow::on_actionexport_triggered(){
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Parameters"),
                                "parameters/output_parameters.txt",

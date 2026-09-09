@@ -68,6 +68,13 @@
        <widget class="QWidget" name="wizardStepRanges">
         <layout class="QVBoxLayout" name="rangeLayout">
          <item>
+          <widget class="QPushButton" name="wizardLoadConfigButton">
+           <property name="text">
+            <string>Cargar configuración guardada</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_25" stretch="2,1,1,3">
           <item>
            <widget class="QTabWidget" name="tabWidget">
