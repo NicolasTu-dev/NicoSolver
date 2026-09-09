@@ -307,3 +307,15 @@ QSplitter::handle {
     color: #5a5f73;
     background-color: #f7f8fa;
 }
+
+#resultsLegend {
+    background-color: #ffffff;
+    border: 1px solid #e2e4ea;
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+#resultsLegend QLabel {
+    color: #1a1d29;
+    font-size: 11px;
+}
