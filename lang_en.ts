@@ -552,7 +552,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.cpp" line="84"/>
         <source>Bet Sizings</source>
-        <translation type="unfinished"></translation>
+        <translation>Bet Sizes</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="85"/>
