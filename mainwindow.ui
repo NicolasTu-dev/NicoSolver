@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1">
     <item>
-     <layout class="QVBoxLayout" name="inputLayout" stretch="0,1,8,1">
+     <layout class="QVBoxLayout" name="inputLayout" stretch="0,1,1,1,1,1,1">
       <property name="spacing">
        <number>0</number>
       </property>
