@@ -15,7 +15,17 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,3">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="3,0,0,8">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,3,0,0,8">
+     <item>
+      <widget class="QLabel" name="explorerIntroLabel">
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Este es el resultado del solver. A la izquierda, el árbol de decisiones: cada nodo es un punto donde alguien apuesta, sube, paga o se retira; tocá uno para ver la estrategia en ese punto. A la derecha, la grilla muestra la estrategia recomendada para cada mano posible del rival en esa situación (celeste = retirarse, verde = pagar, rojo = apostar/subir). Pasá el mouse sobre una celda para ver el detalle de esa mano.</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="title">

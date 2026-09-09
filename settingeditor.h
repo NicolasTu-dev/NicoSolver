@@ -21,13 +21,11 @@ public:
 private slots:
     void on_confirmBox_accepted();
 
-    void on_languageBox_currentIndexChanged(int index);
-
-    void on_themeBox_currentIndexChanged(int index);
-
 private:
     Ui::SettingEditor *ui;
     bool initized = false;
+    int initial_language_index = -1;
+    int initial_theme_index = -1;
 };
 
 #endif // SETTINGEDITOR_H

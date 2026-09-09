@@ -4,6 +4,8 @@
 #include "include/runtime/qsolverjob.h"
 #include <QFileDialog>
 #include "include/library.h"
+#include <QToolTip>
+#include <QCursor>
 
 QSTextEdit* MainWindow::s_textEdit = 0;
 
@@ -22,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     qSolverJob->setContext(this->getLogArea());
     qSolverJob->current_mission = QSolverJob::MissionType::LOADING;
     qSolverJob->start();
-    this->setWindowTitle(tr("TexasSolver"));
+    this->setWindowTitle(tr("NicoSolver"));
 
     // parameters tree view
     QStringList filters;
@@ -64,6 +66,44 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->oopRangeTableView->horizontalHeader()->setMinimumSectionSize(1);
     this->ui->tabWidget->hide();
 
+    connect(this->ui->IpRangeTableView, SIGNAL(itemMouseChange(int,int)), this, SLOT(onIpRangeHover(int,int)));
+    connect(this->ui->oopRangeTableView, SIGNAL(itemMouseChange(int,int)), this, SLOT(onOopRangeHover(int,int)));
+
+    this->ui->wizardLoadConfigButton->setToolTip(tr("Si ya guardaste una configuración antes (un archivo .json), tocá acá para cargarla y saltarte todos los pasos."));
+    this->ui->ipRangeText->setToolTip(tr("Acá aparece el rango de manos del jugador IP (el que actúa último) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando \"Select IP\"."));
+    this->ui->oopRangeText->setToolTip(tr("Acá aparece el rango de manos del jugador OOP (el que actúa primero) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando \"Select OOP\"."));
+    this->ui->IpRangeTableView->setToolTip(tr("Grilla de manos posibles del jugador IP. Cada celda es una combinación de cartas: tocá una celda para incluirla (verde) o excluirla del rango. Cuanto más oscuro el verde, con más frecuencia se juega esa mano."));
+    this->ui->oopRangeTableView->setToolTip(tr("Grilla de manos posibles del jugador OOP. Cada celda es una combinación de cartas: tocá una celda para incluirla (verde) o excluirla del rango. Cuanto más oscuro el verde, con más frecuencia se juega esa mano."));
+    this->ui->ipRangeSelectButtom->setToolTip(tr("Abre la grilla visual para armar el rango del jugador IP tocando manos en vez de escribir texto."));
+    this->ui->oopRangeSelectButtom->setToolTip(tr("Abre la grilla visual para armar el rango del jugador OOP tocando manos en vez de escribir texto."));
+
+    QString allinTooltip = tr("Si está tildado (✓ verde), el solver agrega la opción de ir all-in con todo el stack en esta calle, además de los tamaños de apuesta definidos arriba.");
+    this->ui->flop_ip_allin->setToolTip(allinTooltip);
+    this->ui->turn_ip_allin->setToolTip(allinTooltip);
+    this->ui->river_ip_allin->setToolTip(allinTooltip);
+    this->ui->flop_oop_allin->setToolTip(allinTooltip);
+    this->ui->turn_oop_allin->setToolTip(allinTooltip);
+    this->ui->river_oop_allin->setToolTip(allinTooltip);
+
+    this->ui->groupBox->setToolTip(tr("Flop = las primeras 3 cartas comunitarias. Acá definís qué tamaños de apuesta puede usar IP (el jugador que actúa último) cuando le toca abrir la acción en el flop."));
+    this->ui->groupBox_2->setToolTip(tr("Turn = la 4ta carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el turn."));
+    this->ui->groupBox_3->setToolTip(tr("River = la 5ta y última carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el river."));
+    this->ui->groupBox_4->setToolTip(tr("Flop = las primeras 3 cartas comunitarias. Tamaños de apuesta que puede usar OOP (el jugador que actúa primero) en el flop."));
+    this->ui->groupBox_5->setToolTip(tr("Turn = la 4ta carta comunitaria. Tamaños de apuesta que puede usar OOP en el turn, incluyendo \"Donk Sizes\" (apostar primero aunque no haya apostado en la calle anterior)."));
+    this->ui->groupBox_6->setToolTip(tr("River = la 5ta y última carta comunitaria. Tamaños de apuesta que puede usar OOP en el river, incluyendo \"Donk Sizes\"."));
+
+    this->ui->raiseLimitText->setToolTip(tr("Máxima cantidad de subidas seguidas que el solver considera en una misma calle. Un número más alto agranda mucho el árbol y lo hace más lento de resolver."));
+    this->ui->potText->setToolTip(tr("Tamaño del pozo antes de esta situación, en fichas."));
+    this->ui->effectiveStackText->setToolTip(tr("Fichas que le quedan al jugador con menos stack. Es lo máximo que se puede llegar a apostar en la mano."));
+    this->ui->mode_box->setToolTip(tr("Mazo a usar: \"texas holdem\" (52 cartas normales) o \"shortdeck\" (36 cartas, sin 2, 3, 4 y 5)."));
+    this->ui->allinThresholdText->setToolTip(tr("Si el stack restante de un jugador es menor a este % del pozo, el solver le ofrece directamente ir all-in en vez de tamaños de apuesta intermedios."));
+    this->ui->useIsoCheck->setToolTip(tr("Optimización interna que agrupa cartas equivalentes entre sí para resolver más rápido sin perder precisión. Se recomienda dejarlo tildado."));
+    this->ui->useHalfFloats_box->setToolTip(tr("Reduce la memoria RAM usada por el solver a cambio de resolver más lento o con menor precisión numérica. Usalo solo si te quedás sin memoria."));
+    this->ui->iterationText->setToolTip(tr("Cantidad máxima de veces que el solver recalcula la estrategia. Más iteraciones = más precisión, pero tarda más."));
+    this->ui->exploitabilityText->setToolTip(tr("El solver para antes si ya alcanzó una estrategia con este nivel de error (% del pozo) o menos. Un número más bajo es más preciso pero más lento; 0.5% ya es una estrategia muy sólida."));
+    this->ui->logIntervalText->setToolTip(tr("Cada cuántas iteraciones se muestra el progreso en la consola de abajo. Solo afecta qué tan seguido ves actualizaciones, no el resultado final."));
+    this->ui->threadsText->setToolTip(tr("Cantidad de núcleos del procesador que puede usar el solver a la vez. Más threads = resuelve más rápido si tu computadora tiene núcleos libres."));
+
     this->wizardSteps[0] = this->ui->wizardStepRanges;
     this->wizardSteps[1] = this->ui->wizardStepBoard;
     this->wizardSteps[2] = this->ui->wizardStepBetSizes;
@@ -83,9 +123,40 @@ void MainWindow::showWizardStep(int index)
     QStringList stepNames;
     stepNames << tr("Rangos") << tr("Board") << tr("Bet Sizings")
               << tr("Parámetros del árbol") << tr("Opciones del Solver") << tr("Confirmar y resolver");
+    QStringList stepSubtitles;
+    stepSubtitles
+        << tr("Un \"rango\" es el conjunto de manos que un jugador puede tener en esta situación. IP (\"in position\") es el jugador que actúa último en la calle; OOP (\"out of position\") es el que actúa primero. Tocá una celda de la grilla para agregar o quitar esa mano del rango (más oscuro = se juega con más frecuencia), o escribí el rango a mano en el cuadro de texto.")
+        << tr("Elegí las cartas que ya salieron en la mesa (3 para flop, 4 para turn, 5 para river).")
+        << tr("Este solver calcula estrategias 1 contra 1 (heads-up): un jugador IP y un jugador OOP, no soporta 3 o más jugadores. \"Flop\", \"Turn\" y \"River\" son las tres calles que se juegan después del preflop (las 3 primeras cartas comunitarias, la 4ta, y la 5ta). Para cada una de esas calles configurás por separado qué puede hacer IP y qué puede hacer OOP. \"Bet Sizes\" son los tamaños de apuesta (en % del pozo) que el jugador puede usar cuando le toca abrir la acción apostando. \"Raise Sizes\" son los tamaños de subida (también en % del pozo) que puede usar para subir una apuesta del rival. En Turn y River, OOP también tiene \"Donk Sizes\": tamaños de apuesta que OOP puede usar para apostar primero en esa calle aunque haya sido el que no apostó en la calle anterior (una jugada llamada \"donk bet\"). \"Add Allin\" agrega, además de esos tamaños, la opción de ir directamente all-in con todo el stack.")
+        << tr("\"Raise limit\" es la cantidad máxima de subidas seguidas que el solver va a considerar en una misma calle (más subidas = árbol más grande y más lento). \"Pot\" es el tamaño del pozo antes de empezar esta situación, y \"Effective Stack\" es la cantidad de fichas que le queda al jugador con menos stack (lo máximo que se puede llegar a apostar). \"Mode\" define el mazo: \"texas holdem\" (52 cartas) o \"shortdeck\" (36 cartas, sin 2-5). \"Allin threshold\" es un atajo: si a un jugador le queda menos de ese % del pozo, el solver directamente le ofrece ir all-in en vez de tamaños de apuesta intermedios, para no complicar el árbol innecesariamente. \"Use isomorphism\" es una optimización interna: agrupa cartas que son estratégicamente equivalentes (por ejemplo, dos palos que no forman color en ningún lado) para resolver más rápido sin perder precisión — dejalo tildado salvo que tengas una razón específica para desactivarlo. \"Save memory at cost of speed/accuracy\" reduce la memoria RAM usada a cambio de resolver un poco más lento o con menor precisión numérica; usalo solo si te quedás sin memoria. Al tocar \"Siguiente\" se construye el árbol de decisiones automáticamente con estos valores.")
+        << tr("\"Iterations\" es el número máximo de veces que el solver va a recalcular la estrategia (más iteraciones = más precisión, pero más tiempo). \"Stop solving when reach X% exploitability\" hace que el solver pare antes si ya alcanzó una estrategia lo bastante cercana a la óptima (un número más bajo = más preciso pero más lento; 0.5% ya es una estrategia muy sólida para jugar). \"Log interval\" es cada cuántas iteraciones se imprime el progreso en la consola de abajo, solo afecta qué tan seguido ves actualizaciones, no el resultado. \"Threads\" es la cantidad de núcleos del procesador que puede usar el solver a la vez (más threads = resuelve más rápido si tu computadora tiene suficientes núcleos libres). Los valores por defecto funcionan bien para empezar.")
+        << tr("Revisá todo y tocá \"Iniciar resolución\" para que el solver calcule la estrategia óptima.");
     this->ui->wizardStepLabel->setText(tr("Paso %1 de 6: %2").arg(index + 1).arg(stepNames[index]));
+    this->ui->wizardStepSubtitle->setText(stepSubtitles[index]);
     this->ui->wizardBackButton->setEnabled(index > 0);
     this->ui->wizardNextButton->setText(index == 5 ? tr("Listo") : tr("Siguiente →"));
+}
+
+static QString rangeCellTooltip(int i, int j, float freq){
+    QStringList ranks = QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(",");
+    if(i < 0 || j < 0 || i >= ranks.size() || j >= ranks.size()) return QString();
+    int larger = i > j ? i : j;
+    int smaller = i > j ? j : i;
+    QString hand = ranks[smaller] + ranks[larger];
+    if(i > j) hand += "o";
+    else if(i < j) hand += "s";
+    int pct = (int)(freq * 100 + 0.5f);
+    return QString("%1 — %2%").arg(hand).arg(pct);
+}
+
+void MainWindow::onIpRangeHover(int i, int j){
+    QString text = rangeCellTooltip(i, j, this->ip_model->getRangeAt(i, j));
+    if(!text.isEmpty()) QToolTip::showText(QCursor::pos(), text, this->ui->IpRangeTableView);
+}
+
+void MainWindow::onOopRangeHover(int i, int j){
+    QString text = rangeCellTooltip(i, j, this->oop_model->getRangeAt(i, j));
+    if(!text.isEmpty()) QToolTip::showText(QCursor::pos(), text, this->ui->oopRangeTableView);
 }
 
 void MainWindow::on_wizardBackButton_clicked()
@@ -427,7 +498,7 @@ void MainWindow::on_actionexport_triggered(){
     out << "\n";
 
     this->setWindowTitle(tr("Settings"));
-    QSettings setting("TexasSolver", "Setting");
+    QSettings setting("NicoSolver", "Setting");
     setting.beginGroup("solver");
     int dump_round = setting.value("dump_round").toInt();
     out << "set_dump_rounds " << dump_round;

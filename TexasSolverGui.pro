@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = TexasSolverGui
+TARGET = NicoSolverGui
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -37,21 +37,21 @@ QMAKE_LFLAGS += -lomp
 
 macx: {
 LIBS += -L /usr/local/lib /usr/local/lib/libomp.dylib
-ICON = imgs/texassolver_logo.icns
+ICON = imgs/nicosolver_logo.icns
 }
 
 win32-g++: {
 QMAKE_CXXFLAGS+= -fopenmp
 QMAKE_LFLAGS +=  -fopenmp
-RC_ICONS = imgs/texassolver_logo.ico
+RC_ICONS = imgs/nicosolver_logo.ico
 } else:win32 {
 QMAKE_CXXFLAGS+= -openmp
 QMAKE_LFLAGS +=  -openmp
-RC_ICONS = imgs/texassolver_logo.ico
+RC_ICONS = imgs/nicosolver_logo.ico
 }
 
 win64: {
-RC_ICONS = imgs/texassolver_logo.ico
+RC_ICONS = imgs/nicosolver_logo.ico
 }
 
 linux: {

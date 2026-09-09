@@ -129,17 +129,24 @@ QVariant RangeSelectorTableModel::data(const QModelIndex &index, int role) const
     int col = index.column();
     int larger = row > col?row:col;
     int smaller = row > col?col:row;
-    QString  retval = QString("<h4>%1%2<b>%3</b></h4>")\
+    QString  hand = QString("%1%2%3")\
             .arg(QString(this->ranklist[smaller]))\
             .arg(QString(this->ranklist[larger]));
     if(row > col){
-        retval = retval.arg(tr("o"));
+        hand = hand.arg(tr("o"));
     }else if(row < col){
-        retval = retval.arg(tr("s"));
+        hand = hand.arg(tr("s"));
     }else{
-        retval = retval.arg(tr(" "));
+        hand = hand.arg(tr(""));
     }
-    retval += QString("%1").arg(QString::number(this->grids_float[row][col],'f',3));
+    float freq = this->grids_float[row][col];
+    QString retval = QString("<div style='text-align:center; color:#ffffff;'>"
+                              "<span style='font-size:9pt; font-weight:600;'>%1</span>").arg(hand);
+    if(freq > 0.0f){
+        int pct = (int)(freq * 100 + 0.5f);
+        retval += QString("<br><span style='font-size:7pt;'>%1%</span>").arg(pct);
+    }
+    retval += "</div>";
     return retval;
 }
 

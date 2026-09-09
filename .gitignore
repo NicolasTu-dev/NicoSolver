@@ -1,5 +1,6 @@
 .superpowers/
 build*/
+try-it/
 .qtcreator/
 *.pro.user
 *.pro.user.*

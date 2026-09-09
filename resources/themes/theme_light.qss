@@ -123,23 +123,28 @@ QCheckBox, QRadioButton {
 }
 
 QCheckBox::indicator, QRadioButton::indicator {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #e2e4ea;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #b0b4c0;
     background-color: #ffffff;
 }
 
+QCheckBox::indicator:hover, QRadioButton::indicator:hover {
+    border: 2px solid #5a5f73;
+}
+
 QCheckBox::indicator {
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 QRadioButton::indicator {
-    border-radius: 8px;
+    border-radius: 9px;
 }
 
 QCheckBox::indicator:checked, QRadioButton::indicator:checked {
-    background-color: #3d5afe;
-    border: 1px solid #3d5afe;
+    background-color: #22c55e;
+    border: 2px solid #22c55e;
+    image: url(:/resources/icons/checkmark.svg);
 }
 
 QTabWidget::pane {
@@ -287,9 +292,16 @@ QSplitter::handle {
 #wizardStepLabel {
     color: #3d5afe;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+#wizardStepSubtitle {
+    color: #4a4f63;
+    font-size: 13px;
+    padding-top: 2px;
+    padding-bottom: 4px;
 }
 
 #wizardNextButton {

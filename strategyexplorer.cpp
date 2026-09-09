@@ -16,6 +16,21 @@ StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
     this->qSolverJob = qSolverJob;
     this->detailWindowSetting = DetailWindowSetting();
     ui->setupUi(this);
+
+    this->ui->gameTreeView->setToolTip(tr("Árbol de decisiones de la mano. Cada nivel es una calle (flop/turn/river) y cada nodo es un punto donde un jugador actúa. Tocá un nodo para ver la estrategia del solver en ese punto exacto."));
+    this->ui->turnCardBox->setToolTip(tr("Elegí qué carta cayó en el turn para ver la estrategia en ese runout específico."));
+    this->ui->riverCardBox->setToolTip(tr("Elegí qué carta cayó en el river para ver la estrategia en ese runout específico."));
+    this->ui->strategyTableView->setToolTip(tr("Estrategia recomendada para cada mano posible del rival en el nodo seleccionado. Celeste = retirarse, verde = pagar, rojo = apostar/subir. El tamaño de cada color dentro de la celda es qué tan seguido se elige esa acción."));
+    this->ui->roughStrategyView->setToolTip(tr("Resumen simplificado: qué tan seguido, en total, el rival retira, paga o apuesta/sube con todo su rango en este nodo."));
+    this->ui->boardLabel->setToolTip(tr("Las cartas comunitarias de la mesa en este punto de la mano."));
+    this->ui->nodeDisplayLabel->setToolTip(tr("Qué acción llevó a este nodo (por ejemplo, \"OOP bet 50%\") y de quién es el turno de actuar."));
+    this->ui->advancedModeCheck->setToolTip(tr("Si lo tildás, el detalle al pasar el mouse sobre una celda también muestra el EV (ganancia esperada en fichas) de cada acción, no solo el % de frecuencia."));
+    this->ui->ipRangeButtom->setToolTip(tr("Ver el rango completo de cartas que puede tener el jugador IP en este nodo."));
+    this->ui->oopRangeButtom->setToolTip(tr("Ver el rango completo de cartas que puede tener el jugador OOP en este nodo."));
+    this->ui->strategyModeButtom->setToolTip(tr("Mostrar solo la estrategia (qué tan seguido se elige cada acción) en la grilla."));
+    this->ui->evModeButtom->setToolTip(tr("Mostrar la estrategia junto con el EV (ganancia esperada) de cada acción."));
+    this->ui->evOnlyModeButtom->setToolTip(tr("Mostrar solo el EV (ganancia esperada) de cada mano, sin el detalle de la estrategia."));
+    this->ui->detailView->setToolTip(tr("Detalle combo por combo de la mano seleccionada en la grilla de estrategia."));
     /*
     QStandardItemModel* model = new QStandardItemModel();
     for (int row = 0; row < 4; ++row) {

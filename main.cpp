@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(myMessageOutput);
     QApplication a(argc, argv);
 
-    QSettings setting("TexasSolver", "Setting");
+    QSettings setting("NicoSolver", "Setting");
     setting.beginGroup("solver");
     QString language_str = setting.value("language").toString();
     QTranslator trans;

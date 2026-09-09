@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1">
     <item>
-     <layout class="QVBoxLayout" name="inputLayout" stretch="0,1,1,1,1,1,1">
+     <layout class="QVBoxLayout" name="inputLayout" stretch="0,0,0,0,0,0,0,1">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -27,6 +27,16 @@
           <widget class="QLabel" name="wizardStepLabel">
            <property name="text">
             <string>Paso 1 de 6: Rangos</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="wizardStepSubtitle">
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Elegí qué manos juega cada jugador antes de esta decisión.</string>
            </property>
           </widget>
          </item>
@@ -83,7 +93,10 @@
             </property>
             <widget class="QWidget" name="IpRange">
              <attribute name="title">
-              <string>IP Range</string>
+              <string>IP (actúa último)</string>
+             </attribute>
+             <attribute name="toolTip">
+              <string>IP = "in position". Es el jugador que actúa último en esta calle (tiene más información antes de decidir).</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
@@ -101,7 +114,10 @@ p, li { white-space: pre-wrap; }
             </widget>
             <widget class="QWidget" name="OopRange">
              <attribute name="title">
-              <string>OOp range</string>
+              <string>OOP (actúa primero)</string>
+             </attribute>
+             <attribute name="toolTip">
+              <string>OOP = "out of position". Es el jugador que actúa primero en esta calle (tiene menos información antes de decidir).</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
@@ -123,6 +139,18 @@ p, li { white-space: pre-wrap; }
            <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
              <widget class="HtmlTableRangeView" name="IpRangeTableView">
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>320</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>320</height>
+               </size>
+              </property>
               <attribute name="horizontalHeaderVisible">
                <bool>false</bool>
               </attribute>
@@ -144,6 +172,18 @@ p, li { white-space: pre-wrap; }
            <layout class="QVBoxLayout" name="verticalLayout_13">
             <item>
              <widget class="HtmlTableRangeView" name="oopRangeTableView">
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>320</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>320</height>
+               </size>
+              </property>
               <attribute name="horizontalHeaderVisible">
                <bool>false</bool>
               </attribute>
@@ -212,7 +252,7 @@ p, li { white-space: pre-wrap; }
       </item>
       <item>
        <widget class="QWidget" name="wizardStepBetSizes">
-        <layout class="QVBoxLayout" name="inputStaticsLayout" stretch="3,0,4,0">
+        <layout class="QVBoxLayout" name="inputStaticsLayout" stretch="0,0,0,1">
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,1,1">
            <item>
@@ -757,6 +797,19 @@ p, li { white-space: pre-wrap; }
           </item>
          </layout>
         </item>
+        <item>
+         <spacer name="betSizesBottomSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         </layout>
        </widget>
       </item>
@@ -1089,6 +1142,19 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
+      </item>
+      <item>
+       <spacer name="wizardStepBottomSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>

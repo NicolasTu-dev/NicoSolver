@@ -61,6 +61,8 @@ private slots:
 
     void on_wizardBackButton_clicked();
     void on_wizardNextButton_clicked();
+    void onIpRangeHover(int i, int j);
+    void onOopRangeHover(int i, int j);
 
 private:
     void clear_all_params();

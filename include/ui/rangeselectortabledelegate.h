@@ -18,6 +18,7 @@
 #include "include/ui/rangeselectortablemodel.h"
 #include <QStringList>
 #include <QPainter>
+#include <QPainterPath>
 
 class RangeSelectorTableDelegate: public WordItemDelegate{
     Q_OBJECT

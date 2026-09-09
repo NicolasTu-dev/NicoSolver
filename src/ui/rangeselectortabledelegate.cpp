@@ -8,25 +8,36 @@ RangeSelectorTableDelegate::RangeSelectorTableDelegate(QStringList ranks,RangeSe
 void RangeSelectorTableDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const{
 
     painter->save();
+    painter->setRenderHint(QPainter::Antialiasing, true);
     auto options = option;
     initStyleOption(&options, index);
 
-    QRect rect(option.rect.left(), option.rect.top(),\
-             option.rect.width(), option.rect.height());
-    QBrush brush(Qt::gray);
-    if(index.column() == index.row())brush = QBrush(Qt::darkGray);
-    painter->fillRect(rect, brush);
+    const int margin = 1;
+    QRectF cellRect(option.rect.left() + margin, option.rect.top() + margin,
+                     option.rect.width() - margin * 2, option.rect.height() - margin * 2);
+    const qreal radius = 3.0;
+
+    bool is_pair = index.column() == index.row();
+    QColor emptyColor = is_pair ? QColor("#242838") : QColor("#1a1d29");
+
+    QPainterPath cellPath;
+    cellPath.addRoundedRect(cellRect, radius, radius);
+    painter->fillPath(cellPath, emptyColor);
 
     float range_float = this->rangeSelectorTableModel->getRangeAt(index.row(),index.column());
+    if(range_float > 0.0f){
+        float fold_prob = 1 - range_float;
+        int disable_height = (int)(fold_prob * cellRect.height());
+        QRectF filledRect(cellRect.left(), cellRect.top() + disable_height,
+                           cellRect.width(), cellRect.height() - disable_height);
+        painter->save();
+        painter->setClipPath(cellPath);
+        painter->fillRect(filledRect, QColor("#5b6ef5"));
+        painter->restore();
+    }
 
-    float fold_prob = 1 - range_float;
-    int disable_height = (int)(fold_prob * option.rect.height());
-    int remain_height = option.rect.height() - disable_height;
-
-    rect = QRect(option.rect.left(), option.rect.top() + disable_height,\
-     option.rect.width(), remain_height);
-    brush = QBrush(Qt::yellow);
-    painter->fillRect(rect, brush);
+    painter->setPen(QPen(QColor("#0d0f16"), 1));
+    painter->drawPath(cellPath);
 
     QTextDocument doc;
     doc.setHtml(options.text);

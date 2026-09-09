@@ -7,7 +7,7 @@ SettingEditor::SettingEditor(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Settings"));
-    QSettings setting("TexasSolver", "Setting");
+    QSettings setting("NicoSolver", "Setting");
     setting.beginGroup("solver");
     QString language_str = setting.value("language").toString();
     if(language_str == "EN"){
@@ -36,6 +36,8 @@ SettingEditor::SettingEditor(QWidget *parent) :
         qDebug().noquote() << tr("dump round error: ") << dump_round;
     }
 
+    this->initial_language_index = this->ui->languageBox->currentIndex();
+    this->initial_theme_index = this->ui->themeBox->currentIndex();
     this->initized = true;
 }
 
@@ -46,7 +48,7 @@ SettingEditor::~SettingEditor()
 
 void SettingEditor::on_confirmBox_accepted()
 {
-    QSettings setting("TexasSolver", "Setting");
+    QSettings setting("NicoSolver", "Setting");
     setting.beginGroup("solver");
     int lang_index = this->ui->languageBox->currentIndex();
     QString language_str;
@@ -74,24 +76,14 @@ void SettingEditor::on_confirmBox_accepted()
 
     int round = this->ui->roundBox->currentText().toInt();
     setting.setValue("dump_round",round);
-}
 
-void SettingEditor::on_languageBox_currentIndexChanged(int index)
-{
-    if(!initized)return;
-    QString message = tr("Restart program to make language selection effective.");
-    qDebug().noquote() << message;
-    QMessageBox msgBox;
-    msgBox.setText(message);
-    msgBox.exec();
-}
-
-void SettingEditor::on_themeBox_currentIndexChanged(int index)
-{
-    if(!initized)return;
-    QString message = tr("Restart program to make theme selection effective.");
-    qDebug().noquote() << message;
-    QMessageBox msgBox;
-    msgBox.setText(message);
-    msgBox.exec();
+    bool language_changed = lang_index != this->initial_language_index;
+    bool theme_changed = theme_index != this->initial_theme_index;
+    if(language_changed || theme_changed){
+        QString message = tr("Restart the program for your changes to take effect.");
+        qDebug().noquote() << message;
+        QMessageBox msgBox;
+        msgBox.setText(message);
+        msgBox.exec();
+    }
 }
