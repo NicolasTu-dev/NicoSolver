@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <QComboBox>
 #include <QColor>
+#include <QToolTip>
+#include <QCursor>
 #include "include/Card.h"
 
 StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
@@ -227,6 +229,70 @@ void StrategyExplorer::onMouseMoveEvent(int i,int j){
     this->detailWindowSetting.grid_j = j;
     this->ui->detailView->viewport()->update();
     this->ui->strategyTableView->viewport()->update();
+
+    // Build a hover tooltip summarizing combo / action% / EV for the hovered cell,
+    // reusing the same data access pattern as DetailItemDelegate::paint_strategy/paint_evs.
+    QString tooltip_text;
+    if(this->tableStrategyModel->treeItem != NULL &&
+            this->tableStrategyModel->treeItem->m_treedata.lock()->getType() == GameTreeNode::GameTreeNode::ACTION &&
+            i >= 0 && j >= 0 &&
+            i < (int)this->tableStrategyModel->ui_strategy_table.size() &&
+            j < (int)this->tableStrategyModel->ui_strategy_table[i].size()){
+        shared_ptr<GameTreeNode> node = this->tableStrategyModel->treeItem->m_treedata.lock();
+        vector<pair<int,int>>& cell_combos = this->tableStrategyModel->ui_strategy_table[i][j];
+        shared_ptr<ActionNode> actionNode = dynamic_pointer_cast<ActionNode>(node);
+        vector<GameActions>& gameActions = actionNode->getActions();
+
+        if(!cell_combos.empty()){
+            // Use the first combo in this cell as the representative hand for the tooltip.
+            pair<int,int> combo = cell_combos[0];
+            int card1 = combo.first;
+            int card2 = combo.second;
+            vector<float> strategy = this->tableStrategyModel->current_strategy[card1][card2];
+            vector<float> evs = this->tableStrategyModel->current_evs.empty()?
+                        vector<float>(gameActions.size(),-1.0f):
+                        this->tableStrategyModel->current_evs[card1][card2];
+
+            if(gameActions.size() == strategy.size()){
+                QString combo_str = QString::fromStdString(this->tableStrategyModel->cardint2card[card1].toString()) +
+                        QString::fromStdString(this->tableStrategyModel->cardint2card[card2].toString());
+                if(cell_combos.size() > 1){
+                    tooltip_text += QString("%1 (%2 combos)\n").arg(combo_str).arg(cell_combos.size());
+                }else{
+                    tooltip_text += QString("%1\n").arg(combo_str);
+                }
+
+                bool has_evs = gameActions.size() == evs.size();
+                for(std::size_t k = 0;k < strategy.size();k ++){
+                    GameActions one_action = gameActions[k];
+                    float one_strategy = strategy[k] * 100;
+                    QString action_name;
+                    if(one_action.getAction() == GameTreeNode::PokerActions::FOLD) action_name = tr("FOLD");
+                    else if(one_action.getAction() == GameTreeNode::PokerActions::CALL) action_name = tr("CALL");
+                    else if(one_action.getAction() == GameTreeNode::PokerActions::CHECK) action_name = tr("CHECK");
+                    else if(one_action.getAction() == GameTreeNode::PokerActions::BET) action_name = QString("%1 %2").arg(tr("BET"),QString::number(one_action.getAmount()));
+                    else if(one_action.getAction() == GameTreeNode::PokerActions::RAISE) action_name = QString("%1 %2").arg(tr("RAISE"),QString::number(one_action.getAmount()));
+
+                    QString ev_str;
+                    if(has_evs){
+                        ev_str = evs[k] != evs[k] ? tr("Can't calculate") : QString::number(evs[k],'f',2);
+                    }
+
+                    if(has_evs){
+                        tooltip_text += QString("%1: %2%   %3 %4\n").arg(action_name,QString::number(one_strategy,'f',1),tr("EV"),ev_str);
+                    }else{
+                        tooltip_text += QString("%1: %2%\n").arg(action_name,QString::number(one_strategy,'f',1));
+                    }
+                }
+            }
+        }
+    }
+
+    if(!tooltip_text.isEmpty()){
+        QToolTip::showText(QCursor::pos(), tooltip_text.trimmed(), this->ui->strategyTableView);
+    }else{
+        QToolTip::hideText();
+    }
 }
 
 void StrategyExplorer::on_strategyModeButtom_clicked()
