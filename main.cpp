@@ -4,6 +4,8 @@
 #include <QInputDialog>
 #include <string>
 #include <QSettings>
+#include <QFile>
+#include <QTextStream>
 
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -68,6 +70,18 @@ int main(int argc, char *argv[])
             trans.load(":/lang_cn.qm");
         }
         a.installTranslator(&trans);
+    }
+
+    QString theme_str = setting.value("theme").toString();
+    if(theme_str != "dark" && theme_str != "light"){
+        theme_str = "dark";
+        setting.setValue("theme", theme_str);
+    }
+    QFile themeFile(theme_str == "dark" ? ":/resources/themes/theme_dark.qss" : ":/resources/themes/theme_light.qss");
+    if(themeFile.open(QFile::ReadOnly | QFile::Text)){
+        QTextStream themeStream(&themeFile);
+        a.setStyleSheet(themeStream.readAll());
+        themeFile.close();
     }
 
     int dump_round = setting.value("dump_round").toInt();
