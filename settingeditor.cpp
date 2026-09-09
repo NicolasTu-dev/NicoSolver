@@ -46,25 +46,25 @@ void SettingEditor::on_confirmBox_accepted()
 {
     QSettings setting("TexasSolver", "Setting");
     setting.beginGroup("solver");
-    QString lang = this->ui->languageBox->currentText();
+    int lang_index = this->ui->languageBox->currentIndex();
     QString language_str;
-    if(lang == "English"){
+    if(lang_index == 0){
         language_str = "EN";
-    }else if(lang == "Chinese"){
+    }else if(lang_index == 1){
         language_str = "CN";
     }else{
-        qDebug().noquote() << tr("Unknown language: ") << lang << tr("Setting fail");
+        qDebug().noquote() << tr("Unknown language index: ") << lang_index << tr("Setting fail");
     }
     setting.setValue("language",language_str);
 
-    QString theme = this->ui->themeBox->currentText();
+    int theme_index = this->ui->themeBox->currentIndex();
     QString theme_str;
-    if(theme == "Dark"){
+    if(theme_index == 0){
         theme_str = "dark";
-    }else if(theme == "Light"){
+    }else if(theme_index == 1){
         theme_str = "light";
     }else{
-        qDebug().noquote() << tr("Unknown theme: ") << theme << tr("Setting fail");
+        qDebug().noquote() << tr("Unknown theme index: ") << theme_index << tr("Setting fail");
     }
     setting.setValue("theme",theme_str);
 
