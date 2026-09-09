@@ -58,8 +58,12 @@ private slots:
     void on_oopRangeText_textChanged();
     void onExpanded(const QModelIndex& index);
 
+    void on_wizardBackButton_clicked();
+    void on_wizardNextButton_clicked();
+
 private:
     void clear_all_params();
+    void showWizardStep(int index);
     Ui::MainWindow *ui = NULL;
     QSolverJob* qSolverJob = NULL;
     QFileSystemModel * qFileSystemModel = NULL;
@@ -67,6 +71,8 @@ private:
     RangeSelector* rangeSelector = NULL;
     boardselector* boardSelector = NULL;
     SettingEditor* settingEditor = NULL;
+    int currentWizardStep = 0;
+    QWidget* wizardSteps[6];
     RangeSelectorTableDelegate * ip_delegate;
     RangeSelectorTableDelegate * oop_delegate;
     RangeSelectorTableModel * ip_model;

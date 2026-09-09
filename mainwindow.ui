@@ -21,6 +21,50 @@
        <number>0</number>
       </property>
       <item>
+       <widget class="QWidget" name="wizardNavStrip">
+        <layout class="QVBoxLayout" name="wizardNavStripLayout">
+         <item>
+          <widget class="QLabel" name="wizardStepLabel">
+           <property name="text">
+            <string>Paso 1 de 6: Rangos</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="wizardNavButtonsLayout">
+           <item>
+            <widget class="QPushButton" name="wizardBackButton">
+             <property name="text">
+              <string>← Atrás</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="wizardNavSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="wizardNextButton">
+             <property name="text">
+              <string>Siguiente →</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <widget class="QWidget" name="wizardStepRanges">
         <layout class="QVBoxLayout" name="rangeLayout">
          <item>

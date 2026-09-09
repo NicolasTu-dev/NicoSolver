@@ -63,6 +63,48 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->oopRangeTableView->verticalHeader()->setMinimumSectionSize(1);
     this->ui->oopRangeTableView->horizontalHeader()->setMinimumSectionSize(1);
     this->ui->tabWidget->hide();
+
+    this->wizardSteps[0] = this->ui->wizardStepRanges;
+    this->wizardSteps[1] = this->ui->wizardStepBoard;
+    this->wizardSteps[2] = this->ui->wizardStepBetSizes;
+    this->wizardSteps[3] = this->ui->wizardStepTreeParams;
+    this->wizardSteps[4] = this->ui->wizardStepSolverOptions;
+    this->wizardSteps[5] = this->ui->wizardStepConfirm;
+    this->showWizardStep(0);
+}
+
+void MainWindow::showWizardStep(int index)
+{
+    if(index < 0 || index > 5) return;
+    this->currentWizardStep = index;
+    for(int i = 0; i < 6; i++){
+        this->wizardSteps[i]->setVisible(i == index);
+    }
+    QStringList stepNames;
+    stepNames << tr("Rangos") << tr("Board") << tr("Bet Sizings")
+              << tr("Parámetros del árbol") << tr("Opciones del Solver") << tr("Confirmar y resolver");
+    this->ui->wizardStepLabel->setText(tr("Paso %1 de 6: %2").arg(index + 1).arg(stepNames[index]));
+    this->ui->wizardBackButton->setEnabled(index > 0);
+    this->ui->wizardNextButton->setText(index == 5 ? tr("Listo") : tr("Siguiente →"));
+}
+
+void MainWindow::on_wizardBackButton_clicked()
+{
+    if(this->currentWizardStep > 0){
+        this->showWizardStep(this->currentWizardStep - 1);
+    }
+}
+
+void MainWindow::on_wizardNextButton_clicked()
+{
+    if(this->currentWizardStep == 3){
+        // Leaving the tree-params step: build the tree automatically,
+        // exactly what clicking the pre-existing "Build Tree" button already does.
+        this->on_buildTreeButtom_clicked();
+    }
+    if(this->currentWizardStep < 5){
+        this->showWizardStep(this->currentWizardStep + 1);
+    }
 }
 
 QSTextEdit * MainWindow::get_logwindow(){
