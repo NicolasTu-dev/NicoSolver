@@ -157,7 +157,7 @@
     <message>
         <location filename="mainwindow.ui" line="29"/>
         <source>Paso 1 de 6: Rangos</source>
-        <translation type="unfinished"></translation>
+        <translation>Step 1 of 6: Ranges</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="38"/>
