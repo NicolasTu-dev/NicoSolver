@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 
     if(language_str == ""){
         QStringList languages;
-        languages << "English" << QString::fromLocal8Bit("简体中文");
+        languages << "English" << QString::fromLocal8Bit("简体中文") << "Español";
         QString lang = QInputDialog::getItem(NULL,"select language","language",languages,0,false);
 
         if(lang == "English"){
@@ -60,6 +60,9 @@ int main(int argc, char *argv[])
         }else if(lang == QString::fromLocal8Bit("简体中文")){
             trans.load(":/lang_cn.qm");
             language_str = "CN";
+        }else if(lang == "Español"){
+            trans.load(":/lang_es.qm");
+            language_str = "ES";
         }
         a.installTranslator(&trans);
         setting.setValue("language",language_str);
@@ -68,6 +71,8 @@ int main(int argc, char *argv[])
             trans.load(":/lang_en.qm");
         }else if(language_str == "CN"){
             trans.load(":/lang_cn.qm");
+        }else if(language_str == "ES"){
+            trans.load(":/lang_es.qm");
         }
         a.installTranslator(&trans);
     }
