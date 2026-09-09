@@ -23,6 +23,8 @@ private slots:
 
     void on_languageBox_currentIndexChanged(int index);
 
+    void on_themeBox_currentIndexChanged(int index);
+
 private:
     Ui::SettingEditor *ui;
     bool initized = false;
