@@ -277,3 +277,32 @@ QStatusBar {
 QSplitter::handle {
     background-color: #2a2d3a;
 }
+
+#wizardNavStrip {
+    background-color: #0d0f16;
+    border-bottom: 1px solid #2a2d3a;
+}
+
+#wizardStepLabel {
+    color: #5b6ef5;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#wizardNextButton {
+    background-color: #5b6ef5;
+    color: #ffffff;
+}
+
+#wizardBackButton {
+    background-color: #1a1d29;
+    color: #e8e8f0;
+    border: 1px solid #2a2d3a;
+}
+
+#wizardBackButton:disabled {
+    color: #8b8fa3;
+    background-color: #12141c;
+}
