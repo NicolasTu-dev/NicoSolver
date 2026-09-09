@@ -201,4 +201,5 @@ FORMS += \
 
 RESOURCES += \
     translations.qrc \
-    compairer.qrc
+    compairer.qrc \
+    themes.qrc
