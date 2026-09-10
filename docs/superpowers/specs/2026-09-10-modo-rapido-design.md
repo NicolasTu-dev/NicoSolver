@@ -120,11 +120,7 @@ Selecting an option stores: the matchup row, and whether the user's hand goes in
 
 ## Component 2: Two-card hand picker
 
-Extract the reusable grid logic from `boardselector`/`BoardSelectorTableModel`/`BoardSelectorTableDelegate` into a new dialog-free variant embedded directly as a wizard step (not a popup dialog like the current board selector) — call it `HandCardPicker` (`handcardpicker.h/.cpp/.ui`). Differences from `boardselector`:
-
-- Caps selection at exactly 2 cards (vs. 3-5 for board): clicking a 3rd card deselects the oldest of the two, not a new UI concept — same toggle mechanism, different cap.
-- Lives inline in the Modo Rápido step flow (like `wizardStepRanges` etc. already do), not a separate popup — reuses the existing `wizardNavStrip` back/next pattern instead of a confirm button.
-- Outputs a `QString` like "AsKh", exactly the format `range_ip`/`range_oop`/hand-lookup code already expects.
+Reuses `BoardSelectorTableModel`/`BoardSelectorTableDelegate`/`HtmlTableView` **directly** (no new class) — the same trio `boardselector` already uses for its popup grid, just embedded inline as a Modo Rápido step widget instead of inside a popup dialog, with a click handler that enforces "exactly 2 selected" (rejecting a 3rd click with a message instead of the popup's unlimited board-card selection). Outputs a `QString` like "As,Kh" via the model's existing `getBoardText()` — exactly the format the hand-lookup code already expects.
 
 ## Component 3: Auto-fill and solve
 
