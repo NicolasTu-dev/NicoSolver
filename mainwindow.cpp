@@ -1279,11 +1279,12 @@ void MainWindow::startQuickModeSolve(bool fastMode){
     this->ui->useIsoCheck->setChecked(true);
     this->ui->useHalfFloats_box->setCurrentIndex(0);
     this->ui->mode_box->setCurrentIndex(0);
-    // Practice mode only needs to be right about which action family (fold/
-    // call/bet) is most frequent, not publication-precision numbers, so it
-    // stops much sooner than a full Modo Rápido solve.
-    this->ui->iterationText->setText(fastMode ? "60" : "200");
-    this->ui->exploitabilityText->setText(fastMode ? "2.0" : "0.5");
+    // Modo Rápido favors a fast answer over publication-precision numbers —
+    // a rough-but-quick recommendation is more useful here than a slow exact
+    // one. Practice mode (fastMode) stops sooner still, since it only needs
+    // to know which action family (fold/call/bet) is most frequent.
+    this->ui->iterationText->setText(fastMode ? "60" : "100");
+    this->ui->exploitabilityText->setText(fastMode ? "2.0" : "1.0");
     this->ui->logIntervalText->setText("10");
     this->ui->threadsText->setText("8");
 
