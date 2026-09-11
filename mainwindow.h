@@ -100,7 +100,7 @@ private:
     void startQuickMode();
     void startPracticeQuiz();
     void showQuickModeStep(int index);
-    void startQuickModeSolve();
+    void startQuickModeSolve(bool fastMode = false);
     void resetSeatSelection();
     void updateSeatButtonStyles();
     QList<int> resolveMatchupIndices(QString seatA, QString seatB, QString& openerSeatOut);

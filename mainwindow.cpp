@@ -11,6 +11,8 @@
 #include <QGraphicsDropShadowEffect>
 #include <QRandomGenerator>
 #include <tuple>
+#include "include/Card.h"
+#include <QFrame>
 
 QSTextEdit* MainWindow::s_textEdit = 0;
 
@@ -196,6 +198,18 @@ void MainWindow::on_helpButton_clicked()
     }
 }
 
+static QString quizCardChipsHtml(const QStringList& cardStrs){
+    QString html;
+    for(const QString& c : cardStrs){
+        Card card(c.toStdString());
+        html += QString("<span style='background-color:#132118;border:1px solid #2a4a38;"
+                         "border-radius:8px;padding:8px 16px;margin-right:6px;"
+                         "font-size:26px;font-weight:700;'>%1</span>")
+            .arg(card.toFormattedHtml());
+    }
+    return html;
+}
+
 void MainWindow::startPracticeQuiz(){
     QVector<QuickModeMatchup> matchups = getQuickModeMatchups();
     int matchupIdx = (int)QRandomGenerator::global()->bounded(matchups.size());
@@ -222,20 +236,64 @@ void MainWindow::startPracticeQuiz(){
 
     QString situation = iAmOpener ? matchup.descriptionAsOpener : matchup.descriptionAsCaller;
 
-    QMessageBox guessBox(this);
-    guessBox.setWindowTitle(tr("Modo Práctica"));
-    guessBox.setText(tr("%1\n\nTu mano: %2 %3\nBoard: %4 %5 %6\n\n¿Qué harías?")
-        .arg(situation, hand1, hand2, flop1, flop2, flop3));
-    QPushButton* foldBtn = guessBox.addButton(tr("Retirarse"), QMessageBox::NoRole);
-    QPushButton* callBtn = guessBox.addButton(tr("Pagar / Chequear"), QMessageBox::NoRole);
-    QPushButton* betBtn = guessBox.addButton(tr("Apostar / Subir"), QMessageBox::YesRole);
-    guessBox.exec();
+    QDialog guessDialog(this);
+    guessDialog.setWindowTitle(tr("Modo Práctica"));
+    guessDialog.setMinimumSize(600, 460);
+    QVBoxLayout* layout = new QVBoxLayout(&guessDialog);
+    layout->setSpacing(16);
+    layout->setContentsMargins(28, 28, 28, 28);
+
+    QLabel* titleLabel = new QLabel(tr("🎯 ¿Qué harías acá?"), &guessDialog);
+    titleLabel->setStyleSheet("font-size:22px; font-weight:800;");
+    layout->addWidget(titleLabel);
+
+    QLabel* situationLabel = new QLabel(situation, &guessDialog);
+    situationLabel->setWordWrap(true);
+    situationLabel->setStyleSheet("font-size:14px;");
+    layout->addWidget(situationLabel);
+
+    QFrame* divider = new QFrame(&guessDialog);
+    divider->setFrameShape(QFrame::HLine);
+    layout->addWidget(divider);
+
+    QLabel* handTitle = new QLabel(tr("Tu mano:"), &guessDialog);
+    handTitle->setStyleSheet("font-size:13px; color:#a9c9b6; font-weight:700;");
+    layout->addWidget(handTitle);
+    QLabel* handLabel = new QLabel(quizCardChipsHtml({hand1, hand2}), &guessDialog);
+    layout->addWidget(handLabel);
+
+    QLabel* boardTitle = new QLabel(tr("Board:"), &guessDialog);
+    boardTitle->setStyleSheet("font-size:13px; color:#a9c9b6; font-weight:700;");
+    layout->addWidget(boardTitle);
+    QLabel* boardLabel = new QLabel(quizCardChipsHtml({flop1, flop2, flop3}), &guessDialog);
+    layout->addWidget(boardLabel);
+
+    layout->addStretch();
+
+    QLabel* questionLabel = new QLabel(tr("¿Qué harías con esta mano?"), &guessDialog);
+    questionLabel->setStyleSheet("font-size:15px; font-weight:700;");
+    layout->addWidget(questionLabel);
+
+    QHBoxLayout* buttonsLayout = new QHBoxLayout();
+    buttonsLayout->setSpacing(12);
+    QPushButton* foldBtn = new QPushButton(tr("Retirarse"), &guessDialog);
+    QPushButton* callBtn = new QPushButton(tr("Pagar / Chequear"), &guessDialog);
+    QPushButton* betBtn = new QPushButton(tr("Apostar / Subir"), &guessDialog);
+    QString bigButtonStyle = "font-size:15px; font-weight:700; padding:14px 10px;";
+    foldBtn->setStyleSheet(bigButtonStyle);
+    callBtn->setStyleSheet(bigButtonStyle);
+    betBtn->setStyleSheet(bigButtonStyle);
+    buttonsLayout->addWidget(foldBtn);
+    buttonsLayout->addWidget(callBtn);
+    buttonsLayout->addWidget(betBtn);
+    layout->addLayout(buttonsLayout);
 
     QString guess;
-    if(guessBox.clickedButton() == foldBtn) guess = "FOLD";
-    else if(guessBox.clickedButton() == callBtn) guess = "CALL";
-    else if(guessBox.clickedButton() == betBtn) guess = "BET";
-    else return; // dialog dismissed without a clear answer
+    connect(foldBtn, &QPushButton::clicked, &guessDialog, [&](){ guess = "FOLD"; guessDialog.accept(); });
+    connect(callBtn, &QPushButton::clicked, &guessDialog, [&](){ guess = "CALL"; guessDialog.accept(); });
+    connect(betBtn, &QPushButton::clicked, &guessDialog, [&](){ guess = "BET"; guessDialog.accept(); });
+
+    if(guessDialog.exec() != QDialog::Accepted || guess.isEmpty()) return;
 
     this->quizMode = true;
     this->quizGuessedAction = guess;
@@ -245,7 +303,7 @@ void MainWindow::startPracticeQuiz(){
     this->quickModeCard2 = hand2;
     this->ui->boardText->setPlainText(QString("%1,%2,%3").arg(flop1, flop2, flop3));
 
-    this->startQuickModeSolve();
+    this->startQuickModeSolve(true);
 }
 
 void MainWindow::showWizardStep(int index)
@@ -979,15 +1037,49 @@ void MainWindow::onSolverJobFinished()
             actionNames["CALL"] = tr("Pagar / Chequear");
             actionNames["BET"] = tr("Apostar / Subir");
             bool correct = (bestAction == this->quizGuessedAction);
-            QMessageBox revealBox(this);
-            revealBox.setWindowTitle(correct ? tr("¡Acertaste!") : tr("No acertaste"));
-            revealBox.setText(tr("Vos dijiste: %1\nCon todo el rango, lo más frecuente acá es: %2 (%3%)\n\n%4")
-                .arg(actionNames[this->quizGuessedAction])
-                .arg(actionNames[bestAction])
-                .arg((int)(bestPct * 100 + 0.5f))
-                .arg(correct ? tr("¡Bien ahí! Explorá abajo para ver el detalle mano por mano.")
-                              : tr("No pasa nada, mirá abajo el detalle mano por mano para entender por qué.")));
-            revealBox.exec();
+
+            QDialog revealDialog(this);
+            revealDialog.setWindowTitle(tr("Modo Práctica"));
+            revealDialog.setMinimumSize(560, 340);
+            QVBoxLayout* layout = new QVBoxLayout(&revealDialog);
+            layout->setSpacing(16);
+            layout->setContentsMargins(28, 28, 28, 28);
+
+            QLabel* resultLabel = new QLabel(correct ? tr("✅ ¡Acertaste!") : tr("❌ No acertaste"), &revealDialog);
+            resultLabel->setStyleSheet(correct
+                ? "font-size:26px; font-weight:800; color:#22c55e;"
+                : "font-size:26px; font-weight:800; color:#e05252;");
+            layout->addWidget(resultLabel);
+
+            QFrame* divider = new QFrame(&revealDialog);
+            divider->setFrameShape(QFrame::HLine);
+            layout->addWidget(divider);
+
+            QLabel* guessLabel = new QLabel(tr("Vos dijiste: <b>%1</b>").arg(actionNames[this->quizGuessedAction]), &revealDialog);
+            guessLabel->setStyleSheet("font-size:15px;");
+            layout->addWidget(guessLabel);
+
+            QLabel* solverLabel = new QLabel(tr("Con todo el rango, lo más frecuente acá es: <b>%1 (%2%)</b>")
+                .arg(actionNames[bestAction]).arg((int)(bestPct * 100 + 0.5f)), &revealDialog);
+            solverLabel->setWordWrap(true);
+            solverLabel->setStyleSheet("font-size:15px;");
+            layout->addWidget(solverLabel);
+
+            layout->addStretch();
+
+            QLabel* hintLabel = new QLabel(correct
+                ? tr("¡Bien ahí! Explorá abajo para ver el detalle mano por mano.")
+                : tr("No pasa nada, mirá abajo el detalle mano por mano para entender por qué."), &revealDialog);
+            hintLabel->setWordWrap(true);
+            hintLabel->setStyleSheet("font-size:13px; color:#a9c9b6;");
+            layout->addWidget(hintLabel);
+
+            QPushButton* closeBtn = new QPushButton(tr("Ver el detalle →"), &revealDialog);
+            closeBtn->setStyleSheet("font-size:15px; font-weight:700; padding:12px 10px;");
+            connect(closeBtn, &QPushButton::clicked, &revealDialog, &QDialog::accept);
+            layout->addWidget(closeBtn);
+
+            revealDialog.exec();
         }
         this->strategyExplorer->show();
         return;
@@ -1168,7 +1260,7 @@ void MainWindow::showQuickModeStep(int index){
     this->ui->wizardNextButton->setText(index == 2 ? tr("Resolver →") : tr("Siguiente →"));
 }
 
-void MainWindow::startQuickModeSolve(){
+void MainWindow::startQuickModeSolve(bool fastMode){
     QVector<QuickModeMatchup> matchups = getQuickModeMatchups();
     QuickModeMatchup matchup = matchups[this->chosenMatchupIndex];
 
@@ -1191,8 +1283,11 @@ void MainWindow::startQuickModeSolve(){
     this->ui->useIsoCheck->setChecked(true);
     this->ui->useHalfFloats_box->setCurrentIndex(0);
     this->ui->mode_box->setCurrentIndex(0);
-    this->ui->iterationText->setText("200");
-    this->ui->exploitabilityText->setText("0.5");
+    // Practice mode only needs to be right about which action family (fold/
+    // call/bet) is most frequent, not publication-precision numbers, so it
+    // stops much sooner than a full Modo Rápido solve.
+    this->ui->iterationText->setText(fastMode ? "60" : "200");
+    this->ui->exploitabilityText->setText(fastMode ? "2.0" : "0.5");
     this->ui->logIntervalText->setText("10");
     this->ui->threadsText->setText("8");
 
