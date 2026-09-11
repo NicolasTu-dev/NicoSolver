@@ -379,6 +379,12 @@ void MainWindow::on_wizardBackButton_clicked()
 void MainWindow::on_wizardNextButton_clicked()
 {
     if(this->quickMode){
+        if(this->currentQuickStep == 0){
+            if(this->mySeat.isEmpty() || this->villainSeat.isEmpty()){
+                QMessageBox::information(this, tr("Elegí los dos asientos"), tr("Tocá tu asiento y después el del rival antes de seguir."));
+                return;
+            }
+        }
         if(this->currentQuickStep == 1){
             QString handText = this->handSelectorModel->getBoardText();
             QStringList cards = handText.split(",", Qt::SkipEmptyParts);
@@ -1247,6 +1253,12 @@ void MainWindow::showQuickModeStep(int index){
 
 void MainWindow::startQuickModeSolve(bool fastMode){
     QuickModeMatchup matchup = this->currentMatchup;
+    if(matchup.openerRange.isEmpty() || matchup.callerRange.isEmpty()){
+        QMessageBox::warning(this, tr("Falta elegir la situación"),
+            tr("No se eligió una situación válida (asientos) antes de resolver. Volvé al paso 1 y elegí tu asiento y el del rival."));
+        this->showQuickModeStep(0);
+        return;
+    }
 
     QString myRange = this->userIsOpener ? matchup.openerRange : matchup.callerRange;
     QString villainRange = this->userIsOpener ? matchup.callerRange : matchup.openerRange;
