@@ -11,8 +11,13 @@
 #include <QMessageBox>
 #include "boardselector.h"
 #include "settingeditor.h"
+#include "welcomedialog.h"
 #include "include/ui/rangeselectortablemodel.h"
 #include "include/ui/rangeselectortabledelegate.h"
+#include "include/data/quickmoderanges.h"
+#include "include/ui/boardselectortablemodel.h"
+#include "include/ui/boardselectortabledelegate.h"
+#include <QProgressDialog>
 
 namespace Ui {
 class MainWindow;
@@ -49,27 +54,56 @@ private slots:
     void on_oopRangeSelectButtom_clicked();
     void on_estimateMemoryButtom_clicked();
     void on_selectBoardButton_clicked();
-    void on_openParametersFolderButton_clicked();
-    void item_clicked(const QModelIndex&);
-
-    void on_exportCurrentParameterButton_clicked();
+    void on_actionopen_parameters_folder_triggered();
+    void on_actionview_log_triggered();
+    void onSolverJobFinished();
 
     void on_ipRangeText_textChanged();
 
     void on_oopRangeText_textChanged();
-    void onExpanded(const QModelIndex& index);
 
     void on_wizardBackButton_clicked();
     void on_wizardNextButton_clicked();
     void onIpRangeHover(int i, int j);
     void onOopRangeHover(int i, int j);
+    void on_helpButton_clicked();
+    void onHandSelectorClicked(const QModelIndex &index);
+    void onSeatClicked();
+    void onSimplePotChosen();
+    void onThreeBetPotChosen();
 
 private:
     void clear_all_params();
     void showWizardStep(int index);
+    void showWelcomeIfNeeded();
+    void resetToExampleDefaults();
+    bool exampleMode = false;
+    bool solvingInProgress = false;
+    enum class QuickModeStage { None, WaitingForBuildTree, WaitingForSolve };
+    QuickModeStage quickModePendingStage = QuickModeStage::None;
+    bool quickMode = false;
+    int currentQuickStep = 0;
+    QWidget* quickModeSteps[3];
+    int chosenMatchupIndex = -1;
+    bool userIsOpener = true;
+    QString quickModeCard1;
+    QString quickModeCard2;
+    QString mySeat;
+    QString villainSeat;
+    QList<int> pendingMatchupChoices;
+    QString pendingOpenerSeat;
+    BoardSelectorTableModel* handSelectorModel = NULL;
+    BoardSelectorTableDelegate* handSelectorDelegate = NULL;
+    QProgressDialog* quickModeProgressDialog = NULL;
+    void startQuickMode();
+    void showQuickModeStep(int index);
+    void startQuickModeSolve();
+    void resetSeatSelection();
+    void updateSeatButtonStyles();
+    QList<int> resolveMatchupIndices(QString seatA, QString seatB, QString& openerSeatOut);
     Ui::MainWindow *ui = NULL;
     QSolverJob* qSolverJob = NULL;
-    QFileSystemModel * qFileSystemModel = NULL;
+    QDialog* logDialog = NULL;
     StrategyExplorer* strategyExplorer = NULL;
     RangeSelector* rangeSelector = NULL;
     boardselector* boardSelector = NULL;

@@ -35,8 +35,12 @@ class StrategyExplorer : public QDialog
 public:
     explicit StrategyExplorer(QWidget *parent = 0,QSolverJob * qSolverJob=nullptr);
     ~StrategyExplorer();
+    void selectRootNode();
+    void setHighlightedHand(QString card1, QString card2);
 
 private:
+    void setAdvancedViewVisible(bool visible);
+    bool advancedViewVisible = false;
     DetailWindowSetting detailWindowSetting;
     QTimer *timer;
     Ui::StrategyExplorer *ui;
@@ -67,6 +71,7 @@ private slots:
     void on_evModeButtom_clicked();
     void on_evOnlyModeButtom_clicked();
     void on_advancedModeCheck_toggled(bool checked);
+    void on_toggleAdvancedViewButton_clicked();
 };
 
 #endif // STRATEGYEXPLORER_H

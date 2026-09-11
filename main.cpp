@@ -6,6 +6,8 @@
 #include <QSettings>
 #include <QFile>
 #include <QTextStream>
+#include <QFontDatabase>
+#include "include/ui/rangeselectortabledelegate.h"
 
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -44,7 +46,15 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(myMessageOutput);
     QApplication a(argc, argv);
 
-    QSettings setting("NicoSolver", "Setting");
+    QFontDatabase::addApplicationFont(":/resources/fonts/Cinzel-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/Inter-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/Inter-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/SpaceGrotesk-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/SpaceGrotesk-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/Manrope-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/Manrope-Bold.ttf");
+
+    QSettings setting("Solverix", "Setting");
     setting.beginGroup("solver");
     QString language_str = setting.value("language").toString();
     QTranslator trans;
@@ -77,16 +87,50 @@ int main(int argc, char *argv[])
         a.installTranslator(&trans);
     }
 
+    QStringList validThemes;
+    validThemes << "dark" << "light" << "pokerroom" << "violet" << "fintech";
     QString theme_str = setting.value("theme").toString();
-    if(theme_str != "dark" && theme_str != "light"){
-        theme_str = "dark";
+    if(!validThemes.contains(theme_str)){
+        theme_str = "pokerroom";
         setting.setValue("theme", theme_str);
     }
-    QFile themeFile(theme_str == "dark" ? ":/resources/themes/theme_dark.qss" : ":/resources/themes/theme_light.qss");
+    QString themePath = ":/resources/themes/theme_dark.qss";
+    if(theme_str == "light"){
+        themePath = ":/resources/themes/theme_light.qss";
+    }else if(theme_str == "pokerroom"){
+        themePath = ":/resources/themes/theme_pokerroom.qss";
+    }else if(theme_str == "violet"){
+        themePath = ":/resources/themes/theme_violet.qss";
+    }else if(theme_str == "fintech"){
+        themePath = ":/resources/themes/theme_fintech.qss";
+    }
+    QFile themeFile(themePath);
     if(themeFile.open(QFile::ReadOnly | QFile::Text)){
         QTextStream themeStream(&themeFile);
         a.setStyleSheet(themeStream.readAll());
         themeFile.close();
+    }
+
+    if(theme_str == "pokerroom"){
+        RangeSelectorTableDelegate::accentColor = QColor("#d4af37");
+        RangeSelectorTableDelegate::emptyColor = QColor("#132118");
+        RangeSelectorTableDelegate::pairColor = QColor("#1c2f22");
+        RangeSelectorTableDelegate::borderColor = QColor("#06120b");
+    }else if(theme_str == "light"){
+        RangeSelectorTableDelegate::accentColor = QColor("#3d5afe");
+        RangeSelectorTableDelegate::emptyColor = QColor("#eef0f4");
+        RangeSelectorTableDelegate::pairColor = QColor("#e2e4ea");
+        RangeSelectorTableDelegate::borderColor = QColor("#ffffff");
+    }else if(theme_str == "violet"){
+        RangeSelectorTableDelegate::accentColor = QColor("#7c6ff0");
+        RangeSelectorTableDelegate::emptyColor = QColor("#1e1c2b");
+        RangeSelectorTableDelegate::pairColor = QColor("#282540");
+        RangeSelectorTableDelegate::borderColor = QColor("#0d0c14");
+    }else if(theme_str == "fintech"){
+        RangeSelectorTableDelegate::accentColor = QColor("#00e5a0");
+        RangeSelectorTableDelegate::emptyColor = QColor("#0d1017");
+        RangeSelectorTableDelegate::pairColor = QColor("#161b26");
+        RangeSelectorTableDelegate::borderColor = QColor("#05070d");
     }
 
     int dump_round = setting.value("dump_round").toInt();

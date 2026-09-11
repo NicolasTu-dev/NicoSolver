@@ -69,7 +69,7 @@ void QSolverJob::loading(){
 void QSolverJob::saving(){
     qDebug().noquote() << tr("Saving json file..");//.toStdString() << std::endl;
 
-    QSettings setting("NicoSolver", "Setting");
+    QSettings setting("Solverix", "Setting");
     setting.beginGroup("solver");
     this->dump_rounds = setting.value("dump_round").toInt();
 

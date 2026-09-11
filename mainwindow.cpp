@@ -6,6 +6,8 @@
 #include "include/library.h"
 #include <QToolTip>
 #include <QCursor>
+#include <QVBoxLayout>
+#include <QMap>
 
 QSTextEdit* MainWindow::s_textEdit = 0;
 
@@ -20,35 +22,24 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->ui->actionimport, &QAction::triggered, this, &MainWindow::on_actionimport_triggered);
     connect(this->ui->actionexport, &QAction::triggered, this, &MainWindow::on_actionexport_triggered);
     connect(this->ui->actionclear_all, &QAction::triggered, this, &MainWindow::on_actionclear_all_triggered);
+    connect(this->ui->actionopen_parameters_folder, &QAction::triggered, this, &MainWindow::on_actionopen_parameters_folder_triggered);
+    connect(this->ui->actionview_log, &QAction::triggered, this, &MainWindow::on_actionview_log_triggered);
     qSolverJob = new QSolverJob;
     qSolverJob->setContext(this->getLogArea());
     qSolverJob->current_mission = QSolverJob::MissionType::LOADING;
     qSolverJob->start();
-    this->setWindowTitle(tr("NicoSolver"));
+    connect(qSolverJob, &QThread::finished, this, &MainWindow::onSolverJobFinished);
+    this->setWindowTitle(tr("Solverix"));
 
-    // parameters tree view
-    QStringList filters;
-    filters << "*.txt";
-    qFileSystemModel = new QFileSystemModel(this);
-    QDir filedir = QDir::current().filePath("parameters");
-    qFileSystemModel->setRootPath(filedir.path());
-#ifdef Q_OS_MAC
-    filedir = QDir("");
-    qFileSystemModel->setRootPath(filedir.path());
-#endif
-    qFileSystemModel->setNameFilters(filters);
-    qFileSystemModel->setFilter(QDir::AllDirs | QDir::AllEntries |QDir::NoDotAndDotDot);
-    this->ui->parametersTreeView->setModel(this->qFileSystemModel);
-    this->ui->parametersTreeView->setRootIndex(this->qFileSystemModel->index(filedir.path()));
-    for (int i=1; i<=4; i++)
-    {   this->ui->parametersTreeView->hideColumn(i);}
-    connect(
-                this->ui->parametersTreeView,
-                SIGNAL(clicked(const QModelIndex&)),
-                this,
-                SLOT(item_clicked(const QModelIndex&))
-                );
-    connect(ui->parametersTreeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onExpanded(QModelIndex)));
+    // The log view isn't part of the main wizard anymore; it lives in its own
+    // dialog reachable from Solver -> "Ver registro (log)" so the wizard gets
+    // the full window width.
+    this->logDialog = new QDialog(this);
+    this->logDialog->setWindowTitle(tr("Registro / Log"));
+    this->logDialog->resize(700, 500);
+    QVBoxLayout* logDialogLayout = new QVBoxLayout(this->logDialog);
+    logDialogLayout->addWidget(this->ui->logOutput);
+    logDialogLayout->addWidget(this->ui->clearLogButtom);
 
     // Thumbnail process
     this->ip_model = new RangeSelectorTableModel(QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(","),this->ui->ipRangeText->toPlainText(),this,true);
@@ -69,6 +60,40 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->ui->IpRangeTableView, SIGNAL(itemMouseChange(int,int)), this, SLOT(onIpRangeHover(int,int)));
     connect(this->ui->oopRangeTableView, SIGNAL(itemMouseChange(int,int)), this, SLOT(onOopRangeHover(int,int)));
 
+    // Quick-mode hand picker — reuses the existing board-card grid widget/model,
+    // just pointed at a separate (initially empty) text buffer for "my 2 cards".
+    this->handSelectorModel = new BoardSelectorTableModel(QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(","), "", this);
+    this->ui->handSelectorTable->setModel(this->handSelectorModel);
+    this->handSelectorDelegate = new BoardSelectorTableDelegate(QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(","), this->handSelectorModel, this);
+    this->ui->handSelectorTable->setItemDelegate(this->handSelectorDelegate);
+    connect(this->ui->handSelectorTable, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onHandSelectorClicked(const QModelIndex&)));
+
+    this->quickModeSteps[0] = this->ui->quickStepSituation;
+    this->quickModeSteps[1] = this->ui->quickStepHand;
+    this->quickModeSteps[2] = this->ui->wizardStepBoard;
+    this->ui->quickStepSituation->setVisible(false);
+    this->ui->quickStepHand->setVisible(false);
+
+    this->ui->seatUTG->setObjectName("seatUTG");
+    this->ui->seatCO->setObjectName("seatCO");
+    this->ui->seatBTN->setObjectName("seatBTN");
+    this->ui->seatSB->setObjectName("seatSB");
+    this->ui->seatBB->setObjectName("seatBB");
+    connect(this->ui->seatUTG, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
+    connect(this->ui->seatCO, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
+    connect(this->ui->seatBTN, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
+    connect(this->ui->seatSB, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
+    connect(this->ui->seatBB, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
+    connect(this->ui->simplePotButton, &QPushButton::clicked, this, &MainWindow::onSimplePotChosen);
+    connect(this->ui->threeBetPotButton, &QPushButton::clicked, this, &MainWindow::onThreeBetPotChosen);
+    // Defensively force the seat buttons above the felt background in
+    // stacking order, in case document order alone doesn't guarantee it.
+    this->ui->seatUTG->raise();
+    this->ui->seatCO->raise();
+    this->ui->seatBTN->raise();
+    this->ui->seatSB->raise();
+    this->ui->seatBB->raise();
+
     this->ui->wizardLoadConfigButton->setToolTip(tr("Si ya guardaste una configuración antes (un archivo .json), tocá acá para cargarla y saltarte todos los pasos."));
     this->ui->ipRangeText->setToolTip(tr("Acá aparece el rango de manos del jugador IP (el que actúa último) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando \"Select IP\"."));
     this->ui->oopRangeText->setToolTip(tr("Acá aparece el rango de manos del jugador OOP (el que actúa primero) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando \"Select OOP\"."));
@@ -85,12 +110,12 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->turn_oop_allin->setToolTip(allinTooltip);
     this->ui->river_oop_allin->setToolTip(allinTooltip);
 
-    this->ui->groupBox->setToolTip(tr("Flop = las primeras 3 cartas comunitarias. Acá definís qué tamaños de apuesta puede usar IP (el jugador que actúa último) cuando le toca abrir la acción en el flop."));
-    this->ui->groupBox_2->setToolTip(tr("Turn = la 4ta carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el turn."));
+    this->ui->groupBox->setToolTip(tr("Flop = las primeras 3 cartas comunitarias. Acá definís qué tamaños de apuesta puede usar IP (el jugador que actúa último) cuando le toca abrir la acción en el flop. Ejemplo: poner \"50\" en Bet Sizes = apostar el 50% del pozo que haya en ese momento."));
+    this->ui->groupBox_2->setToolTip(tr("Turn = la 4ta carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el turn. Mismo criterio que en el flop: los números son % del pozo, no fichas fijas."));
     this->ui->groupBox_3->setToolTip(tr("River = la 5ta y última carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el river."));
-    this->ui->groupBox_4->setToolTip(tr("Flop = las primeras 3 cartas comunitarias. Tamaños de apuesta que puede usar OOP (el jugador que actúa primero) en el flop."));
-    this->ui->groupBox_5->setToolTip(tr("Turn = la 4ta carta comunitaria. Tamaños de apuesta que puede usar OOP en el turn, incluyendo \"Donk Sizes\" (apostar primero aunque no haya apostado en la calle anterior)."));
-    this->ui->groupBox_6->setToolTip(tr("River = la 5ta y última carta comunitaria. Tamaños de apuesta que puede usar OOP en el river, incluyendo \"Donk Sizes\"."));
+    this->ui->groupBox_4->setToolTip(tr("Flop = las primeras 3 cartas comunitarias. Tamaños de apuesta que puede usar OOP (el jugador que actúa primero) cuando decide abrir apostando en el flop, en vez de chequear."));
+    this->ui->groupBox_5->setToolTip(tr("Turn = la 4ta carta comunitaria. \"Donk Sizes\" es para este caso concreto: en el flop nadie apostó (ambos chequearon), llega el turn, y OOP decide apostar primero en vez de esperar a ver qué hace IP — a esa jugada se le dice \"donk bet\". Los números son % del pozo en ese momento."));
+    this->ui->groupBox_6->setToolTip(tr("River = la 5ta y última carta comunitaria. Mismo caso que en el turn: \"Donk Sizes\" son los tamaños que OOP puede usar para apostar primero en el river después de no haber apostado en el turn."));
 
     this->ui->raiseLimitText->setToolTip(tr("Máxima cantidad de subidas seguidas que el solver considera en una misma calle. Un número más alto agranda mucho el árbol y lo hace más lento de resolver."));
     this->ui->potText->setToolTip(tr("Tamaño del pozo antes de esta situación, en fichas."));
@@ -111,6 +136,51 @@ MainWindow::MainWindow(QWidget *parent) :
     this->wizardSteps[4] = this->ui->wizardStepSolverOptions;
     this->wizardSteps[5] = this->ui->wizardStepConfirm;
     this->showWizardStep(0);
+
+    this->showWelcomeIfNeeded();
+}
+
+void MainWindow::showWelcomeIfNeeded()
+{
+    QSettings setting("Solverix", "Setting");
+    setting.beginGroup("solver");
+    bool seen_welcome = setting.value("seen_welcome", false).toBool();
+
+    if(!seen_welcome){
+        setting.setValue("seen_welcome", true);
+        this->on_helpButton_clicked();
+    }
+}
+
+void MainWindow::resetToExampleDefaults()
+{
+    // A BTN-open-vs-BB-call spot on a Q-J-2 flop; these are the same
+    // values the app already ships as its default field contents.
+    this->ui->ipRangeText->setPlainText(
+        "AA,KK,QQ,JJ,TT,99:0.75,88:0.75,77:0.5,66:0.25,55:0.25,AK,AQs,AQo:0.75,AJs,AJo:0.5,ATs:0.75,A6s:0.25,A5s:0.75,A4s:0.75,A3s:0.5,A2s:0.5,KQs,KQo:0.5,KJs,KTs:0.75,K5s:0.25,K4s:0.25,QJs:0.75,QTs:0.75,Q9s:0.5,JTs:0.75,J9s:0.75,J8s:0.75,T9s:0.75,T8s:0.75,T7s:0.75,98s:0.75,97s:0.75,96s:0.5,87s:0.75,86s:0.5,85s:0.5,76s:0.75,75s:0.5,65s:0.75,64s:0.5,54s:0.75,53s:0.5,43s:0.5");
+    this->ui->oopRangeText->setPlainText(
+        "QQ:0.5,JJ:0.75,TT,99,88,77,66,55,44,33,22,AKo:0.25,AQs,AQo:0.75,AJs,AJo:0.75,ATs,ATo:0.75,A9s,A8s,A7s,A6s,A5s,A4s,A3s,A2s,KQ,KJ,KTs,KTo:0.5,K9s,K8s,K7s,K6s,K5s,K4s:0.5,K3s:0.5,K2s:0.5,QJ,QTs,Q9s,Q8s,Q7s,JTs,JTo:0.5,J9s,J8s,T9s,T8s,T7s,98s,97s,96s,87s,86s,76s,75s,65s,64s,54s,53s,43s");
+    this->ui->boardText->setPlainText("Qs,Jh,2h");
+    this->ui->potText->setText("50");
+    this->ui->effectiveStackText->setText("200");
+    this->exampleMode = true;
+    this->showWizardStep(0);
+}
+
+void MainWindow::on_helpButton_clicked()
+{
+    WelcomeDialog dialog(this);
+    dialog.exec();
+    if(dialog.choice() == WelcomeDialog::QuickMode){
+        this->startQuickMode();
+    }else if(dialog.choice() == WelcomeDialog::Advanced){
+        this->quickMode = false;
+        this->exampleMode = false;
+        for(int i = 0; i < 3; i++){
+            this->quickModeSteps[i]->setVisible(false);
+        }
+        this->showWizardStep(this->currentWizardStep);
+    }
 }
 
 void MainWindow::showWizardStep(int index)
@@ -127,7 +197,7 @@ void MainWindow::showWizardStep(int index)
     stepSubtitles
         << tr("Un \"rango\" es el conjunto de manos que un jugador puede tener en esta situación. IP (\"in position\") es el jugador que actúa último en la calle; OOP (\"out of position\") es el que actúa primero. Tocá una celda de la grilla para agregar o quitar esa mano del rango (más oscuro = se juega con más frecuencia), o escribí el rango a mano en el cuadro de texto.")
         << tr("Elegí las cartas que ya salieron en la mesa (3 para flop, 4 para turn, 5 para river).")
-        << tr("Este solver calcula estrategias 1 contra 1 (heads-up): un jugador IP y un jugador OOP, no soporta 3 o más jugadores. \"Flop\", \"Turn\" y \"River\" son las tres calles que se juegan después del preflop (las 3 primeras cartas comunitarias, la 4ta, y la 5ta). Para cada una de esas calles configurás por separado qué puede hacer IP y qué puede hacer OOP. \"Bet Sizes\" son los tamaños de apuesta (en % del pozo) que el jugador puede usar cuando le toca abrir la acción apostando. \"Raise Sizes\" son los tamaños de subida (también en % del pozo) que puede usar para subir una apuesta del rival. En Turn y River, OOP también tiene \"Donk Sizes\": tamaños de apuesta que OOP puede usar para apostar primero en esa calle aunque haya sido el que no apostó en la calle anterior (una jugada llamada \"donk bet\"). \"Add Allin\" agrega, además de esos tamaños, la opción de ir directamente all-in con todo el stack.")
+        << tr("Este paso define QUÉ TAMAÑOS DE APUESTA puede elegir el solver — no hace falta que entiendas todos los términos ahora, con los valores por defecto ya alcanza para probar. Ejemplo concreto: si el pozo tiene 100 fichas y ponés \"50\" en Bet Sizes, significa \"apostar el 50% del pozo\" = 50 fichas. Si después alguien sube con \"60\" en Raise Sizes, esas son 60% DEL POZO YA AGRANDADO por esa apuesta (no del pozo original) — por eso se expresa en % y no en fichas fijas, así sirve para cualquier tamaño de pozo. Hay 6 cajas porque el juego se divide en 3 calles (Flop, Turn, River) y en cada una IP y OOP pueden usar tamaños distintos; mirá los títulos ▸ arriba de cada fila para ubicarte. \"Donk Sizes\" es solo para OOP en Turn/River: son los tamaños que puede usar para apostar primero en esa calle nueva, aunque en la calle anterior haya sido el que no apostó (esa jugada se llama \"donk bet\"). \"Add Allin\" simplemente agrega, además de esos tamaños, la opción de ir directo all-in con todo el stack.")
         << tr("\"Raise limit\" es la cantidad máxima de subidas seguidas que el solver va a considerar en una misma calle (más subidas = árbol más grande y más lento). \"Pot\" es el tamaño del pozo antes de empezar esta situación, y \"Effective Stack\" es la cantidad de fichas que le queda al jugador con menos stack (lo máximo que se puede llegar a apostar). \"Mode\" define el mazo: \"texas holdem\" (52 cartas) o \"shortdeck\" (36 cartas, sin 2-5). \"Allin threshold\" es un atajo: si a un jugador le queda menos de ese % del pozo, el solver directamente le ofrece ir all-in en vez de tamaños de apuesta intermedios, para no complicar el árbol innecesariamente. \"Use isomorphism\" es una optimización interna: agrupa cartas que son estratégicamente equivalentes (por ejemplo, dos palos que no forman color en ningún lado) para resolver más rápido sin perder precisión — dejalo tildado salvo que tengas una razón específica para desactivarlo. \"Save memory at cost of speed/accuracy\" reduce la memoria RAM usada a cambio de resolver un poco más lento o con menor precisión numérica; usalo solo si te quedás sin memoria. Al tocar \"Siguiente\" se construye el árbol de decisiones automáticamente con estos valores.")
         << tr("\"Iterations\" es el número máximo de veces que el solver va a recalcular la estrategia (más iteraciones = más precisión, pero más tiempo). \"Stop solving when reach X% exploitability\" hace que el solver pare antes si ya alcanzó una estrategia lo bastante cercana a la óptima (un número más bajo = más preciso pero más lento; 0.5% ya es una estrategia muy sólida para jugar). \"Log interval\" es cada cuántas iteraciones se imprime el progreso en la consola de abajo, solo afecta qué tan seguido ves actualizaciones, no el resultado. \"Threads\" es la cantidad de núcleos del procesador que puede usar el solver a la vez (más threads = resuelve más rápido si tu computadora tiene suficientes núcleos libres). Los valores por defecto funcionan bien para empezar.")
         << tr("Revisá todo y tocá \"Iniciar resolución\" para que el solver calcule la estrategia óptima.");
@@ -135,6 +205,21 @@ void MainWindow::showWizardStep(int index)
     this->ui->wizardStepSubtitle->setText(stepSubtitles[index]);
     this->ui->wizardBackButton->setEnabled(index > 0);
     this->ui->wizardNextButton->setText(index == 5 ? tr("Listo") : tr("Siguiente →"));
+
+    if(this->exampleMode){
+        QStringList exampleTexts;
+        exampleTexts
+            << tr("📌 Ejemplo: IP es un jugador en el botón (BTN) que abrió la mano con un rango típico de apertura. OOP es la ciega grande (BB) que pagó esa apertura con su rango de defensa. Fijate que ambos rangos ya están cargados en la grilla.")
+            << tr("📌 Ejemplo: el flop salió Q♠ J♥ 2♥ — una carta alta (Q), una carta media que puede haber conectado con varias manos (J), y una carta baja que además trae proyecto de color a corazones.")
+            << tr("📌 Ejemplo: dejamos los tamaños de apuesta por defecto (50% del pozo al apostar, 60% al subir) para no complicar el ejemplo. En una mano real, ajustarías esto según cómo se suele jugar en tus mesas.")
+            << tr("📌 Ejemplo: el pozo antes de esta situación es 50 fichas y a cada jugador le quedan 200 fichas de stack efectivo — números redondos pensados para que sea fácil de seguir.")
+            << tr("📌 Ejemplo: dejamos 200 iteraciones, que alcanza para que el solver converja rápido en un ejemplo simple como este (en una mano más compleja, quizás necesites más).")
+            << tr("📌 Ejemplo: tocá \"Iniciar resolución\" y esperá a que termine (con estos valores debería ser cuestión de segundos). Después tocá \"ShowResult\" para ver la estrategia recomendada.");
+        this->ui->exampleBanner->setText(exampleTexts[index]);
+        this->ui->exampleBanner->setVisible(true);
+    }else{
+        this->ui->exampleBanner->setVisible(false);
+    }
 }
 
 static QString rangeCellTooltip(int i, int j, float freq){
@@ -161,6 +246,15 @@ void MainWindow::onOopRangeHover(int i, int j){
 
 void MainWindow::on_wizardBackButton_clicked()
 {
+    if(this->quickMode){
+        if(this->currentQuickStep > 0){
+            if(this->currentQuickStep - 1 == 0){
+                this->resetSeatSelection();
+            }
+            this->showQuickModeStep(this->currentQuickStep - 1);
+        }
+        return;
+    }
     if(this->currentWizardStep > 0){
         this->showWizardStep(this->currentWizardStep - 1);
     }
@@ -168,6 +262,26 @@ void MainWindow::on_wizardBackButton_clicked()
 
 void MainWindow::on_wizardNextButton_clicked()
 {
+    if(this->quickMode){
+        if(this->currentQuickStep == 1){
+            QString handText = this->handSelectorModel->getBoardText();
+            QStringList cards = handText.split(",", Qt::SkipEmptyParts);
+            if(cards.size() != 2){
+                QMessageBox::information(this, tr("Elegí 2 cartas"), tr("Tenés que tocar exactamente 2 cartas para tu mano antes de seguir."));
+                return;
+            }
+            this->quickModeCard1 = cards[0];
+            this->quickModeCard2 = cards[1];
+        }
+        if(this->currentQuickStep == 2){
+            this->startQuickModeSolve();
+            return;
+        }
+        if(this->currentQuickStep < 2){
+            this->showQuickModeStep(this->currentQuickStep + 1);
+        }
+        return;
+    }
     if(this->currentWizardStep == 3){
         // Leaving the tree-params step: build the tree automatically,
         // exactly what clicking the pre-existing "Build Tree" button already does.
@@ -185,7 +299,6 @@ QSTextEdit * MainWindow::get_logwindow(){
 MainWindow::~MainWindow()
 {
     delete qSolverJob;
-    delete qFileSystemModel;
     delete ip_delegate;
     delete ip_model;
     delete oop_delegate;
@@ -498,7 +611,7 @@ void MainWindow::on_actionexport_triggered(){
     out << "\n";
 
     this->setWindowTitle(tr("Settings"));
-    QSettings setting("NicoSolver", "Setting");
+    QSettings setting("Solverix", "Setting");
     setting.beginGroup("solver");
     int dump_round = setting.value("dump_round").toInt();
     out << "set_dump_rounds " << dump_round;
@@ -543,6 +656,7 @@ void MainWindow::on_buttomSolve_clicked()
     qSolverJob->print_interval = ui->logIntervalText->text().toInt();
     qSolverJob->thread_number = ui->threadsText->text().toInt();
     qSolverJob->current_mission = QSolverJob::MissionType::SOLVING;
+    this->solvingInProgress = true;
     qSolverJob->start();
 }
 
@@ -752,27 +866,274 @@ void MainWindow::on_selectBoardButton_clicked()
     boardSelector->show();
 }
 
-void MainWindow::on_openParametersFolderButton_clicked()
+void MainWindow::on_actionopen_parameters_folder_triggered()
 {
     QDesktopServices::openUrl(QUrl::fromLocalFile(QDir::current().filePath("parameters")));
 }
 
-void MainWindow::item_clicked(const QModelIndex& index){
-    if(!this->qFileSystemModel->isDir(index)){
-        QFileInfo fileinfo = QFileInfo(this->qFileSystemModel->filePath(index));
-        if(fileinfo.suffix() == "txt"){
-            this->import_from_file(this->qFileSystemModel->filePath(index));
-            this->ui->IpRangeTableView->update();
-            this->ui->oopRangeTableView->update();
-            this->ui->IpRangeTableView->setFocus();
-            this->ui->oopRangeTableView->setFocus();
+void MainWindow::on_actionview_log_triggered()
+{
+    this->logDialog->show();
+    this->logDialog->raise();
+    this->logDialog->activateWindow();
+}
+
+void MainWindow::onSolverJobFinished()
+{
+    if(this->quickModePendingStage == QuickModeStage::WaitingForBuildTree){
+        this->quickModePendingStage = QuickModeStage::WaitingForSolve;
+        if(this->quickModeProgressDialog != NULL){
+            this->quickModeProgressDialog->setLabelText(tr("Resolviendo la estrategia óptima... puede tardar unos segundos."));
+        }
+        this->on_buttomSolve_clicked();
+        return;
+    }
+    if(this->quickModePendingStage == QuickModeStage::WaitingForSolve){
+        this->quickModePendingStage = QuickModeStage::None;
+        this->solvingInProgress = false;
+        if(this->quickModeProgressDialog != NULL){
+            this->quickModeProgressDialog->close();
+            this->quickModeProgressDialog->deleteLater();
+            this->quickModeProgressDialog = NULL;
+        }
+        this->strategyExplorer = new StrategyExplorer(this, this->qSolverJob);
+        this->strategyExplorer->setAttribute(Qt::WA_DeleteOnClose);
+        this->strategyExplorer->selectRootNode();
+        this->strategyExplorer->setHighlightedHand(this->quickModeCard1, this->quickModeCard2);
+        this->strategyExplorer->show();
+        return;
+    }
+    if(this->solvingInProgress){
+        this->solvingInProgress = false;
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("Listo"));
+        msgBox.setText(tr("El solver terminó de calcular la estrategia. Tocá \"ShowResult\" para verla."));
+        msgBox.exec();
+    }
+}
+
+QList<int> MainWindow::resolveMatchupIndices(QString seatA, QString seatB, QString& openerSeatOut){
+    bool hasUTG = (seatA == "UTG" || seatB == "UTG");
+    bool hasCO = (seatA == "CO" || seatB == "CO");
+    bool hasBTN = (seatA == "BTN" || seatB == "BTN");
+    bool hasSB = (seatA == "SB" || seatB == "SB");
+    bool hasBB = (seatA == "BB" || seatB == "BB");
+    if(hasUTG && hasBB){ openerSeatOut = "UTG"; return {0}; }
+    if(hasCO && hasBB){ openerSeatOut = "CO"; return {1}; }
+    if(hasBTN && hasBB){ openerSeatOut = "BTN"; return {2, 4}; }
+    if(hasSB && hasBB){ openerSeatOut = "SB"; return {3}; }
+    if(hasCO && hasBTN){ openerSeatOut = "CO"; return {5}; }
+    return QList<int>();
+}
+
+void MainWindow::updateSeatButtonStyles(){
+    QMap<QString, QPushButton*> seatButtons;
+    seatButtons["UTG"] = this->ui->seatUTG;
+    seatButtons["CO"] = this->ui->seatCO;
+    seatButtons["BTN"] = this->ui->seatBTN;
+    seatButtons["SB"] = this->ui->seatSB;
+    seatButtons["BB"] = this->ui->seatBB;
+
+    for(auto it = seatButtons.begin(); it != seatButtons.end(); ++it){
+        QString seat = it.key();
+        QPushButton* button = it.value();
+        button->setEnabled(true);
+        button->setToolTip("");
+        if(seat == this->mySeat){
+            button->setText(seat + "\n" + tr("(VOS)"));
+        }else if(seat == this->villainSeat){
+            button->setText(seat + "\n" + tr("(RIVAL)"));
+        }else{
+            button->setText(seat);
+        }
+        if(!this->mySeat.isEmpty() && this->villainSeat.isEmpty() && seat != this->mySeat){
+            QString dummyOpener;
+            if(resolveMatchupIndices(this->mySeat, seat, dummyOpener).isEmpty()){
+                button->setEnabled(false);
+                button->setToolTip(tr("Todavía no tenemos un rango típico armado para esta combinación de posiciones."));
+            }
         }
     }
 }
 
-void MainWindow::on_exportCurrentParameterButton_clicked()
-{
-    this->on_actionexport_triggered();
+void MainWindow::resetSeatSelection(){
+    this->mySeat = "";
+    this->villainSeat = "";
+    this->pendingMatchupChoices.clear();
+    this->pendingOpenerSeat = "";
+    this->ui->simplePotButton->setVisible(false);
+    this->ui->threeBetPotButton->setVisible(false);
+    this->ui->seatSelectionStatusLabel->setText(tr("Elegí tu asiento."));
+    this->updateSeatButtonStyles();
+}
+
+void MainWindow::onSeatClicked(){
+    QPushButton* clicked = qobject_cast<QPushButton*>(sender());
+    if(clicked == NULL) return;
+    QString seat = clicked->objectName().mid(4); // "seatUTG" -> "UTG"
+
+    if(this->mySeat.isEmpty()){
+        this->mySeat = seat;
+        this->ui->seatSelectionStatusLabel->setText(tr("Ahora elegí el asiento del rival. Los asientos en gris con borde punteado todavía no tienen datos para esa combinación."));
+        this->updateSeatButtonStyles();
+        return;
+    }
+    if(seat == this->mySeat){
+        this->resetSeatSelection();
+        return;
+    }
+    if(!this->villainSeat.isEmpty()) return;
+
+    QString openerSeat;
+    QList<int> matches = this->resolveMatchupIndices(this->mySeat, seat, openerSeat);
+    if(matches.isEmpty()) return; // button should already be disabled for this case
+
+    this->villainSeat = seat;
+    this->pendingMatchupChoices = matches;
+    this->pendingOpenerSeat = openerSeat;
+    this->updateSeatButtonStyles();
+
+    if(matches.size() > 1){
+        this->ui->seatSelectionStatusLabel->setText(tr("¿Bote simple o hubo una re-subida (3-bet)?"));
+        this->ui->simplePotButton->setVisible(true);
+        this->ui->threeBetPotButton->setVisible(true);
+    }else{
+        this->chosenMatchupIndex = matches[0];
+        this->userIsOpener = (this->mySeat == this->pendingOpenerSeat);
+        this->handSelectorModel->clear_board();
+        this->ui->handSelectorTable->update();
+        this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
+        this->showQuickModeStep(1);
+    }
+}
+
+void MainWindow::onSimplePotChosen(){
+    this->chosenMatchupIndex = this->pendingMatchupChoices[0];
+    this->userIsOpener = (this->mySeat == this->pendingOpenerSeat);
+    this->handSelectorModel->clear_board();
+    this->ui->handSelectorTable->update();
+    this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
+    this->showQuickModeStep(1);
+}
+
+void MainWindow::onThreeBetPotChosen(){
+    this->chosenMatchupIndex = this->pendingMatchupChoices[1];
+    this->userIsOpener = (this->mySeat == this->pendingOpenerSeat);
+    this->handSelectorModel->clear_board();
+    this->ui->handSelectorTable->update();
+    this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
+    this->showQuickModeStep(1);
+}
+
+void MainWindow::onHandSelectorClicked(const QModelIndex &index){
+    int row = index.row();
+    int col = index.column();
+    bool wasSelected = this->handSelectorModel->getBoardAt(row, col) > 0;
+    if(!wasSelected){
+        int selectedCount = 0;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 13; j++){
+                if(this->handSelectorModel->getBoardAt(i, j) > 0) selectedCount++;
+            }
+        }
+        if(selectedCount >= 2){
+            QMessageBox::information(this, tr("Ya elegiste 2 cartas"),
+                tr("Solo podés elegir 2 cartas para tu mano. Tocá una de las ya seleccionadas para sacarla."));
+            return;
+        }
+    }
+    this->handSelectorModel->setBoardAt(row, col, wasSelected ? 0 : 1);
+    this->ui->handSelectorTable->update();
+    QString text = this->handSelectorModel->getBoardText();
+    this->ui->handSelectedLabel->setText(text.isEmpty() ? tr("Seleccionadas: (ninguna)") : tr("Seleccionadas: %1").arg(text));
+}
+
+void MainWindow::startQuickMode(){
+    this->quickMode = true;
+    this->exampleMode = false;
+    for(int i = 0; i < 6; i++){
+        this->wizardSteps[i]->setVisible(false);
+    }
+    this->handSelectorModel->clear_board();
+    this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
+    this->resetSeatSelection();
+    this->showQuickModeStep(0);
+}
+
+void MainWindow::showQuickModeStep(int index){
+    if(index < 0 || index > 2) return;
+    this->currentQuickStep = index;
+    for(int i = 0; i < 3; i++){
+        this->quickModeSteps[i]->setVisible(i == index);
+    }
+    QStringList stepNames;
+    stepNames << tr("Situación") << tr("Tus cartas") << tr("Board");
+    this->ui->wizardStepLabel->setText(tr("Modo Rápido — Paso %1 de 3: %2").arg(index + 1).arg(stepNames[index]));
+    this->ui->wizardStepSubtitle->setText("");
+    this->ui->exampleBanner->setVisible(false);
+    this->ui->wizardBackButton->setEnabled(index > 0);
+    this->ui->wizardNextButton->setText(index == 2 ? tr("Resolver →") : tr("Siguiente →"));
+}
+
+void MainWindow::startQuickModeSolve(){
+    QVector<QuickModeMatchup> matchups = getQuickModeMatchups();
+    QuickModeMatchup matchup = matchups[this->chosenMatchupIndex];
+
+    QString myRange = this->userIsOpener ? matchup.openerRange : matchup.callerRange;
+    QString villainRange = this->userIsOpener ? matchup.callerRange : matchup.openerRange;
+    bool myRangeIsIP = this->userIsOpener ? matchup.openerIsIP : !matchup.openerIsIP;
+
+    if(myRangeIsIP){
+        this->ui->ipRangeText->setPlainText(myRange);
+        this->ui->oopRangeText->setPlainText(villainRange);
+    }else{
+        this->ui->ipRangeText->setPlainText(villainRange);
+        this->ui->oopRangeText->setPlainText(myRange);
+    }
+
+    this->ui->potText->setText(QString::number(matchup.pot, 'f', 1));
+    this->ui->effectiveStackText->setText(QString::number(matchup.effectiveStack, 'f', 1));
+    this->ui->raiseLimitText->setText("4");
+    this->ui->allinThresholdText->setText("0.67");
+    this->ui->useIsoCheck->setChecked(true);
+    this->ui->useHalfFloats_box->setCurrentIndex(0);
+    this->ui->mode_box->setCurrentIndex(0);
+    this->ui->iterationText->setText("200");
+    this->ui->exploitabilityText->setText("0.5");
+    this->ui->logIntervalText->setText("10");
+    this->ui->threadsText->setText("8");
+
+    QStringList betSizeFields = {"flop_ip_bet","turn_ip_bet","river_ip_bet","flop_oop_bet","turn_oop_bet","river_oop_bet"};
+    QStringList raiseSizeFields = {"flop_ip_raise","turn_ip_raise","river_ip_raise","flop_oop_raise","turn_oop_raise","river_oop_raise"};
+    for(const QString& name : betSizeFields){
+        QLineEdit* field = this->findChild<QLineEdit*>(name);
+        if(field != NULL) field->setText("50");
+    }
+    for(const QString& name : raiseSizeFields){
+        QLineEdit* field = this->findChild<QLineEdit*>(name);
+        if(field != NULL) field->setText("60");
+    }
+    QStringList allinChecks = {"flop_ip_allin","turn_ip_allin","river_ip_allin","flop_oop_allin","turn_oop_allin","river_oop_allin"};
+    for(const QString& name : allinChecks){
+        QCheckBox* field = this->findChild<QCheckBox*>(name);
+        if(field != NULL) field->setChecked(false);
+    }
+    QLineEdit* turnDonk = this->findChild<QLineEdit*>("turn_oop_donk");
+    if(turnDonk != NULL) turnDonk->setText("");
+    QLineEdit* riverDonk = this->findChild<QLineEdit*>("river_oop_donk");
+    if(riverDonk != NULL) riverDonk->setText("");
+
+    this->quickModeProgressDialog = new QProgressDialog(this);
+    this->quickModeProgressDialog->setWindowTitle(tr("Resolviendo"));
+    this->quickModeProgressDialog->setLabelText(tr("Construyendo el árbol de decisiones..."));
+    this->quickModeProgressDialog->setRange(0, 0); // indeterminate (busy) bar
+    this->quickModeProgressDialog->setCancelButton(NULL);
+    this->quickModeProgressDialog->setWindowModality(Qt::WindowModal);
+    this->quickModeProgressDialog->setMinimumDuration(0);
+    this->quickModeProgressDialog->show();
+
+    this->quickModePendingStage = QuickModeStage::WaitingForBuildTree;
+    this->on_buildTreeButtom_clicked();
 }
 
 void MainWindow::on_ipRangeText_textChanged()
@@ -787,6 +1148,3 @@ void MainWindow::on_oopRangeText_textChanged()
     this->ui->oopRangeTableView->update();
 }
 
-void MainWindow::onExpanded(const QModelIndex& index){
-    ui->parametersTreeView->resizeColumnToContents(0);
-}

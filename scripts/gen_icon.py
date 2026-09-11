@@ -7,8 +7,8 @@ SIZE = 1024 * SS
 img = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
 draw = ImageDraw.Draw(img)
 
-bg_color = (18, 20, 28, 255)      # matches app dark theme background
-accent = (91, 110, 245, 255)      # matches app accent violet-blue
+bg_color = (10, 24, 16, 255)      # matches poker room theme background
+accent = (212, 175, 55, 255)      # matches poker room gold accent
 
 margin = 24 * SS
 draw.rounded_rectangle([margin, margin, SIZE - margin, SIZE - margin], radius=180 * SS, fill=bg_color)

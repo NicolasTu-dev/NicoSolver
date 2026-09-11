@@ -19,12 +19,17 @@
 #include <QStringList>
 #include <QPainter>
 #include <QPainterPath>
+#include <QColor>
 
 class RangeSelectorTableDelegate: public WordItemDelegate{
     Q_OBJECT
 
 public:
     explicit RangeSelectorTableDelegate(QStringList ranks,RangeSelectorTableModel* rangeSelectorTableModel,QObject *parent = 0);
+    static QColor accentColor;
+    static QColor emptyColor;
+    static QColor pairColor;
+    static QColor borderColor;
 
 protected:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;

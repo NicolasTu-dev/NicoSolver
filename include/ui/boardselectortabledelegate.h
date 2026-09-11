@@ -18,6 +18,7 @@
 #include "include/ui/boardselectortablemodel.h"
 #include <QStringList>
 #include <QPainter>
+#include <QPainterPath>
 
 class BoardSelectorTableDelegate: public WordItemDelegate{
     Q_OBJECT

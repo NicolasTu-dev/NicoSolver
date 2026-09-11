@@ -15,14 +15,34 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,3">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,3,0,0,8">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,3,0,0,8">
      <item>
       <widget class="QLabel" name="explorerIntroLabel">
        <property name="wordWrap">
         <bool>true</bool>
        </property>
        <property name="text">
-        <string>Este es el resultado del solver. A la izquierda, el árbol de decisiones: cada nodo es un punto donde alguien apuesta, sube, paga o se retira; tocá uno para ver la estrategia en ese punto. A la derecha, la grilla muestra la estrategia recomendada para cada mano posible del rival en esa situación (celeste = retirarse, verde = pagar, rojo = apostar/subir). Pasá el mouse sobre una celda para ver el detalle de esa mano.</string>
+        <string>Este es el resultado del solver. La grilla de abajo muestra, para cada mano posible del rival (AA arriba a la izquierda hasta 22 abajo a la derecha en la diagonal = pares; arriba de la diagonal = suited; abajo = offsuit), qué tan seguido conviene cada acción (celeste = retirarse, verde = pagar, rojo = apostar/subir). El gris significa que esa mano no forma parte del rango del rival en este punto (no llega ahí con esas cartas). Tocá "Ver árbol de decisiones y opciones avanzadas" para explorar otros puntos de la mano.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="handBannerLabel">
+       <property name="visible">
+        <bool>false</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="toggleAdvancedViewButton">
+       <property name="text">
+        <string>🔍 Ver árbol de decisiones y opciones avanzadas</string>
        </property>
       </widget>
      </item>
@@ -90,7 +110,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(0, 191, 255);</string>
+           <string notr="true">background-color: rgb(0, 191, 255); border-radius: 4px; border: 1px solid rgba(0, 0, 0, 60);</string>
           </property>
          </widget>
         </item>
@@ -116,7 +136,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(55, 255, 55);</string>
+           <string notr="true">background-color: rgb(55, 255, 55); border-radius: 4px; border: 1px solid rgba(0, 0, 0, 60);</string>
           </property>
          </widget>
         </item>
@@ -142,7 +162,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 128, 128);</string>
+           <string notr="true">background-color: rgb(255, 128, 128); border-radius: 4px; border: 1px solid rgba(0, 0, 0, 60);</string>
           </property>
          </widget>
         </item>
@@ -150,6 +170,32 @@
          <widget class="QLabel" name="legendLabelBet">
           <property name="text">
            <string>Bet / Raise</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="legendSwatchOutOfRange" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>16</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(128, 128, 128); border-radius: 4px; border: 1px solid rgba(0, 0, 0, 60);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="legendLabelOutOfRange">
+          <property name="text">
+           <string>Fuera de rango (no juega esta mano acá)</string>
           </property>
          </widget>
         </item>
@@ -174,6 +220,9 @@
        <property name="styleSheet">
         <string notr="true"/>
        </property>
+       <property name="showGrid">
+        <bool>false</bool>
+       </property>
        <attribute name="horizontalHeaderVisible">
         <bool>false</bool>
        </attribute>
@@ -185,16 +234,26 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="10,2,0,10,40">
+    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="30,2,0,10,40">
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
-        <string>Rough Strategy</string>
+        <string>Jugada recomendada (resumen general)</string>
        </property>
        <property name="flat">
         <bool>true</bool>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="roughStrategyIntroLabel">
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Con todo el rango del rival en este punto: qué tan seguido conviene retirarse (celeste), pagar (verde) o apostar/subir (rojo).</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="HtmlTableView" name="roughStrategyView">
           <property name="verticalScrollBarPolicy">
@@ -202,6 +261,9 @@
           </property>
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
           </property>
           <attribute name="horizontalHeaderVisible">
            <bool>false</bool>
@@ -243,7 +305,7 @@
      <item>
       <widget class="QCheckBox" name="advancedModeCheck">
        <property name="text">
-        <string>Modo avanzado (mostrar EV)</string>
+        <string>Modo avanzado (pasá el mouse sobre una celda para ver el EV)</string>
        </property>
        <property name="checked">
         <bool>false</bool>

@@ -3,7 +3,7 @@
 QWidget {
     background-color: #f7f8fa;
     color: #1a1d29;
-    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    font-family: "Manrope", "Segoe UI", "Microsoft YaHei", sans-serif;
     font-size: 13px;
 }
 
@@ -304,6 +304,36 @@ QSplitter::handle {
     padding-bottom: 4px;
 }
 
+#ipBetSizesHeader, #oopBetSizesHeader {
+    color: #3d5afe;
+    font-weight: 700;
+    font-size: 13px;
+    padding-top: 6px;
+}
+
+#helpButton {
+    background-color: #22c55e;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    padding: 6px 14px;
+}
+
+#helpButton:hover {
+    background-color: #16a34a;
+}
+
+#exampleBanner {
+    background-color: rgba(61, 90, 254, 0.08);
+    border: 1px solid #3d5afe;
+    border-radius: 6px;
+    color: #4a4f63;
+    font-size: 13px;
+    padding: 8px;
+    margin-top: 4px;
+}
+
 #wizardNextButton {
     background-color: #3d5afe;
     color: #ffffff;
@@ -330,4 +360,30 @@ QSplitter::handle {
 #resultsLegend QLabel {
     color: #1a1d29;
     font-size: 11px;
+}
+
+#seatFelt {
+    background-color: #eef0f4;
+    border: 4px solid #3d5afe;
+    border-radius: 120px;
+}
+
+#seatUTG, #seatCO, #seatBTN, #seatSB, #seatBB {
+    background-color: #ffffff;
+    color: #1a1d29;
+    border: 2px solid #3d5afe;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+#simplePotButton, #threeBetPotButton {
+    background-color: #3d5afe;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+#seatUTG:disabled, #seatCO:disabled, #seatBTN:disabled, #seatSB:disabled, #seatBB:disabled {
+    background-color: #f0f1f4;
+    color: #b8bcc8;
+    border: 2px dashed #d0d3dc;
 }

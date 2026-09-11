@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/fonts/Cinzel-Bold.ttf</file>
+        <file>resources/fonts/Inter-Regular.ttf</file>
+        <file>resources/fonts/Inter-Bold.ttf</file>
+        <file>resources/fonts/SpaceGrotesk-Regular.ttf</file>
+        <file>resources/fonts/SpaceGrotesk-Bold.ttf</file>
+        <file>resources/fonts/Manrope-Regular.ttf</file>
+        <file>resources/fonts/Manrope-Bold.ttf</file>
+    </qresource>
+</RCC>

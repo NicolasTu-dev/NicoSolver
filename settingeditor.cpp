@@ -7,7 +7,7 @@ SettingEditor::SettingEditor(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Settings"));
-    QSettings setting("NicoSolver", "Setting");
+    QSettings setting("Solverix", "Setting");
     setting.beginGroup("solver");
     QString language_str = setting.value("language").toString();
     if(language_str == "EN"){
@@ -25,6 +25,12 @@ SettingEditor::SettingEditor(QWidget *parent) :
         this->ui->themeBox->setCurrentIndex(0);
     }else if(theme_str == "light"){
         this->ui->themeBox->setCurrentIndex(1);
+    }else if(theme_str == "pokerroom"){
+        this->ui->themeBox->setCurrentIndex(2);
+    }else if(theme_str == "violet"){
+        this->ui->themeBox->setCurrentIndex(3);
+    }else if(theme_str == "fintech"){
+        this->ui->themeBox->setCurrentIndex(4);
     }else{
         qDebug().noquote() << tr("Unknown theme: ") << theme_str << tr("Setting fail");
     }
@@ -48,7 +54,7 @@ SettingEditor::~SettingEditor()
 
 void SettingEditor::on_confirmBox_accepted()
 {
-    QSettings setting("NicoSolver", "Setting");
+    QSettings setting("Solverix", "Setting");
     setting.beginGroup("solver");
     int lang_index = this->ui->languageBox->currentIndex();
     QString language_str;
@@ -69,6 +75,12 @@ void SettingEditor::on_confirmBox_accepted()
         theme_str = "dark";
     }else if(theme_index == 1){
         theme_str = "light";
+    }else if(theme_index == 2){
+        theme_str = "pokerroom";
+    }else if(theme_index == 3){
+        theme_str = "violet";
+    }else if(theme_index == 4){
+        theme_str = "fintech";
     }else{
         qDebug().noquote() << tr("Unknown theme index: ") << theme_index << tr("Setting fail");
     }

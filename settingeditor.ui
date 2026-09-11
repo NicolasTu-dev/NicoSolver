@@ -80,6 +80,21 @@
            <string>Light</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>Poker Room</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Violeta</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Fintech</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item>

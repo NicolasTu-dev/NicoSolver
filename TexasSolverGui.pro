@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = NicoSolverGui
+TARGET = SolverixGui
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -37,21 +37,21 @@ QMAKE_LFLAGS += -lomp
 
 macx: {
 LIBS += -L /usr/local/lib /usr/local/lib/libomp.dylib
-ICON = imgs/nicosolver_logo.icns
+ICON = imgs/solverix_logo.icns
 }
 
 win32-g++: {
 QMAKE_CXXFLAGS+= -fopenmp
 QMAKE_LFLAGS +=  -fopenmp
-RC_ICONS = imgs/nicosolver_logo.ico
+RC_ICONS = imgs/solverix_logo.ico
 } else:win32 {
 QMAKE_CXXFLAGS+= -openmp
 QMAKE_LFLAGS +=  -openmp
-RC_ICONS = imgs/nicosolver_logo.ico
+RC_ICONS = imgs/solverix_logo.ico
 }
 
 win64: {
-RC_ICONS = imgs/nicosolver_logo.ico
+RC_ICONS = imgs/solverix_logo.ico
 }
 
 linux: {
@@ -124,7 +124,9 @@ SOURCES += \
     boardselector.cpp \
     src/ui/boardselectortablemodel.cpp \
     src/ui/boardselectortabledelegate.cpp \
-    settingeditor.cpp
+    settingeditor.cpp \
+    welcomedialog.cpp \
+    src/data/quickmoderanges.cpp
 
 HEADERS += \
     include/tools/half-1-12-0.h \
@@ -191,16 +193,20 @@ HEADERS += \
     boardselector.h \
     include/ui/boardselectortablemodel.h \
     include/ui/boardselectortabledelegate.h \
-    settingeditor.h
+    settingeditor.h \
+    welcomedialog.h \
+    include/data/quickmoderanges.h
 
 FORMS += \
         mainwindow.ui \
     strategyexplorer.ui \
     rangeselector.ui \
     boardselector.ui \
-    settingeditor.ui
+    settingeditor.ui \
+    welcomedialog.ui
 
 RESOURCES += \
     translations.qrc \
     compairer.qrc \
-    themes.qrc
+    themes.qrc \
+    fonts.qrc

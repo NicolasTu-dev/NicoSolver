@@ -1,5 +1,10 @@
 ﻿#include "include/ui/rangeselectortabledelegate.h"
 
+QColor RangeSelectorTableDelegate::accentColor = QColor("#5b6ef5");
+QColor RangeSelectorTableDelegate::emptyColor = QColor("#1a1d29");
+QColor RangeSelectorTableDelegate::pairColor = QColor("#242838");
+QColor RangeSelectorTableDelegate::borderColor = QColor("#0d0f16");
+
 RangeSelectorTableDelegate::RangeSelectorTableDelegate(QStringList ranks,RangeSelectorTableModel *rangeSelectorTableModel,QObject *parent):WordItemDelegate(parent){
     this->rank_list = ranks;
     this->rangeSelectorTableModel = rangeSelectorTableModel;
@@ -18,11 +23,11 @@ void RangeSelectorTableDelegate::paint(QPainter *painter, const QStyleOptionView
     const qreal radius = 3.0;
 
     bool is_pair = index.column() == index.row();
-    QColor emptyColor = is_pair ? QColor("#242838") : QColor("#1a1d29");
+    QColor cellEmptyColor = is_pair ? RangeSelectorTableDelegate::pairColor : RangeSelectorTableDelegate::emptyColor;
 
     QPainterPath cellPath;
     cellPath.addRoundedRect(cellRect, radius, radius);
-    painter->fillPath(cellPath, emptyColor);
+    painter->fillPath(cellPath, cellEmptyColor);
 
     float range_float = this->rangeSelectorTableModel->getRangeAt(index.row(),index.column());
     if(range_float > 0.0f){
@@ -32,11 +37,11 @@ void RangeSelectorTableDelegate::paint(QPainter *painter, const QStyleOptionView
                            cellRect.width(), cellRect.height() - disable_height);
         painter->save();
         painter->setClipPath(cellPath);
-        painter->fillRect(filledRect, QColor("#5b6ef5"));
+        painter->fillRect(filledRect, RangeSelectorTableDelegate::accentColor);
         painter->restore();
     }
 
-    painter->setPen(QPen(QColor("#0d0f16"), 1));
+    painter->setPen(QPen(RangeSelectorTableDelegate::borderColor, 1));
     painter->drawPath(cellPath);
 
     QTextDocument doc;

@@ -4,6 +4,8 @@
 #include <QAbstractTextDocumentLayout>
 #include <QRect>
 #include <QBrush>
+#include <QPainterPath>
+#include <QPen>
 
 StrategyItemDelegate::StrategyItemDelegate(QSolverJob * qSolverJob,DetailWindowSetting* detailWindowSetting,QObject *parent) :
     WordItemDelegate(parent)
@@ -227,26 +229,38 @@ void StrategyItemDelegate::paint_evs(QPainter *painter, const QStyleOptionViewIt
 void StrategyItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
 
     painter->save();
+    painter->setRenderHint(QPainter::Antialiasing, true);
 
-    QRect rect(option.rect.left(), option.rect.top(),\
-             option.rect.width(), option.rect.height());
+    QRect cellRect = option.rect.adjusted(1, 1, -1, -1);
+    QPainterPath clipPath;
+    clipPath.addRoundedRect(cellRect, 4, 4);
+    painter->setClipPath(clipPath);
+
+    QStyleOptionViewItem innerOption = option;
+    innerOption.rect = cellRect;
+
     QBrush brush(Qt::gray);
     if(index.column() == index.row())brush = QBrush(Qt::darkGray);
-    painter->fillRect(rect, brush);
+    painter->fillRect(cellRect, brush);
 
     if(this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::STRATEGY){
-        this->paint_strategy(painter,option,index);
+        this->paint_strategy(painter,innerOption,index);
     }
     else if(this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::RANGE_IP ||
             this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::RANGE_OOP ){
-        this->paint_range(painter,option,index);
+        this->paint_range(painter,innerOption,index);
     }
     else if(this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::EV){
-        this->paint_strategy(painter,option,index,true);
+        this->paint_strategy(painter,innerOption,index,true);
     }
     else if(this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::EV_ONLY){
-        this->paint_evs(painter,option,index);
+        this->paint_evs(painter,innerOption,index);
     }
+
+    painter->setClipping(false);
+    painter->setPen(QPen(QColor(0, 0, 0, 60), 1));
+    painter->setBrush(Qt::NoBrush);
+    painter->drawRoundedRect(cellRect, 4, 4);
 
     painter->restore();
 }

@@ -4,6 +4,8 @@
 #include <QAbstractTextDocumentLayout>
 #include <QRect>
 #include <QBrush>
+#include <QPainterPath>
+#include <QPen>
 
 RoughStrategyItemDelegate::RoughStrategyItemDelegate(DetailWindowSetting* detailWindowSetting,QObject *parent) :
     WordItemDelegate(parent)
@@ -85,13 +87,25 @@ void RoughStrategyItemDelegate::paint_strategy(QPainter *painter, const QStyleOp
 
 void RoughStrategyItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
     painter->save();
+    painter->setRenderHint(QPainter::Antialiasing, true);
 
-    QRect rect(option.rect.left(), option.rect.top(),\
-             option.rect.width(), option.rect.height());
+    QRect cellRect = option.rect.adjusted(1, 1, -1, -1);
+    QPainterPath clipPath;
+    clipPath.addRoundedRect(cellRect, 4, 4);
+    painter->setClipPath(clipPath);
+
+    QStyleOptionViewItem innerOption = option;
+    innerOption.rect = cellRect;
+
     QBrush brush(Qt::gray);
-    painter->fillRect(rect, brush);
+    painter->fillRect(cellRect, brush);
 
-    this->paint_strategy(painter,option,index);
+    this->paint_strategy(painter,innerOption,index);
+
+    painter->setClipping(false);
+    painter->setPen(QPen(QColor(0, 0, 0, 60), 1));
+    painter->setBrush(Qt::NoBrush);
+    painter->drawRoundedRect(cellRect, 4, 4);
 
     painter->restore();
 }

@@ -7,6 +7,7 @@
 #include <QColor>
 #include <QToolTip>
 #include <QCursor>
+#include <algorithm>
 #include "include/Card.h"
 
 StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
@@ -114,6 +115,12 @@ StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
     this->ui->roughStrategyView->setModel(this->roughStrategyViewerModel);
     this->roughStrategyItemDelegate = new RoughStrategyItemDelegate(&(this->detailWindowSetting),this);
     this->ui->roughStrategyView->setItemDelegate(this->roughStrategyItemDelegate);
+
+    // Start in the simpler view: just the hand banner, legend and main grid.
+    // The tree, rough-strategy panel, and mode buttons are one click away
+    // behind "Ver árbol de decisiones y opciones avanzadas" for people who
+    // want to dig deeper.
+    this->setAdvancedViewVisible(false);
 }
 
 StrategyExplorer::~StrategyExplorer()
@@ -365,4 +372,87 @@ void StrategyExplorer::on_advancedModeCheck_toggled(bool checked)
     this->advancedMode = checked;
     this->ui->strategyTableView->viewport()->update();
     this->ui->detailView->viewport()->update();
+}
+
+void StrategyExplorer::selectRootNode(){
+    QModelIndex rootIndex = this->ui->gameTreeView->model()->index(0, 0);
+    if(rootIndex.isValid()){
+        this->item_clicked(rootIndex);
+    }
+}
+
+static QString actionLabelSpanish(GameTreeNode::PokerActions action, double amount){
+    switch(action){
+        case GameTreeNode::PokerActions::FOLD: return QObject::tr("Retirarse");
+        case GameTreeNode::PokerActions::CHECK: return QObject::tr("Chequear");
+        case GameTreeNode::PokerActions::CALL: return QObject::tr("Pagar");
+        case GameTreeNode::PokerActions::BET: return QObject::tr("Apostar %1% del pozo").arg((int)amount);
+        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Subir a %1% del pozo").arg((int)amount);
+        default: return QObject::tr("Otra acción");
+    }
+}
+
+void StrategyExplorer::setHighlightedHand(QString card1, QString card2){
+    QStringList ranks = QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(",");
+    QChar rank1 = card1.at(0).toUpper();
+    QChar rank2 = card2.at(0).toUpper();
+    QChar suit1 = card1.at(1).toLower();
+    QChar suit2 = card2.at(1).toLower();
+    int idx1 = ranks.indexOf(QString(rank1));
+    int idx2 = ranks.indexOf(QString(rank2));
+    if(idx1 < 0 || idx2 < 0){
+        this->ui->handBannerLabel->setVisible(false);
+        return;
+    }
+    int i, j;
+    if(idx1 == idx2){
+        i = idx1; j = idx1;
+    }else if(suit1 == suit2){
+        i = qMin(idx1, idx2); j = qMax(idx1, idx2);
+    }else{
+        i = qMax(idx1, idx2); j = qMin(idx1, idx2);
+    }
+    if(this->tableStrategyModel->treeItem == NULL ||
+       this->tableStrategyModel->treeItem->m_treedata.lock()->getType() != GameTreeNode::GameTreeNode::ACTION){
+        this->ui->handBannerLabel->setVisible(false);
+        return;
+    }
+    vector<pair<GameActions,float>> strategy = this->tableStrategyModel->get_strategy(i, j);
+    if(strategy.empty()){
+        this->ui->handBannerLabel->setVisible(false);
+        return;
+    }
+    std::sort(strategy.begin(), strategy.end(), [](const pair<GameActions,float>& a, const pair<GameActions,float>& b){
+        return a.second > b.second;
+    });
+    QString handLabel = QString("%1%2").arg(card1.at(0).toUpper()).arg(card2.at(0).toUpper());
+    if(idx1 != idx2) handLabel += (suit1 == suit2) ? "s" : "o";
+    QStringList parts;
+    for(pair<GameActions,float> entry : strategy){
+        if(entry.second < 0.01f) continue;
+        int pct = (int)(entry.second * 100 + 0.5f);
+        parts << QString("%1 (%2%)").arg(actionLabelSpanish(entry.first.getAction(), entry.first.getAmount())).arg(pct);
+    }
+    this->ui->handBannerLabel->setText(tr("Con %1: %2").arg(handLabel).arg(parts.join(" · ")));
+    this->ui->handBannerLabel->setVisible(true);
+}
+
+void StrategyExplorer::setAdvancedViewVisible(bool visible){
+    this->advancedViewVisible = visible;
+    this->ui->groupBox->setVisible(visible);
+    this->ui->label_4->setVisible(visible);
+    this->ui->ipRangeButtom->setVisible(visible);
+    this->ui->oopRangeButtom->setVisible(visible);
+    this->ui->label_5->setVisible(visible);
+    this->ui->strategyModeButtom->setVisible(visible);
+    this->ui->evModeButtom->setVisible(visible);
+    this->ui->evOnlyModeButtom->setVisible(visible);
+    this->ui->detailView->setVisible(visible);
+    this->ui->toggleAdvancedViewButton->setText(visible ?
+        tr("🔍 Ocultar árbol de decisiones y opciones avanzadas") :
+        tr("🔍 Ver árbol de decisiones y opciones avanzadas"));
+}
+
+void StrategyExplorer::on_toggleAdvancedViewButton_clicked(){
+    this->setAdvancedViewVisible(!this->advancedViewVisible);
 }

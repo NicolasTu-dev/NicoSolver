@@ -231,14 +231,17 @@ string Card::toFormattedString() {
 }
 
 QString Card::toFormattedHtml() {
+    // "Black" suits use a light color instead of literal black: this HTML
+    // renders inside dark-themed panels, where true black would be
+    // invisible against the dark background.
     QString qString = QString::fromStdString(this->card);
     if(qString.contains("c"))
-        qString = qString.replace("c", QString::fromLocal8Bit("<span style=\"color:black;\">&#9827;<\/span>"));
+        qString = qString.replace("c", QString::fromLocal8Bit("<span style=\"color:#e8e8f0;\">&#9827;<\/span>"));
     else if(qString.contains("d"))
-        qString = qString.replace("d", QString::fromLocal8Bit("<span style=\"color:red;\">&#9830;<\/span>"));
+        qString = qString.replace("d", QString::fromLocal8Bit("<span style=\"color:#ff5c5c;\">&#9830;<\/span>"));
     else if(qString.contains("h"))
-        qString = qString.replace("h", QString::fromLocal8Bit("<span style=\"color:red;\">&#9829;<\/span>"));
+        qString = qString.replace("h", QString::fromLocal8Bit("<span style=\"color:#ff5c5c;\">&#9829;<\/span>"));
     else if(qString.contains("s"))
-        qString = qString.replace("s", QString::fromLocal8Bit("<span style=\"color:black;\">&#9824;<\/span>"));
+        qString = qString.replace("s", QString::fromLocal8Bit("<span style=\"color:#e8e8f0;\">&#9824;<\/span>"));
     return qString;
 }

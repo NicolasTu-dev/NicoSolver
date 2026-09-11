@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WelcomeDialog</class>
+ <widget class="QDialog" name="WelcomeDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>520</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Bienvenido</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>¿Qué es Solverix?</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="bodyLabel">
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Solverix calcula, para una situación concreta de una mano, cuál es la forma matemáticamente más equilibrada de jugarla.
+
+Tenés dos formas de usarlo:
+
+🚀 Modo Rápido: cargás tus 2 cartas, el board, y elegís de una lista qué pasó antes del flop (por ejemplo "abriste desde el Botón y te pagaron"). Nosotros armamos automáticamente los rangos típicos de esa situación y te mostramos directamente qué conviene hacer con tu mano.
+
+🔧 Modo Avanzado: configurás vos mismo los rangos exactos de cada jugador, el tamaño de las apuestas, y todos los demás parámetros — para cuando quieras control total.
+
+Si es tu primera vez, te recomendamos Modo Rápido.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="buttonsLayout">
+     <item>
+      <widget class="QPushButton" name="advancedButton">
+       <property name="text">
+        <string>🔧 Modo Avanzado</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="quickModeButton">
+       <property name="text">
+        <string>🚀 Modo Rápido</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

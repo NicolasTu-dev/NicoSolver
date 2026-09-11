@@ -2,6 +2,9 @@
     <qresource prefix="/">
         <file>resources/themes/theme_dark.qss</file>
         <file>resources/themes/theme_light.qss</file>
+        <file>resources/themes/theme_pokerroom.qss</file>
+        <file>resources/themes/theme_violet.qss</file>
+        <file>resources/themes/theme_fintech.qss</file>
         <file>resources/icons/checkmark.svg</file>
     </qresource>
 </RCC>
