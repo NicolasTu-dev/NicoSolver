@@ -40,11 +40,29 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="toggleAdvancedViewButton">
-       <property name="text">
-        <string>🔍 Ver árbol de decisiones y opciones avanzadas</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="explorerActionsLayout">
+       <item>
+        <widget class="QPushButton" name="toggleAdvancedViewButton">
+         <property name="text">
+          <string>🔍 Ver árbol de decisiones y opciones avanzadas</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="exportImageButton">
+         <property name="text">
+          <string>🖼️ Exportar como imagen</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="glossaryButton">
+         <property name="text">
+          <string>📖 Glosario</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QGroupBox" name="groupBox">

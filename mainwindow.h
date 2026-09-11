@@ -82,6 +82,8 @@ private:
     enum class QuickModeStage { None, WaitingForBuildTree, WaitingForSolve };
     QuickModeStage quickModePendingStage = QuickModeStage::None;
     bool quickMode = false;
+    bool quizMode = false;
+    QString quizGuessedAction; // "FOLD", "CALL" or "BET"
     int currentQuickStep = 0;
     QWidget* quickModeSteps[3];
     int chosenMatchupIndex = -1;
@@ -96,6 +98,7 @@ private:
     BoardSelectorTableDelegate* handSelectorDelegate = NULL;
     QProgressDialog* quickModeProgressDialog = NULL;
     void startQuickMode();
+    void startPracticeQuiz();
     void showQuickModeStep(int index);
     void startQuickModeSolve();
     void resetSeatSelection();

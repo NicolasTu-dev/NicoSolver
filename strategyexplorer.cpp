@@ -8,6 +8,12 @@
 #include <QToolTip>
 #include <QCursor>
 #include <algorithm>
+#include <tuple>
+#include <QFileDialog>
+#include <QPixmap>
+#include <QDateTime>
+#include <QMessageBox>
+#include <QGraphicsDropShadowEffect>
 #include "include/Card.h"
 
 StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
@@ -121,6 +127,20 @@ StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
     // behind "Ver árbol de decisiones y opciones avanzadas" for people who
     // want to dig deeper.
     this->setAdvancedViewVisible(false);
+
+    // Soft depth: make the recommended-play banner and the summary panel
+    // look "lifted" off the background, like a card on felt.
+    auto bannerShadow = new QGraphicsDropShadowEffect(this);
+    bannerShadow->setBlurRadius(24);
+    bannerShadow->setOffset(0, 3);
+    bannerShadow->setColor(QColor(0, 0, 0, 140));
+    this->ui->handBannerLabel->setGraphicsEffect(bannerShadow);
+
+    auto summaryShadow = new QGraphicsDropShadowEffect(this);
+    summaryShadow->setBlurRadius(24);
+    summaryShadow->setOffset(0, 3);
+    summaryShadow->setColor(QColor(0, 0, 0, 140));
+    this->ui->groupBox_2->setGraphicsEffect(summaryShadow);
 }
 
 StrategyExplorer::~StrategyExplorer()
@@ -195,6 +215,7 @@ void StrategyExplorer::item_clicked(const QModelIndex& index){
         this->roughStrategyViewerModel->onchanged();
         this->ui->roughStrategyView->triger_resize();
         this->ui->roughStrategyView->viewport()->update();
+        this->updateRangeSummaryLabel();
     }
     catch (const runtime_error& error)
     {
@@ -381,14 +402,39 @@ void StrategyExplorer::selectRootNode(){
     }
 }
 
+static QString sizeTagSpanish(double amount){
+    if(amount < 45) return QObject::tr("chica");
+    if(amount <= 85) return QObject::tr("mediana");
+    if(amount <= 130) return QObject::tr("grande");
+    return QObject::tr("sobre-apuesta");
+}
+
 static QString actionLabelSpanish(GameTreeNode::PokerActions action, double amount){
     switch(action){
         case GameTreeNode::PokerActions::FOLD: return QObject::tr("Retirarse");
         case GameTreeNode::PokerActions::CHECK: return QObject::tr("Chequear");
         case GameTreeNode::PokerActions::CALL: return QObject::tr("Pagar");
-        case GameTreeNode::PokerActions::BET: return QObject::tr("Apostar %1% del pozo").arg((int)amount);
-        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Subir a %1% del pozo").arg((int)amount);
+        case GameTreeNode::PokerActions::BET: return QObject::tr("Apostar %1% del pozo (%2)").arg((int)amount).arg(sizeTagSpanish(amount));
+        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Subir a %1% del pozo (%2)").arg((int)amount).arg(sizeTagSpanish(amount));
         default: return QObject::tr("Otra acción");
+    }
+}
+
+static QString actionReasonSpanish(GameTreeNode::PokerActions action, bool isTopAction){
+    switch(action){
+        case GameTreeNode::PokerActions::FOLD:
+            return QObject::tr("la mano no alcanza para seguir, seguir cuesta más de lo que puede ganar");
+        case GameTreeNode::PokerActions::CHECK:
+            return QObject::tr("alcanza para ver la siguiente carta gratis sin arriesgar más");
+        case GameTreeNode::PokerActions::CALL:
+            return QObject::tr("la mano es lo bastante buena para seguir, pero no para apostar más");
+        case GameTreeNode::PokerActions::BET:
+        case GameTreeNode::PokerActions::RAISE:
+            return isTopAction
+                ? QObject::tr("construye el bote con una mano fuerte y presiona al rival a que se equivoque")
+                : QObject::tr("mezcla de vez en cuando para no ser previsible con esta mano");
+        default:
+            return QString();
     }
 }
 
@@ -422,19 +468,84 @@ void StrategyExplorer::setHighlightedHand(QString card1, QString card2){
         this->ui->handBannerLabel->setVisible(false);
         return;
     }
-    std::sort(strategy.begin(), strategy.end(), [](const pair<GameActions,float>& a, const pair<GameActions,float>& b){
-        return a.second > b.second;
+    vector<float> evs = this->tableStrategyModel->get_strategies_evs(i, j);
+    vector<std::tuple<GameActions,float,float>> combined;
+    for(std::size_t k = 0; k < strategy.size(); k++){
+        float ev = k < evs.size() ? evs[k] : 0.f;
+        combined.push_back(std::make_tuple(strategy[k].first, strategy[k].second, ev));
+    }
+    std::sort(combined.begin(), combined.end(), [](const std::tuple<GameActions,float,float>& a, const std::tuple<GameActions,float,float>& b){
+        return std::get<1>(a) > std::get<1>(b);
     });
     QString handLabel = QString("%1%2").arg(card1.at(0).toUpper()).arg(card2.at(0).toUpper());
     if(idx1 != idx2) handLabel += (suit1 == suit2) ? "s" : "o";
+
     QStringList parts;
-    for(pair<GameActions,float> entry : strategy){
-        if(entry.second < 0.01f) continue;
-        int pct = (int)(entry.second * 100 + 0.5f);
-        parts << QString("%1 (%2%)").arg(actionLabelSpanish(entry.first.getAction(), entry.first.getAmount())).arg(pct);
+    bool isTop = true;
+    float topEv = combined.empty() ? 0.f : std::get<2>(combined[0]);
+    for(std::tuple<GameActions,float,float> entry : combined){
+        float freq = std::get<1>(entry);
+        if(freq < 0.01f) continue;
+        int pct = (int)(freq * 100 + 0.5f);
+        GameActions action = std::get<0>(entry);
+        QString piece = QString("%1 (%2%)").arg(actionLabelSpanish(action.getAction(), action.getAmount())).arg(pct);
+        QString reason = actionReasonSpanish(action.getAction(), isTop);
+        if(!reason.isEmpty()) piece += QString(" — %1").arg(reason);
+        if(!isTop){
+            float evLoss = topEv - std::get<2>(entry);
+            if(evLoss > 0.01f){
+                piece += tr(" [cuesta ~%1 fichas menos que la mejor jugada]").arg(QString::number(evLoss, 'f', 1));
+            }
+        }
+        parts << piece;
+        isTop = false;
     }
-    this->ui->handBannerLabel->setText(tr("Con %1: %2").arg(handLabel).arg(parts.join(" · ")));
+    this->ui->handBannerLabel->setText(tr("Con %1:<br>%2").arg(handLabel).arg(parts.join("<br>")));
     this->ui->handBannerLabel->setVisible(true);
+}
+
+std::tuple<float,float,float> StrategyExplorer::getRootActionSummary(){
+    float foldPct = 0.f, callPct = 0.f, betPct = 0.f;
+    if(this->tableStrategyModel->treeItem == NULL ||
+       this->tableStrategyModel->treeItem->m_treedata.lock()->getType() != GameTreeNode::GameTreeNode::ACTION){
+        return std::make_tuple(foldPct, callPct, betPct);
+    }
+    const vector<pair<GameActions,pair<float,float>>>& totalStrategy = this->tableStrategyModel->total_strategy;
+    for(const pair<GameActions,pair<float,float>>& entry : totalStrategy){
+        GameActions action = entry.first;
+        float freq = entry.second.second;
+        if(action.getAction() == GameTreeNode::PokerActions::FOLD) foldPct += freq;
+        else if(action.getAction() == GameTreeNode::PokerActions::CHECK || action.getAction() == GameTreeNode::PokerActions::CALL) callPct += freq;
+        else betPct += freq;
+    }
+    return std::make_tuple(foldPct, callPct, betPct);
+}
+
+void StrategyExplorer::updateRangeSummaryLabel(){
+    if(this->tableStrategyModel->treeItem == NULL ||
+       this->tableStrategyModel->treeItem->m_treedata.lock()->getType() != GameTreeNode::GameTreeNode::ACTION){
+        this->ui->roughStrategyIntroLabel->setText(tr("Con todo el rango del rival en este punto: qué tan seguido conviene retirarse (celeste), pagar (verde) o apostar/subir (rojo)."));
+        return;
+    }
+    const vector<pair<GameActions,pair<float,float>>>& totalStrategy = this->tableStrategyModel->total_strategy;
+    if(totalStrategy.empty()){
+        this->ui->roughStrategyIntroLabel->setText(tr("Con todo el rango del rival en este punto: qué tan seguido conviene retirarse (celeste), pagar (verde) o apostar/subir (rojo)."));
+        return;
+    }
+    float foldPct = 0.f, callPct = 0.f, betPct = 0.f;
+    for(const pair<GameActions,pair<float,float>>& entry : totalStrategy){
+        GameActions action = entry.first;
+        float freq = entry.second.second;
+        if(action.getAction() == GameTreeNode::PokerActions::FOLD) foldPct += freq;
+        else if(action.getAction() == GameTreeNode::PokerActions::CHECK || action.getAction() == GameTreeNode::PokerActions::CALL) callPct += freq;
+        else betPct += freq;
+    }
+    this->ui->roughStrategyIntroLabel->setText(
+        tr("El rival llega acá y, con todo su rango, se retira %1% de las veces, paga/chequea %2%, y apuesta/sube %3%.")
+            .arg((int)(foldPct * 100 + 0.5f))
+            .arg((int)(callPct * 100 + 0.5f))
+            .arg((int)(betPct * 100 + 0.5f))
+    );
 }
 
 void StrategyExplorer::setAdvancedViewVisible(bool visible){
@@ -455,4 +566,36 @@ void StrategyExplorer::setAdvancedViewVisible(bool visible){
 
 void StrategyExplorer::on_toggleAdvancedViewButton_clicked(){
     this->setAdvancedViewVisible(!this->advancedViewVisible);
+}
+
+void StrategyExplorer::on_exportImageButton_clicked(){
+    QString defaultName = tr("solverix_jugada_%1.png").arg(QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss"));
+    QString path = QFileDialog::getSaveFileName(this, tr("Exportar como imagen"), defaultName, tr("Imagen PNG (*.png)"));
+    if(path.isEmpty()) return;
+    if(!path.endsWith(".png", Qt::CaseInsensitive)) path += ".png";
+    QPixmap snapshot = this->grab();
+    if(snapshot.save(path, "PNG")){
+        QMessageBox::information(this, tr("Listo"), tr("Imagen guardada en:\n%1").arg(path));
+    }else{
+        QMessageBox::warning(this, tr("Error"), tr("No se pudo guardar la imagen."));
+    }
+}
+
+void StrategyExplorer::on_glossaryButton_clicked(){
+    QString glossary = tr(
+        "<h3>Glosario rápido</h3>"
+        "<p><b>EV (valor esperado):</b> cuánto gana o pierde una jugada en promedio, en fichas, si se repitiera muchas veces. Un EV más alto es mejor.</p>"
+        "<p><b>Rango:</b> el conjunto de manos posibles que un jugador puede tener en un punto de la mano, no una carta exacta.</p>"
+        "<p><b>Bloqueador (blocker):</b> tener una carta que hace menos probable que el rival tenga cierta mano fuerte (por ejemplo, tener un As reduce las combinaciones de AA que puede tener el rival).</p>"
+        "<p><b>Indiferencia:</b> un punto en el que dos jugadas dan exactamente el mismo resultado esperado, por eso el solver a veces mezcla entre dos acciones con la misma mano.</p>"
+        "<p><b>IP / OOP:</b> IP (in position) es el jugador que actúa último en la calle; OOP (out of position) el que actúa primero. Jugar en posición (IP) es una ventaja.</p>"
+        "<p><b>Combos:</b> la cantidad de combinaciones exactas de cartas que forman una mano (por ejemplo, AKs tiene 4 combos, uno por cada palo).</p>"
+        "<p><b>Frecuencia:</b> qué tan seguido el solver elige una acción con una mano dada, expresado en porcentaje.</p>"
+    );
+    QMessageBox box(this);
+    box.setWindowTitle(tr("Glosario"));
+    box.setTextFormat(Qt::RichText);
+    box.setText(glossary);
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
 }

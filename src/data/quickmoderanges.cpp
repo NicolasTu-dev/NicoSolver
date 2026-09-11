@@ -58,5 +58,43 @@ QVector<QuickModeMatchup> getQuickModeMatchups() {
         false, 130.0f, 175.0f
     });
 
+    // Approximate ranges (standard published 100bb 6-max charts, not solved
+    // for this specific matchup). Flag to the user if they want these tuned.
+    matchups.append({
+        "utg_open_co_call",
+        QObject::tr("Abriste desde UTG y el rival pagó desde el Cutoff (CO)"),
+        QObject::tr("El rival abrió desde UTG y vos pagaste desde el Cutoff (CO)"),
+        "22,33,44,55,66,77,88,99,TT,JJ,QQ,KK,AA,AJo,AQo,AKo,A5s,A9s,ATs,AJs,AQs,AKs,KTs,KJs,KQs,KQo,QTs,QJs,QJo,JTs,T9s,98s,87s,76s,65s",
+        "88,99,TT,JJ,QQ,KK,AJs,AQs,AKs,AQo,AKo,KQs,KJs,QJs,JTs,T9s,98s",
+        false, 50.0f, 200.0f
+    });
+
+    matchups.append({
+        "utg_open_btn_call",
+        QObject::tr("Abriste desde UTG y el rival pagó desde el Botón (BTN)"),
+        QObject::tr("El rival abrió desde UTG y vos pagaste desde el Botón (BTN)"),
+        "22,33,44,55,66,77,88,99,TT,JJ,QQ,KK,AA,AJo,AQo,AKo,A5s,A9s,ATs,AJs,AQs,AKs,KTs,KJs,KQs,KQo,QTs,QJs,QJo,JTs,T9s,98s,87s,76s,65s",
+        "77,88,99,TT,JJ,QQ,KK,ATs,AJs,AQs,AKs,AQo,AKo,KJs,KQs,KQo,QJs,JTs,T9s,98s,87s",
+        false, 50.0f, 200.0f
+    });
+
+    matchups.append({
+        "co_open_sb_call",
+        QObject::tr("Abriste desde el Cutoff (CO) y el rival pagó desde la ciega chica (SB)"),
+        QObject::tr("El rival abrió desde el Cutoff (CO) y vos pagaste desde la ciega chica (SB)"),
+        "22,33,44,55,66,77,88,99,TT,JJ,QQ,KK,AA,ATo,AJo,AQo,AKo,A2s,A3s,A4s,A5s,A6s,A7s,A8s,A9s,ATs,AJs,AQs,AKs,K9s,KTs,KJs,KQs,KTo:0.5,KQo,Q9s,QTs,QJs,QJo,J9s,JTs,T9s,T8s:0.5,98s,97s:0.5,87s,86s:0.5,76s,65s,54s:0.5",
+        "77,88,99,TT,JJ,QQ,KK,AJs,AQs,AKs,AQo,AKo,KQs,KJs,KQo,QJs,JTs",
+        true, 50.0f, 200.0f
+    });
+
+    matchups.append({
+        "btn_open_sb_call",
+        QObject::tr("Abriste desde el Botón (BTN) y el rival pagó desde la ciega chica (SB)"),
+        QObject::tr("El rival abrió desde el Botón (BTN) y vos pagaste desde la ciega chica (SB)"),
+        "AA,KK,QQ,JJ,TT,99:0.75,88:0.75,77:0.5,66:0.25,55:0.25,AK,AQs,AQo:0.75,AJs,AJo:0.5,ATs:0.75,A6s:0.25,A5s:0.75,A4s:0.75,A3s:0.5,A2s:0.5,KQs,KQo:0.5,KJs,KTs:0.75,K5s:0.25,K4s:0.25,QJs:0.75,QTs:0.75,Q9s:0.5,JTs:0.75,J9s:0.75,J8s:0.75,T9s:0.75,T8s:0.75,T7s:0.75,98s:0.75,97s:0.75,96s:0.5,87s:0.75,86s:0.5,85s:0.5,76s:0.75,75s:0.5,65s:0.75,64s:0.5,54s:0.75,53s:0.5,43s:0.5",
+        "66,77,88,99,TT,JJ,QQ,KK,A9s,ATs,AJs,AQs,AKs,AJo,AQo,AKo,KTs,KJs,KQs,KQo,QTs,QJs,JTs,T9s,98s",
+        true, 50.0f, 200.0f
+    });
+
     return matchups;
 }

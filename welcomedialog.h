@@ -12,7 +12,7 @@ class WelcomeDialog : public QDialog
     Q_OBJECT
 
 public:
-    enum Choice { Cancelled, QuickMode, Advanced };
+    enum Choice { Cancelled, QuickMode, Advanced, Practice };
 
     explicit WelcomeDialog(QWidget *parent = 0);
     ~WelcomeDialog();
@@ -21,6 +21,7 @@ public:
 private slots:
     void on_quickModeButton_clicked();
     void on_advancedButton_clicked();
+    void on_practiceButton_clicked();
 
 private:
     Ui::WelcomeDialog *ui;

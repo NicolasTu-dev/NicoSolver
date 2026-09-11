@@ -35,6 +35,8 @@ Tenés dos formas de usarlo:
 
 🔧 Modo Avanzado: configurás vos mismo los rangos exactos de cada jugador, el tamaño de las apuestas, y todos los demás parámetros — para cuando quieras control total.
 
+🎯 Modo Práctica: te tira una situación al azar (posición, mano y board) y adivinás qué harías antes de ver la respuesta del solver — para entrenar.
+
 Si es tu primera vez, te recomendamos Modo Rápido.</string>
      </property>
     </widget>
@@ -65,6 +67,13 @@ Si es tu primera vez, te recomendamos Modo Rápido.</string>
       <widget class="QPushButton" name="quickModeButton">
        <property name="text">
         <string>🚀 Modo Rápido</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="practiceButton">
+       <property name="text">
+        <string>🎯 Modo Práctica</string>
        </property>
       </widget>
      </item>

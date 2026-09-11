@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QTimer>
+#include <tuple>
 #include <QMouseEvent>
 #include <QEvent>
 #include <QMouseEvent>
@@ -37,6 +38,10 @@ public:
     ~StrategyExplorer();
     void selectRootNode();
     void setHighlightedHand(QString card1, QString card2);
+    // Returns (foldPct, callPct, betPct) for the currently selected node's
+    // full aggregate strategy, 0..1 each. Used by the practice quiz to
+    // compare the user's guess against the solver's recommendation.
+    std::tuple<float,float,float> getRootActionSummary();
 
 private:
     void setAdvancedViewVisible(bool visible);
@@ -55,6 +60,7 @@ private:
     bool advancedMode = false;
     void process_treeclick(TreeItem* treeitem);
     void process_board(TreeItem* treeitem);
+    void updateRangeSummaryLabel();
 public slots:
     void item_expanded(const QModelIndex& index);
     void item_clicked(const QModelIndex& index);
@@ -72,6 +78,8 @@ private slots:
     void on_evOnlyModeButtom_clicked();
     void on_advancedModeCheck_toggled(bool checked);
     void on_toggleAdvancedViewButton_clicked();
+    void on_exportImageButton_clicked();
+    void on_glossaryButton_clicked();
 };
 
 #endif // STRATEGYEXPLORER_H

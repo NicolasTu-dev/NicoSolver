@@ -30,3 +30,9 @@ void WelcomeDialog::on_advancedButton_clicked()
     this->result = Advanced;
     accept();
 }
+
+void WelcomeDialog::on_practiceButton_clicked()
+{
+    this->result = Practice;
+    accept();
+}

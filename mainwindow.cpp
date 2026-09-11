@@ -8,6 +8,9 @@
 #include <QCursor>
 #include <QVBoxLayout>
 #include <QMap>
+#include <QGraphicsDropShadowEffect>
+#include <QRandomGenerator>
+#include <tuple>
 
 QSTextEdit* MainWindow::s_textEdit = 0;
 
@@ -93,6 +96,14 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->seatBTN->raise();
     this->ui->seatSB->raise();
     this->ui->seatBB->raise();
+
+    // Soft depth on the poker table felt, so it reads as a lifted surface
+    // rather than a flat green rectangle.
+    auto feltShadow = new QGraphicsDropShadowEffect(this);
+    feltShadow->setBlurRadius(30);
+    feltShadow->setOffset(0, 4);
+    feltShadow->setColor(QColor(0, 0, 0, 160));
+    this->ui->seatFelt->setGraphicsEffect(feltShadow);
 
     this->ui->wizardLoadConfigButton->setToolTip(tr("Si ya guardaste una configuración antes (un archivo .json), tocá acá para cargarla y saltarte todos los pasos."));
     this->ui->ipRangeText->setToolTip(tr("Acá aparece el rango de manos del jugador IP (el que actúa último) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando \"Select IP\"."));
@@ -180,7 +191,61 @@ void MainWindow::on_helpButton_clicked()
             this->quickModeSteps[i]->setVisible(false);
         }
         this->showWizardStep(this->currentWizardStep);
+    }else if(dialog.choice() == WelcomeDialog::Practice){
+        this->startPracticeQuiz();
     }
+}
+
+void MainWindow::startPracticeQuiz(){
+    QVector<QuickModeMatchup> matchups = getQuickModeMatchups();
+    int matchupIdx = (int)QRandomGenerator::global()->bounded(matchups.size());
+    QuickModeMatchup matchup = matchups[matchupIdx];
+    bool iAmOpener = QRandomGenerator::global()->bounded(2) == 0;
+
+    QStringList ranksList = {"A","K","Q","J","T","9","8","7","6","5","4","3","2"};
+    QStringList suitsList = {"s","h","d","c"};
+    QStringList usedCards;
+    auto randomCard = [&]() -> QString {
+        QString c;
+        do {
+            c = ranksList[QRandomGenerator::global()->bounded(ranksList.size())] +
+                suitsList[QRandomGenerator::global()->bounded(suitsList.size())];
+        } while(usedCards.contains(c));
+        usedCards << c;
+        return c;
+    };
+    QString hand1 = randomCard();
+    QString hand2 = randomCard();
+    QString flop1 = randomCard();
+    QString flop2 = randomCard();
+    QString flop3 = randomCard();
+
+    QString situation = iAmOpener ? matchup.descriptionAsOpener : matchup.descriptionAsCaller;
+
+    QMessageBox guessBox(this);
+    guessBox.setWindowTitle(tr("Modo Práctica"));
+    guessBox.setText(tr("%1\n\nTu mano: %2 %3\nBoard: %4 %5 %6\n\n¿Qué harías?")
+        .arg(situation, hand1, hand2, flop1, flop2, flop3));
+    QPushButton* foldBtn = guessBox.addButton(tr("Retirarse"), QMessageBox::NoRole);
+    QPushButton* callBtn = guessBox.addButton(tr("Pagar / Chequear"), QMessageBox::NoRole);
+    QPushButton* betBtn = guessBox.addButton(tr("Apostar / Subir"), QMessageBox::YesRole);
+    guessBox.exec();
+
+    QString guess;
+    if(guessBox.clickedButton() == foldBtn) guess = "FOLD";
+    else if(guessBox.clickedButton() == callBtn) guess = "CALL";
+    else if(guessBox.clickedButton() == betBtn) guess = "BET";
+    else return; // dialog dismissed without a clear answer
+
+    this->quizMode = true;
+    this->quizGuessedAction = guess;
+    this->chosenMatchupIndex = matchupIdx;
+    this->userIsOpener = iAmOpener;
+    this->quickModeCard1 = hand1;
+    this->quickModeCard2 = hand2;
+    this->ui->boardText->setPlainText(QString("%1,%2,%3").arg(flop1, flop2, flop3));
+
+    this->startQuickModeSolve();
 }
 
 void MainWindow::showWizardStep(int index)
@@ -900,6 +965,30 @@ void MainWindow::onSolverJobFinished()
         this->strategyExplorer->setAttribute(Qt::WA_DeleteOnClose);
         this->strategyExplorer->selectRootNode();
         this->strategyExplorer->setHighlightedHand(this->quickModeCard1, this->quickModeCard2);
+        if(this->quizMode){
+            this->quizMode = false;
+            float foldPct, callPct, betPct;
+            std::tie(foldPct, callPct, betPct) = this->strategyExplorer->getRootActionSummary();
+            QString bestAction;
+            float bestPct;
+            if(foldPct >= callPct && foldPct >= betPct){ bestAction = "FOLD"; bestPct = foldPct; }
+            else if(callPct >= foldPct && callPct >= betPct){ bestAction = "CALL"; bestPct = callPct; }
+            else { bestAction = "BET"; bestPct = betPct; }
+            QMap<QString,QString> actionNames;
+            actionNames["FOLD"] = tr("Retirarse");
+            actionNames["CALL"] = tr("Pagar / Chequear");
+            actionNames["BET"] = tr("Apostar / Subir");
+            bool correct = (bestAction == this->quizGuessedAction);
+            QMessageBox revealBox(this);
+            revealBox.setWindowTitle(correct ? tr("¡Acertaste!") : tr("No acertaste"));
+            revealBox.setText(tr("Vos dijiste: %1\nCon todo el rango, lo más frecuente acá es: %2 (%3%)\n\n%4")
+                .arg(actionNames[this->quizGuessedAction])
+                .arg(actionNames[bestAction])
+                .arg((int)(bestPct * 100 + 0.5f))
+                .arg(correct ? tr("¡Bien ahí! Explorá abajo para ver el detalle mano por mano.")
+                              : tr("No pasa nada, mirá abajo el detalle mano por mano para entender por qué.")));
+            revealBox.exec();
+        }
         this->strategyExplorer->show();
         return;
     }
@@ -923,6 +1012,10 @@ QList<int> MainWindow::resolveMatchupIndices(QString seatA, QString seatB, QStri
     if(hasBTN && hasBB){ openerSeatOut = "BTN"; return {2, 4}; }
     if(hasSB && hasBB){ openerSeatOut = "SB"; return {3}; }
     if(hasCO && hasBTN){ openerSeatOut = "CO"; return {5}; }
+    if(hasUTG && hasCO){ openerSeatOut = "UTG"; return {6}; }
+    if(hasUTG && hasBTN){ openerSeatOut = "UTG"; return {7}; }
+    if(hasCO && hasSB){ openerSeatOut = "CO"; return {8}; }
+    if(hasBTN && hasSB){ openerSeatOut = "BTN"; return {9}; }
     return QList<int>();
 }
 
