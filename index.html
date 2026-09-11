@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solverix — Jugá con la mano que ya sabe qué hacer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a1810;
+    --bg-deep: #06120b;
+    --panel: #132118;
+    --panel-raised: #16281d;
+    --border: #2a4a38;
+    --gold: #d4af37;
+    --gold-bright: #e8c250;
+    --text: #e8f0ea;
+    --muted: #8fb39f;
+    --muted-2: #5c7a6a;
+    --green: #22c55e;
+    --red: #ff5c5c;
+    --blue: #4fb8ff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 520px at 82% -6%, rgba(212,175,55,0.08), transparent 60%),
+      radial-gradient(900px 500px at 10% 0%, rgba(34,197,94,0.05), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Inter", "Segoe UI", sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Cinzel","Segoe UI",serif; font-weight:700; letter-spacing:0.3px; margin:0;}
+  .num{font-family:"Space Grotesk","Inter",sans-serif;}
+  a{color:inherit;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  ::selection{background:var(--gold); color:#132118;}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,24,16,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-row{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1120px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:"Cinzel",serif; font-weight:700; font-size:19px; letter-spacing:0.5px;}
+  .brand .mark{color:var(--gold); font-size:20px;}
+  .nav-links{display:flex; gap:32px; font-size:14px; color:var(--muted);}
+  .nav-links a{text-decoration:none; transition:color .15s;}
+  .nav-links a:hover{color:var(--text);}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    border:none; border-radius:8px; cursor:pointer;
+    font-family:"Inter",sans-serif; font-weight:700; font-size:14px;
+    padding:11px 22px; text-decoration:none; transition:transform .15s, background .15s, box-shadow .15s;
+  }
+  .btn-gold{background:var(--gold); color:#14231a;}
+  .btn-gold:hover{background:var(--gold-bright); transform:translateY(-1px); box-shadow:0 8px 24px rgba(212,175,55,0.25);}
+  .btn-ghost{background:transparent; color:var(--text); border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold-bright);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:96px 0 72px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--gold); font-size:12.5px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase;
+    border:1px solid rgba(212,175,55,0.35); background:rgba(212,175,55,0.08);
+    padding:6px 14px; border-radius:99px; margin-bottom:22px;
+  }
+  .hero h1{font-size:47px; line-height:1.14; letter-spacing:0.2px;}
+  .hero h1 em{font-style:normal; color:var(--gold);}
+  .hero p.lead{color:var(--muted); font-size:17px; max-width:480px; margin:22px 0 32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-note{margin-top:16px; font-size:13px; color:var(--muted-2);}
+
+  /* signature card: the recommended-play banner, same motif as in-app */
+  .rec-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-left:6px solid var(--gold);
+    border-radius:4px 14px 14px 4px;
+    padding:22px 26px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .rec-card .rec-label{font-size:12px; text-transform:uppercase; letter-spacing:1.4px; color:var(--muted); font-weight:700;}
+  .rec-card .rec-hand{display:flex; gap:8px; margin:12px 0 16px;}
+  .card-chip{
+    width:44px; height:60px; border-radius:6px; background:#f5f2e8; color:#1a1d29;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:18px; box-shadow:0 4px 10px rgba(0,0,0,0.35);
+  }
+  .card-chip.red{color:#d1352b;}
+  .rec-verdict{font-size:21px; font-weight:800; font-family:"Inter",sans-serif;}
+  .rec-verdict .pct{color:var(--gold-bright); font-family:"Space Grotesk",sans-serif;}
+  .rec-why{color:var(--muted); font-size:14px; margin-top:8px;}
+  .rec-bar{display:flex; height:10px; border-radius:6px; overflow:hidden; margin-top:18px; border:1px solid rgba(0,0,0,0.3);}
+  .rec-bar span{display:block; height:100%;}
+
+  .hero-visual{position:relative;}
+  .hero-visual .float-tag{
+    position:absolute; background:var(--panel-raised); border:1px solid var(--border);
+    border-radius:8px; padding:8px 12px; font-size:12px; color:var(--muted); box-shadow:0 12px 24px rgba(0,0,0,0.4);
+  }
+  .float-tag.t1{top:-18px; right:12px;}
+  .float-tag.t2{bottom:-16px; left:-18px;}
+  .float-tag b{color:var(--green); font-family:"Space Grotesk",sans-serif;}
+
+  /* ---------- section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:620px; margin:0 auto 52px; text-align:center;}
+  .section-head .eyebrow{display:inline-flex;}
+  .section-head h2{font-size:32px; margin-top:14px;}
+  .section-head p{color:var(--muted); font-size:15.5px; margin-top:14px;}
+  .divider{height:1px; background:linear-gradient(90deg, transparent, var(--border), transparent); max-width:1120px; margin:0 auto;}
+
+  /* ---------- value props ---------- */
+  .props{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .prop-card{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:28px 24px;}
+  .prop-card .glyph{font-size:22px; color:var(--gold); margin-bottom:14px;}
+  .prop-card h3{font-family:"Inter",sans-serif; font-size:16.5px; font-weight:700;}
+  .prop-card p{color:var(--muted); font-size:14px; margin-top:8px;}
+
+  /* ---------- how it works ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; counter-reset:step;}
+  .step{position:relative; padding-top:8px;}
+  .step .step-num{
+    font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:13px; color:var(--gold);
+    border:1px solid rgba(212,175,55,0.4); width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .step h3{font-family:"Inter",sans-serif; font-size:17px;}
+  .step p{color:var(--muted); font-size:14px; margin-top:8px;}
+  .step-mock{
+    margin-top:18px; background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    height:150px; padding:14px; overflow:hidden;
+  }
+  /* mini mockups */
+  .mock-seats{position:relative; height:100%;}
+  .mock-felt{position:absolute; inset:14% 18%; border:3px solid var(--gold); border-radius:60px; background:var(--bg-deep);}
+  .mock-seat{position:absolute; width:34px; height:22px; background:var(--panel-raised); border:1.5px solid var(--gold); border-radius:5px; font-size:8px; display:flex; align-items:center; justify-content:center; color:var(--text); font-weight:700;}
+  .mock-grid{display:grid; grid-template-columns:repeat(8,1fr); gap:3px; height:100%;}
+  .mock-grid div{border-radius:2px;}
+  .mock-verdict{display:flex; flex-direction:column; justify-content:center; height:100%; gap:10px;}
+  .mock-verdict .line{height:10px; border-radius:4px; background:var(--border);}
+  .mock-verdict .line.gold{background:var(--gold); width:60%;}
+  .mock-verdict .line.w80{width:80%;} .mock-verdict .line.w40{width:40%;}
+
+  /* ---------- gallery ---------- */
+  .gallery{display:grid; grid-template-columns:1.15fr 1fr; gap:24px;}
+  .gallery-main, .gallery-side .shot{background:var(--panel); border:1px solid var(--border); border-radius:14px; overflow:hidden;}
+  .shot-head{display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--border); background:var(--bg-deep);}
+  .shot-head .dot{width:8px; height:8px; border-radius:50%; background:var(--border);}
+  .shot-head span{font-size:11px; color:var(--muted-2); margin-left:6px;}
+  .gallery-side{display:flex; flex-direction:column; gap:24px;}
+  .shot-body{overflow:hidden;}
+  .shot-body img{display:block; width:100%; height:100%; object-fit:cover;}
+  .gallery-main .shot-body{height:460px;}
+  .gallery-main .shot-body img{object-position:top;}
+  .gallery-side .shot-body{height:200px;}
+  .gallery-side .shot-body img{object-position:top;}
+
+  /* ---------- pricing ---------- */
+  .pricing{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:stretch;}
+  .plan{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:34px 30px; display:flex; flex-direction:column;}
+  .plan.featured{border-color:var(--gold); border-left:6px solid var(--gold); position:relative; box-shadow:0 30px 60px -24px rgba(212,175,55,0.25);}
+  .plan .badge{position:absolute; top:-13px; right:28px; background:var(--gold); color:#14231a; font-size:11px; font-weight:800; letter-spacing:0.6px; text-transform:uppercase; padding:5px 12px; border-radius:99px;}
+  .plan .plan-name{font-size:13px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); font-weight:700;}
+  .plan .plan-tag{color:var(--muted); font-size:14px; margin-top:8px; min-height:42px;}
+  .plan .price{font-family:"Space Grotesk",sans-serif; font-size:44px; font-weight:700; margin-top:22px; display:flex; align-items:baseline; gap:8px;}
+  .plan .price span{font-size:15px; color:var(--muted); font-weight:500; font-family:"Inter",sans-serif;}
+  .plan ul{list-style:none; padding:0; margin:26px 0 0; display:flex; flex-direction:column; gap:13px; flex-grow:1;}
+  .plan li{display:flex; gap:10px; font-size:14.5px; color:var(--text);}
+  .plan li.locked{color:var(--muted-2);}
+  .plan li .ico{color:var(--green); font-weight:700;}
+  .plan li.locked .ico{color:var(--muted-2);}
+  .plan .btn{margin-top:28px; width:100%;}
+  .price-note{text-align:center; color:var(--muted-2); font-size:12.5px; margin-top:20px;}
+
+  /* ---------- audience ---------- */
+  .audience{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .aud-card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:30px;}
+  .aud-card .tag{font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); font-weight:700;}
+  .aud-card h3{font-family:"Inter",sans-serif; font-size:19px; margin-top:10px;}
+  .aud-card p{color:var(--muted); font-size:14.5px; margin-top:10px;}
+  .quote{margin-top:20px; padding-top:18px; border-top:1px solid var(--border); font-size:13.5px; color:var(--muted); font-style:normal;}
+  .quote b{color:var(--text);}
+
+  /* ---------- faq ---------- */
+  .faq{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:14px; overflow:hidden; border:1px solid var(--border);}
+  .faq-item{background:var(--panel); padding:22px 26px;}
+  .faq-item h3{font-family:"Inter",sans-serif; font-size:15.5px; font-weight:700; margin-bottom:8px;}
+  .faq-item p{color:var(--muted); font-size:14px; margin:0;}
+
+  /* ---------- final cta + footer ---------- */
+  .final-cta{text-align:center; padding:100px 0 60px;}
+  .final-cta h2{font-size:34px; max-width:600px; margin:0 auto;}
+  .final-cta p{color:var(--muted); margin:16px auto 30px; max-width:460px;}
+  footer{border-top:1px solid var(--border); padding:36px 0; }
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .brand{font-size:15px;}
+  footer .fine{color:var(--muted-2); font-size:12.5px;}
+
+  @media (max-width:860px){
+    .hero-grid, .props, .steps, .gallery, .pricing, .audience{grid-template-columns:1fr;}
+    .hero h1{font-size:34px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-row">
+    <div class="brand"><span class="mark">♠</span> Solverix</div>
+    <div class="nav-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#capturas">La herramienta</a>
+      <a href="#precios">Precios</a>
+      <a href="#faq">Preguntas</a>
+    </div>
+    <a href="#precios" class="btn btn-gold">Suscribirme</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">♣ Solver GTO en español ♦</div>
+      <h1>Dejá de adivinar.<br>Jugá la mano que <em>gana en el largo plazo</em>.</h1>
+      <p class="lead">Cargá tu mano y el board, y Solverix te muestra en segundos qué hace un jugador matemáticamente equilibrado en esa situación exacta — sin conjeturas, sin "sensación".</p>
+      <div class="hero-ctas">
+        <a href="#precios" class="btn btn-gold">Empezar ahora</a>
+        <a href="#capturas" class="btn btn-ghost">Ver cómo funciona</a>
+      </div>
+      <div class="hero-note">Sin tarjeta para probar la demo · Cancelás cuando quieras</div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-tag t1">Resuelto en <b>3.2s</b></div>
+      <div class="rec-card">
+        <div class="rec-label">Jugada recomendada</div>
+        <div class="rec-hand">
+          <div class="card-chip">K<br>♠</div>
+          <div class="card-chip red">Q<br>♥</div>
+        </div>
+        <div class="rec-verdict">Apostar 33% del pozo <span class="pct">(71%)</span></div>
+        <div class="rec-why">Value bet: tu mano le gana a la mayoría del rango del rival y todavía podés mejorar.</div>
+        <div class="rec-bar">
+          <span style="width:14%; background:#4fb8ff;"></span>
+          <span style="width:15%; background:#22c55e;"></span>
+          <span style="width:71%; background:#d4af37;"></span>
+        </div>
+      </div>
+      <div class="float-tag t2">Board: <b>K♠ 8♥ 3♦</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section id="beneficios">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Por qué Solverix</div>
+      <h2>Un solver de verdad, pensado para jugar — no para programar</h2>
+      <p>La mayoría de los solvers están hechos para gente que ya sabe usar un solver. Este no.</p>
+    </div>
+    <div class="props">
+      <div class="prop-card">
+        <div class="glyph">♟</div>
+        <h3>Teoría de juegos real</h3>
+        <p>El mismo motor de cálculo (CFR) que usan los solvers profesionales, corriendo en tu computadora, sin depender de la nube.</p>
+      </div>
+      <div class="prop-card">
+        <div class="glyph">🇦🇷</div>
+        <h3>100% en español</h3>
+        <p>Cada pantalla, cada explicación y cada término técnico traducido y explicado en criollo. Nada de manuales en inglés.</p>
+      </div>
+      <div class="prop-card">
+        <div class="glyph">⏱</div>
+        <h3>Respuestas en segundos</h3>
+        <p>Elegís la situación y la mano, y el resultado aparece casi al toque — no hace falta esperar minutos para una respuesta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Cómo funciona</div>
+      <h2>Tres pasos, una respuesta clara</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Elegís la situación</h3>
+        <p>Posición tuya, posición del rival, tu mano y el board. Nada de escribir rangos a mano.</p>
+        <div class="step-mock">
+          <div class="mock-seats">
+            <div class="mock-felt"></div>
+            <div class="mock-seat" style="top:2%; left:38%;">BB</div>
+            <div class="mock-seat" style="top:36%; right:4%;">UTG</div>
+            <div class="mock-seat" style="bottom:2%; right:22%;">CO</div>
+            <div class="mock-seat" style="bottom:2%; left:22%;">BTN</div>
+            <div class="mock-seat" style="top:36%; left:4%;">SB</div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Solverix calcula</h3>
+        <p>El motor arma el árbol de decisiones y resuelve la estrategia óptima para esa mano exacta.</p>
+        <div class="step-mock">
+          <div class="mock-grid" id="grid-mock"></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Te dice qué hacer</h3>
+        <p>Retirarte, pagar o apostar — con el porcentaje de frecuencia y el motivo, en una frase que se entiende.</p>
+        <div class="step-mock">
+          <div class="mock-verdict">
+            <div class="line w80 gold"></div>
+            <div class="line w40"></div>
+            <div class="line" style="width:65%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="capturas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">La herramienta</div>
+      <h2>Así se ve por dentro</h2>
+      <p>Vista previa del Solver Avanzado y del explorador de estrategia.</p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-main">
+        <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Árbol de decisiones y EV por combo — Solver Avanzado</span></div>
+        <div class="shot-body">
+          <img src="screenshots/avanzado.png" alt="Explorador de estrategia de Solverix mostrando el árbol de decisiones y el EV de cada combinación de cartas">
+        </div>
+      </div>
+      <div class="gallery-side">
+        <div class="shot">
+          <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Paso 1 — Elegís tu asiento</span></div>
+          <div class="shot-body">
+            <img src="screenshots/situacion.png" alt="Mesa de poker de Solverix para elegir tu posición y la del rival">
+          </div>
+        </div>
+        <div class="shot">
+          <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Paso 4 — La respuesta, directa</span></div>
+          <div class="shot-body">
+            <img src="screenshots/resultado.png" alt="Jugada recomendada por Solverix con el porcentaje de frecuencia y el motivo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="precios">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Precios</div>
+      <h2>Empezá simple. Sumá el Modo Rápido cuando quieras.</h2>
+      <p>Dos formas de usar Solverix, según cuánto querés meterte en el detalle.</p>
+    </div>
+    <div class="pricing">
+      <div class="plan">
+        <div class="plan-name">Solver Avanzado</div>
+        <div class="plan-tag">Para analizar tus manos con control total del rango, el board y las apuestas — ideal si ya jugás con frecuencia.</div>
+        <div class="price">$9.990<span>/ mes</span></div>
+        <ul>
+          <li><span class="ico">✓</span> Solver GTO completo, sin límite de manos</li>
+          <li><span class="ico">✓</span> Rangos, tamaños de apuesta y stacks 100% editables</li>
+          <li><span class="ico">✓</span> Explorador de estrategia con EV y razones de cada jugada</li>
+          <li><span class="ico">✓</span> 5 temas visuales, todo en español</li>
+          <li class="locked"><span class="ico">✕</span> Modo Rápido (situaciones precargadas)</li>
+          <li class="locked"><span class="ico">✕</span> Modo Práctica (entrená adivinando)</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Suscribirme al Avanzado</a>
+      </div>
+      <div class="plan featured">
+        <div class="badge">Recomendado</div>
+        <div class="plan-name">Completo</div>
+        <div class="plan-tag">Todo el Avanzado, más el Modo Rápido y el Modo Práctica — ideal si estás empezando o jugás con alguien que recién arranca.</div>
+        <div class="price">$14.990<span>/ mes</span></div>
+        <ul>
+          <li><span class="ico">✓</span> Todo lo del Solver Avanzado</li>
+          <li><span class="ico">✓</span> Modo Rápido: elegís posición y mano, listo</li>
+          <li><span class="ico">✓</span> 6-max y Full Ring precargados</li>
+          <li><span class="ico">✓</span> Modo Práctica para entrenar antes de jugar</li>
+          <li><span class="ico">✓</span> Glosario de términos en criollo</li>
+          <li><span class="ico">✓</span> Soporte prioritario</li>
+        </ul>
+        <a href="#" class="btn btn-gold">Suscribirme al Completo</a>
+      </div>
+    </div>
+    <div class="price-note">Precios de ejemplo — ver más abajo. Cancelás cuando quieras, sin permanencia.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="para-quien">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Para quién es</div>
+      <h2>Sirve distinto según dónde estés parado</h2>
+    </div>
+    <div class="audience">
+      <div class="aud-card">
+        <div class="tag">Jugador con experiencia</div>
+        <h3>Solver Avanzado</h3>
+        <p>Armás vos los rangos exactos de cada jugador, ajustás los tamaños de apuesta a como se juega en tu mesa, y revisás manos puntuales después de la sesión.</p>
+        <div class="quote">"Lo uso para revisar las manos grandes de la semana, no para jugar en vivo." — <b>uso típico</b></div>
+      </div>
+      <div class="aud-card">
+        <div class="tag">Recién empezás</div>
+        <h3>+ Modo Rápido</h3>
+        <p>Elegís tu posición, tu mano y el board de una lista simple, y Solverix arma los rangos típicos por vos. Sin tener que entender rangos todavía.</p>
+        <div class="quote">"Toco 3 botones y me dice qué hacer. Después entiendo el por qué." — <b>uso típico</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2>Antes de sumarte</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>¿Necesito saber de teoría de juegos para usarlo?</h3>
+        <p>No. El Modo Rápido está pensado para que no necesites saber qué es un rango o un GTO para recibir una respuesta clara. El Avanzado sí asume que ya jugás con cierta frecuencia.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Puedo pasar del plan Avanzado al Completo después?</h3>
+        <p>Sí, en cualquier momento. Tus manos y configuraciones guardadas se mantienen igual.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Funciona sin conexión a internet?</h3>
+        <p>El cálculo corre en tu computadora, así que no depende de un servidor externo para resolver una mano.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cuánto tarda en resolver una mano?</h3>
+        <p>Segundos, no minutos. Podés elegir entre una respuesta rápida y aproximada, o una más precisa si tenés tiempo de sobra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="final-cta">
+  <div class="wrap">
+    <h2>Andá a la próxima mesa sabiendo qué hacer</h2>
+    <p>Probá Solverix y dejá de jugar de memoria.</p>
+    <a href="#precios" class="btn btn-gold">Ver planes</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="brand"><span class="mark" style="color:#d4af37;">♠</span> Solverix</div>
+    <div class="fine">Proyecto de demostración — no es un producto a la venta.</div>
+  </div>
+</footer>
+
+<script>
+  // Decorative mockup grids: filled procedurally so it reads as "real" data
+  // without needing an actual screenshot.
+  function paintGrid(id, cells){
+    const el = document.getElementById(id);
+    if(!el) return;
+    const colors = ['#4fb8ff','#22c55e','#d4af37','#3d2f1a','#1c2f22'];
+    const weights = [0.10,0.22,0.30,0.20,0.18];
+    for(let i=0;i<cells;i++){
+      const r = Math.random();
+      let acc=0, chosen=colors[0];
+      for(let j=0;j<weights.length;j++){ acc+=weights[j]; if(r<=acc){chosen=colors[j]; break;} }
+      const d = document.createElement('div');
+      d.style.background = chosen;
+      d.style.opacity = (0.55 + Math.random()*0.45).toFixed(2);
+      d.style.aspectRatio = '1/1';
+      el.appendChild(d);
+    }
+  }
+  paintGrid('grid-mock', 32);
+</script>
+
+</body>
+</html>
