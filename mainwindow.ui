@@ -1405,7 +1405,7 @@ p, li { white-space: pre-wrap; }
       </item>
       <item>
        <widget class="QWidget" name="quickStepResults">
-        <layout class="QVBoxLayout" name="quickStepResultsLayout">
+        <layout class="QVBoxLayout" name="quickStepResultsLayout" stretch="0,1">
          <item>
           <widget class="QPushButton" name="newHandButton">
            <property name="text">

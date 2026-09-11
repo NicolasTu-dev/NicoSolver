@@ -1089,6 +1089,7 @@ void MainWindow::onSolverJobFinished()
             // user stays on one screen and can start a new hand right there.
             this->strategyExplorer->setAttribute(Qt::WA_DeleteOnClose, false);
             this->strategyExplorer->setWindowFlags(Qt::Widget);
+            this->strategyExplorer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             this->ui->quickResultsContainer->layout()->addWidget(this->strategyExplorer);
             this->strategyExplorer->show();
             this->showQuickModeStep(3);
@@ -1275,6 +1276,15 @@ void MainWindow::showQuickModeStep(int index){
     this->ui->wizardNextButton->setVisible(showNav);
     this->ui->wizardBackButton->setEnabled(index > 0);
     this->ui->wizardNextButton->setText(index == 2 ? tr("Resolver →") : tr("Siguiente →"));
+
+    // The results step should fill all the leftover vertical space itself
+    // instead of leaving it to the trailing spacer (item 10) below, which
+    // is what every other step lets absorb the extra room.
+    QBoxLayout* inputLayout = qobject_cast<QBoxLayout*>(this->ui->inputLayout);
+    if(inputLayout != NULL){
+        inputLayout->setStretch(9, index == 3 ? 1 : 0);
+        inputLayout->setStretch(10, index == 3 ? 0 : 1);
+    }
 }
 
 void MainWindow::startQuickModeSolve(bool fastMode){
@@ -1302,18 +1312,18 @@ void MainWindow::startQuickModeSolve(bool fastMode){
     this->ui->effectiveStackText->setText(QString::number(matchup.effectiveStack, 'f', 1));
     // A lower raise-limit keeps the decision tree much smaller (fewer
     // re-raise levels to build and solve), which matters more for speed
-    // than iteration count does.
-    this->ui->raiseLimitText->setText("2");
+    // than iteration count does. 1 = no re-raises past the first bet.
+    this->ui->raiseLimitText->setText("1");
     this->ui->allinThresholdText->setText("0.67");
     this->ui->useIsoCheck->setChecked(true);
-    this->ui->useHalfFloats_box->setCurrentIndex(0);
+    this->ui->useHalfFloats_box->setCurrentIndex(0); // half-floats is slower here, not faster
     this->ui->mode_box->setCurrentIndex(0);
     // Modo Rápido favors a fast answer over publication-precision numbers —
     // a rough-but-quick recommendation is more useful here than a slow exact
     // one. Practice mode (fastMode) stops sooner still, since it only needs
     // to know which action family (fold/call/bet) is most frequent.
-    this->ui->iterationText->setText(fastMode ? "40" : "60");
-    this->ui->exploitabilityText->setText(fastMode ? "3.0" : "2.0");
+    this->ui->iterationText->setText(fastMode ? "25" : "35");
+    this->ui->exploitabilityText->setText(fastMode ? "6.0" : "4.0");
     this->ui->logIntervalText->setText("10");
     this->ui->threadsText->setText("8");
 
