@@ -151,9 +151,53 @@
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>Tocá tu asiento en la mesa, y después el del rival.</string>
+            <string>Elegí cuántos jugadores hay en la mesa, y después tocá tu asiento y el del rival.</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="tableSizeChoiceLayout">
+           <item>
+            <spacer name="tableSizeLeftSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="tableSize6Button">
+             <property name="text">
+              <string>6-max (6 jugadores)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="tableSize9Button">
+             <property name="text">
+              <string>Full Ring (9 jugadores)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="tableSizeRightSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="seatTableCenterLayout">
@@ -174,89 +218,24 @@
             <widget class="QWidget" name="seatTableContainer" native="true">
              <property name="minimumSize">
               <size>
-               <width>560</width>
-               <height>380</height>
+               <width>620</width>
+               <height>420</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>560</width>
-               <height>380</height>
+               <width>620</width>
+               <height>420</height>
               </size>
              </property>
              <widget class="QWidget" name="seatFelt" native="true">
               <property name="geometry">
                <rect>
-                <x>60</x>
-                <y>70</y>
-                <width>440</width>
-                <height>240</height>
+                <x>80</x>
+                <y>90</y>
+                <width>460</width>
+                <height>260</height>
                </rect>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="seatBB">
-              <property name="geometry">
-               <rect>
-                <x>240</x>
-                <y>10</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>BB</string>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="seatUTG">
-              <property name="geometry">
-               <rect>
-                <x>410</x>
-                <y>70</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>UTG</string>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="seatCO">
-              <property name="geometry">
-               <rect>
-                <x>350</x>
-                <y>280</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>CO</string>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="seatBTN">
-              <property name="geometry">
-               <rect>
-                <x>130</x>
-                <y>280</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>BTN</string>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="seatSB">
-              <property name="geometry">
-               <rect>
-                <x>40</x>
-                <y>70</y>
-                <width>80</width>
-                <height>50</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>SB</string>
               </property>
              </widget>
             </widget>
@@ -285,56 +264,6 @@
             <string>Elegí tu asiento.</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="threeBetChoiceLayout">
-           <item>
-            <spacer name="threeBetChoiceLeftSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="simplePotButton">
-             <property name="visible">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Fue bote simple (sin 3-bet)</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="threeBetPotButton">
-             <property name="visible">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Hubo una re-subida (3-bet)</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="threeBetChoiceRightSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
          </item>
         </layout>
        </widget>

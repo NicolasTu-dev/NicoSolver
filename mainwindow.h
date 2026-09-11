@@ -18,6 +18,8 @@
 #include "include/ui/boardselectortablemodel.h"
 #include "include/ui/boardselectortabledelegate.h"
 #include <QProgressDialog>
+#include <QPushButton>
+#include <QVector>
 
 namespace Ui {
 class MainWindow;
@@ -69,8 +71,8 @@ private slots:
     void on_helpButton_clicked();
     void onHandSelectorClicked(const QModelIndex &index);
     void onSeatClicked();
-    void onSimplePotChosen();
-    void onThreeBetPotChosen();
+    void onTableSize6Clicked();
+    void onTableSize9Clicked();
 
 private:
     void clear_all_params();
@@ -86,14 +88,15 @@ private:
     QString quizGuessedAction; // "FOLD", "CALL" or "BET"
     int currentQuickStep = 0;
     QWidget* quickModeSteps[3];
-    int chosenMatchupIndex = -1;
+    QuickModeMatchup currentMatchup;
     bool userIsOpener = true;
     QString quickModeCard1;
     QString quickModeCard2;
     QString mySeat;
     QString villainSeat;
-    QList<int> pendingMatchupChoices;
-    QString pendingOpenerSeat;
+    int quickTableSize = 6; // 6 (6-max) or 9 (Full Ring)
+    QVector<QPushButton*> quickSeatButtons; // pool of up to 9, repositioned per table size
+    QStringList quickSeatDisplayOrder; // seat codes currently shown, clockwise from top
     BoardSelectorTableModel* handSelectorModel = NULL;
     BoardSelectorTableDelegate* handSelectorDelegate = NULL;
     QProgressDialog* quickModeProgressDialog = NULL;
@@ -103,7 +106,8 @@ private:
     void startQuickModeSolve(bool fastMode = false);
     void resetSeatSelection();
     void updateSeatButtonStyles();
-    QList<int> resolveMatchupIndices(QString seatA, QString seatB, QString& openerSeatOut);
+    void setupQuickSeatButtons(int tableSize);
+    void onTableSizeChosen(int tableSize);
     Ui::MainWindow *ui = NULL;
     QSolverJob* qSolverJob = NULL;
     QDialog* logDialog = NULL;

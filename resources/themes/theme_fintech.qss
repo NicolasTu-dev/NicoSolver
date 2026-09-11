@@ -305,6 +305,23 @@ QSplitter::handle {
     padding-bottom: 4px;
 }
 
+#titleLabel {
+    color: #00e5a0;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#handBannerLabel {
+    background-color: #05070d;
+    border-left: 6px solid #00e5a0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #e8ecf4;
+}
+
 #ipBetSizesHeader, #oopBetSizesHeader {
     color: #00e5a0;
     font-weight: 700;
@@ -369,7 +386,7 @@ QSplitter::handle {
     border-radius: 8px;
 }
 
-#seatUTG, #seatCO, #seatBTN, #seatSB, #seatBB {
+#seatTableContainer QPushButton {
     background-color: #05070d;
     color: #e8ecf4;
     border: 2px solid #00e5a0;
@@ -377,14 +394,8 @@ QSplitter::handle {
     font-weight: 700;
 }
 
-#simplePotButton, #threeBetPotButton {
+#tableSize6Button, #tableSize9Button {
     background-color: #00e5a0;
     color: #05070d;
     font-weight: 700;
-}
-
-#seatUTG:disabled, #seatCO:disabled, #seatBTN:disabled, #seatSB:disabled, #seatBB:disabled {
-    background-color: #05070d;
-    color: #303645;
-    border: 2px dashed #1c2130;
 }

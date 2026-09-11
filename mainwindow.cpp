@@ -13,6 +13,10 @@
 #include <tuple>
 #include "include/Card.h"
 #include <QFrame>
+#include <cmath>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 QSTextEdit* MainWindow::s_textEdit = 0;
 
@@ -79,25 +83,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->quickStepSituation->setVisible(false);
     this->ui->quickStepHand->setVisible(false);
 
-    this->ui->seatUTG->setObjectName("seatUTG");
-    this->ui->seatCO->setObjectName("seatCO");
-    this->ui->seatBTN->setObjectName("seatBTN");
-    this->ui->seatSB->setObjectName("seatSB");
-    this->ui->seatBB->setObjectName("seatBB");
-    connect(this->ui->seatUTG, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
-    connect(this->ui->seatCO, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
-    connect(this->ui->seatBTN, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
-    connect(this->ui->seatSB, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
-    connect(this->ui->seatBB, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
-    connect(this->ui->simplePotButton, &QPushButton::clicked, this, &MainWindow::onSimplePotChosen);
-    connect(this->ui->threeBetPotButton, &QPushButton::clicked, this, &MainWindow::onThreeBetPotChosen);
-    // Defensively force the seat buttons above the felt background in
-    // stacking order, in case document order alone doesn't guarantee it.
-    this->ui->seatUTG->raise();
-    this->ui->seatCO->raise();
-    this->ui->seatBTN->raise();
-    this->ui->seatSB->raise();
-    this->ui->seatBB->raise();
+    connect(this->ui->tableSize6Button, &QPushButton::clicked, this, &MainWindow::onTableSize6Clicked);
+    connect(this->ui->tableSize9Button, &QPushButton::clicked, this, &MainWindow::onTableSize9Clicked);
+    this->setupQuickSeatButtons(6);
 
     // Soft depth on the poker table felt, so it reads as a lifted surface
     // rather than a flat green rectangle.
@@ -211,9 +199,14 @@ static QString quizCardChipsHtml(const QStringList& cardStrs){
 }
 
 void MainWindow::startPracticeQuiz(){
-    QVector<QuickModeMatchup> matchups = getQuickModeMatchups();
-    int matchupIdx = (int)QRandomGenerator::global()->bounded(matchups.size());
-    QuickModeMatchup matchup = matchups[matchupIdx];
+    int tableSize = QRandomGenerator::global()->bounded(2) == 0 ? 6 : 9;
+    QStringList seatOrder = getTableSeatOrder(tableSize);
+    int seatAIdx = (int)QRandomGenerator::global()->bounded(seatOrder.size());
+    int seatBIdx;
+    do { seatBIdx = (int)QRandomGenerator::global()->bounded(seatOrder.size()); } while(seatBIdx == seatAIdx);
+    QString openerSeat = seatAIdx < seatBIdx ? seatOrder[seatAIdx] : seatOrder[seatBIdx];
+    QString callerSeat = seatAIdx < seatBIdx ? seatOrder[seatBIdx] : seatOrder[seatAIdx];
+    QuickModeMatchup matchup = buildQuickModeMatchup(tableSize, openerSeat, callerSeat);
     bool iAmOpener = QRandomGenerator::global()->bounded(2) == 0;
 
     QStringList ranksList = {"A","K","Q","J","T","9","8","7","6","5","4","3","2"};
@@ -297,7 +290,7 @@ void MainWindow::startPracticeQuiz(){
 
     this->quizMode = true;
     this->quizGuessedAction = guess;
-    this->chosenMatchupIndex = matchupIdx;
+    this->currentMatchup = matchup;
     this->userIsOpener = iAmOpener;
     this->quickModeCard1 = hand1;
     this->quickModeCard2 = hand2;
@@ -1093,37 +1086,65 @@ void MainWindow::onSolverJobFinished()
     }
 }
 
-QList<int> MainWindow::resolveMatchupIndices(QString seatA, QString seatB, QString& openerSeatOut){
-    bool hasUTG = (seatA == "UTG" || seatB == "UTG");
-    bool hasCO = (seatA == "CO" || seatB == "CO");
-    bool hasBTN = (seatA == "BTN" || seatB == "BTN");
-    bool hasSB = (seatA == "SB" || seatB == "SB");
-    bool hasBB = (seatA == "BB" || seatB == "BB");
-    if(hasUTG && hasBB){ openerSeatOut = "UTG"; return {0}; }
-    if(hasCO && hasBB){ openerSeatOut = "CO"; return {1}; }
-    if(hasBTN && hasBB){ openerSeatOut = "BTN"; return {2, 4}; }
-    if(hasSB && hasBB){ openerSeatOut = "SB"; return {3}; }
-    if(hasCO && hasBTN){ openerSeatOut = "CO"; return {5}; }
-    if(hasUTG && hasCO){ openerSeatOut = "UTG"; return {6}; }
-    if(hasUTG && hasBTN){ openerSeatOut = "UTG"; return {7}; }
-    if(hasCO && hasSB){ openerSeatOut = "CO"; return {8}; }
-    if(hasBTN && hasSB){ openerSeatOut = "BTN"; return {9}; }
-    return QList<int>();
+void MainWindow::setupQuickSeatButtons(int tableSize){
+    this->quickTableSize = tableSize;
+    QStringList preflopOrder = getTableSeatOrder(tableSize);
+
+    // Visual placement clockwise from the top, starting at BB (matches the
+    // original 5-seat layout's convention). Distinct from preflop acting
+    // order, which is only used to compute who's the opener.
+    QStringList displayOrder;
+    displayOrder << "BB";
+    for(const QString& seat : preflopOrder){
+        if(seat != "BB") displayOrder << seat;
+    }
+    this->quickSeatDisplayOrder = displayOrder;
+
+    QWidget* container = this->ui->seatTableContainer;
+    double centerX = container->width() / 2.0;
+    double centerY = container->height() / 2.0;
+    double radiusX = centerX - 60;
+    double radiusY = centerY - 40;
+    const int btnW = 80, btnH = 50;
+
+    while(this->quickSeatButtons.size() < 9){
+        QPushButton* btn = new QPushButton(container);
+        btn->setMinimumSize(btnW, btnH);
+        btn->setMaximumSize(btnW, btnH);
+        connect(btn, &QPushButton::clicked, this, &MainWindow::onSeatClicked);
+        this->quickSeatButtons.append(btn);
+    }
+
+    for(int i = 0; i < this->quickSeatButtons.size(); i++){
+        QPushButton* btn = this->quickSeatButtons[i];
+        if(i < displayOrder.size()){
+            QString seat = displayOrder[i];
+            double angle = -M_PI/2.0 + (2.0 * M_PI * i / displayOrder.size());
+            int x = (int)(centerX + radiusX * cos(angle) - btnW/2.0);
+            int y = (int)(centerY + radiusY * sin(angle) - btnH/2.0);
+            btn->setObjectName("quickSeat_" + seat);
+            btn->setGeometry(x, y, btnW, btnH);
+            btn->setText(seat);
+            btn->setVisible(true);
+            btn->raise();
+        }else{
+            btn->setVisible(false);
+        }
+    }
 }
 
-void MainWindow::updateSeatButtonStyles(){
-    QMap<QString, QPushButton*> seatButtons;
-    seatButtons["UTG"] = this->ui->seatUTG;
-    seatButtons["CO"] = this->ui->seatCO;
-    seatButtons["BTN"] = this->ui->seatBTN;
-    seatButtons["SB"] = this->ui->seatSB;
-    seatButtons["BB"] = this->ui->seatBB;
+void MainWindow::onTableSizeChosen(int tableSize){
+    this->setupQuickSeatButtons(tableSize);
+    this->resetSeatSelection();
+}
 
-    for(auto it = seatButtons.begin(); it != seatButtons.end(); ++it){
-        QString seat = it.key();
-        QPushButton* button = it.value();
-        button->setEnabled(true);
-        button->setToolTip("");
+void MainWindow::onTableSize6Clicked(){ this->onTableSizeChosen(6); }
+void MainWindow::onTableSize9Clicked(){ this->onTableSizeChosen(9); }
+
+void MainWindow::updateSeatButtonStyles(){
+    for(QPushButton* button : this->quickSeatButtons){
+        if(!button->isVisible()) continue;
+        QString seat = button->objectName().mid(QString("quickSeat_").length());
         if(seat == this->mySeat){
             button->setText(seat + "\n" + tr("(VOS)"));
         }else if(seat == this->villainSeat){
@@ -1131,23 +1152,12 @@ void MainWindow::updateSeatButtonStyles(){
         }else{
             button->setText(seat);
         }
-        if(!this->mySeat.isEmpty() && this->villainSeat.isEmpty() && seat != this->mySeat){
-            QString dummyOpener;
-            if(resolveMatchupIndices(this->mySeat, seat, dummyOpener).isEmpty()){
-                button->setEnabled(false);
-                button->setToolTip(tr("Todavía no tenemos un rango típico armado para esta combinación de posiciones."));
-            }
-        }
     }
 }
 
 void MainWindow::resetSeatSelection(){
     this->mySeat = "";
     this->villainSeat = "";
-    this->pendingMatchupChoices.clear();
-    this->pendingOpenerSeat = "";
-    this->ui->simplePotButton->setVisible(false);
-    this->ui->threeBetPotButton->setVisible(false);
     this->ui->seatSelectionStatusLabel->setText(tr("Elegí tu asiento."));
     this->updateSeatButtonStyles();
 }
@@ -1155,11 +1165,11 @@ void MainWindow::resetSeatSelection(){
 void MainWindow::onSeatClicked(){
     QPushButton* clicked = qobject_cast<QPushButton*>(sender());
     if(clicked == NULL) return;
-    QString seat = clicked->objectName().mid(4); // "seatUTG" -> "UTG"
+    QString seat = clicked->objectName().mid(QString("quickSeat_").length());
 
     if(this->mySeat.isEmpty()){
         this->mySeat = seat;
-        this->ui->seatSelectionStatusLabel->setText(tr("Ahora elegí el asiento del rival. Los asientos en gris con borde punteado todavía no tienen datos para esa combinación."));
+        this->ui->seatSelectionStatusLabel->setText(tr("Ahora elegí el asiento del rival."));
         this->updateSeatButtonStyles();
         return;
     }
@@ -1169,41 +1179,15 @@ void MainWindow::onSeatClicked(){
     }
     if(!this->villainSeat.isEmpty()) return;
 
-    QString openerSeat;
-    QList<int> matches = this->resolveMatchupIndices(this->mySeat, seat, openerSeat);
-    if(matches.isEmpty()) return; // button should already be disabled for this case
-
     this->villainSeat = seat;
-    this->pendingMatchupChoices = matches;
-    this->pendingOpenerSeat = openerSeat;
     this->updateSeatButtonStyles();
 
-    if(matches.size() > 1){
-        this->ui->seatSelectionStatusLabel->setText(tr("¿Bote simple o hubo una re-subida (3-bet)?"));
-        this->ui->simplePotButton->setVisible(true);
-        this->ui->threeBetPotButton->setVisible(true);
-    }else{
-        this->chosenMatchupIndex = matches[0];
-        this->userIsOpener = (this->mySeat == this->pendingOpenerSeat);
-        this->handSelectorModel->clear_board();
-        this->ui->handSelectorTable->update();
-        this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
-        this->showQuickModeStep(1);
-    }
-}
+    QStringList preflopOrder = getTableSeatOrder(this->quickTableSize);
+    QString openerSeat = preflopOrder.indexOf(this->mySeat) < preflopOrder.indexOf(this->villainSeat) ? this->mySeat : this->villainSeat;
+    QString callerSeat = (openerSeat == this->mySeat) ? this->villainSeat : this->mySeat;
+    this->currentMatchup = buildQuickModeMatchup(this->quickTableSize, openerSeat, callerSeat);
+    this->userIsOpener = (this->mySeat == openerSeat);
 
-void MainWindow::onSimplePotChosen(){
-    this->chosenMatchupIndex = this->pendingMatchupChoices[0];
-    this->userIsOpener = (this->mySeat == this->pendingOpenerSeat);
-    this->handSelectorModel->clear_board();
-    this->ui->handSelectorTable->update();
-    this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
-    this->showQuickModeStep(1);
-}
-
-void MainWindow::onThreeBetPotChosen(){
-    this->chosenMatchupIndex = this->pendingMatchupChoices[1];
-    this->userIsOpener = (this->mySeat == this->pendingOpenerSeat);
     this->handSelectorModel->clear_board();
     this->ui->handSelectorTable->update();
     this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
@@ -1241,6 +1225,7 @@ void MainWindow::startQuickMode(){
     }
     this->handSelectorModel->clear_board();
     this->ui->handSelectedLabel->setText(tr("Seleccionadas: (ninguna)"));
+    this->setupQuickSeatButtons(6);
     this->resetSeatSelection();
     this->showQuickModeStep(0);
 }
@@ -1261,8 +1246,7 @@ void MainWindow::showQuickModeStep(int index){
 }
 
 void MainWindow::startQuickModeSolve(bool fastMode){
-    QVector<QuickModeMatchup> matchups = getQuickModeMatchups();
-    QuickModeMatchup matchup = matchups[this->chosenMatchupIndex];
+    QuickModeMatchup matchup = this->currentMatchup;
 
     QString myRange = this->userIsOpener ? matchup.openerRange : matchup.callerRange;
     QString villainRange = this->userIsOpener ? matchup.callerRange : matchup.openerRange;
