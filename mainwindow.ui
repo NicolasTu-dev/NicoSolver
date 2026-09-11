@@ -44,7 +44,7 @@
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="inputLayout" stretch="0,0,0,0,0,0,0,0,0,1">
+        <layout class="QVBoxLayout" name="inputLayout" stretch="0,0,0,0,0,0,0,0,0,0,1">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -1398,6 +1398,37 @@ p, li { white-space: pre-wrap; }
            <property name="text">
             <string>ShowResult</string>
            </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="quickStepResults">
+        <layout class="QVBoxLayout" name="quickStepResultsLayout">
+         <item>
+          <widget class="QPushButton" name="newHandButton">
+           <property name="text">
+            <string>🔄 Empezar una mano nueva</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="quickResultsContainer" native="true">
+           <layout class="QVBoxLayout" name="quickResultsContainerLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+           </layout>
           </widget>
          </item>
         </layout>

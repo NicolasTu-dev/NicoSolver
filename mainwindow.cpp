@@ -80,8 +80,11 @@ MainWindow::MainWindow(QWidget *parent) :
     this->quickModeSteps[0] = this->ui->quickStepSituation;
     this->quickModeSteps[1] = this->ui->quickStepHand;
     this->quickModeSteps[2] = this->ui->wizardStepBoard;
+    this->quickModeSteps[3] = this->ui->quickStepResults;
+    connect(this->ui->newHandButton, &QPushButton::clicked, this, &MainWindow::onNewHandButtonClicked);
     this->ui->quickStepSituation->setVisible(false);
     this->ui->quickStepHand->setVisible(false);
+    this->ui->quickStepResults->setVisible(false);
 
     connect(this->ui->tableSize6Button, &QPushButton::clicked, this, &MainWindow::onTableSize6Clicked);
     connect(this->ui->tableSize9Button, &QPushButton::clicked, this, &MainWindow::onTableSize9Clicked);
@@ -1079,8 +1082,17 @@ void MainWindow::onSolverJobFinished()
             layout->addWidget(closeBtn);
 
             revealDialog.exec();
+            this->strategyExplorer->show();
+        }else{
+            // Embed the results directly into step 4 of the quick-mode
+            // wizard instead of opening a separate floating window, so the
+            // user stays on one screen and can start a new hand right there.
+            this->strategyExplorer->setAttribute(Qt::WA_DeleteOnClose, false);
+            this->strategyExplorer->setWindowFlags(Qt::Widget);
+            this->ui->quickResultsContainer->layout()->addWidget(this->strategyExplorer);
+            this->strategyExplorer->show();
+            this->showQuickModeStep(3);
         }
-        this->strategyExplorer->show();
         return;
     }
     if(this->solvingInProgress){
@@ -1223,6 +1235,15 @@ void MainWindow::onHandSelectorClicked(const QModelIndex &index){
     this->ui->handSelectedLabel->setText(text.isEmpty() ? tr("Seleccionadas: (ninguna)") : tr("Seleccionadas: %1").arg(text));
 }
 
+void MainWindow::onNewHandButtonClicked(){
+    if(this->strategyExplorer != NULL){
+        this->ui->quickResultsContainer->layout()->removeWidget(this->strategyExplorer);
+        this->strategyExplorer->deleteLater();
+        this->strategyExplorer = NULL;
+    }
+    this->startQuickMode();
+}
+
 void MainWindow::startQuickMode(){
     this->quickMode = true;
     this->exampleMode = false;
@@ -1237,16 +1258,21 @@ void MainWindow::startQuickMode(){
 }
 
 void MainWindow::showQuickModeStep(int index){
-    if(index < 0 || index > 2) return;
+    if(index < 0 || index > 3) return;
     this->currentQuickStep = index;
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 4; i++){
         this->quickModeSteps[i]->setVisible(i == index);
     }
     QStringList stepNames;
-    stepNames << tr("Situación") << tr("Tus cartas") << tr("Board");
-    this->ui->wizardStepLabel->setText(tr("Modo Rápido — Paso %1 de 3: %2").arg(index + 1).arg(stepNames[index]));
+    stepNames << tr("Situación") << tr("Tus cartas") << tr("Board") << tr("Resultado");
+    this->ui->wizardStepLabel->setText(tr("Modo Rápido — Paso %1 de 4: %2").arg(index + 1).arg(stepNames[index]));
     this->ui->wizardStepSubtitle->setText("");
     this->ui->exampleBanner->setVisible(false);
+    // Step 3 (results) has its own "nueva mano" control; the generic
+    // back/next nav doesn't apply there.
+    bool showNav = (index < 3);
+    this->ui->wizardBackButton->setVisible(showNav);
+    this->ui->wizardNextButton->setVisible(showNav);
     this->ui->wizardBackButton->setEnabled(index > 0);
     this->ui->wizardNextButton->setText(index == 2 ? tr("Resolver →") : tr("Siguiente →"));
 }
@@ -1274,7 +1300,10 @@ void MainWindow::startQuickModeSolve(bool fastMode){
 
     this->ui->potText->setText(QString::number(matchup.pot, 'f', 1));
     this->ui->effectiveStackText->setText(QString::number(matchup.effectiveStack, 'f', 1));
-    this->ui->raiseLimitText->setText("4");
+    // A lower raise-limit keeps the decision tree much smaller (fewer
+    // re-raise levels to build and solve), which matters more for speed
+    // than iteration count does.
+    this->ui->raiseLimitText->setText("2");
     this->ui->allinThresholdText->setText("0.67");
     this->ui->useIsoCheck->setChecked(true);
     this->ui->useHalfFloats_box->setCurrentIndex(0);
@@ -1283,8 +1312,8 @@ void MainWindow::startQuickModeSolve(bool fastMode){
     // a rough-but-quick recommendation is more useful here than a slow exact
     // one. Practice mode (fastMode) stops sooner still, since it only needs
     // to know which action family (fold/call/bet) is most frequent.
-    this->ui->iterationText->setText(fastMode ? "60" : "100");
-    this->ui->exploitabilityText->setText(fastMode ? "2.0" : "1.0");
+    this->ui->iterationText->setText(fastMode ? "40" : "60");
+    this->ui->exploitabilityText->setText(fastMode ? "3.0" : "2.0");
     this->ui->logIntervalText->setText("10");
     this->ui->threadsText->setText("8");
 

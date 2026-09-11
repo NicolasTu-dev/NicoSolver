@@ -73,6 +73,7 @@ private slots:
     void onSeatClicked();
     void onTableSize6Clicked();
     void onTableSize9Clicked();
+    void onNewHandButtonClicked();
 
 private:
     void clear_all_params();
@@ -87,7 +88,7 @@ private:
     bool quizMode = false;
     QString quizGuessedAction; // "FOLD", "CALL" or "BET"
     int currentQuickStep = 0;
-    QWidget* quickModeSteps[3];
+    QWidget* quickModeSteps[4];
     QuickModeMatchup currentMatchup;
     bool userIsOpener = true;
     QString quickModeCard1;
