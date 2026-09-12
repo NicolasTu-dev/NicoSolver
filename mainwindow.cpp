@@ -27,7 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     MainWindow::s_textEdit = this->get_logwindow();
-    connect(this->ui->actionjson, &QAction::triggered, this, &MainWindow::on_actionjson_triggered);
     connect(this->ui->actionSettings, &QAction::triggered, this, &MainWindow::on_actionSettings_triggered);
     connect(this->ui->actionimport, &QAction::triggered, this, &MainWindow::on_actionimport_triggered);
     connect(this->ui->actionexport, &QAction::triggered, this, &MainWindow::on_actionexport_triggered);
@@ -40,6 +39,15 @@ MainWindow::MainWindow(QWidget *parent) :
     qSolverJob->start();
     connect(qSolverJob, &QThread::finished, this, &MainWindow::onSolverJobFinished);
     this->setWindowTitle(tr("Solverix"));
+
+    // Re-check the subscription against the server periodically. Checking
+    // only the locally cached expiry date (set at login) can't detect an
+    // early cancellation made from another device — this closes that gap
+    // without needing to hit the network on every single action.
+    this->subscriptionCheckTimer = new QTimer(this);
+    this->subscriptionCheckTimer->setInterval(60 * 60 * 1000); // 1 hour
+    connect(this->subscriptionCheckTimer, &QTimer::timeout, this, &MainWindow::onSubscriptionCheckTimer);
+    this->subscriptionCheckTimer->start();
 
     // The log view isn't part of the main wizard anymore; it lives in its own
     // dialog reachable from Solver -> "Ver registro (log)" so the wizard gets
@@ -454,16 +462,6 @@ MainWindow::~MainWindow()
     delete oop_delegate;
     delete oop_model;
     delete ui;
-}
-
-void MainWindow::on_actionjson_triggered(){
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
-                               "output_strategy.json",
-                               tr("Json file (*.json)"));
-    if(fileName.isNull())return;
-    this->qSolverJob->savefile = fileName;
-    qSolverJob->current_mission = QSolverJob::MissionType::SAVING;
-    qSolverJob->start();
 }
 
 QString getParams(QString input,QString key){
@@ -1271,6 +1269,23 @@ void MainWindow::onHandSelectorClicked(const QModelIndex &index){
 void MainWindow::onLicenseButtonClicked(){
     LicenseDialog licenseDialog(this);
     licenseDialog.exec();
+}
+
+void MainWindow::onSubscriptionCheckTimer(){
+    QString email = LicenseManager::currentUserEmail();
+    if(email.isEmpty()) return;
+
+    bool wasActive = LicenseManager::isActive();
+    ApiClient::checkStatus(email, [this, wasActive](ApiClient::LoginResult result){
+        if(!result.ok) return; // network hiccup or similar — keep the cached value, try again next hour
+
+        LicenseManager::cacheFromServer(result.plan, result.expiresAt);
+
+        if(wasActive && !result.active){
+            QMessageBox::warning(this, tr("Tu suscripción venció"),
+                tr("Tu suscripción a Solverix venció o fue cancelada. Vas a necesitar reactivarla para seguir resolviendo manos."));
+        }
+    });
 }
 
 void MainWindow::onNewHandButtonClicked(){

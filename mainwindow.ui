@@ -1519,18 +1519,6 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionSettings"/>
     <addaction name="actionview_log"/>
    </widget>
-   <widget class="QMenu" name="menustrategy_2">
-    <property name="title">
-     <string>Estrategia</string>
-    </property>
-    <widget class="QMenu" name="menuexport_to_file">
-     <property name="title">
-      <string>Exportar a archivo</string>
-     </property>
-     <addaction name="actionjson"/>
-    </widget>
-    <addaction name="menuexport_to_file"/>
-   </widget>
    <widget class="QMenu" name="menuparameters">
     <property name="title">
      <string>Parámetros</string>
@@ -1541,7 +1529,6 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionclear_all"/>
    </widget>
    <addaction name="menusolver"/>
-   <addaction name="menustrategy_2"/>
    <addaction name="menuparameters"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -1593,11 +1580,6 @@ p, li { white-space: pre-wrap; }
   <action name="actionexport_OOP_range">
    <property name="text">
     <string>export OOP range</string>
-   </property>
-  </action>
-  <action name="actionjson">
-   <property name="text">
-    <string>JSON</string>
    </property>
   </action>
   <action name="actionSettings">

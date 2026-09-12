@@ -16,7 +16,9 @@
 #include "include/ui/rangeselectortabledelegate.h"
 #include "include/data/quickmoderanges.h"
 #include "include/data/licensemanager.h"
+#include "include/data/apiclient.h"
 #include "licensedialog.h"
+#include <QTimer>
 #include "include/ui/boardselectortablemodel.h"
 #include "include/ui/boardselectortabledelegate.h"
 #include <QProgressDialog>
@@ -43,7 +45,6 @@ private slots:
     void on_buttomSolve_clicked();
     void on_clearLogButtom_clicked();
     void on_buildTreeButtom_clicked();
-    void on_actionjson_triggered();
     void on_actionimport_triggered();
     void on_wizardLoadConfigButton_clicked();
     void import_from_file(QString from);
@@ -77,6 +78,7 @@ private slots:
     void onTableSize9Clicked();
     void onNewHandButtonClicked();
     void onLicenseButtonClicked();
+    void onSubscriptionCheckTimer();
 
 private:
     void clear_all_params();
@@ -104,6 +106,7 @@ private:
     BoardSelectorTableModel* handSelectorModel = NULL;
     BoardSelectorTableDelegate* handSelectorDelegate = NULL;
     QProgressDialog* quickModeProgressDialog = NULL;
+    QTimer* subscriptionCheckTimer = NULL;
     void startQuickMode();
     void startPracticeQuiz();
     void showQuickModeStep(int index);

@@ -101,4 +101,27 @@ void activate(const QString& email, const QString& plan, std::function<void(Logi
     });
 }
 
+void checkStatus(const QString& email, std::function<void(LoginResult)> callback){
+    QJsonObject body;
+    body["email"] = email;
+
+    QNetworkReply* reply = manager()->post(buildRequest("/api/status"), toJson(body));
+    QObject::connect(reply, &QNetworkReply::finished, [reply, callback](){
+        LoginResult result;
+        QByteArray data = reply->readAll();
+        QJsonObject obj = QJsonDocument::fromJson(data).object();
+        if(reply->error() != QNetworkReply::NoError && obj.isEmpty()){
+            result.error = reply->errorString();
+        }else{
+            result.ok = obj.value("ok").toBool();
+            result.active = obj.value("active").toBool();
+            result.plan = obj.value("plan").toString("none");
+            result.expiresAt = obj.value("expiresAt").toString();
+            result.error = obj.value("error").toString();
+        }
+        reply->deleteLater();
+        callback(result);
+    });
+}
+
 } // namespace ApiClient
