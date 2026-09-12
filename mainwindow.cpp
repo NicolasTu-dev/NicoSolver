@@ -3,6 +3,7 @@
 #include "stdio.h"
 #include "include/runtime/qsolverjob.h"
 #include <QFileDialog>
+#include <QSettings>
 #include "include/library.h"
 #include <QToolTip>
 #include <QCursor>
@@ -1346,22 +1347,27 @@ void MainWindow::startQuickModeSolve(bool fastMode){
 
     this->ui->potText->setText(QString::number(matchup.pot, 'f', 1));
     this->ui->effectiveStackText->setText(QString::number(matchup.effectiveStack, 'f', 1));
-    // A lower raise-limit keeps the decision tree much smaller (fewer
-    // re-raise levels to build and solve), which matters more for speed
-    // than iteration count does. 1 = no re-raises past the first bet.
-    this->ui->raiseLimitText->setText("1");
     this->ui->allinThresholdText->setText("0.67");
     this->ui->useIsoCheck->setChecked(true);
     this->ui->useHalfFloats_box->setCurrentIndex(0); // half-floats is slower here, not faster
     this->ui->mode_box->setCurrentIndex(0);
-    // Modo Rápido favors a fast answer over publication-precision numbers —
-    // a rough-but-quick recommendation is more useful here than a slow exact
-    // one. Practice mode (fastMode) stops sooner still, since it only needs
-    // to know which action family (fold/call/bet) is most frequent.
-    this->ui->iterationText->setText(fastMode ? "25" : "35");
-    this->ui->exploitabilityText->setText(fastMode ? "6.0" : "4.0");
-    this->ui->logIntervalText->setText("10");
-    this->ui->threadsText->setText("8");
+
+    // These all come from Configuración now, so the speed/precision
+    // trade-off is user-tunable instead of hardcoded.
+    QSettings quickSettings("Solverix", "Setting");
+    quickSettings.beginGroup("quickmode");
+    int iterations = quickSettings.value(fastMode ? "quizIterations" : "iterations", fastMode ? 25 : 35).toInt();
+    double exploitability = quickSettings.value("exploitability", 4.0).toDouble();
+    int logInterval = quickSettings.value("logInterval", 10).toInt();
+    int threads = quickSettings.value("threads", 8).toInt();
+    int raiseLimit = quickSettings.value("raiseLimit", 1).toInt();
+    quickSettings.endGroup();
+
+    this->ui->raiseLimitText->setText(QString::number(raiseLimit));
+    this->ui->iterationText->setText(QString::number(iterations));
+    this->ui->exploitabilityText->setText(QString::number(exploitability, 'f', 1));
+    this->ui->logIntervalText->setText(QString::number(logInterval));
+    this->ui->threadsText->setText(QString::number(threads));
 
     QStringList betSizeFields = {"flop_ip_bet","turn_ip_bet","river_ip_bet","flop_oop_bet","turn_oop_bet","river_oop_bet"};
     QStringList raiseSizeFields = {"flop_ip_raise","turn_ip_raise","river_ip_raise","flop_oop_raise","turn_oop_raise","river_oop_raise"};

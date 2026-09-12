@@ -128,7 +128,8 @@ SOURCES += \
     welcomedialog.cpp \
     src/data/quickmoderanges.cpp \
     src/data/licensemanager.cpp \
-    licensedialog.cpp
+    licensedialog.cpp \
+    logindialog.cpp
 
 HEADERS += \
     include/tools/half-1-12-0.h \
@@ -199,7 +200,8 @@ HEADERS += \
     welcomedialog.h \
     include/data/quickmoderanges.h \
     include/data/licensemanager.h \
-    licensedialog.h
+    licensedialog.h \
+    logindialog.h
 
 FORMS += \
         mainwindow.ui \

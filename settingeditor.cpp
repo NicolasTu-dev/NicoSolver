@@ -41,6 +41,16 @@ SettingEditor::SettingEditor(QWidget *parent) :
     }else{
         qDebug().noquote() << tr("dump round error: ") << dump_round;
     }
+    setting.endGroup();
+
+    setting.beginGroup("quickmode");
+    this->ui->quickIterationsBox->setValue(setting.value("iterations", 35).toInt());
+    this->ui->quizIterationsBox->setValue(setting.value("quizIterations", 25).toInt());
+    this->ui->exploitabilityBox->setValue(setting.value("exploitability", 4.0).toDouble());
+    this->ui->logIntervalBox->setValue(setting.value("logInterval", 10).toInt());
+    this->ui->threadsBox->setValue(setting.value("threads", 8).toInt());
+    this->ui->raiseLimitBox->setValue(setting.value("raiseLimit", 1).toInt());
+    setting.endGroup();
 
     this->initial_language_index = this->ui->languageBox->currentIndex();
     this->initial_theme_index = this->ui->themeBox->currentIndex();
@@ -88,6 +98,16 @@ void SettingEditor::on_confirmBox_accepted()
 
     int round = this->ui->roundBox->currentText().toInt();
     setting.setValue("dump_round",round);
+    setting.endGroup();
+
+    setting.beginGroup("quickmode");
+    setting.setValue("iterations", this->ui->quickIterationsBox->value());
+    setting.setValue("quizIterations", this->ui->quizIterationsBox->value());
+    setting.setValue("exploitability", this->ui->exploitabilityBox->value());
+    setting.setValue("logInterval", this->ui->logIntervalBox->value());
+    setting.setValue("threads", this->ui->threadsBox->value());
+    setting.setValue("raiseLimit", this->ui->raiseLimitBox->value());
+    setting.endGroup();
 
     bool language_changed = lang_index != this->initial_language_index;
     bool theme_changed = theme_index != this->initial_theme_index;

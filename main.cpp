@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QFontDatabase>
 #include "include/ui/rangeselectortabledelegate.h"
+#include "logindialog.h"
 
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -136,6 +137,14 @@ int main(int argc, char *argv[])
     int dump_round = setting.value("dump_round").toInt();
     if(dump_round == 0){
         setting.setValue("dump_round",2);
+    }
+
+    // Every launch requires "logging in" first, which checks whether the
+    // (local, simulated) subscription is active. No real server or payment
+    // involved — this is purely to demo what a gated login would feel like.
+    LoginDialog login;
+    if(login.exec() != QDialog::Accepted){
+        return 0;
     }
 
     MainWindow w;
