@@ -4,12 +4,13 @@
 #include <QDialog>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
 
-// First screen shown on every launch: a (cosmetic, demo-only) login form
-// that then checks whether the "account" has an active subscription via
-// LicenseManager. No real authentication happens — any non-empty email
-// and password are accepted — this is purely to demo what a real gated
-// login would feel like.
+// First screen shown on every launch. Talks to the real Solverix demo
+// backend (see ApiClient) to log in or register, then checks whether the
+// account has an active subscription. No local shortcut — wrong
+// credentials really fail, and only a server-confirmed active plan lets
+// you in.
 class LoginDialog : public QDialog
 {
     Q_OBJECT
@@ -18,12 +19,26 @@ public:
 
 private slots:
     void onLoginClicked();
-    void onActivateClicked();
+    void onRegisterClicked();
+    void onActivateAdvancedClicked();
+    void onActivateCompleteClicked();
 
 private:
-    QLineEdit* emailField;
-    QLineEdit* passwordField;
-    QLabel* statusLabel;
+    QLineEdit* loginEmailField;
+    QLineEdit* loginPasswordField;
+    QPushButton* loginButton;
+    QLabel* loginStatusLabel;
+    QWidget* activationArea;
+    QPushButton* activateAdvancedButton;
+    QPushButton* activateCompleteButton;
+
+    QLineEdit* registerEmailField;
+    QLineEdit* registerPasswordField;
+    QPushButton* registerButton;
+    QLabel* registerStatusLabel;
+
+    void attemptActivate(const QString& plan);
+    void setBusy(bool busy);
 };
 
 #endif // LOGINDIALOG_H

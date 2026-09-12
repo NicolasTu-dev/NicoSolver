@@ -5,3 +5,4 @@ dist/
 .qtcreator/
 *.pro.user
 *.pro.user.*
+include/data/apisecrets.h

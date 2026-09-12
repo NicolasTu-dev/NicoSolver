@@ -1,6 +1,7 @@
 #include "include/data/licensemanager.h"
 #include <QSettings>
 #include <QObject>
+#include <QDateTime>
 
 namespace LicenseManager {
 
@@ -36,10 +37,17 @@ bool isActive(){
     return currentPlan() != Plan::None;
 }
 
-void activate(Plan plan, int days){
+void cacheFromServer(QString planStr, QString expiresAtIso){
     QSettings settings = settingsStore();
-    settings.setValue("plan", plan == Plan::Complete ? "complete" : "advanced");
-    settings.setValue("expiry", QDate::currentDate().addDays(days));
+    if(planStr == "none" || planStr.isEmpty() || expiresAtIso.isEmpty()){
+        settings.setValue("plan", "none");
+        settings.remove("expiry");
+        return;
+    }
+    QDateTime expiresAt = QDateTime::fromString(expiresAtIso, Qt::ISODateWithMs);
+    if(!expiresAt.isValid()) expiresAt = QDateTime::fromString(expiresAtIso, Qt::ISODate);
+    settings.setValue("plan", planStr);
+    settings.setValue("expiry", expiresAt.date());
 }
 
 void deactivate(){
@@ -54,6 +62,16 @@ QString planDisplayName(Plan plan){
         case Plan::Complete: return QObject::tr("Completo");
         default: return QObject::tr("Sin suscripción");
     }
+}
+
+QString currentUserEmail(){
+    QSettings settings = settingsStore();
+    return settings.value("currentUserEmail").toString();
+}
+
+void setCurrentUserEmail(QString email){
+    QSettings settings = settingsStore();
+    settings.setValue("currentUserEmail", email);
 }
 
 } // namespace LicenseManager

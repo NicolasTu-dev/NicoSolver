@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -129,7 +129,8 @@ SOURCES += \
     src/data/quickmoderanges.cpp \
     src/data/licensemanager.cpp \
     licensedialog.cpp \
-    logindialog.cpp
+    logindialog.cpp \
+    src/data/apiclient.cpp
 
 HEADERS += \
     include/tools/half-1-12-0.h \
@@ -201,7 +202,8 @@ HEADERS += \
     include/data/quickmoderanges.h \
     include/data/licensemanager.h \
     licensedialog.h \
-    logindialog.h
+    logindialog.h \
+    include/data/apiclient.h
 
 FORMS += \
         mainwindow.ui \

@@ -1,5 +1,6 @@
 #include "licensedialog.h"
 #include "include/data/licensemanager.h"
+#include "include/data/apiclient.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -18,12 +19,9 @@ LicenseDialog::LicenseDialog(QWidget *parent) : QDialog(parent)
     title->setStyleSheet("font-size:20px; font-weight:800;");
     layout->addWidget(title);
 
-    QLabel* demoNote = new QLabel(tr(
-        "Esto es una simulación local para la demo: activar un plan acá no cobra nada de verdad, "
-        "solo guarda una fecha de vencimiento en esta computadora para mostrar cómo se vería el bloqueo real."), this);
-    demoNote->setWordWrap(true);
-    demoNote->setStyleSheet("font-size:12.5px; color:#8fb39f;");
-    layout->addWidget(demoNote);
+    QLabel* accountNote = new QLabel(tr("Cuenta: %1").arg(LicenseManager::currentUserEmail()), this);
+    accountNote->setStyleSheet("font-size:12.5px; color:#8fb39f;");
+    layout->addWidget(accountNote);
 
     QFrame* divider = new QFrame(this);
     divider->setFrameShape(QFrame::HLine);
@@ -46,7 +44,7 @@ LicenseDialog::LicenseDialog(QWidget *parent) : QDialog(parent)
     layout->addWidget(activateAdvancedBtn);
     layout->addWidget(activateCompleteBtn);
 
-    QPushButton* deactivateBtn = new QPushButton(tr("Cancelar suscripción (demo)"), this);
+    QPushButton* deactivateBtn = new QPushButton(tr("Cerrar sesión"), this);
     deactivateBtn->setStyleSheet("font-size:12.5px; padding:8px 10px;");
     connect(deactivateBtn, &QPushButton::clicked, this, &LicenseDialog::onDeactivate);
     layout->addWidget(deactivateBtn);
@@ -70,16 +68,29 @@ void LicenseDialog::refreshStatus(){
 }
 
 void LicenseDialog::onActivateAdvanced(){
-    LicenseManager::activate(LicenseManager::Plan::Advanced, 30);
-    this->refreshStatus();
+    QString email = LicenseManager::currentUserEmail();
+    this->statusLabel->setText(tr("Activando..."));
+    ApiClient::activate(email, "advanced", [this](ApiClient::LoginResult result){
+        if(result.ok){
+            LicenseManager::cacheFromServer(result.plan, result.expiresAt);
+        }
+        this->refreshStatus();
+    });
 }
 
 void LicenseDialog::onActivateComplete(){
-    LicenseManager::activate(LicenseManager::Plan::Complete, 30);
-    this->refreshStatus();
+    QString email = LicenseManager::currentUserEmail();
+    this->statusLabel->setText(tr("Activando..."));
+    ApiClient::activate(email, "complete", [this](ApiClient::LoginResult result){
+        if(result.ok){
+            LicenseManager::cacheFromServer(result.plan, result.expiresAt);
+        }
+        this->refreshStatus();
+    });
 }
 
 void LicenseDialog::onDeactivate(){
     LicenseManager::deactivate();
     this->refreshStatus();
+    this->close();
 }
