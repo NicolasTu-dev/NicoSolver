@@ -166,6 +166,20 @@
   .gallery-side .shot-body{height:200px;}
   .gallery-side .shot-body img{object-position:top;}
 
+  /* ---------- account status ---------- */
+  .account-card{
+    background:var(--panel); border:1px solid var(--border); border-left:6px solid var(--green);
+    border-radius:4px 14px 14px 4px; padding:26px 30px; max-width:640px; margin:0 auto;
+  }
+  .account-card .acc-row{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;}
+  .account-card .acc-plan{font-size:19px; font-weight:800;}
+  .account-card .acc-plan .dot-on{display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--green); margin-right:8px; box-shadow:0 0 8px var(--green);}
+  .account-card .acc-days{font-family:"Space Grotesk",sans-serif; font-weight:700; color:var(--gold-bright); font-size:15px;}
+  .account-card .acc-sub{color:var(--muted); font-size:13.5px; margin-top:6px;}
+  .account-progress{height:8px; border-radius:5px; background:var(--border); margin-top:20px; overflow:hidden;}
+  .account-progress span{display:block; height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-bright)); width:60%;}
+  .account-meta{display:flex; justify-content:space-between; font-size:12px; color:var(--muted-2); margin-top:8px;}
+
   /* ---------- pricing ---------- */
   .pricing{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:stretch;}
   .plan{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:34px 30px; display:flex; flex-direction:column;}
@@ -222,6 +236,7 @@
     <div class="nav-links">
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#capturas">La herramienta</a>
+      <a href="#cuenta">Mi cuenta</a>
       <a href="#precios">Precios</a>
       <a href="#faq">Preguntas</a>
     </div>
@@ -373,6 +388,27 @@
 
 <div class="divider"></div>
 
+<section id="cuenta">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Mi cuenta</div>
+      <h2>Sabés siempre en qué estado está tu suscripción</h2>
+      <p>Renovación mensual automática. Si se vence, el solver se bloquea hasta que renovás — nunca te quedás pagando de más por algo que no usaste.</p>
+    </div>
+    <div class="account-card">
+      <div class="acc-row">
+        <div class="acc-plan"><span class="dot-on"></span>Plan Completo — activo</div>
+        <div class="acc-days">18 días restantes</div>
+      </div>
+      <div class="acc-sub">Próxima renovación: 30/10/2026 · US$25 (~$40.000 ARS)</div>
+      <div class="account-progress"><span></span></div>
+      <div class="account-meta"><span>Activado el 12/10/2026</span><span>Vence el 30/10/2026</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section id="precios">
   <div class="wrap">
     <div class="section-head">
@@ -384,7 +420,7 @@
       <div class="plan">
         <div class="plan-name">Solver Avanzado</div>
         <div class="plan-tag">Para analizar tus manos con control total del rango, el board y las apuestas — ideal si ya jugás con frecuencia.</div>
-        <div class="price">$9.990<span>/ mes</span></div>
+        <div class="price">$30.000<span>ARS / mes</span></div>
         <ul>
           <li><span class="ico">✓</span> Solver GTO completo, sin límite de manos</li>
           <li><span class="ico">✓</span> Rangos, tamaños de apuesta y stacks 100% editables</li>
@@ -399,7 +435,7 @@
         <div class="badge">Recomendado</div>
         <div class="plan-name">Completo</div>
         <div class="plan-tag">Todo el Avanzado, más el Modo Rápido y el Modo Práctica — ideal si estás empezando o jugás con alguien que recién arranca.</div>
-        <div class="price">$14.990<span>/ mes</span></div>
+        <div class="price">US$25<span>≈ $40.000 ARS / mes</span></div>
         <ul>
           <li><span class="ico">✓</span> Todo lo del Solver Avanzado</li>
           <li><span class="ico">✓</span> Modo Rápido: elegís posición y mano, listo</li>
