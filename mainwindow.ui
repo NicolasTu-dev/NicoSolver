@@ -74,6 +74,16 @@
             </spacer>
            </item>
            <item>
+            <widget class="QPushButton" name="licenseButton">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>🔑 Mi suscripción</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="helpButton">
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>

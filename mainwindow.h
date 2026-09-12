@@ -15,6 +15,8 @@
 #include "include/ui/rangeselectortablemodel.h"
 #include "include/ui/rangeselectortabledelegate.h"
 #include "include/data/quickmoderanges.h"
+#include "include/data/licensemanager.h"
+#include "licensedialog.h"
 #include "include/ui/boardselectortablemodel.h"
 #include "include/ui/boardselectortabledelegate.h"
 #include <QProgressDialog>
@@ -74,6 +76,7 @@ private slots:
     void onTableSize6Clicked();
     void onTableSize9Clicked();
     void onNewHandButtonClicked();
+    void onLicenseButtonClicked();
 
 private:
     void clear_all_params();
@@ -109,6 +112,7 @@ private:
     void updateSeatButtonStyles();
     void setupQuickSeatButtons(int tableSize);
     void onTableSizeChosen(int tableSize);
+    bool requirePlan(LicenseManager::Plan minPlan);
     Ui::MainWindow *ui = NULL;
     QSolverJob* qSolverJob = NULL;
     QDialog* logDialog = NULL;

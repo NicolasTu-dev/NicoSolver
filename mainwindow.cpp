@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this->ui->tableSize6Button, &QPushButton::clicked, this, &MainWindow::onTableSize6Clicked);
     connect(this->ui->tableSize9Button, &QPushButton::clicked, this, &MainWindow::onTableSize9Clicked);
+    connect(this->ui->licenseButton, &QPushButton::clicked, this, &MainWindow::onLicenseButtonClicked);
     this->setupQuickSeatButtons(6);
 
     // Soft depth on the poker table felt, so it reads as a lifted surface
@@ -171,13 +172,35 @@ void MainWindow::resetToExampleDefaults()
     this->showWizardStep(0);
 }
 
+bool MainWindow::requirePlan(LicenseManager::Plan minPlan){
+    LicenseManager::Plan current = LicenseManager::currentPlan();
+    bool ok = (minPlan == LicenseManager::Plan::Advanced)
+        ? (current == LicenseManager::Plan::Advanced || current == LicenseManager::Plan::Complete)
+        : (current == LicenseManager::Plan::Complete);
+    if(ok) return true;
+
+    QString needed = LicenseManager::planDisplayName(minPlan);
+    QMessageBox::information(this, tr("Necesitás una suscripción"),
+        current == LicenseManager::Plan::None
+            ? tr("Todavía no activaste ninguna suscripción. Necesitás el plan \"%1\" o superior para esto.").arg(needed)
+            : tr("Tu plan actual no incluye esto. Necesitás el plan \"%1\" o superior.").arg(needed));
+    LicenseDialog licenseDialog(this);
+    licenseDialog.exec();
+    LicenseManager::Plan afterDialog = LicenseManager::currentPlan();
+    return (minPlan == LicenseManager::Plan::Advanced)
+        ? (afterDialog == LicenseManager::Plan::Advanced || afterDialog == LicenseManager::Plan::Complete)
+        : (afterDialog == LicenseManager::Plan::Complete);
+}
+
 void MainWindow::on_helpButton_clicked()
 {
     WelcomeDialog dialog(this);
     dialog.exec();
     if(dialog.choice() == WelcomeDialog::QuickMode){
+        if(!this->requirePlan(LicenseManager::Plan::Complete)) return;
         this->startQuickMode();
     }else if(dialog.choice() == WelcomeDialog::Advanced){
+        if(!this->requirePlan(LicenseManager::Plan::Advanced)) return;
         this->quickMode = false;
         this->exampleMode = false;
         for(int i = 0; i < 3; i++){
@@ -185,6 +208,7 @@ void MainWindow::on_helpButton_clicked()
         }
         this->showWizardStep(this->currentWizardStep);
     }else if(dialog.choice() == WelcomeDialog::Practice){
+        if(!this->requirePlan(LicenseManager::Plan::Complete)) return;
         this->startPracticeQuiz();
     }
 }
@@ -816,6 +840,13 @@ vector<float> sizes_convert(QString input){
 
 void MainWindow::on_buildTreeButtom_clicked()
 {
+    if(!LicenseManager::isActive()){
+        QMessageBox::warning(this, tr("Tu suscripción venció"),
+            tr("Tu suscripción a Solverix venció, así que no se puede seguir resolviendo. Reactivala para continuar."));
+        LicenseDialog licenseDialog(this);
+        licenseDialog.exec();
+        if(!LicenseManager::isActive()) return;
+    }
     qSolverJob->range_ip = this->ui->ipRangeText->toPlainText().toStdString();
     qSolverJob->range_oop = this->ui->oopRangeText->toPlainText().toStdString();
     qSolverJob->board = this->ui->boardText->toPlainText().toStdString();
@@ -1234,6 +1265,11 @@ void MainWindow::onHandSelectorClicked(const QModelIndex &index){
     this->ui->handSelectorTable->update();
     QString text = this->handSelectorModel->getBoardText();
     this->ui->handSelectedLabel->setText(text.isEmpty() ? tr("Seleccionadas: (ninguna)") : tr("Seleccionadas: %1").arg(text));
+}
+
+void MainWindow::onLicenseButtonClicked(){
+    LicenseDialog licenseDialog(this);
+    licenseDialog.exec();
 }
 
 void MainWindow::onNewHandButtonClicked(){
