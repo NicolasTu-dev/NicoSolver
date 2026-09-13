@@ -544,7 +544,6 @@
 <footer>
   <div class="wrap footer-row">
     <div class="brand"><span class="mark" style="color:#d4af37;">♠</span> Solverix</div>
-    <div class="fine">Proyecto de demostración — no es un producto a la venta.</div>
   </div>
 </footer>
 
@@ -626,8 +625,8 @@
     accExpiry.textContent = 'Activá un plan para poder descargar Solverix.';
     accDownloadArea.innerHTML =
       '<div class="acc-plan-pick">' +
-      '<button class="btn btn-ghost" id="pickAdvanced">Activar Avanzado (demo)</button>' +
-      '<button class="btn btn-gold" id="pickComplete">Activar Completo (demo)</button>' +
+      '<button class="btn btn-ghost" id="pickAdvanced">Descargar Avanzado</button>' +
+      '<button class="btn btn-gold" id="pickComplete">Descargar Completo</button>' +
       '</div>';
     document.getElementById('pickAdvanced').onclick = () => activatePlan(email, 'advanced');
     document.getElementById('pickComplete').onclick = () => activatePlan(email, 'complete');
