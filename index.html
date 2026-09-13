@@ -179,6 +179,21 @@
   .account-progress{height:8px; border-radius:5px; background:var(--border); margin-top:20px; overflow:hidden;}
   .account-progress span{display:block; height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-bright)); width:60%;}
   .account-meta{display:flex; justify-content:space-between; font-size:12px; color:var(--muted-2); margin-top:8px;}
+  .acc-field-label{font-size:12.5px; color:var(--muted); margin:12px 0 6px;}
+  .acc-input{
+    width:100%; background:var(--bg-deep); border:1px solid var(--border); border-radius:8px;
+    padding:11px 14px; color:var(--text); font-family:"Inter",sans-serif; font-size:14px;
+  }
+  .acc-input:focus{outline:none; border-color:var(--gold);}
+  .acc-actions{display:flex; gap:12px; margin-top:20px;}
+  .acc-actions .btn{flex:1;}
+  .acc-status{margin-top:14px; font-size:13px; min-height:0;}
+  .acc-status.err{color:var(--red);}
+  .acc-status.ok{color:var(--green);}
+  .acc-status.info{color:var(--muted);}
+  .acc-download-btn{width:100%; justify-content:center;}
+  .acc-plan-pick{display:flex; gap:10px; margin-top:10px;}
+  .acc-plan-pick .btn{flex:1; font-size:12.5px; padding:10px 8px;}
 
   /* ---------- pricing ---------- */
   .pricing{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:stretch;}
@@ -395,14 +410,27 @@
       <h2>Sabés siempre en qué estado está tu suscripción</h2>
       <p>Renovación mensual automática. Si se vence, el solver se bloquea hasta que renovás — nunca te quedás pagando de más por algo que no usaste.</p>
     </div>
-    <div class="account-card">
-      <div class="acc-row">
-        <div class="acc-plan"><span class="dot-on"></span>Plan Completo — activo</div>
-        <div class="acc-days">18 días restantes</div>
+    <div class="account-card" id="accountCard">
+      <div id="loginBlock">
+        <div class="acc-field-label">Email</div>
+        <input class="acc-input" id="accEmail" type="email" autocomplete="username">
+        <div class="acc-field-label">Contraseña</div>
+        <input class="acc-input" id="accPassword" type="password" autocomplete="current-password">
+        <div class="acc-actions">
+          <button class="btn btn-gold" id="accLoginBtn">Iniciar sesión</button>
+          <button class="btn btn-ghost" id="accRegisterBtn">Registrarme</button>
+        </div>
+        <div class="acc-status" id="accStatus"></div>
       </div>
-      <div class="acc-sub">Próxima renovación: 30/10/2026 · US$25 (~$40.000 ARS)</div>
-      <div class="account-progress"><span></span></div>
-      <div class="account-meta"><span>Activado el 12/10/2026</span><span>Vence el 30/10/2026</span></div>
+      <div id="loggedInBlock" style="display:none;">
+        <div class="acc-row">
+          <div class="acc-plan"><span class="dot-on"></span><span id="accPlanName">Plan Completo</span> — activo</div>
+          <div class="acc-days" id="accDays"></div>
+        </div>
+        <div class="acc-sub" id="accExpiry"></div>
+        <div id="accDownloadArea" style="margin-top:20px;"></div>
+        <a href="#" id="accLogoutLink" style="display:block; margin-top:14px; font-size:12.5px; color:var(--muted-2); text-decoration:underline;">Cerrar sesión</a>
+      </div>
     </div>
   </div>
 </section>
@@ -540,6 +568,120 @@
     }
   }
   paintGrid('grid-mock', 32);
+
+  // ---------- Mi cuenta: real login against the Solverix API ----------
+  const API_BASE = 'https://solverix-api-nicolastu-devs-projects.vercel.app';
+  const DOWNLOAD_URL = 'https://github.com/NicolasTu-dev/NicoSolver/releases/download/solverix-v1/Solverix.zip';
+  const PLAN_NAMES = { none: 'Sin suscripción', advanced: 'Solver Avanzado', complete: 'Completo' };
+
+  const loginBlock = document.getElementById('loginBlock');
+  const loggedInBlock = document.getElementById('loggedInBlock');
+  const accEmail = document.getElementById('accEmail');
+  const accPassword = document.getElementById('accPassword');
+  const accStatus = document.getElementById('accStatus');
+  const accLoginBtn = document.getElementById('accLoginBtn');
+  const accRegisterBtn = document.getElementById('accRegisterBtn');
+  const accPlanName = document.getElementById('accPlanName');
+  const accDays = document.getElementById('accDays');
+  const accExpiry = document.getElementById('accExpiry');
+  const accDownloadArea = document.getElementById('accDownloadArea');
+  const accLogoutLink = document.getElementById('accLogoutLink');
+
+  function setStatus(msg, kind){
+    accStatus.textContent = msg;
+    accStatus.className = 'acc-status' + (kind ? ' ' + kind : '');
+  }
+
+  function daysUntil(iso){
+    if(!iso) return 0;
+    const ms = new Date(iso).getTime() - Date.now();
+    return Math.max(0, Math.ceil(ms / 86400000));
+  }
+
+  async function apiCall(path, body){
+    const res = await fetch(API_BASE + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    return res.json().catch(() => ({ ok: false, error: 'bad_response' }));
+  }
+
+  function showLoggedIn(email, plan, expiresAt){
+    loginBlock.style.display = 'none';
+    loggedInBlock.style.display = 'block';
+    accPlanName.textContent = PLAN_NAMES[plan] || plan;
+    accDays.textContent = daysUntil(expiresAt) + ' días restantes';
+    accExpiry.textContent = 'Vence el ' + new Date(expiresAt).toLocaleDateString('es-AR');
+    accDownloadArea.innerHTML =
+      '<a class="btn btn-gold acc-download-btn" href="' + DOWNLOAD_URL + '">⬇ Descargar Solverix</a>' +
+      '<div style="font-size:11.5px; color:var(--muted-2); margin-top:8px; text-align:center;">La app desbloquea tu plan automáticamente al iniciar sesión adentro.</div>';
+  }
+
+  function showNoPlan(email){
+    loginBlock.style.display = 'none';
+    loggedInBlock.style.display = 'block';
+    accPlanName.textContent = 'Sin suscripción';
+    accDays.textContent = '';
+    accExpiry.textContent = 'Activá un plan para poder descargar Solverix.';
+    accDownloadArea.innerHTML =
+      '<div class="acc-plan-pick">' +
+      '<button class="btn btn-ghost" id="pickAdvanced">Activar Avanzado (demo)</button>' +
+      '<button class="btn btn-gold" id="pickComplete">Activar Completo (demo)</button>' +
+      '</div>';
+    document.getElementById('pickAdvanced').onclick = () => activatePlan(email, 'advanced');
+    document.getElementById('pickComplete').onclick = () => activatePlan(email, 'complete');
+  }
+
+  async function activatePlan(email, plan){
+    const result = await apiCall('/api/activate', { email, plan });
+    if(result.ok){
+      showLoggedIn(email, result.plan, result.expiresAt);
+    }
+  }
+
+  accLoginBtn.addEventListener('click', async () => {
+    const email = accEmail.value.trim();
+    const password = accPassword.value;
+    if(!email || !password){ setStatus('Completá email y contraseña.', 'err'); return; }
+    setStatus('Conectando...', 'info');
+    const result = await apiCall('/api/login', { email, password });
+    if(!result.ok){
+      setStatus(result.error === 'invalid_credentials' ? 'Email o contraseña incorrectos.' : 'No se pudo conectar.', 'err');
+      return;
+    }
+    if(result.active){
+      showLoggedIn(email, result.plan, result.expiresAt);
+    }else{
+      showNoPlan(email);
+    }
+  });
+
+  accRegisterBtn.addEventListener('click', async () => {
+    const email = accEmail.value.trim();
+    const password = accPassword.value;
+    if(!email || !password){ setStatus('Completá email y contraseña.', 'err'); return; }
+    setStatus('Creando cuenta...', 'info');
+    const result = await apiCall('/api/register', { email, password });
+    if(!result.ok){
+      const messages = {
+        email_already_registered: 'Ese email ya está registrado — iniciá sesión.',
+        password_too_short: 'La contraseña necesita al menos 4 caracteres.',
+      };
+      setStatus(messages[result.error] || 'No se pudo registrar.', 'err');
+      return;
+    }
+    setStatus('¡Cuenta creada! Ahora tocá "Iniciar sesión".', 'ok');
+  });
+
+  accLogoutLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    loggedInBlock.style.display = 'none';
+    loginBlock.style.display = 'block';
+    accEmail.value = '';
+    accPassword.value = '';
+    setStatus('', '');
+  });
 </script>
 
 </body>
