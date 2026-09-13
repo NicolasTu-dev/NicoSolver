@@ -92,6 +92,16 @@
     background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--gold);
     padding:14px 20px; margin:0 0 24px; border-radius:8px; font-size:14px;
   }
+  .code-toggle{
+    background:none; border:none; cursor:pointer; padding:0;
+    color:var(--muted); font-family:"Inter",sans-serif; font-size:12.5px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .code-toggle:hover{color:var(--text);}
+  .code-toggle .arrow{display:inline-block; transition:transform .15s; font-size:10px;}
+  .code-toggle.open .arrow{transform:rotate(90deg);}
+  .code-body{display:none; margin-top:10px;}
+  .code-body.open{display:block;}
 </style>
 </head>
 <body>
@@ -272,16 +282,24 @@
     accExpiry.textContent = lang === 'es' ? 'Adquirí un plan para poder descargar Solverix.' : 'Get a plan to download Solverix.';
     const advLabel = lang === 'es' ? 'Adquirir Avanzado' : 'Get Advanced';
     const compLabel = lang === 'es' ? 'Adquirir Completo' : 'Get Complete';
+    const codeToggleLabel = lang === 'es' ? '¿Tenés un código de streamer?' : 'Have a streamer code?';
     const codeLabel = lang === 'es' ? 'Código de streamer' : 'Streamer code';
     const savedCode = localStorage.getItem('solverix_ref') || '';
     accDownloadArea.innerHTML =
+      '<button type="button" class="code-toggle' + (savedCode ? ' open' : '') + '" id="codeToggle"><span class="arrow">▸</span>' + codeToggleLabel + '</button>' +
+      '<div class="code-body' + (savedCode ? ' open' : '') + '" id="codeBody">' +
       '<div class="acc-field-label">' + codeLabel + '</div>' +
       '<input class="acc-input" id="affiliateCodeInput" style="text-transform:uppercase;" value="' + savedCode + '">' +
+      '</div>' +
       '<div class="acc-plan-pick">' +
       '<button class="btn btn-ghost" id="pickAdvanced">' + advLabel + '</button>' +
       '<button class="btn btn-gold" id="pickComplete">' + compLabel + '</button>' +
       '</div>' +
       '<div id="checkoutStatus" class="acc-status"></div>';
+    document.getElementById('codeToggle').addEventListener('click', () => {
+      document.getElementById('codeToggle').classList.toggle('open');
+      document.getElementById('codeBody').classList.toggle('open');
+    });
     document.getElementById('pickAdvanced').onclick = () => startCheckout(email, 'advanced');
     document.getElementById('pickComplete').onclick = () => startCheckout(email, 'complete');
   }
