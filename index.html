@@ -568,6 +568,24 @@
   }
   paintGrid('grid-mock', 32);
 
+  // ---------- Mercado Pago return handling ----------
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const mpStatus = params.get('mp');
+    if(!mpStatus) return;
+    const messages = {
+      success: '✅ ¡Pago recibido! Iniciá sesión abajo para ver tu plan activo y descargar Solverix.',
+      pending: '⏳ Tu pago está pendiente de aprobación. Iniciá sesión en unos minutos para ver el estado.',
+      failure: '❌ El pago no se completó. Podés intentarlo de nuevo iniciando sesión abajo.',
+    };
+    if(messages[mpStatus]){
+      const banner = document.createElement('div');
+      banner.textContent = messages[mpStatus];
+      banner.style.cssText = 'position:sticky;top:64px;z-index:40;background:#132118;border:1px solid #2a4a38;border-left:4px solid #d4af37;padding:14px 20px;margin:0 auto;max-width:640px;border-radius:8px;font-size:14px;';
+      document.body.insertBefore(banner, document.body.children[1]);
+    }
+  })();
+
   // ---------- Mi cuenta: real login against the Solverix API ----------
   const API_BASE = 'https://solverix-api-nicolastu-devs-projects.vercel.app';
   const DOWNLOAD_URL = 'https://github.com/NicolasTu-dev/NicoSolver/releases/download/solverix-v1/Solverix.zip';
@@ -622,21 +640,26 @@
     loggedInBlock.style.display = 'block';
     accPlanName.textContent = 'Sin suscripción';
     accDays.textContent = '';
-    accExpiry.textContent = 'Activá un plan para poder descargar Solverix.';
+    accExpiry.textContent = 'Descargá Solverix y activá tu plan.';
     accDownloadArea.innerHTML =
       '<div class="acc-plan-pick">' +
       '<button class="btn btn-ghost" id="pickAdvanced">Descargar Avanzado</button>' +
       '<button class="btn btn-gold" id="pickComplete">Descargar Completo</button>' +
-      '</div>';
-    document.getElementById('pickAdvanced').onclick = () => activatePlan(email, 'advanced');
-    document.getElementById('pickComplete').onclick = () => activatePlan(email, 'complete');
+      '</div>' +
+      '<div id="checkoutStatus" class="acc-status"></div>';
+    document.getElementById('pickAdvanced').onclick = () => startCheckout(email, 'advanced');
+    document.getElementById('pickComplete').onclick = () => startCheckout(email, 'complete');
   }
 
-  async function activatePlan(email, plan){
-    const result = await apiCall('/api/activate', { email, plan });
-    if(result.ok){
-      showLoggedIn(email, result.plan, result.expiresAt);
+  async function startCheckout(email, plan){
+    const statusEl = document.getElementById('checkoutStatus');
+    if(statusEl){ statusEl.textContent = 'Abriendo Mercado Pago...'; statusEl.className = 'acc-status info'; }
+    const result = await apiCall('/api/create-checkout', { email, plan });
+    if(!result.ok || !result.checkoutUrl){
+      if(statusEl){ statusEl.textContent = 'No se pudo iniciar el pago. Probá de nuevo.'; statusEl.className = 'acc-status err'; }
+      return;
     }
+    window.location.href = result.checkoutUrl;
   }
 
   accLoginBtn.addEventListener('click', async () => {
