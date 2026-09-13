@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solverix — Jugá con la mano que ya sabe qué hacer</title>
+<title>Solverix — Play the hand that already knows what to do</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -64,6 +64,13 @@
   .btn-gold:hover{background:var(--gold-bright); transform:translateY(-1px); box-shadow:0 8px 24px rgba(212,175,55,0.25);}
   .btn-ghost{background:transparent; color:var(--text); border:1px solid var(--border);}
   .btn-ghost:hover{border-color:var(--gold); color:var(--gold-bright);}
+  .lang-switch{
+    background:transparent; border:1px solid var(--border); color:var(--muted);
+    font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:12.5px;
+    padding:8px 13px; border-radius:8px; cursor:pointer; margin-right:14px;
+    transition:border-color .15s, color .15s;
+  }
+  .lang-switch:hover{border-color:var(--gold); color:var(--gold-bright);}
 
   /* ---------- hero ---------- */
   .hero{padding:96px 0 72px; position:relative; overflow:hidden;}
@@ -221,37 +228,38 @@
   <div class="nav-row">
     <div class="brand"><span class="mark">♠</span> Solverix</div>
     <div class="nav-links">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#capturas">La herramienta</a>
-      <a href="#precios">Precios</a>
-      <a href="#faq">Preguntas</a>
+      <a href="#como-funciona" data-i18n="nav.how">How it works</a>
+      <a href="#capturas" data-i18n="nav.tool">The tool</a>
+      <a href="#precios" data-i18n="nav.pricing">Pricing</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
     </div>
-    <a href="cuenta.html" class="btn btn-gold">Mi cuenta</a>
+    <button class="lang-switch" id="langSwitch" type="button">ES</button>
+    <a href="cuenta.html" class="btn btn-gold" data-i18n="nav.account">My account</a>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">♣ Solver GTO en español ♦</div>
-      <h1>Dejá de adivinar.<br>Jugá la mano que <em>gana en el largo plazo</em>.</h1>
-      <p class="lead">Cargá tu mano y el board, y Solverix te muestra en segundos qué hace un jugador matemáticamente equilibrado en esa situación exacta — sin conjeturas, sin "sensación".</p>
+      <div class="eyebrow" data-i18n="hero.eyebrow">♣ GTO solver, no guesswork ♦</div>
+      <h1 data-i18n="hero.title">Stop guessing.<br>Play the hand that <em>wins in the long run</em>.</h1>
+      <p class="lead" data-i18n="hero.lead">Load your hand and the board, and Solverix shows you in seconds what a mathematically balanced player does in that exact situation — no guesswork, no "feel".</p>
       <div class="hero-ctas">
-        <a href="#precios" class="btn btn-gold">Empezar ahora</a>
-        <a href="#capturas" class="btn btn-ghost">Ver cómo funciona</a>
+        <a href="#precios" class="btn btn-gold" data-i18n="hero.ctaPrimary">Get started</a>
+        <a href="#capturas" class="btn btn-ghost" data-i18n="hero.ctaSecondary">See how it works</a>
       </div>
-      <div class="hero-note">Sin tarjeta para probar la demo · Cancelás cuando quieras</div>
+      <div class="hero-note" data-i18n="hero.note">No card needed to try the demo · Cancel anytime</div>
     </div>
     <div class="hero-visual">
-      <div class="float-tag t1">Resuelto en <b>3.2s</b></div>
+      <div class="float-tag t1"><span data-i18n="hero.solvedIn">Solved in</span> <b>3.2s</b></div>
       <div class="rec-card">
-        <div class="rec-label">Jugada recomendada</div>
+        <div class="rec-label" data-i18n="hero.recLabel">Recommended play</div>
         <div class="rec-hand">
           <div class="card-chip">K<br>♠</div>
           <div class="card-chip red">Q<br>♥</div>
         </div>
-        <div class="rec-verdict">Apostar 33% del pozo <span class="pct">(71%)</span></div>
-        <div class="rec-why">Value bet: tu mano le gana a la mayoría del rango del rival y todavía podés mejorar.</div>
+        <div class="rec-verdict"><span data-i18n="hero.recVerdict">Bet 33% of the pot</span> <span class="pct">(71%)</span></div>
+        <div class="rec-why" data-i18n="hero.recWhy">Value bet: your hand beats most of your opponent's range and can still improve.</div>
         <div class="rec-bar">
           <span style="width:14%; background:#4fb8ff;"></span>
           <span style="width:15%; background:#22c55e;"></span>
@@ -268,25 +276,25 @@
 <section id="beneficios">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Por qué Solverix</div>
-      <h2>Un solver de verdad, pensado para jugar — no para programar</h2>
-      <p>La mayoría de los solvers están hechos para gente que ya sabe usar un solver. Este no.</p>
+      <div class="eyebrow" data-i18n="benefits.eyebrow">Why Solverix</div>
+      <h2 data-i18n="benefits.title">A real solver, built to play — not to program</h2>
+      <p data-i18n="benefits.subtitle">Most solvers are built for people who already know how to use a solver. This one isn't.</p>
     </div>
     <div class="props">
       <div class="prop-card">
         <div class="glyph">♟</div>
-        <h3>Teoría de juegos real</h3>
-        <p>El mismo motor de cálculo (CFR) que usan los solvers profesionales, corriendo en tu computadora, sin depender de la nube.</p>
+        <h3 data-i18n="benefits.card1Title">Real game theory</h3>
+        <p data-i18n="benefits.card1Body">The same calculation engine (CFR) used by professional solvers, running on your computer, no cloud dependency.</p>
       </div>
       <div class="prop-card">
-        <div class="glyph">🇦🇷</div>
-        <h3>100% en español</h3>
-        <p>Cada pantalla, cada explicación y cada término técnico traducido y explicado en criollo. Nada de manuales en inglés.</p>
+        <div class="glyph">🌎</div>
+        <h3 data-i18n="benefits.card2Title">Built bilingual</h3>
+        <p data-i18n="benefits.card2Body">Every screen, explanation, and technical term available in English or Spanish — switch anytime with one click.</p>
       </div>
       <div class="prop-card">
         <div class="glyph">⏱</div>
-        <h3>Respuestas en segundos</h3>
-        <p>Elegís la situación y la mano, y el resultado aparece casi al toque — no hace falta esperar minutos para una respuesta.</p>
+        <h3 data-i18n="benefits.card3Title">Answers in seconds</h3>
+        <p data-i18n="benefits.card3Body">Pick the situation and the hand, and the result shows up almost instantly — no waiting minutes for an answer.</p>
       </div>
     </div>
   </div>
@@ -295,14 +303,14 @@
 <section id="como-funciona">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Cómo funciona</div>
-      <h2>Tres pasos, una respuesta clara</h2>
+      <div class="eyebrow" data-i18n="how.eyebrow">How it works</div>
+      <h2 data-i18n="how.title">Three steps, one clear answer</h2>
     </div>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Elegís la situación</h3>
-        <p>Posición tuya, posición del rival, tu mano y el board. Nada de escribir rangos a mano.</p>
+        <h3 data-i18n="how.step1Title">Choose the situation</h3>
+        <p data-i18n="how.step1Body">Your position, your opponent's position, your hand, and the board. No typing ranges by hand.</p>
         <div class="step-mock">
           <div class="mock-seats">
             <div class="mock-felt"></div>
@@ -316,16 +324,16 @@
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Solverix calcula</h3>
-        <p>El motor arma el árbol de decisiones y resuelve la estrategia óptima para esa mano exacta.</p>
+        <h3 data-i18n="how.step2Title">Solverix calculates</h3>
+        <p data-i18n="how.step2Body">The engine builds the decision tree and solves the optimal strategy for that exact hand.</p>
         <div class="step-mock">
           <div class="mock-grid" id="grid-mock"></div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Te dice qué hacer</h3>
-        <p>Retirarte, pagar o apostar — con el porcentaje de frecuencia y el motivo, en una frase que se entiende.</p>
+        <h3 data-i18n="how.step3Title">It tells you what to do</h3>
+        <p data-i18n="how.step3Body">Fold, call, or bet — with the frequency percentage and the reason, in a sentence that makes sense.</p>
         <div class="step-mock">
           <div class="mock-verdict">
             <div class="line w80 gold"></div>
@@ -343,28 +351,28 @@
 <section id="capturas">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">La herramienta</div>
-      <h2>Así se ve por dentro</h2>
-      <p>Vista previa del Solver Avanzado y del explorador de estrategia.</p>
+      <div class="eyebrow" data-i18n="gallery.eyebrow">The tool</div>
+      <h2 data-i18n="gallery.title">Here's what's inside</h2>
+      <p data-i18n="gallery.subtitle">A preview of the Advanced Solver and the strategy explorer.</p>
     </div>
     <div class="gallery">
       <div class="gallery-main">
-        <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Árbol de decisiones y EV por combo — Solver Avanzado</span></div>
+        <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span data-i18n="gallery.caption1">Decision tree and EV per combo — Advanced Solver</span></div>
         <div class="shot-body">
-          <img src="https://temporary-racing-saffron-qggjz48.vercel.app/screenshots/avanzado.png" alt="Explorador de estrategia de Solverix mostrando el árbol de decisiones y el EV de cada combinación de cartas">
+          <img src="https://temporary-racing-saffron-qggjz48.vercel.app/screenshots/avanzado.png" alt="Solverix strategy explorer showing the decision tree and the EV of each card combination">
         </div>
       </div>
       <div class="gallery-side">
         <div class="shot">
-          <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Paso 1 — Elegís tu asiento</span></div>
+          <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span data-i18n="gallery.caption2">Step 1 — Choose your seat</span></div>
           <div class="shot-body">
-            <img src="https://temporary-racing-saffron-qggjz48.vercel.app/screenshots/situacion.png" alt="Mesa de poker de Solverix para elegir tu posición y la del rival">
+            <img src="https://temporary-racing-saffron-qggjz48.vercel.app/screenshots/situacion.png" alt="Solverix poker table to choose your position and your opponent's">
           </div>
         </div>
         <div class="shot">
-          <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Paso 4 — La respuesta, directa</span></div>
+          <div class="shot-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span data-i18n="gallery.caption3">Step 4 — The answer, straight up</span></div>
           <div class="shot-body">
-            <img src="https://temporary-racing-saffron-qggjz48.vercel.app/screenshots/resultado.png" alt="Jugada recomendada por Solverix con el porcentaje de frecuencia y el motivo">
+            <img src="https://temporary-racing-saffron-qggjz48.vercel.app/screenshots/resultado.png" alt="Solverix recommended play with the frequency percentage and the reason">
           </div>
         </div>
       </div>
@@ -377,42 +385,42 @@
 <section id="precios">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Precios</div>
-      <h2>Empezá simple. Sumá el Modo Rápido cuando quieras.</h2>
-      <p>Dos formas de usar Solverix, según cuánto querés meterte en el detalle.</p>
+      <div class="eyebrow" data-i18n="pricing.eyebrow">Pricing</div>
+      <h2 data-i18n="pricing.title">Start simple. Add Quick Mode whenever you want.</h2>
+      <p data-i18n="pricing.subtitle">Two ways to use Solverix, depending on how deep you want to go.</p>
     </div>
     <div class="pricing">
       <div class="plan">
-        <div class="plan-name">Solver Avanzado</div>
-        <div class="plan-tag">Para analizar tus manos con control total del rango, el board y las apuestas — ideal si ya jugás con frecuencia.</div>
-        <div class="price">$30.000<span>ARS / mes</span></div>
+        <div class="plan-name" data-i18n="pricing.plan1Name">Advanced Solver</div>
+        <div class="plan-tag" data-i18n="pricing.plan1Tag">Analyze your hands with full control over the range, board, and bets — ideal if you already play regularly.</div>
+        <div class="price">$30.000<span data-i18n="pricing.currency">ARS / month</span></div>
         <ul>
-          <li><span class="ico">✓</span> Solver GTO completo, sin límite de manos</li>
-          <li><span class="ico">✓</span> Rangos, tamaños de apuesta y stacks 100% editables</li>
-          <li><span class="ico">✓</span> Explorador de estrategia con EV y razones de cada jugada</li>
-          <li><span class="ico">✓</span> 5 temas visuales, todo en español</li>
-          <li class="locked"><span class="ico">✕</span> Modo Rápido (situaciones precargadas)</li>
-          <li class="locked"><span class="ico">✕</span> Modo Práctica (entrená adivinando)</li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan1Feat1">Full GTO solver, no hand limit</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan1Feat2">Ranges, bet sizes, and stacks 100% editable</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan1Feat3">Strategy explorer with EV and reasons for each play</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan1Feat4">5 visual themes, English or Spanish</span></li>
+          <li class="locked"><span class="ico">✕</span> <span data-i18n="pricing.plan1Feat5">Quick Mode (preloaded situations)</span></li>
+          <li class="locked"><span class="ico">✕</span> <span data-i18n="pricing.plan1Feat6">Practice Mode (train by guessing)</span></li>
         </ul>
-        <a href="cuenta.html" class="btn btn-ghost">Adquirir Avanzado</a>
+        <a href="cuenta.html" class="btn btn-ghost" data-i18n="pricing.plan1Cta">Get Advanced</a>
       </div>
       <div class="plan featured">
-        <div class="badge">Recomendado</div>
-        <div class="plan-name">Completo</div>
-        <div class="plan-tag">Todo el Avanzado, más el Modo Rápido y el Modo Práctica — ideal si estás empezando o jugás con alguien que recién arranca.</div>
-        <div class="price">$40.000<span>ARS / mes</span></div>
+        <div class="badge" data-i18n="pricing.badge">Recommended</div>
+        <div class="plan-name" data-i18n="pricing.plan2Name">Complete</div>
+        <div class="plan-tag" data-i18n="pricing.plan2Tag">Everything in Advanced, plus Quick Mode and Practice Mode — ideal if you're starting out or playing with someone who's new.</div>
+        <div class="price">$40.000<span data-i18n="pricing.currency">ARS / month</span></div>
         <ul>
-          <li><span class="ico">✓</span> Todo lo del Solver Avanzado</li>
-          <li><span class="ico">✓</span> Modo Rápido: elegís posición y mano, listo</li>
-          <li><span class="ico">✓</span> 6-max y Full Ring precargados</li>
-          <li><span class="ico">✓</span> Modo Práctica para entrenar antes de jugar</li>
-          <li><span class="ico">✓</span> Glosario de términos en criollo</li>
-          <li><span class="ico">✓</span> Soporte prioritario</li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan2Feat1">Everything in Advanced Solver</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan2Feat2">Quick Mode: pick position and hand, done</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan2Feat3">6-max and Full Ring preloaded</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan2Feat4">Practice Mode to train before playing</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan2Feat5">Term glossary in plain language</span></li>
+          <li><span class="ico">✓</span> <span data-i18n="pricing.plan2Feat6">Priority support</span></li>
         </ul>
-        <a href="cuenta.html" class="btn btn-gold">Adquirir Completo</a>
+        <a href="cuenta.html" class="btn btn-gold" data-i18n="pricing.plan2Cta">Get Complete</a>
       </div>
     </div>
-    <div class="price-note">Precios de ejemplo — ver más abajo. Cancelás cuando quieras, sin permanencia.</div>
+    <div class="price-note" data-i18n="pricing.note">Example pricing — see below. Cancel anytime, no commitment.</div>
   </div>
 </section>
 
@@ -421,21 +429,21 @@
 <section id="para-quien">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Para quién es</div>
-      <h2>Sirve distinto según dónde estés parado</h2>
+      <div class="eyebrow" data-i18n="audience.eyebrow">Who it's for</div>
+      <h2 data-i18n="audience.title">Different value depending on where you're at</h2>
     </div>
     <div class="audience">
       <div class="aud-card">
-        <div class="tag">Jugador con experiencia</div>
-        <h3>Solver Avanzado</h3>
-        <p>Armás vos los rangos exactos de cada jugador, ajustás los tamaños de apuesta a como se juega en tu mesa, y revisás manos puntuales después de la sesión.</p>
-        <div class="quote">"Lo uso para revisar las manos grandes de la semana, no para jugar en vivo." — <b>uso típico</b></div>
+        <div class="tag" data-i18n="audience.tag1">Experienced player</div>
+        <h3 data-i18n="audience.title1">Advanced Solver</h3>
+        <p data-i18n="audience.body1">You build the exact ranges for each player yourself, adjust bet sizes to how your tables actually play, and review specific hands after the session.</p>
+        <div class="quote"><span data-i18n="audience.quote1">"I use it to review the week's big hands, not to play live."</span> — <b data-i18n="audience.quoteLabel">typical use</b></div>
       </div>
       <div class="aud-card">
-        <div class="tag">Recién empezás</div>
-        <h3>+ Modo Rápido</h3>
-        <p>Elegís tu posición, tu mano y el board de una lista simple, y Solverix arma los rangos típicos por vos. Sin tener que entender rangos todavía.</p>
-        <div class="quote">"Toco 3 botones y me dice qué hacer. Después entiendo el por qué." — <b>uso típico</b></div>
+        <div class="tag" data-i18n="audience.tag2">Just starting out</div>
+        <h3 data-i18n="audience.title2">+ Quick Mode</h3>
+        <p data-i18n="audience.body2">Pick your position, your hand, and the board from a simple list, and Solverix builds the typical ranges for you. No need to understand ranges yet.</p>
+        <div class="quote"><span data-i18n="audience.quote2">"I tap 3 buttons and it tells me what to do. Then I understand why."</span> — <b data-i18n="audience.quoteLabel">typical use</b></div>
       </div>
     </div>
   </div>
@@ -446,25 +454,25 @@
 <section id="faq">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Preguntas frecuentes</div>
-      <h2>Antes de sumarte</h2>
+      <div class="eyebrow" data-i18n="faq.eyebrow">Frequently asked questions</div>
+      <h2 data-i18n="faq.title">Before you join</h2>
     </div>
     <div class="faq">
       <div class="faq-item">
-        <h3>¿Necesito saber de teoría de juegos para usarlo?</h3>
-        <p>No. El Modo Rápido está pensado para que no necesites saber qué es un rango o un GTO para recibir una respuesta clara. El Avanzado sí asume que ya jugás con cierta frecuencia.</p>
+        <h3 data-i18n="faq.q1">Do I need to know game theory to use it?</h3>
+        <p data-i18n="faq.a1">No. Quick Mode is designed so you don't need to know what a range or GTO is to get a clear answer. Advanced does assume you already play with some regularity.</p>
       </div>
       <div class="faq-item">
-        <h3>¿Puedo pasar del plan Avanzado al Completo después?</h3>
-        <p>Sí, en cualquier momento. Tus manos y configuraciones guardadas se mantienen igual.</p>
+        <h3 data-i18n="faq.q2">Can I upgrade from Advanced to Complete later?</h3>
+        <p data-i18n="faq.a2">Yes, anytime. Your saved hands and configurations stay the same.</p>
       </div>
       <div class="faq-item">
-        <h3>¿Funciona sin conexión a internet?</h3>
-        <p>El cálculo corre en tu computadora, así que no depende de un servidor externo para resolver una mano.</p>
+        <h3 data-i18n="faq.q3">Does it work without an internet connection?</h3>
+        <p data-i18n="faq.a3">The calculation runs on your computer, so it doesn't depend on an external server to solve a hand.</p>
       </div>
       <div class="faq-item">
-        <h3>¿Cuánto tarda en resolver una mano?</h3>
-        <p>Segundos, no minutos. Podés elegir entre una respuesta rápida y aproximada, o una más precisa si tenés tiempo de sobra.</p>
+        <h3 data-i18n="faq.q4">How long does it take to solve a hand?</h3>
+        <p data-i18n="faq.a4">Seconds, not minutes. You can choose between a fast, approximate answer or a more precise one if you have time to spare.</p>
       </div>
     </div>
   </div>
@@ -472,9 +480,9 @@
 
 <div class="final-cta">
   <div class="wrap">
-    <h2>Andá a la próxima mesa sabiendo qué hacer</h2>
-    <p>Probá Solverix y dejá de jugar de memoria.</p>
-    <a href="#precios" class="btn btn-gold">Ver planes</a>
+    <h2 data-i18n="finalCta.title">Walk into your next table knowing what to do</h2>
+    <p data-i18n="finalCta.body">Try Solverix and stop playing from memory.</p>
+    <a href="#precios" class="btn btn-gold" data-i18n="finalCta.cta">See plans</a>
   </div>
 </div>
 
@@ -513,6 +521,99 @@
   }
   paintGrid('grid-mock', 32);
 
+  // ---------- Language switch (EN default, ES optional) ----------
+  const ES = {
+    'nav.how': 'Cómo funciona', 'nav.tool': 'La herramienta', 'nav.pricing': 'Precios', 'nav.faq': 'Preguntas',
+    'nav.account': 'Mi cuenta',
+    'hero.eyebrow': '♣ Solver GTO en español ♦',
+    'hero.title': 'Dejá de adivinar.<br>Jugá la mano que <em>gana en el largo plazo</em>.',
+    'hero.lead': 'Cargá tu mano y el board, y Solverix te muestra en segundos qué hace un jugador matemáticamente equilibrado en esa situación exacta — sin conjeturas, sin "sensación".',
+    'hero.ctaPrimary': 'Empezar ahora', 'hero.ctaSecondary': 'Ver cómo funciona',
+    'hero.note': 'Sin tarjeta para probar la demo · Cancelás cuando quieras',
+    'hero.solvedIn': 'Resuelto en', 'hero.recLabel': 'Jugada recomendada', 'hero.recVerdict': 'Apostar 33% del pozo',
+    'hero.recWhy': 'Value bet: tu mano le gana a la mayoría del rango del rival y todavía podés mejorar.',
+    'benefits.eyebrow': 'Por qué Solverix', 'benefits.title': 'Un solver de verdad, pensado para jugar — no para programar',
+    'benefits.subtitle': 'La mayoría de los solvers están hechos para gente que ya sabe usar un solver. Este no.',
+    'benefits.card1Title': 'Teoría de juegos real',
+    'benefits.card1Body': 'El mismo motor de cálculo (CFR) que usan los solvers profesionales, corriendo en tu computadora, sin depender de la nube.',
+    'benefits.card2Title': 'Bilingüe de fábrica',
+    'benefits.card2Body': 'Cada pantalla, explicación y término técnico disponible en inglés o español — cambiás cuando quieras con un click.',
+    'benefits.card3Title': 'Respuestas en segundos',
+    'benefits.card3Body': 'Elegís la situación y la mano, y el resultado aparece casi al toque — no hace falta esperar minutos para una respuesta.',
+    'how.eyebrow': 'Cómo funciona', 'how.title': 'Tres pasos, una respuesta clara',
+    'how.step1Title': 'Elegís la situación', 'how.step1Body': 'Posición tuya, posición del rival, tu mano y el board. Nada de escribir rangos a mano.',
+    'how.step2Title': 'Solverix calcula', 'how.step2Body': 'El motor arma el árbol de decisiones y resuelve la estrategia óptima para esa mano exacta.',
+    'how.step3Title': 'Te dice qué hacer', 'how.step3Body': 'Retirarte, pagar o apostar — con el porcentaje de frecuencia y el motivo, en una frase que se entiende.',
+    'gallery.eyebrow': 'La herramienta', 'gallery.title': 'Así se ve por dentro',
+    'gallery.subtitle': 'Vista previa del Solver Avanzado y del explorador de estrategia.',
+    'gallery.caption1': 'Árbol de decisiones y EV por combo — Solver Avanzado',
+    'gallery.caption2': 'Paso 1 — Elegís tu asiento', 'gallery.caption3': 'Paso 4 — La respuesta, directa',
+    'pricing.eyebrow': 'Precios', 'pricing.title': 'Empezá simple. Sumá el Modo Rápido cuando quieras.',
+    'pricing.subtitle': 'Dos formas de usar Solverix, según cuánto querés meterte en el detalle.',
+    'pricing.plan1Name': 'Solver Avanzado',
+    'pricing.plan1Tag': 'Para analizar tus manos con control total del rango, el board y las apuestas — ideal si ya jugás con frecuencia.',
+    'pricing.currency': 'ARS / mes',
+    'pricing.plan1Feat1': 'Solver GTO completo, sin límite de manos',
+    'pricing.plan1Feat2': 'Rangos, tamaños de apuesta y stacks 100% editables',
+    'pricing.plan1Feat3': 'Explorador de estrategia con EV y razones de cada jugada',
+    'pricing.plan1Feat4': '5 temas visuales, en inglés o español',
+    'pricing.plan1Feat5': 'Modo Rápido (situaciones precargadas)',
+    'pricing.plan1Feat6': 'Modo Práctica (entrená adivinando)',
+    'pricing.plan1Cta': 'Adquirir Avanzado',
+    'pricing.badge': 'Recomendado', 'pricing.plan2Name': 'Completo',
+    'pricing.plan2Tag': 'Todo el Avanzado, más el Modo Rápido y el Modo Práctica — ideal si estás empezando o jugás con alguien que recién arranca.',
+    'pricing.plan2Feat1': 'Todo lo del Solver Avanzado',
+    'pricing.plan2Feat2': 'Modo Rápido: elegís posición y mano, listo',
+    'pricing.plan2Feat3': '6-max y Full Ring precargados',
+    'pricing.plan2Feat4': 'Modo Práctica para entrenar antes de jugar',
+    'pricing.plan2Feat5': 'Glosario de términos en criollo',
+    'pricing.plan2Feat6': 'Soporte prioritario',
+    'pricing.plan2Cta': 'Adquirir Completo',
+    'pricing.note': 'Precios de ejemplo — ver más abajo. Cancelás cuando quieras, sin permanencia.',
+    'audience.eyebrow': 'Para quién es', 'audience.title': 'Sirve distinto según dónde estés parado',
+    'audience.tag1': 'Jugador con experiencia', 'audience.title1': 'Solver Avanzado',
+    'audience.body1': 'Armás vos los rangos exactos de cada jugador, ajustás los tamaños de apuesta a como se juega en tu mesa, y revisás manos puntuales después de la sesión.',
+    'audience.quote1': '"Lo uso para revisar las manos grandes de la semana, no para jugar en vivo."',
+    'audience.quoteLabel': 'uso típico',
+    'audience.tag2': 'Recién empezás', 'audience.title2': '+ Modo Rápido',
+    'audience.body2': 'Elegís tu posición, tu mano y el board de una lista simple, y Solverix arma los rangos típicos por vos. Sin tener que entender rangos todavía.',
+    'audience.quote2': '"Toco 3 botones y me dice qué hacer. Después entiendo el por qué."',
+    'faq.eyebrow': 'Preguntas frecuentes', 'faq.title': 'Antes de sumarte',
+    'faq.q1': '¿Necesito saber de teoría de juegos para usarlo?',
+    'faq.a1': 'No. El Modo Rápido está pensado para que no necesites saber qué es un rango o un GTO para recibir una respuesta clara. El Avanzado sí asume que ya jugás con cierta frecuencia.',
+    'faq.q2': '¿Puedo pasar del plan Avanzado al Completo después?',
+    'faq.a2': 'Sí, en cualquier momento. Tus manos y configuraciones guardadas se mantienen igual.',
+    'faq.q3': '¿Funciona sin conexión a internet?',
+    'faq.a3': 'El cálculo corre en tu computadora, así que no depende de un servidor externo para resolver una mano.',
+    'faq.q4': '¿Cuánto tarda en resolver una mano?',
+    'faq.a4': 'Segundos, no minutos. Podés elegir entre una respuesta rápida y aproximada, o una más precisa si tenés tiempo de sobra.',
+    'finalCta.title': 'Andá a la próxima mesa sabiendo qué hacer',
+    'finalCta.body': 'Probá Solverix y dejá de jugar de memoria.',
+    'finalCta.cta': 'Ver planes',
+  };
+
+  const EN = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    EN[el.getAttribute('data-i18n')] = el.innerHTML;
+  });
+
+  function applyLang(lang){
+    const dict = lang === 'es' ? ES : EN;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.getElementById('langSwitch').textContent = lang === 'es' ? 'EN' : 'ES';
+    localStorage.setItem('solverix_lang', lang);
+  }
+
+  const savedLang = localStorage.getItem('solverix_lang') || 'en';
+  if(savedLang === 'es') applyLang('es');
+  document.getElementById('langSwitch').addEventListener('click', () => {
+    const current = localStorage.getItem('solverix_lang') || 'en';
+    applyLang(current === 'es' ? 'en' : 'es');
+  });
 </script>
 
 </body>
