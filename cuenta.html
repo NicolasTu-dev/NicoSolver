@@ -133,6 +133,13 @@
   const DOWNLOAD_URL = 'https://github.com/NicolasTu-dev/NicoSolver/releases/download/solverix-v1/Solverix.zip';
   const PLAN_NAMES = { none: 'Sin suscripción', advanced: 'Solver Avanzado', complete: 'Completo' };
 
+  // Affiliate link tracking: ?ref=codigo gets remembered for checkout,
+  // even if the visitor lands here directly instead of via the landing.
+  (function(){
+    const ref = new URLSearchParams(window.location.search).get('ref');
+    if(ref) localStorage.setItem('solverix_ref', ref.trim().toLowerCase());
+  })();
+
   // ---------- Mercado Pago return handling ----------
   (function(){
     const params = new URLSearchParams(window.location.search);
@@ -214,7 +221,8 @@
   async function startCheckout(email, plan){
     const statusEl = document.getElementById('checkoutStatus');
     if(statusEl){ statusEl.textContent = 'Abriendo Mercado Pago...'; statusEl.className = 'acc-status info'; }
-    const result = await apiCall('/api/create-checkout', { email, plan });
+    const ref = localStorage.getItem('solverix_ref') || undefined;
+    const result = await apiCall('/api/create-checkout', { email, plan, ref });
     if(!result.ok || !result.checkoutUrl){
       if(statusEl){ statusEl.textContent = 'No se pudo iniciar el pago. Probá de nuevo.'; statusEl.className = 'acc-status err'; }
       return;
