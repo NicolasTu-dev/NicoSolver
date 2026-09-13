@@ -1,5 +1,4 @@
 #include "include/data/apiclient.h"
-#include "include/data/apisecrets.h"
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -9,12 +8,11 @@
 
 namespace ApiClient {
 
-static const char* BASE_URL = "https://solverix-nicolastu-devs-projects.vercel.app";
-
-// Lets the app's HTTP calls through Vercel's deployment protection while
-// the site stays gated for regular browser visitors. The actual secret
-// lives in apisecrets.h, which is gitignored (see apisecrets.h.example).
-static const char* PROTECTION_BYPASS = VERCEL_PROTECTION_BYPASS;
+// Separate, unprotected Vercel project — it has no landing page, only the
+// register/login/activate/status functions, secured by real hashed
+// passwords instead of Vercel's deployment protection (which stays on for
+// the marketing site, a different project).
+static const char* BASE_URL = "https://solverix-api-nicolastu-devs-projects.vercel.app";
 
 static QNetworkAccessManager* manager(){
     static QNetworkAccessManager* instance = new QNetworkAccessManager();
@@ -24,7 +22,6 @@ static QNetworkAccessManager* manager(){
 static QNetworkRequest buildRequest(const QString& path){
     QNetworkRequest request(QUrl(QString(BASE_URL) + path));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("x-vercel-protection-bypass", PROTECTION_BYPASS);
     return request;
 }
 
