@@ -295,7 +295,11 @@
     accExpiry.textContent = lang === 'es' ? 'Adquirí un plan para poder descargar Solverix.' : 'Get a plan to download Solverix.';
     const advLabel = lang === 'es' ? 'Adquirir Avanzado' : 'Get Advanced';
     const compLabel = lang === 'es' ? 'Adquirir Completo' : 'Get Complete';
+    const codeLabel = lang === 'es' ? 'Código de streamer (opcional)' : 'Streamer code (optional)';
+    const savedCode = localStorage.getItem('solverix_ref') || '';
     accDownloadArea.innerHTML =
+      '<div class="acc-field-label">' + codeLabel + '</div>' +
+      '<input class="acc-input" id="affiliateCodeInput" style="text-transform:uppercase;" value="' + savedCode + '">' +
       '<div class="acc-plan-pick">' +
       '<button class="btn btn-ghost" id="pickAdvanced">' + advLabel + '</button>' +
       '<button class="btn btn-gold" id="pickComplete">' + compLabel + '</button>' +
@@ -309,7 +313,10 @@
     const statusEl = document.getElementById('checkoutStatus');
     const lang = currentLang();
     if(statusEl){ statusEl.textContent = lang === 'es' ? 'Abriendo Mercado Pago...' : 'Opening Mercado Pago...'; statusEl.className = 'acc-status info'; }
-    const ref = localStorage.getItem('solverix_ref') || undefined;
+    const codeInput = document.getElementById('affiliateCodeInput');
+    const typedCode = codeInput ? codeInput.value.trim().toLowerCase() : '';
+    if(typedCode) localStorage.setItem('solverix_ref', typedCode);
+    const ref = typedCode || localStorage.getItem('solverix_ref') || undefined;
     const result = await apiCall('/api/create-checkout', { email, plan, ref });
     if(!result.ok || !result.checkoutUrl){
       if(statusEl){ statusEl.textContent = lang === 'es' ? 'No se pudo iniciar el pago. Probá de nuevo.' : 'Couldn\'t start the payment. Try again.'; statusEl.className = 'acc-status err'; }
