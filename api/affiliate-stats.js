@@ -3,6 +3,10 @@ const { sql, ensureSchema } = require('../lib/db');
 // Admin-only report: /api/affiliate-stats?secret=... — how much each
 // affiliate has generated, for keeping track of the marketplace split.
 module.exports = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  if (req.method === 'OPTIONS') { res.status(204).end(); return; }
+
   if (req.query.secret !== process.env.ADMIN_SECRET) {
     res.status(403).json({ ok: false, error: 'forbidden' });
     return;
