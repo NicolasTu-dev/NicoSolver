@@ -122,6 +122,20 @@
     background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright);
     font-size:11.5px; font-weight:700; padding:5px 11px; border-radius:99px;
   }
+  .founder-panel{
+    margin-top:20px; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:24px 26px;
+  }
+  .founder-title{font-family:"Cinzel","Segoe UI",serif; font-weight:700; font-size:16px; margin-bottom:14px;}
+  .founder-results{margin-top:4px;}
+  .founder-result{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding:9px 12px; border-radius:8px; border:1px solid var(--border); margin-top:8px;
+    cursor:pointer; font-size:13px; background:var(--bg-deep);
+  }
+  .founder-result:hover{border-color:var(--gold);}
+  .founder-result .fr-tag{font-size:10.5px; color:var(--gold-bright); font-weight:700; white-space:nowrap;}
+  .founder-assign{margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:none;}
+  .founder-selected{font-weight:700; margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -167,6 +181,21 @@
       <a href="#" id="accLogoutLink" style="display:block; margin-top:14px; font-size:12.5px; color:var(--muted-2); text-decoration:underline;" data-i18n="logoutLink">Log out</a>
     </div>
   </div>
+
+  <div class="founder-panel" id="founderPanel" style="display:none;">
+    <div class="founder-title" data-i18n="founderTitle">Assign streamer role</div>
+    <input class="acc-input" id="founderSearch" data-i18n-placeholder="founderSearchPlaceholder" placeholder="Search by email...">
+    <div class="founder-results" id="founderResults"></div>
+    <div class="founder-assign" id="founderAssign">
+      <div class="founder-selected" id="founderSelectedEmail"></div>
+      <div class="acc-field-label" data-i18n="founderCodeLabel">Streamer code</div>
+      <input class="acc-input" id="founderCode" style="text-transform:uppercase;">
+      <div class="acc-field-label" data-i18n="founderNameLabel">Display name</div>
+      <input class="acc-input" id="founderName">
+      <button class="btn btn-gold" id="founderAssignBtn" style="margin-top:14px; width:100%;" data-i18n="founderAssignBtn">Assign streamer role</button>
+    </div>
+    <div class="acc-status" id="founderStatus"></div>
+  </div>
 </div>
 
 <script>
@@ -192,9 +221,16 @@
     btnLogin: 'Iniciar sesión',
     btnRegister: 'Registrarme',
     logoutLink: 'Cerrar sesión',
+    founderTitle: 'Asignar rol de streamer',
+    founderSearchPlaceholder: 'Buscar por email...',
+    founderCodeLabel: 'Código de streamer',
+    founderNameLabel: 'Nombre para mostrar',
+    founderAssignBtn: 'Asignar rol de streamer',
   };
   const EN_TEXT = {};
   document.querySelectorAll('[data-i18n]').forEach(el => { EN_TEXT[el.getAttribute('data-i18n')] = el.innerHTML; });
+  const EN_PLACEHOLDERS = {};
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { EN_PLACEHOLDERS[el.getAttribute('data-i18n-placeholder')] = el.placeholder; });
 
   function currentLang(){ return localStorage.getItem('solverix_lang') || 'en'; }
 
@@ -203,6 +239,11 @@
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const value = lang === 'es' ? ES_TEXT[key] : EN_PLACEHOLDERS[key];
+      if(value !== undefined) el.placeholder = value;
     });
     document.documentElement.lang = lang;
     document.getElementById('langSwitch').textContent = lang === 'es' ? 'EN' : 'ES';
@@ -393,6 +434,74 @@
     }else{
       showNoPlan(email, result.streamer);
     }
+    if(result.isFounder){
+      founderEmail = email;
+      founderPassword = password;
+      document.getElementById('founderPanel').style.display = 'block';
+    }
+  });
+
+  // ---------- Founder panel: assign streamer role to any account ----------
+  let founderEmail = null;
+  let founderPassword = null;
+  let founderSelectedTarget = null;
+  let founderSearchTimer = null;
+
+  const founderSearchInput = document.getElementById('founderSearch');
+  const founderResults = document.getElementById('founderResults');
+  const founderAssign = document.getElementById('founderAssign');
+  const founderSelectedEmailEl = document.getElementById('founderSelectedEmail');
+  const founderCodeInput = document.getElementById('founderCode');
+  const founderNameInput = document.getElementById('founderName');
+  const founderStatusEl = document.getElementById('founderStatus');
+
+  function setFounderStatus(msgEn, msgEs, kind){
+    founderStatusEl.textContent = currentLang() === 'es' ? msgEs : msgEn;
+    founderStatusEl.className = 'acc-status' + (kind ? ' ' + kind : '');
+  }
+
+  founderSearchInput.addEventListener('input', () => {
+    clearTimeout(founderSearchTimer);
+    const query = founderSearchInput.value.trim();
+    founderSearchTimer = setTimeout(async () => {
+      if(!query){ founderResults.innerHTML = ''; return; }
+      const result = await apiCall('/api/admin-search-users', { email: founderEmail, password: founderPassword, query });
+      if(!result.ok){ founderResults.innerHTML = ''; return; }
+      const lang = currentLang();
+      founderResults.innerHTML = result.users.map(u => {
+        const tag = u.streamer_code ? '<span class="fr-tag">🎥 ' + u.streamer_code.toUpperCase() + '</span>' : '';
+        return '<div class="founder-result" data-email="' + u.email + '"><span>' + u.email + '</span>' + tag + '</div>';
+      }).join('') || '<div style="font-size:12.5px; color:var(--muted-2); margin-top:8px;">' + (lang === 'es' ? 'Sin resultados.' : 'No results.') + '</div>';
+      founderResults.querySelectorAll('.founder-result').forEach(row => {
+        row.addEventListener('click', () => {
+          founderSelectedTarget = row.getAttribute('data-email');
+          founderSelectedEmailEl.textContent = founderSelectedTarget;
+          founderCodeInput.value = '';
+          founderNameInput.value = '';
+          founderAssign.style.display = 'block';
+          setFounderStatus('', '', '');
+        });
+      });
+    }, 300);
+  });
+
+  document.getElementById('founderAssignBtn').addEventListener('click', async () => {
+    if(!founderSelectedTarget) return;
+    const code = founderCodeInput.value.trim();
+    const name = founderNameInput.value.trim();
+    if(!code || !name){
+      setFounderStatus('Fill in the code and the display name.', 'Completá el código y el nombre.', 'err');
+      return;
+    }
+    setFounderStatus('Assigning...', 'Asignando...', 'info');
+    const result = await apiCall('/api/admin-assign-streamer', {
+      email: founderEmail, password: founderPassword, targetEmail: founderSelectedTarget, code, name,
+    });
+    if(!result.ok){
+      setFounderStatus('Couldn\'t assign the streamer role.', 'No se pudo asignar el rol de streamer.', 'err');
+      return;
+    }
+    setFounderStatus('Streamer role assigned.', 'Rol de streamer asignado.', 'ok');
   });
 
   accRegisterBtn.addEventListener('click', async () => {
@@ -427,6 +536,9 @@
     accEmail.value = '';
     accPassword.value = '';
     setStatus('', '', '');
+    founderEmail = null;
+    founderPassword = null;
+    document.getElementById('founderPanel').style.display = 'none';
   });
 
 </script>
