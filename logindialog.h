@@ -6,11 +6,11 @@
 #include <QLineEdit>
 #include <QPushButton>
 
-// First screen shown on every launch. Talks to the real Solverix demo
-// backend (see ApiClient) to log in or register, then checks whether the
-// account has an active subscription. No local shortcut — wrong
-// credentials really fail, and only a server-confirmed active plan lets
-// you in.
+// First screen shown on every launch. Only lets you log in with an
+// existing account — registering and activating a plan happen on the
+// Solverix website, never inside the app. If the account has no active
+// subscription, this shows a button that opens the website instead of
+// letting you in.
 class LoginDialog : public QDialog
 {
     Q_OBJECT
@@ -19,25 +19,15 @@ public:
 
 private slots:
     void onLoginClicked();
-    void onRegisterClicked();
-    void onActivateAdvancedClicked();
-    void onActivateCompleteClicked();
+    void onOpenWebsiteClicked();
 
 private:
     QLineEdit* loginEmailField;
     QLineEdit* loginPasswordField;
     QPushButton* loginButton;
     QLabel* loginStatusLabel;
-    QWidget* activationArea;
-    QPushButton* activateAdvancedButton;
-    QPushButton* activateCompleteButton;
+    QWidget* noPlanArea;
 
-    QLineEdit* registerEmailField;
-    QLineEdit* registerPasswordField;
-    QPushButton* registerButton;
-    QLabel* registerStatusLabel;
-
-    void attemptActivate(const QString& plan);
     void setBusy(bool busy);
 };
 

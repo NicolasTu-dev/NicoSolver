@@ -6,7 +6,7 @@ WelcomeDialog::WelcomeDialog(QWidget *parent) :
     ui(new Ui::WelcomeDialog)
 {
     ui->setupUi(this);
-    this->setWindowTitle(tr("Bienvenido a Solverix"));
+    this->setWindowTitle(tr("Welcome to Solverix"));
 }
 
 WelcomeDialog::~WelcomeDialog()

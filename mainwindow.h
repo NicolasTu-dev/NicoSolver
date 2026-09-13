@@ -77,7 +77,6 @@ private slots:
     void onTableSize6Clicked();
     void onTableSize9Clicked();
     void onNewHandButtonClicked();
-    void onLicenseButtonClicked();
     void onSubscriptionCheckTimer();
 
 private:

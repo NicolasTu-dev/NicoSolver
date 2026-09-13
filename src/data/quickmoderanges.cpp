@@ -18,15 +18,15 @@ static QStringList getPostflopOrder(int tableSize) {
 
 QString getSeatDisplayName(QString seat) {
     static QMap<QString,QString> names = {
-        {"UTG", QObject::tr("UTG (Bajo el arma)")},
+        {"UTG", QObject::tr("UTG (Under the Gun)")},
         {"UTG1", QObject::tr("UTG+1")},
         {"UTG2", QObject::tr("UTG+2")},
         {"LJ", QObject::tr("Lojack (LJ)")},
         {"HJ", QObject::tr("Hijack (HJ)")},
         {"CO", QObject::tr("Cutoff (CO)")},
-        {"BTN", QObject::tr("Botón (BTN)")},
-        {"SB", QObject::tr("Ciega chica (SB)")},
-        {"BB", QObject::tr("Ciega grande (BB)")},
+        {"BTN", QObject::tr("Button (BTN)")},
+        {"SB", QObject::tr("Small Blind (SB)")},
+        {"BB", QObject::tr("Big Blind (BB)")},
     };
     return names.value(seat, seat);
 }
@@ -91,9 +91,9 @@ QuickModeMatchup buildQuickModeMatchup(int tableSize, QString openerSeat, QStrin
     matchup.openerIsIP = openerIdx > callerIdx;
     matchup.pot = 50.0f;
     matchup.effectiveStack = 200.0f;
-    matchup.descriptionAsOpener = QObject::tr("Abriste desde %1 y el rival pagó desde %2")
+    matchup.descriptionAsOpener = QObject::tr("You opened from %1 and your opponent called from %2")
         .arg(getSeatDisplayName(openerSeat), getSeatDisplayName(callerSeat));
-    matchup.descriptionAsCaller = QObject::tr("El rival abrió desde %1 y vos pagaste desde %2")
+    matchup.descriptionAsCaller = QObject::tr("Your opponent opened from %1 and you called from %2")
         .arg(getSeatDisplayName(openerSeat), getSeatDisplayName(callerSeat));
     return matchup;
 }

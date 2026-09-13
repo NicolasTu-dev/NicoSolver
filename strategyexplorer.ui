@@ -22,7 +22,7 @@
         <bool>true</bool>
        </property>
        <property name="text">
-        <string>Este es el resultado del solver. La grilla de abajo muestra, para cada mano posible del rival (AA arriba a la izquierda hasta 22 abajo a la derecha en la diagonal = pares; arriba de la diagonal = suited; abajo = offsuit), qué tan seguido conviene cada acción (celeste = retirarse, verde = pagar, rojo = apostar/subir). El gris significa que esa mano no forma parte del rango del rival en este punto (no llega ahí con esas cartas). Tocá "Ver árbol de decisiones y opciones avanzadas" para explorar otros puntos de la mano.</string>
+        <string>This is the solver's result. The grid below shows, for every possible hand your opponent could have (AA top-left to 22 bottom-right on the diagonal = pairs; above the diagonal = suited; below = offsuit), how often each action is correct (blue = fold, green = call, red = bet/raise). Gray means that hand isn't part of the opponent's range at this point (they wouldn't get here with those cards). Tap "View decision tree and advanced options" to explore other points in the hand.</string>
        </property>
       </widget>
      </item>
@@ -44,21 +44,21 @@
        <item>
         <widget class="QPushButton" name="toggleAdvancedViewButton">
          <property name="text">
-          <string>🔍 Ver árbol de decisiones y opciones avanzadas</string>
+          <string>🔍 View decision tree and advanced options</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="exportImageButton">
          <property name="text">
-          <string>🖼️ Exportar como imagen</string>
+          <string>🖼️ Export as image</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="glossaryButton">
          <property name="text">
-          <string>📖 Glosario</string>
+          <string>📖 Glossary</string>
          </property>
         </widget>
        </item>
@@ -213,7 +213,7 @@
         <item>
          <widget class="QLabel" name="legendLabelOutOfRange">
           <property name="text">
-           <string>Fuera de rango (no juega esta mano acá)</string>
+           <string>Out of range (doesn't play this hand here)</string>
           </property>
          </widget>
         </item>
@@ -256,7 +256,7 @@
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
-        <string>Jugada recomendada (resumen general)</string>
+        <string>Recommended play (overall summary)</string>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -268,7 +268,7 @@
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Con todo el rango del rival en este punto: qué tan seguido conviene retirarse (celeste), pagar (verde) o apostar/subir (rojo).</string>
+           <string>With your opponent's whole range at this point: how often it's correct to fold (blue), call (green), or bet/raise (red).</string>
           </property>
          </widget>
         </item>
@@ -323,7 +323,7 @@
      <item>
       <widget class="QCheckBox" name="advancedModeCheck">
        <property name="text">
-        <string>Modo avanzado (pasá el mouse sobre una celda para ver el EV)</string>
+        <string>Advanced mode (hover over a cell to see the EV)</string>
        </property>
        <property name="checked">
         <bool>false</bool>

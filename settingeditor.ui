@@ -87,7 +87,7 @@
          </item>
          <item>
           <property name="text">
-           <string>Violeta</string>
+           <string>Violet</string>
           </property>
          </item>
          <item>
@@ -158,7 +158,7 @@
      <item>
       <widget class="QLabel" name="quickModeOptionsLabel">
        <property name="text">
-        <string>Opciones del solver (Modo Rápido / Modo Práctica)</string>
+        <string>Solver options (Quick Mode / Practice Mode)</string>
        </property>
       </widget>
      </item>
@@ -167,7 +167,7 @@
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Iteraciones — Modo Rápido</string>
+          <string>Iterations — Quick Mode</string>
          </property>
         </widget>
        </item>
@@ -191,7 +191,7 @@
        <item>
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>Iteraciones — Modo Práctica</string>
+          <string>Iterations — Practice Mode</string>
          </property>
         </widget>
        </item>
@@ -215,7 +215,7 @@
        <item>
         <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>Exploitabilidad objetivo</string>
+          <string>Target exploitability</string>
          </property>
         </widget>
        </item>
@@ -242,7 +242,7 @@
        <item>
         <widget class="QLabel" name="label_7">
          <property name="text">
-          <string>Intervalo de log</string>
+          <string>Log interval</string>
          </property>
         </widget>
        </item>
@@ -266,7 +266,7 @@
        <item>
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>Hilos (threads)</string>
+          <string>Threads</string>
          </property>
         </widget>
        </item>
@@ -290,7 +290,7 @@
        <item>
         <widget class="QLabel" name="label_9">
          <property name="text">
-          <string>Límite de re-subidas</string>
+          <string>Raise limit</string>
          </property>
         </widget>
        </item>

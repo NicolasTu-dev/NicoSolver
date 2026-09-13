@@ -24,20 +24,20 @@ StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
     this->detailWindowSetting = DetailWindowSetting();
     ui->setupUi(this);
 
-    this->ui->gameTreeView->setToolTip(tr("Árbol de decisiones de la mano. Cada nivel es una calle (flop/turn/river) y cada nodo es un punto donde un jugador actúa. Tocá un nodo para ver la estrategia del solver en ese punto exacto."));
-    this->ui->turnCardBox->setToolTip(tr("Elegí qué carta cayó en el turn para ver la estrategia en ese runout específico."));
-    this->ui->riverCardBox->setToolTip(tr("Elegí qué carta cayó en el river para ver la estrategia en ese runout específico."));
-    this->ui->strategyTableView->setToolTip(tr("Estrategia recomendada para cada mano posible del rival en el nodo seleccionado. Celeste = retirarse, verde = pagar, rojo = apostar/subir. El tamaño de cada color dentro de la celda es qué tan seguido se elige esa acción."));
-    this->ui->roughStrategyView->setToolTip(tr("Resumen simplificado: qué tan seguido, en total, el rival retira, paga o apuesta/sube con todo su rango en este nodo."));
-    this->ui->boardLabel->setToolTip(tr("Las cartas comunitarias de la mesa en este punto de la mano."));
-    this->ui->nodeDisplayLabel->setToolTip(tr("Qué acción llevó a este nodo (por ejemplo, \"OOP bet 50%\") y de quién es el turno de actuar."));
-    this->ui->advancedModeCheck->setToolTip(tr("Si lo tildás, el detalle al pasar el mouse sobre una celda también muestra el EV (ganancia esperada en fichas) de cada acción, no solo el % de frecuencia."));
-    this->ui->ipRangeButtom->setToolTip(tr("Ver el rango completo de cartas que puede tener el jugador IP en este nodo."));
-    this->ui->oopRangeButtom->setToolTip(tr("Ver el rango completo de cartas que puede tener el jugador OOP en este nodo."));
-    this->ui->strategyModeButtom->setToolTip(tr("Mostrar solo la estrategia (qué tan seguido se elige cada acción) en la grilla."));
-    this->ui->evModeButtom->setToolTip(tr("Mostrar la estrategia junto con el EV (ganancia esperada) de cada acción."));
-    this->ui->evOnlyModeButtom->setToolTip(tr("Mostrar solo el EV (ganancia esperada) de cada mano, sin el detalle de la estrategia."));
-    this->ui->detailView->setToolTip(tr("Detalle combo por combo de la mano seleccionada en la grilla de estrategia."));
+    this->ui->gameTreeView->setToolTip(tr("The hand's decision tree. Each level is a street (flop/turn/river) and each node is a point where a player acts. Tap a node to see the solver's strategy at that exact point."));
+    this->ui->turnCardBox->setToolTip(tr("Choose which card came on the turn to see the strategy for that specific runout."));
+    this->ui->riverCardBox->setToolTip(tr("Choose which card came on the river to see the strategy for that specific runout."));
+    this->ui->strategyTableView->setToolTip(tr("Recommended strategy for every possible hand your opponent could have at the selected node. Blue = fold, green = call, red = bet/raise. The size of each color inside the cell is how often that action is chosen."));
+    this->ui->roughStrategyView->setToolTip(tr("Simplified summary: how often, overall, the opponent folds, calls, or bets/raises with their whole range at this node."));
+    this->ui->boardLabel->setToolTip(tr("The community cards on the table at this point in the hand."));
+    this->ui->nodeDisplayLabel->setToolTip(tr("What action led to this node (e.g. \"OOP bet 50%\") and whose turn it is to act."));
+    this->ui->advancedModeCheck->setToolTip(tr("If checked, hovering over a cell also shows the EV (expected value in chips) of each action, not just the frequency %."));
+    this->ui->ipRangeButtom->setToolTip(tr("View the full range of cards the IP player could have at this node."));
+    this->ui->oopRangeButtom->setToolTip(tr("View the full range of cards the OOP player could have at this node."));
+    this->ui->strategyModeButtom->setToolTip(tr("Show only the strategy (how often each action is chosen) in the grid."));
+    this->ui->evModeButtom->setToolTip(tr("Show the strategy together with the EV (expected value) of each action."));
+    this->ui->evOnlyModeButtom->setToolTip(tr("Show only the EV (expected value) of each hand, without the strategy detail."));
+    this->ui->detailView->setToolTip(tr("Combo-by-combo detail of the hand selected in the strategy grid."));
     /*
     QStandardItemModel* model = new QStandardItemModel();
     for (int row = 0; row < 4; ++row) {
@@ -402,37 +402,37 @@ void StrategyExplorer::selectRootNode(){
     }
 }
 
-static QString sizeTagSpanish(double amount){
-    if(amount < 45) return QObject::tr("chica");
-    if(amount <= 85) return QObject::tr("mediana");
-    if(amount <= 130) return QObject::tr("grande");
-    return QObject::tr("sobre-apuesta");
+static QString sizeTag(double amount){
+    if(amount < 45) return QObject::tr("small");
+    if(amount <= 85) return QObject::tr("medium");
+    if(amount <= 130) return QObject::tr("big");
+    return QObject::tr("overbet");
 }
 
-static QString actionLabelSpanish(GameTreeNode::PokerActions action, double amount){
+static QString actionLabel(GameTreeNode::PokerActions action, double amount){
     switch(action){
-        case GameTreeNode::PokerActions::FOLD: return QObject::tr("Retirarse");
-        case GameTreeNode::PokerActions::CHECK: return QObject::tr("Chequear");
-        case GameTreeNode::PokerActions::CALL: return QObject::tr("Pagar");
-        case GameTreeNode::PokerActions::BET: return QObject::tr("Apostar %1% del pozo (%2)").arg((int)amount).arg(sizeTagSpanish(amount));
-        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Subir a %1% del pozo (%2)").arg((int)amount).arg(sizeTagSpanish(amount));
-        default: return QObject::tr("Otra acción");
+        case GameTreeNode::PokerActions::FOLD: return QObject::tr("Fold");
+        case GameTreeNode::PokerActions::CHECK: return QObject::tr("Check");
+        case GameTreeNode::PokerActions::CALL: return QObject::tr("Call");
+        case GameTreeNode::PokerActions::BET: return QObject::tr("Bet %1% of the pot (%2)").arg((int)amount).arg(sizeTag(amount));
+        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Raise to %1% of the pot (%2)").arg((int)amount).arg(sizeTag(amount));
+        default: return QObject::tr("Other action");
     }
 }
 
-static QString actionReasonSpanish(GameTreeNode::PokerActions action, bool isTopAction){
+static QString actionReason(GameTreeNode::PokerActions action, bool isTopAction){
     switch(action){
         case GameTreeNode::PokerActions::FOLD:
-            return QObject::tr("la mano no alcanza para seguir, seguir cuesta más de lo que puede ganar");
+            return QObject::tr("the hand isn't good enough to continue, continuing costs more than it can win");
         case GameTreeNode::PokerActions::CHECK:
-            return QObject::tr("alcanza para ver la siguiente carta gratis sin arriesgar más");
+            return QObject::tr("good enough to see the next card for free without risking more");
         case GameTreeNode::PokerActions::CALL:
-            return QObject::tr("la mano es lo bastante buena para seguir, pero no para apostar más");
+            return QObject::tr("the hand is good enough to continue, but not to bet more");
         case GameTreeNode::PokerActions::BET:
         case GameTreeNode::PokerActions::RAISE:
             return isTopAction
-                ? QObject::tr("construye el bote con una mano fuerte y presiona al rival a que se equivoque")
-                : QObject::tr("mezcla de vez en cuando para no ser previsible con esta mano");
+                ? QObject::tr("builds the pot with a strong hand and pressures the opponent into a mistake")
+                : QObject::tr("mixed in occasionally to stay unpredictable with this hand");
         default:
             return QString();
     }
@@ -488,19 +488,19 @@ void StrategyExplorer::setHighlightedHand(QString card1, QString card2){
         if(freq < 0.01f) continue;
         int pct = (int)(freq * 100 + 0.5f);
         GameActions action = std::get<0>(entry);
-        QString piece = QString("%1 (%2%)").arg(actionLabelSpanish(action.getAction(), action.getAmount())).arg(pct);
-        QString reason = actionReasonSpanish(action.getAction(), isTop);
+        QString piece = QString("%1 (%2%)").arg(actionLabel(action.getAction(), action.getAmount())).arg(pct);
+        QString reason = actionReason(action.getAction(), isTop);
         if(!reason.isEmpty()) piece += QString(" — %1").arg(reason);
         if(!isTop){
             float evLoss = topEv - std::get<2>(entry);
             if(evLoss > 0.01f){
-                piece += tr(" [cuesta ~%1 fichas menos que la mejor jugada]").arg(QString::number(evLoss, 'f', 1));
+                piece += tr(" [costs ~%1 fewer chips than the best play]").arg(QString::number(evLoss, 'f', 1));
             }
         }
         parts << piece;
         isTop = false;
     }
-    this->ui->handBannerLabel->setText(tr("Con %1:<br>%2").arg(handLabel).arg(parts.join("<br>")));
+    this->ui->handBannerLabel->setText(tr("With %1:<br>%2").arg(handLabel).arg(parts.join("<br>")));
     this->ui->handBannerLabel->setVisible(true);
 }
 
@@ -524,12 +524,12 @@ std::tuple<float,float,float> StrategyExplorer::getRootActionSummary(){
 void StrategyExplorer::updateRangeSummaryLabel(){
     if(this->tableStrategyModel->treeItem == NULL ||
        this->tableStrategyModel->treeItem->m_treedata.lock()->getType() != GameTreeNode::GameTreeNode::ACTION){
-        this->ui->roughStrategyIntroLabel->setText(tr("Con todo el rango del rival en este punto: qué tan seguido conviene retirarse (celeste), pagar (verde) o apostar/subir (rojo)."));
+        this->ui->roughStrategyIntroLabel->setText(tr("With your opponent's whole range at this point: how often it's correct to fold (blue), call (green), or bet/raise (red)."));
         return;
     }
     const vector<pair<GameActions,pair<float,float>>>& totalStrategy = this->tableStrategyModel->total_strategy;
     if(totalStrategy.empty()){
-        this->ui->roughStrategyIntroLabel->setText(tr("Con todo el rango del rival en este punto: qué tan seguido conviene retirarse (celeste), pagar (verde) o apostar/subir (rojo)."));
+        this->ui->roughStrategyIntroLabel->setText(tr("With your opponent's whole range at this point: how often it's correct to fold (blue), call (green), or bet/raise (red)."));
         return;
     }
     float foldPct = 0.f, callPct = 0.f, betPct = 0.f;
@@ -541,7 +541,7 @@ void StrategyExplorer::updateRangeSummaryLabel(){
         else betPct += freq;
     }
     this->ui->roughStrategyIntroLabel->setText(
-        tr("El rival llega acá y, con todo su rango, se retira %1% de las veces, paga/chequea %2%, y apuesta/sube %3%.")
+        tr("Your opponent gets here and, with their whole range, folds %1% of the time, calls/checks %2%, and bets/raises %3%.")
             .arg((int)(foldPct * 100 + 0.5f))
             .arg((int)(callPct * 100 + 0.5f))
             .arg((int)(betPct * 100 + 0.5f))
@@ -560,8 +560,8 @@ void StrategyExplorer::setAdvancedViewVisible(bool visible){
     this->ui->evOnlyModeButtom->setVisible(visible);
     this->ui->detailView->setVisible(visible);
     this->ui->toggleAdvancedViewButton->setText(visible ?
-        tr("🔍 Ocultar árbol de decisiones y opciones avanzadas") :
-        tr("🔍 Ver árbol de decisiones y opciones avanzadas"));
+        tr("🔍 Hide decision tree and advanced options") :
+        tr("🔍 View decision tree and advanced options"));
 }
 
 void StrategyExplorer::on_toggleAdvancedViewButton_clicked(){
@@ -569,31 +569,31 @@ void StrategyExplorer::on_toggleAdvancedViewButton_clicked(){
 }
 
 void StrategyExplorer::on_exportImageButton_clicked(){
-    QString defaultName = tr("solverix_jugada_%1.png").arg(QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss"));
-    QString path = QFileDialog::getSaveFileName(this, tr("Exportar como imagen"), defaultName, tr("Imagen PNG (*.png)"));
+    QString defaultName = tr("solverix_play_%1.png").arg(QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss"));
+    QString path = QFileDialog::getSaveFileName(this, tr("Export as image"), defaultName, tr("PNG image (*.png)"));
     if(path.isEmpty()) return;
     if(!path.endsWith(".png", Qt::CaseInsensitive)) path += ".png";
     QPixmap snapshot = this->grab();
     if(snapshot.save(path, "PNG")){
-        QMessageBox::information(this, tr("Listo"), tr("Imagen guardada en:\n%1").arg(path));
+        QMessageBox::information(this, tr("Done"), tr("Image saved to:\n%1").arg(path));
     }else{
-        QMessageBox::warning(this, tr("Error"), tr("No se pudo guardar la imagen."));
+        QMessageBox::warning(this, tr("Error"), tr("Couldn't save the image."));
     }
 }
 
 void StrategyExplorer::on_glossaryButton_clicked(){
     QString glossary = tr(
-        "<h3>Glosario rápido</h3>"
-        "<p><b>EV (valor esperado):</b> cuánto gana o pierde una jugada en promedio, en fichas, si se repitiera muchas veces. Un EV más alto es mejor.</p>"
-        "<p><b>Rango:</b> el conjunto de manos posibles que un jugador puede tener en un punto de la mano, no una carta exacta.</p>"
-        "<p><b>Bloqueador (blocker):</b> tener una carta que hace menos probable que el rival tenga cierta mano fuerte (por ejemplo, tener un As reduce las combinaciones de AA que puede tener el rival).</p>"
-        "<p><b>Indiferencia:</b> un punto en el que dos jugadas dan exactamente el mismo resultado esperado, por eso el solver a veces mezcla entre dos acciones con la misma mano.</p>"
-        "<p><b>IP / OOP:</b> IP (in position) es el jugador que actúa último en la calle; OOP (out of position) el que actúa primero. Jugar en posición (IP) es una ventaja.</p>"
-        "<p><b>Combos:</b> la cantidad de combinaciones exactas de cartas que forman una mano (por ejemplo, AKs tiene 4 combos, uno por cada palo).</p>"
-        "<p><b>Frecuencia:</b> qué tan seguido el solver elige una acción con una mano dada, expresado en porcentaje.</p>"
+        "<h3>Quick glossary</h3>"
+        "<p><b>EV (expected value):</b> how much a play wins or loses on average, in chips, if repeated many times. A higher EV is better.</p>"
+        "<p><b>Range:</b> the set of possible hands a player could have at a point in the hand, not an exact card.</p>"
+        "<p><b>Blocker:</b> holding a card that makes it less likely your opponent has a certain strong hand (e.g. holding an Ace reduces the AA combos your opponent could have).</p>"
+        "<p><b>Indifference:</b> a point where two plays give exactly the same expected result, which is why the solver sometimes mixes between two actions with the same hand.</p>"
+        "<p><b>IP / OOP:</b> IP (in position) is the player who acts last on the street; OOP (out of position) is the one who acts first. Playing in position (IP) is an advantage.</p>"
+        "<p><b>Combos:</b> the number of exact card combinations that make up a hand (e.g. AKs has 4 combos, one per suit).</p>"
+        "<p><b>Frequency:</b> how often the solver chooses an action with a given hand, expressed as a percentage.</p>"
     );
     QMessageBox box(this);
-    box.setWindowTitle(tr("Glosario"));
+    box.setWindowTitle(tr("Glossary"));
     box.setTextFormat(Qt::RichText);
     box.setText(glossary);
     box.setStandardButtons(QMessageBox::Ok);

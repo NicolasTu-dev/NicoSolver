@@ -56,7 +56,7 @@
            <item>
             <widget class="QLabel" name="wizardStepLabel">
              <property name="text">
-              <string>Paso 1 de 6: Rangos</string>
+              <string>Step 1 of 6: Ranges</string>
              </property>
             </widget>
            </item>
@@ -74,22 +74,12 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="licenseButton">
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="text">
-              <string>🔑 Mi suscripción</string>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QPushButton" name="helpButton">
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="text">
-              <string>💡 Ver ejemplo / Ayuda</string>
+              <string>💡 See example / Help</string>
              </property>
             </widget>
            </item>
@@ -101,7 +91,7 @@
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>Elegí qué manos juega cada jugador antes de esta decisión.</string>
+            <string>Choose which hands each player plays before this decision.</string>
            </property>
           </widget>
          </item>
@@ -123,7 +113,7 @@
            <item>
             <widget class="QPushButton" name="wizardBackButton">
              <property name="text">
-              <string>← Atrás</string>
+              <string>← Back</string>
              </property>
             </widget>
            </item>
@@ -143,7 +133,7 @@
            <item>
             <widget class="QPushButton" name="wizardNextButton">
              <property name="text">
-              <string>Siguiente →</string>
+              <string>Next →</string>
              </property>
             </widget>
            </item>
@@ -161,7 +151,7 @@
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>Elegí cuántos jugadores hay en la mesa, y después tocá tu asiento y el del rival.</string>
+            <string>Choose how many players are at the table, then tap your seat and your opponent's.</string>
            </property>
           </widget>
          </item>
@@ -183,14 +173,14 @@
            <item>
             <widget class="QPushButton" name="tableSize6Button">
              <property name="text">
-              <string>6-max (6 jugadores)</string>
+              <string>6-max (6 players)</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="tableSize9Button">
              <property name="text">
-              <string>Full Ring (9 jugadores)</string>
+              <string>Full Ring (9 players)</string>
              </property>
             </widget>
            </item>
@@ -271,7 +261,7 @@
             <set>Qt::AlignHCenter</set>
            </property>
            <property name="text">
-            <string>Elegí tu asiento.</string>
+            <string>Choose your seat.</string>
            </property>
           </widget>
          </item>
@@ -287,14 +277,14 @@
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>Tocá exactamente 2 cartas: las que tenías en la mano.</string>
+            <string>Tap exactly 2 cards: the ones you had in your hand.</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="handSelectedLabel">
            <property name="text">
-            <string>Seleccionadas: (ninguna)</string>
+            <string>Selected: (none)</string>
            </property>
           </widget>
          </item>
@@ -326,7 +316,7 @@
          <item>
           <widget class="QPushButton" name="wizardLoadConfigButton">
            <property name="text">
-            <string>Cargar configuración guardada</string>
+            <string>Load saved configuration</string>
            </property>
           </widget>
          </item>
@@ -339,10 +329,10 @@
             </property>
             <widget class="QWidget" name="IpRange">
              <attribute name="title">
-              <string>IP (actúa último)</string>
+              <string>IP (acts last)</string>
              </attribute>
              <attribute name="toolTip">
-              <string>IP = "in position". Es el jugador que actúa último en esta calle (tiene más información antes de decidir).</string>
+              <string>IP = "in position". The player who acts last on this street (has more information before deciding).</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
@@ -360,10 +350,10 @@ p, li { white-space: pre-wrap; }
             </widget>
             <widget class="QWidget" name="OopRange">
              <attribute name="title">
-              <string>OOP (actúa primero)</string>
+              <string>OOP (acts first)</string>
              </attribute>
              <attribute name="toolTip">
-              <string>OOP = "out of position". Es el jugador que actúa primero en esta calle (tiene menos información antes de decidir).</string>
+              <string>OOP = "out of position". The player who acts first on this street (has less information before deciding).</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
@@ -481,7 +471,7 @@ p, li { white-space: pre-wrap; }
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Cada carta se escribe como "valor + palo". Ejemplo: Jh = J de corazones. Valores: A=As, K=Rey, Q=Reina, J=Jota, T=10, y 9-2 tal cual. Palos: s=picas, h=corazones, d=diamantes, c=tréboles.</string>
+           <string>Each card is written as "value + suit". Example: Jh = J of hearts. Values: A=Ace, K=King, Q=Queen, J=Jack, T=10, and 9-2 as-is. Suits: s=spades, h=hearts, d=diamonds, c=clubs.</string>
           </property>
          </widget>
         </item>
@@ -512,7 +502,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <widget class="QLabel" name="ipBetSizesHeader">
            <property name="text">
-            <string>▸ Cuando IP abre la apuesta (le toca actuar primero en esa calle)</string>
+            <string>▸ When IP opens the betting (it's their turn to act first on this street)</string>
            </property>
           </widget>
          </item>
@@ -778,7 +768,7 @@ p, li { white-space: pre-wrap; }
         <item>
          <widget class="QLabel" name="oopBetSizesHeader">
           <property name="text">
-           <string>▸ Cuando OOP abre la apuesta (primero en la calle, o "donk bet" después de no apostar la calle anterior)</string>
+           <string>▸ When OOP opens the betting (first on the street, or a "donk bet" after not betting the previous street)</string>
           </property>
          </widget>
         </item>
@@ -1419,7 +1409,7 @@ p, li { white-space: pre-wrap; }
          <item>
           <widget class="QPushButton" name="newHandButton">
            <property name="text">
-            <string>🔄 Empezar una mano nueva</string>
+            <string>🔄 Start a new hand</string>
            </property>
           </widget>
          </item>
@@ -1521,7 +1511,7 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QMenu" name="menuparameters">
     <property name="title">
-     <string>Parámetros</string>
+     <string>Parameters</string>
     </property>
     <addaction name="actionimport"/>
     <addaction name="actionexport"/>
@@ -1584,32 +1574,32 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionSettings">
    <property name="text">
-    <string>Configuración</string>
+    <string>Settings</string>
    </property>
   </action>
   <action name="actionimport">
    <property name="text">
-    <string>Importar</string>
+    <string>Import</string>
    </property>
   </action>
   <action name="actionexport">
    <property name="text">
-    <string>Exportar</string>
+    <string>Export</string>
    </property>
   </action>
   <action name="actionclear_all">
    <property name="text">
-    <string>Limpiar todo</string>
+    <string>Clear all</string>
    </property>
   </action>
   <action name="actionopen_parameters_folder">
    <property name="text">
-    <string>Abrir carpeta de parámetros</string>
+    <string>Open parameters folder</string>
    </property>
   </action>
   <action name="actionview_log">
    <property name="text">
-    <string>Ver registro (log)</string>
+    <string>View log</string>
    </property>
   </action>
  </widget>

@@ -2,24 +2,27 @@
 #include "include/data/licensemanager.h"
 #include "include/data/apiclient.h"
 #include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QPushButton>
 #include <QFrame>
+#include <QDesktopServices>
+#include <QUrl>
+
+static const char* WEBSITE_URL = "https://solverix-nicolastu-devs-projects.vercel.app/cuenta.html";
 
 LicenseDialog::LicenseDialog(QWidget *parent) : QDialog(parent)
 {
-    this->setWindowTitle(tr("Mi suscripción"));
-    this->setMinimumSize(460, 340);
+    this->setWindowTitle(tr("My subscription"));
+    this->setMinimumSize(440, 300);
 
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->setSpacing(16);
     layout->setContentsMargins(28, 28, 28, 28);
 
-    QLabel* title = new QLabel(tr("🔑 Mi suscripción"), this);
+    QLabel* title = new QLabel(tr("🔑 My subscription"), this);
     title->setStyleSheet("font-size:20px; font-weight:800;");
     layout->addWidget(title);
 
-    QLabel* accountNote = new QLabel(tr("Cuenta: %1").arg(LicenseManager::currentUserEmail()), this);
+    QLabel* accountNote = new QLabel(tr("Account: %1").arg(LicenseManager::currentUserEmail()), this);
     accountNote->setStyleSheet("font-size:12.5px; color:#8fb39f;");
     layout->addWidget(accountNote);
 
@@ -34,17 +37,17 @@ LicenseDialog::LicenseDialog(QWidget *parent) : QDialog(parent)
 
     layout->addStretch();
 
-    QPushButton* activateAdvancedBtn = new QPushButton(tr("Activar Solver Avanzado (30 días)"), this);
-    QPushButton* activateCompleteBtn = new QPushButton(tr("Activar Completo (30 días)"), this);
-    QString bigStyle = "font-size:14px; font-weight:700; padding:12px 10px;";
-    activateAdvancedBtn->setStyleSheet(bigStyle);
-    activateCompleteBtn->setStyleSheet(bigStyle);
-    connect(activateAdvancedBtn, &QPushButton::clicked, this, &LicenseDialog::onActivateAdvanced);
-    connect(activateCompleteBtn, &QPushButton::clicked, this, &LicenseDialog::onActivateComplete);
-    layout->addWidget(activateAdvancedBtn);
-    layout->addWidget(activateCompleteBtn);
+    QPushButton* openWebsiteBtn = new QPushButton(tr("Go to the website to get or renew a plan"), this);
+    openWebsiteBtn->setStyleSheet("font-size:14px; font-weight:700; padding:12px 10px;");
+    connect(openWebsiteBtn, &QPushButton::clicked, this, &LicenseDialog::onOpenWebsite);
+    layout->addWidget(openWebsiteBtn);
 
-    QPushButton* deactivateBtn = new QPushButton(tr("Cerrar sesión"), this);
+    QPushButton* recheckBtn = new QPushButton(tr("I already got a plan — check again"), this);
+    recheckBtn->setStyleSheet("font-size:12.5px; padding:10px 10px;");
+    connect(recheckBtn, &QPushButton::clicked, this, &LicenseDialog::onRecheckStatus);
+    layout->addWidget(recheckBtn);
+
+    QPushButton* deactivateBtn = new QPushButton(tr("Log out"), this);
     deactivateBtn->setStyleSheet("font-size:12.5px; padding:8px 10px;");
     connect(deactivateBtn, &QPushButton::clicked, this, &LicenseDialog::onDeactivate);
     layout->addWidget(deactivateBtn);
@@ -55,11 +58,11 @@ LicenseDialog::LicenseDialog(QWidget *parent) : QDialog(parent)
 void LicenseDialog::refreshStatus(){
     LicenseManager::Plan plan = LicenseManager::currentPlan();
     if(plan == LicenseManager::Plan::None){
-        this->statusLabel->setText(tr("Sin suscripción activa. Activá un plan de prueba abajo para seguir usando el solver."));
+        this->statusLabel->setText(tr("No active subscription. Get a plan on the website to keep using the solver."));
         this->statusLabel->setStyleSheet("font-size:15px; font-weight:700; color:#ff5c5c;");
     }else{
         int days = LicenseManager::daysRemaining();
-        this->statusLabel->setText(tr("Plan %1 — activo. Vence en %2 día(s) (%3).")
+        this->statusLabel->setText(tr("Plan %1 — active. Expires in %2 day(s) (%3).")
             .arg(LicenseManager::planDisplayName(plan))
             .arg(days)
             .arg(LicenseManager::expiryDate().toString("dd/MM/yyyy")));
@@ -67,21 +70,16 @@ void LicenseDialog::refreshStatus(){
     }
 }
 
-void LicenseDialog::onActivateAdvanced(){
-    QString email = LicenseManager::currentUserEmail();
-    this->statusLabel->setText(tr("Activando..."));
-    ApiClient::activate(email, "advanced", [this](ApiClient::LoginResult result){
-        if(result.ok){
-            LicenseManager::cacheFromServer(result.plan, result.expiresAt);
-        }
-        this->refreshStatus();
-    });
+void LicenseDialog::onOpenWebsite(){
+    QDesktopServices::openUrl(QUrl(WEBSITE_URL));
 }
 
-void LicenseDialog::onActivateComplete(){
+void LicenseDialog::onRecheckStatus(){
     QString email = LicenseManager::currentUserEmail();
-    this->statusLabel->setText(tr("Activando..."));
-    ApiClient::activate(email, "complete", [this](ApiClient::LoginResult result){
+    if(email.isEmpty()) return;
+    this->statusLabel->setText(tr("Checking..."));
+    this->statusLabel->setStyleSheet("font-size:15px; font-weight:600;");
+    ApiClient::checkStatus(email, [this](ApiClient::LoginResult result){
         if(result.ok){
             LicenseManager::cacheFromServer(result.plan, result.expiresAt);
         }

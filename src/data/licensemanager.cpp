@@ -58,9 +58,9 @@ void deactivate(){
 
 QString planDisplayName(Plan plan){
     switch(plan){
-        case Plan::Advanced: return QObject::tr("Solver Avanzado");
-        case Plan::Complete: return QObject::tr("Completo");
-        default: return QObject::tr("Sin suscripción");
+        case Plan::Advanced: return QObject::tr("Advanced Solver");
+        case Plan::Complete: return QObject::tr("Complete");
+        default: return QObject::tr("No subscription");
     }
 }
 

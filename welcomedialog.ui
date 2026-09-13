@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Bienvenido</string>
+   <string>Welcome</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="titleLabel">
      <property name="text">
-      <string>¿Qué es Solverix?</string>
+      <string>What is Solverix?</string>
      </property>
     </widget>
    </item>
@@ -27,17 +27,17 @@
       <bool>true</bool>
      </property>
      <property name="text">
-      <string>Solverix calcula, para una situación concreta de una mano, cuál es la forma matemáticamente más equilibrada de jugarla.
+      <string>Solverix works out, for a specific hand situation, the mathematically balanced way to play it.
 
-Tenés dos formas de usarlo:
+You have two ways to use it:
 
-🚀 Modo Rápido: cargás tus 2 cartas, el board, y elegís de una lista qué pasó antes del flop (por ejemplo "abriste desde el Botón y te pagaron"). Nosotros armamos automáticamente los rangos típicos de esa situación y te mostramos directamente qué conviene hacer con tu mano.
+🚀 Quick Mode: load your 2 cards, the board, and pick from a list what happened before the flop (e.g. "you opened from the Button and got called"). We automatically build the typical ranges for that situation and show you straight away what to do with your hand.
 
-🔧 Modo Avanzado: configurás vos mismo los rangos exactos de cada jugador, el tamaño de las apuestas, y todos los demás parámetros — para cuando quieras control total.
+🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter — for when you want full control.
 
-🎯 Modo Práctica: te tira una situación al azar (posición, mano y board) y adivinás qué harías antes de ver la respuesta del solver — para entrenar.
+🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you'd do before seeing the solver's answer — to train.
 
-Si es tu primera vez, te recomendamos Modo Rápido.</string>
+If it's your first time, we recommend Quick Mode.</string>
      </property>
     </widget>
    </item>
@@ -59,21 +59,21 @@ Si es tu primera vez, te recomendamos Modo Rápido.</string>
      <item>
       <widget class="QPushButton" name="advancedButton">
        <property name="text">
-        <string>🔧 Modo Avanzado</string>
+        <string>🔧 Advanced Mode</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="quickModeButton">
        <property name="text">
-        <string>🚀 Modo Rápido</string>
+        <string>🚀 Quick Mode</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="practiceButton">
        <property name="text">
-        <string>🎯 Modo Práctica</string>
+        <string>🎯 Practice Mode</string>
        </property>
       </widget>
      </item>

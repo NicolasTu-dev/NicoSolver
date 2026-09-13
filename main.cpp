@@ -60,33 +60,21 @@ int main(int argc, char *argv[])
     QString language_str = setting.value("language").toString();
     QTranslator trans;
 
+    // English by default on first launch — no picker dialog. Switchable
+    // later from the Solver > Language menu (see MainWindow), which just
+    // writes this same setting and asks for a restart.
     if(language_str == ""){
-        QStringList languages;
-        languages << "English" << QString::fromLocal8Bit("简体中文") << "Español";
-        QString lang = QInputDialog::getItem(NULL,"select language","language",languages,0,false);
-
-        if(lang == "English"){
-            trans.load(":/lang_en.qm");
-            language_str = "EN";
-        }else if(lang == QString::fromLocal8Bit("简体中文")){
-            trans.load(":/lang_cn.qm");
-            language_str = "CN";
-        }else if(lang == "Español"){
-            trans.load(":/lang_es.qm");
-            language_str = "ES";
-        }
+        language_str = "EN";
+        setting.setValue("language", language_str);
+    }
+    if(language_str == "CN"){
+        trans.load(":/lang_cn.qm");
         a.installTranslator(&trans);
-        setting.setValue("language",language_str);
-    }else{
-        if(language_str == "EN"){
-            trans.load(":/lang_en.qm");
-        }else if(language_str == "CN"){
-            trans.load(":/lang_cn.qm");
-        }else if(language_str == "ES"){
-            trans.load(":/lang_es.qm");
-        }
+    }else if(language_str == "ES"){
+        trans.load(":/lang_es.qm");
         a.installTranslator(&trans);
     }
+    // EN needs no translator — source strings are already English.
 
     QStringList validThemes;
     validThemes << "dark" << "light" << "pokerroom" << "violet" << "fintech";
