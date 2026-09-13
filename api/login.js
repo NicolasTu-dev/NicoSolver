@@ -40,11 +40,17 @@ module.exports = async (req, res) => {
     const expiresAt = user.expires_at ? new Date(user.expires_at) : null;
     const active = user.plan !== 'none' && expiresAt !== null && expiresAt.getTime() > Date.now();
 
+    const affiliateRows = await sql`
+      SELECT code FROM affiliates WHERE owner_email = ${normalizedEmail}
+    `;
+    const streamer = affiliateRows.length > 0 ? { code: affiliateRows[0].code } : null;
+
     res.status(200).json({
       ok: true,
       active,
       plan: active ? user.plan : 'none',
       expiresAt: expiresAt ? expiresAt.toISOString() : null,
+      streamer,
     });
   } catch (err) {
     console.error('login error', err);
