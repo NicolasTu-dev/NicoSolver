@@ -102,6 +102,21 @@
   .code-toggle.open .arrow{transform:rotate(90deg);}
   .code-body{display:none; margin-top:10px;}
   .code-body.open{display:block;}
+  .pay-back{
+    background:none; border:none; cursor:pointer; padding:0; margin-bottom:14px;
+    color:var(--muted); font-family:"Inter",sans-serif; font-size:12.5px;
+  }
+  .pay-back:hover{color:var(--text);}
+  .pay-option{
+    display:block; width:100%; text-align:left; border-radius:10px; padding:16px 18px;
+    margin-bottom:12px; border:1px solid var(--border); background:var(--bg-deep); cursor:pointer;
+  }
+  .pay-option:disabled{cursor:not-allowed; opacity:0.55;}
+  .pay-option:not(:disabled):hover{border-color:var(--gold);}
+  .pay-option .pay-region{font-size:11px; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); font-weight:700;}
+  .pay-option .pay-method{font-size:16px; font-weight:800; margin-top:4px;}
+  .pay-option .pay-note{font-size:12px; color:var(--muted-2); margin-top:4px;}
+  .pay-option.featured{border-color:var(--gold);}
 </style>
 </head>
 <body>
@@ -300,18 +315,39 @@
       document.getElementById('codeToggle').classList.toggle('open');
       document.getElementById('codeBody').classList.toggle('open');
     });
-    document.getElementById('pickAdvanced').onclick = () => startCheckout(email, 'advanced');
-    document.getElementById('pickComplete').onclick = () => startCheckout(email, 'complete');
+    document.getElementById('pickAdvanced').onclick = () => showPaymentOptions(email, 'advanced');
+    document.getElementById('pickComplete').onclick = () => showPaymentOptions(email, 'complete');
+  }
+
+  function showPaymentOptions(email, plan){
+    const lang = currentLang();
+    const backLabel = lang === 'es' ? '← Elegir otro plan' : '← Choose a different plan';
+    const binanceRegion = lang === 'es' ? 'Resto del mundo' : 'Rest of the world';
+    const binanceNote = lang === 'es' ? 'Próximamente' : 'Coming soon';
+    const mpRegion = lang === 'es' ? 'Argentina' : 'Argentina';
+    const mpNote = lang === 'es' ? 'Pesos argentinos, tarjeta o saldo en cuenta' : 'Argentine pesos, card or account balance';
+    accDownloadArea.innerHTML =
+      '<button type="button" class="pay-back" id="payBack">' + backLabel + '</button>' +
+      '<button type="button" class="pay-option featured" id="payBinance" disabled>' +
+      '<div class="pay-region">' + binanceRegion + '</div>' +
+      '<div class="pay-method">Binance Pay</div>' +
+      '<div class="pay-note">' + binanceNote + '</div>' +
+      '</button>' +
+      '<button type="button" class="pay-option" id="payMp">' +
+      '<div class="pay-region">' + mpRegion + '</div>' +
+      '<div class="pay-method">Mercado Pago</div>' +
+      '<div class="pay-note">' + mpNote + '</div>' +
+      '</button>' +
+      '<div id="checkoutStatus" class="acc-status"></div>';
+    document.getElementById('payBack').onclick = () => showNoPlan(email);
+    document.getElementById('payMp').onclick = () => startCheckout(email, plan);
   }
 
   async function startCheckout(email, plan){
     const statusEl = document.getElementById('checkoutStatus');
     const lang = currentLang();
     if(statusEl){ statusEl.textContent = lang === 'es' ? 'Abriendo Mercado Pago...' : 'Opening Mercado Pago...'; statusEl.className = 'acc-status info'; }
-    const codeInput = document.getElementById('affiliateCodeInput');
-    const typedCode = codeInput ? codeInput.value.trim().toLowerCase() : '';
-    if(typedCode) localStorage.setItem('solverix_ref', typedCode);
-    const ref = typedCode || localStorage.getItem('solverix_ref') || undefined;
+    const ref = localStorage.getItem('solverix_ref') || undefined;
     const result = await apiCall('/api/create-checkout', { email, plan, ref });
     if(!result.ok || !result.checkoutUrl){
       if(statusEl){ statusEl.textContent = lang === 'es' ? 'No se pudo iniciar el pago. Probá de nuevo.' : 'Couldn\'t start the payment. Try again.'; statusEl.className = 'acc-status err'; }
