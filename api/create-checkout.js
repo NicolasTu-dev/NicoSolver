@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
     });
     res.status(200).json({
       ok: true,
-      checkoutUrl: preference.sandbox_init_point || preference.init_point,
+      checkoutUrl: preference.init_point || preference.sandbox_init_point,
     });
   } catch (err) {
     console.error('create-checkout error', err);
