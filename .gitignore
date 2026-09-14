@@ -2,6 +2,7 @@
 build*/
 try-it/
 dist/
+installer-output/
 .qtcreator/
 *.pro.user
 *.pro.user.*
