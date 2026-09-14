@@ -1807,79 +1807,94 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="settingeditor.ui" line="161"/>
+        <source>Create desktop shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.ui" line="168"/>
         <source>Solver options (Quick Mode / Practice Mode)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="170"/>
+        <location filename="settingeditor.ui" line="177"/>
         <source>Iterations — Quick Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="194"/>
+        <location filename="settingeditor.ui" line="201"/>
         <source>Iterations — Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="218"/>
+        <location filename="settingeditor.ui" line="225"/>
         <source>Target exploitability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="245"/>
+        <location filename="settingeditor.ui" line="252"/>
         <source>Log interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="269"/>
+        <location filename="settingeditor.ui" line="276"/>
         <source>Threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="293"/>
+        <location filename="settingeditor.ui" line="300"/>
         <source>Raise limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="9"/>
+        <location filename="settingeditor.cpp" line="13"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="20"/>
+        <location filename="settingeditor.cpp" line="24"/>
         <source>Unknown language: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="20"/>
-        <location filename="settingeditor.cpp" line="35"/>
-        <location filename="settingeditor.cpp" line="78"/>
-        <location filename="settingeditor.cpp" line="95"/>
+        <location filename="settingeditor.cpp" line="24"/>
+        <location filename="settingeditor.cpp" line="39"/>
+        <location filename="settingeditor.cpp" line="102"/>
+        <location filename="settingeditor.cpp" line="119"/>
         <source>Setting fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="35"/>
+        <location filename="settingeditor.cpp" line="39"/>
         <source>Unknown theme: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="42"/>
+        <location filename="settingeditor.cpp" line="46"/>
         <source>dump round error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="78"/>
+        <location filename="settingeditor.cpp" line="82"/>
+        <source>Desktop shortcut created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="84"/>
+        <source>Couldn&apos;t create the desktop shortcut.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="102"/>
         <source>Unknown language index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="95"/>
+        <location filename="settingeditor.cpp" line="119"/>
         <source>Unknown theme index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="115"/>
+        <location filename="settingeditor.cpp" line="139"/>
         <source>Restart the program for your changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>

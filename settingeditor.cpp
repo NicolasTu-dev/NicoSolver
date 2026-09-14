@@ -1,5 +1,9 @@
 ﻿#include "settingeditor.h"
 #include "ui_settingeditor.h"
+#include <QStandardPaths>
+#include <QCoreApplication>
+#include <QFile>
+#include <QDir>
 
 SettingEditor::SettingEditor(QWidget *parent) :
     QDialog(parent),
@@ -60,6 +64,26 @@ SettingEditor::SettingEditor(QWidget *parent) :
 SettingEditor::~SettingEditor()
 {
     delete ui;
+}
+
+void SettingEditor::on_createShortcutButton_clicked()
+{
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    QString linkPath = QDir(desktopPath).filePath("Solverix.lnk");
+
+    if(QFile::exists(linkPath)){
+        QFile::remove(linkPath);
+    }
+
+    bool ok = QFile::link(QCoreApplication::applicationFilePath(), linkPath);
+
+    QMessageBox msgBox;
+    if(ok){
+        msgBox.setText(tr("Desktop shortcut created."));
+    }else{
+        msgBox.setText(tr("Couldn't create the desktop shortcut."));
+    }
+    msgBox.exec();
 }
 
 void SettingEditor::on_confirmBox_accepted()

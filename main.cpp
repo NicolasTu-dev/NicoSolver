@@ -127,9 +127,8 @@ int main(int argc, char *argv[])
         setting.setValue("dump_round",2);
     }
 
-    // Every launch requires "logging in" first, which checks whether the
-    // (local, simulated) subscription is active. No real server or payment
-    // involved — this is purely to demo what a gated login would feel like.
+    // Every launch requires logging in first, which checks the account's
+    // subscription status against solverix-api.
     LoginDialog login;
     if(login.exec() != QDialog::Accepted){
         return 0;

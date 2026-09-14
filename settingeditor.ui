@@ -156,6 +156,13 @@
       </layout>
      </item>
      <item>
+      <widget class="QPushButton" name="createShortcutButton">
+       <property name="text">
+        <string>Create desktop shortcut</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="quickModeOptionsLabel">
        <property name="text">
         <string>Solver options (Quick Mode / Practice Mode)</string>
