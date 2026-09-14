@@ -280,6 +280,30 @@
     }
   })();
 
+  // ---------- Crypto (NOWPayments) return handling ----------
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const npStatus = params.get('np');
+    if(!npStatus) return;
+    const messages = {
+      en: {
+        success: '✅ Payment sent! It can take a few minutes to confirm on-chain — log in below in a bit to see your active plan.',
+        cancel: '❌ The payment wasn\'t completed. You can try again by logging in below.',
+      },
+      es: {
+        success: '✅ ¡Pago enviado! Puede tardar unos minutos en confirmarse en la blockchain — iniciá sesión en un rato para ver tu plan activo.',
+        cancel: '❌ El pago no se completó. Podés intentarlo de nuevo iniciando sesión abajo.',
+      },
+    };
+    const set = messages[currentLang()] || messages.en;
+    if(set[npStatus]){
+      const banner = document.createElement('div');
+      banner.className = 'mp-banner';
+      banner.textContent = set[npStatus];
+      document.getElementById('mpBannerArea').appendChild(banner);
+    }
+  })();
+
   const loginBlock = document.getElementById('loginBlock');
   const loggedInBlock = document.getElementById('loggedInBlock');
   const accEmail = document.getElementById('accEmail');
@@ -380,16 +404,16 @@
   function showPaymentOptions(email, plan){
     const lang = currentLang();
     const backLabel = lang === 'es' ? '← Elegir otro plan' : '← Choose a different plan';
-    const binanceRegion = lang === 'es' ? 'Resto del mundo' : 'Rest of the world';
-    const binanceNote = lang === 'es' ? 'Próximamente' : 'Coming soon';
+    const cryptoRegion = lang === 'es' ? 'Resto del mundo' : 'Rest of the world';
+    const cryptoNote = lang === 'es' ? 'USDT desde cualquier wallet o exchange (incluye Binance)' : 'USDT from any wallet or exchange (including Binance)';
     const mpRegion = lang === 'es' ? 'Argentina' : 'Argentina';
     const mpNote = lang === 'es' ? 'Pesos argentinos, tarjeta o saldo en cuenta' : 'Argentine pesos, card or account balance';
     accDownloadArea.innerHTML =
       '<button type="button" class="pay-back" id="payBack">' + backLabel + '</button>' +
-      '<button type="button" class="pay-option featured" id="payBinance" disabled>' +
-      '<div class="pay-region">' + binanceRegion + '</div>' +
-      '<div class="pay-method">Binance Pay</div>' +
-      '<div class="pay-note">' + binanceNote + '</div>' +
+      '<button type="button" class="pay-option featured" id="payCrypto">' +
+      '<div class="pay-region">' + cryptoRegion + '</div>' +
+      '<div class="pay-method">Crypto (USDT)</div>' +
+      '<div class="pay-note">' + cryptoNote + '</div>' +
       '</button>' +
       '<button type="button" class="pay-option" id="payMp">' +
       '<div class="pay-region">' + mpRegion + '</div>' +
@@ -399,6 +423,7 @@
       '<div id="checkoutStatus" class="acc-status"></div>';
     document.getElementById('payBack').onclick = () => showNoPlan(email);
     document.getElementById('payMp').onclick = () => startCheckout(email, plan);
+    document.getElementById('payCrypto').onclick = () => startCryptoCheckout(email, plan);
   }
 
   async function startCheckout(email, plan){
@@ -407,6 +432,19 @@
     if(statusEl){ statusEl.textContent = lang === 'es' ? 'Abriendo Mercado Pago...' : 'Opening Mercado Pago...'; statusEl.className = 'acc-status info'; }
     const ref = localStorage.getItem('solverix_ref') || undefined;
     const result = await apiCall('/api/create-checkout', { email, plan, ref });
+    if(!result.ok || !result.checkoutUrl){
+      if(statusEl){ statusEl.textContent = lang === 'es' ? 'No se pudo iniciar el pago. Probá de nuevo.' : 'Couldn\'t start the payment. Try again.'; statusEl.className = 'acc-status err'; }
+      return;
+    }
+    window.location.href = result.checkoutUrl;
+  }
+
+  async function startCryptoCheckout(email, plan){
+    const statusEl = document.getElementById('checkoutStatus');
+    const lang = currentLang();
+    if(statusEl){ statusEl.textContent = lang === 'es' ? 'Abriendo el pago en cripto...' : 'Opening the crypto payment...'; statusEl.className = 'acc-status info'; }
+    const ref = localStorage.getItem('solverix_ref') || undefined;
+    const result = await apiCall('/api/create-checkout-crypto', { email, plan, ref });
     if(!result.ok || !result.checkoutUrl){
       if(statusEl){ statusEl.textContent = lang === 'es' ? 'No se pudo iniciar el pago. Probá de nuevo.' : 'Couldn\'t start the payment. Try again.'; statusEl.className = 'acc-status err'; }
       return;
