@@ -526,7 +526,7 @@
     const query = founderSearchInput.value.trim();
     founderSearchTimer = setTimeout(async () => {
       if(!query){ founderResults.innerHTML = ''; return; }
-      const result = await apiCall('/api/admin-search-users', { email: founderEmail, password: founderPassword, query });
+      const result = await apiCall('/api/admin', { email: founderEmail, password: founderPassword, action: 'search', query });
       if(!result.ok){ founderResults.innerHTML = ''; return; }
       const lang = currentLang();
       founderResults.innerHTML = result.users.map(u => {
@@ -557,8 +557,8 @@
       return;
     }
     setFounderStatus('Assigning...', 'Asignando...', 'info');
-    const result = await apiCall('/api/admin-assign-streamer', {
-      email: founderEmail, password: founderPassword, targetEmail: founderSelectedTarget, code, name,
+    const result = await apiCall('/api/admin', {
+      email: founderEmail, password: founderPassword, action: 'assign-streamer', targetEmail: founderSelectedTarget, code, name,
     });
     if(!result.ok){
       setFounderStatus('Couldn\'t assign the streamer role.', 'No se pudo asignar el rol de streamer.', 'err');
@@ -572,8 +572,8 @@
     const plan = founderPlanInput.value;
     const days = founderDaysInput.value;
     setFounderStatus('Granting...', 'Otorgando...', 'info');
-    const result = await apiCall('/api/admin-grant-plan', {
-      email: founderEmail, password: founderPassword, targetEmail: founderSelectedTarget, plan, days,
+    const result = await apiCall('/api/admin', {
+      email: founderEmail, password: founderPassword, action: 'grant-plan', targetEmail: founderSelectedTarget, plan, days,
     });
     if(!result.ok){
       setFounderStatus('Couldn\'t grant the subscription.', 'No se pudo otorgar la suscripción.', 'err');
