@@ -137,6 +137,7 @@
   .founder-result .fr-tag{font-size:10.5px; color:var(--gold-bright); font-weight:700; white-space:nowrap;}
   .founder-assign{margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:none;}
   .founder-selected{font-weight:700; margin-bottom:10px;}
+  .founder-subtitle{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--gold-bright); margin-bottom:8px;}
 </style>
 </head>
 <body>
@@ -184,16 +185,28 @@
   </div>
 
   <div class="founder-panel" id="founderPanel" style="display:none;">
-    <div class="founder-title" data-i18n="founderTitle">Assign streamer role</div>
+    <div class="founder-title" data-i18n="founderTitle">Manage accounts</div>
     <input class="acc-input" id="founderSearch" data-i18n-placeholder="founderSearchPlaceholder" placeholder="Search by email...">
     <div class="founder-results" id="founderResults"></div>
     <div class="founder-assign" id="founderAssign">
       <div class="founder-selected" id="founderSelectedEmail"></div>
+
+      <div class="founder-subtitle" data-i18n="founderGrantTitle">Grant subscription</div>
+      <div class="acc-field-label" data-i18n="founderPlanLabel">Plan</div>
+      <select class="acc-input" id="founderPlan">
+        <option value="advanced" data-i18n="founderPlanAdvanced">Advanced Solver</option>
+        <option value="complete" data-i18n="founderPlanComplete">Complete</option>
+      </select>
+      <div class="acc-field-label" data-i18n="founderDaysLabel">Days</div>
+      <input class="acc-input" id="founderDays" type="number" min="1" value="30">
+      <button class="btn btn-gold" id="founderGrantBtn" style="margin-top:14px; width:100%;" data-i18n="founderGrantBtn">Grant subscription</button>
+
+      <div class="founder-subtitle" style="margin-top:22px;" data-i18n="founderStreamerTitle">Assign streamer role</div>
       <div class="acc-field-label" data-i18n="founderCodeLabel">Streamer code</div>
       <input class="acc-input" id="founderCode" style="text-transform:uppercase;">
       <div class="acc-field-label" data-i18n="founderNameLabel">Display name</div>
       <input class="acc-input" id="founderName">
-      <button class="btn btn-gold" id="founderAssignBtn" style="margin-top:14px; width:100%;" data-i18n="founderAssignBtn">Assign streamer role</button>
+      <button class="btn btn-ghost" id="founderAssignBtn" style="margin-top:14px; width:100%;" data-i18n="founderAssignBtn">Assign streamer role</button>
     </div>
     <div class="acc-status" id="founderStatus"></div>
   </div>
@@ -222,8 +235,15 @@
     btnLogin: 'Iniciar sesión',
     btnRegister: 'Registrarme',
     logoutLink: 'Cerrar sesión',
-    founderTitle: 'Asignar rol de streamer',
+    founderTitle: 'Gestionar cuentas',
     founderSearchPlaceholder: 'Buscar por email...',
+    founderGrantTitle: 'Otorgar suscripción',
+    founderPlanLabel: 'Plan',
+    founderPlanAdvanced: 'Solver Avanzado',
+    founderPlanComplete: 'Completo',
+    founderDaysLabel: 'Días',
+    founderGrantBtn: 'Otorgar suscripción',
+    founderStreamerTitle: 'Asignar rol de streamer',
     founderCodeLabel: 'Código de streamer',
     founderNameLabel: 'Nombre para mostrar',
     founderAssignBtn: 'Asignar rol de streamer',
@@ -492,6 +512,8 @@
   const founderSelectedEmailEl = document.getElementById('founderSelectedEmail');
   const founderCodeInput = document.getElementById('founderCode');
   const founderNameInput = document.getElementById('founderName');
+  const founderPlanInput = document.getElementById('founderPlan');
+  const founderDaysInput = document.getElementById('founderDays');
   const founderStatusEl = document.getElementById('founderStatus');
 
   function setFounderStatus(msgEn, msgEs, kind){
@@ -517,6 +539,8 @@
           founderSelectedEmailEl.textContent = founderSelectedTarget;
           founderCodeInput.value = '';
           founderNameInput.value = '';
+          founderPlanInput.value = 'advanced';
+          founderDaysInput.value = 30;
           founderAssign.style.display = 'block';
           setFounderStatus('', '', '');
         });
@@ -541,6 +565,21 @@
       return;
     }
     setFounderStatus('Streamer role assigned.', 'Rol de streamer asignado.', 'ok');
+  });
+
+  document.getElementById('founderGrantBtn').addEventListener('click', async () => {
+    if(!founderSelectedTarget) return;
+    const plan = founderPlanInput.value;
+    const days = founderDaysInput.value;
+    setFounderStatus('Granting...', 'Otorgando...', 'info');
+    const result = await apiCall('/api/admin-grant-plan', {
+      email: founderEmail, password: founderPassword, targetEmail: founderSelectedTarget, plan, days,
+    });
+    if(!result.ok){
+      setFounderStatus('Couldn\'t grant the subscription.', 'No se pudo otorgar la suscripción.', 'err');
+      return;
+    }
+    setFounderStatus('Subscription granted.', 'Suscripción otorgada.', 'ok');
   });
 
   accRegisterBtn.addEventListener('click', async () => {
