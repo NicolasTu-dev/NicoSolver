@@ -234,8 +234,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="136"/>
-        <location filename="mainwindow.cpp" line="358"/>
-        <location filename="mainwindow.cpp" line="1340"/>
+        <location filename="mainwindow.cpp" line="375"/>
+        <location filename="mainwindow.cpp" line="1365"/>
         <source>Next →</source>
         <translation>Siguiente →</translation>
     </message>
@@ -256,7 +256,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="264"/>
-        <location filename="mainwindow.cpp" line="1225"/>
+        <location filename="mainwindow.cpp" line="1250"/>
         <source>Choose your seat.</source>
         <translation>Elegí tu asiento.</translation>
     </message>
@@ -267,9 +267,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="287"/>
-        <location filename="mainwindow.cpp" line="1257"/>
-        <location filename="mainwindow.cpp" line="1281"/>
-        <location filename="mainwindow.cpp" line="1317"/>
+        <location filename="mainwindow.cpp" line="1282"/>
+        <location filename="mainwindow.cpp" line="1306"/>
+        <location filename="mainwindow.cpp" line="1342"/>
         <source>Selected: (none)</source>
         <translation>Seleccionadas: (ninguna)</translation>
     </message>
@@ -323,8 +323,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="464"/>
-        <location filename="mainwindow.cpp" line="345"/>
-        <location filename="mainwindow.cpp" line="1330"/>
+        <location filename="mainwindow.cpp" line="362"/>
+        <location filename="mainwindow.cpp" line="1355"/>
         <source>Board</source>
         <translation>Board</translation>
     </message>
@@ -565,7 +565,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="1255"/>
-        <location filename="mainwindow.cpp" line="346"/>
+        <location filename="mainwindow.cpp" line="363"/>
         <source>Solver Options</source>
         <translation>Opciones del Solver</translation>
     </message>
@@ -741,7 +741,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="1577"/>
-        <location filename="mainwindow.cpp" line="760"/>
+        <location filename="mainwindow.cpp" line="777"/>
         <source>Settings</source>
         <translation>Configuración</translation>
     </message>
@@ -766,7 +766,7 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Rangos</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="345"/>
+        <location filename="mainwindow.cpp" line="362"/>
         <source>Bet Sizings</source>
         <translation>Tamaños de apuesta</translation>
     </message>
@@ -799,513 +799,533 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Archivo JSON (*.json)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="41"/>
+        <location filename="mainwindow.cpp" line="42"/>
         <source>Solverix</source>
         <translation>Solverix</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="127"/>
         <source>If you already saved a configuration before (a .json file), tap here to load it and skip every step.</source>
         <translation>Si ya guardaste una configuración antes (un archivo .json), tocá acá para cargarla y saltarte todos los pasos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="111"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>The IP player&apos;s (the one who acts last) hand range shows up here as text. You can type it by hand or build it with the grid on the right by tapping &quot;Select IP&quot;.</source>
         <translation>Acá aparece el rango de manos del jugador IP (el que actúa último) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando &quot;Select IP&quot;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="112"/>
+        <location filename="mainwindow.cpp" line="129"/>
         <source>The OOP player&apos;s (the one who acts first) hand range shows up here as text. You can type it by hand or build it with the grid on the right by tapping &quot;Select OOP&quot;.</source>
         <translation>Acá aparece el rango de manos del jugador OOP (el que actúa primero) en formato de texto. Podés escribirlo a mano o armarlo con la grilla de la derecha tocando &quot;Select OOP&quot;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="113"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Grid of possible hands for the IP player. Each cell is a card combination: tap a cell to include it (green) or exclude it from the range. The darker the green, the more often that hand is played.</source>
         <translation>Grilla de manos posibles del jugador IP. Cada celda es una combinación de cartas: tocá una celda para incluirla (verde) o excluirla del rango. Cuanto más oscuro el verde, con más frecuencia se juega esa mano.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="114"/>
+        <location filename="mainwindow.cpp" line="131"/>
         <source>Grid of possible hands for the OOP player. Each cell is a card combination: tap a cell to include it (green) or exclude it from the range. The darker the green, the more often that hand is played.</source>
         <translation>Grilla de manos posibles del jugador OOP. Cada celda es una combinación de cartas: tocá una celda para incluirla (verde) o excluirla del rango. Cuanto más oscuro el verde, con más frecuencia se juega esa mano.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="115"/>
+        <location filename="mainwindow.cpp" line="132"/>
         <source>Opens the visual grid to build the IP player&apos;s range by tapping hands instead of typing text.</source>
         <translation>Abre la grilla visual para armar el rango del jugador IP tocando manos en vez de escribir texto.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="116"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>Opens the visual grid to build the OOP player&apos;s range by tapping hands instead of typing text.</source>
         <translation>Abre la grilla visual para armar el rango del jugador OOP tocando manos en vez de escribir texto.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="118"/>
+        <location filename="mainwindow.cpp" line="135"/>
         <source>When checked (✓ green), the solver adds the option to go all-in with the whole stack on this street, in addition to the bet sizes defined above.</source>
         <translation>Si está tildado (✓ verde), el solver agrega la opción de ir all-in con todo el stack en esta calle, además de los tamaños de apuesta definidos arriba.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="126"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>Flop = the first 3 community cards. Here you set which bet sizes IP (the player who acts last) can use when it&apos;s their turn to open the action on the flop. Example: entering &quot;50&quot; in Bet Sizes = betting 50% of the pot at that moment.</source>
         <translation>Flop = las primeras 3 cartas comunitarias. Acá definís qué tamaños de apuesta puede usar IP (el jugador que actúa último) cuando le toca abrir la acción en el flop. Ejemplo: poner &quot;50&quot; en Bet Sizes = apostar el 50% del pozo que haya en ese momento.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="mainwindow.cpp" line="144"/>
         <source>Turn = the 4th community card. Bet sizes IP can use when opening the action on the turn. Same idea as the flop: the numbers are % of the pot, not fixed chips.</source>
         <translation>Turn = la 4ta carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el turn. Mismo criterio que en el flop: los números son % del pozo, no fichas fijas.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="128"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>River = the 5th and last community card. Bet sizes IP can use when opening the action on the river.</source>
         <translation>River = la 5ta y última carta comunitaria. Tamaños de apuesta que puede usar IP al abrir la acción en el river.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="146"/>
         <source>Flop = the first 3 community cards. Bet sizes OOP (the player who acts first) can use when deciding to open betting on the flop, instead of checking.</source>
         <translation>Flop = las primeras 3 cartas comunitarias. Tamaños de apuesta que puede usar OOP (el jugador que actúa primero) cuando decide abrir apostando en el flop, en vez de chequear.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="130"/>
+        <location filename="mainwindow.cpp" line="147"/>
         <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does — that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
         <translation>Turn = la 4ta carta comunitaria. &quot;Donk Sizes&quot; es para este caso concreto: en el flop nadie apostó (ambos chequearon), llega el turn, y OOP decide apostar primero en vez de esperar a ver qué hace IP — a esa jugada se le dice &quot;donk bet&quot;. Los números son % del pozo en ese momento.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="131"/>
+        <location filename="mainwindow.cpp" line="148"/>
         <source>River = the 5th and last community card. Same case as the turn: &quot;Donk Sizes&quot; are the sizes OOP can use to bet first on the river after not betting on the turn.</source>
         <translation>River = la 5ta y última carta comunitaria. Mismo caso que en el turn: &quot;Donk Sizes&quot; son los tamaños que OOP puede usar para apostar primero en el river después de no haber apostado en el turn.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="150"/>
         <source>Maximum number of consecutive raises the solver considers on the same street. A higher number makes the tree much bigger and slower to solve.</source>
         <translation>Máxima cantidad de subidas seguidas que el solver considera en una misma calle. Un número más alto agranda mucho el árbol y lo hace más lento de resolver.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="134"/>
+        <location filename="mainwindow.cpp" line="151"/>
         <source>Pot size before this situation, in chips.</source>
         <translation>Tamaño del pozo antes de esta situación, en fichas.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="135"/>
+        <location filename="mainwindow.cpp" line="152"/>
         <source>Chips left for the player with the smaller stack. That&apos;s the most that can be bet in the hand.</source>
         <translation>Fichas que le quedan al jugador con menos stack. Es lo máximo que se puede llegar a apostar en la mano.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="136"/>
+        <location filename="mainwindow.cpp" line="153"/>
         <source>Deck to use: &quot;texas holdem&quot; (52 normal cards) or &quot;shortdeck&quot; (36 cards, no 2, 3, 4, or 5).</source>
         <translation>Mazo a usar: &quot;texas holdem&quot; (52 cartas normales) o &quot;shortdeck&quot; (36 cartas, sin 2, 3, 4 y 5).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="137"/>
+        <location filename="mainwindow.cpp" line="154"/>
         <source>If a player&apos;s remaining stack is less than this % of the pot, the solver directly offers going all-in instead of intermediate bet sizes.</source>
         <translation>Si el stack restante de un jugador es menor a este % del pozo, el solver le ofrece directamente ir all-in en vez de tamaños de apuesta intermedios.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.cpp" line="155"/>
         <source>Internal optimization that groups equivalent cards together to solve faster without losing precision. Recommended to leave checked.</source>
         <translation>Optimización interna que agrupa cartas equivalentes entre sí para resolver más rápido sin perder precisión. Se recomienda dejarlo tildado.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>Reduces the RAM used by the solver at the cost of solving slower or with less numerical precision. Only use it if you&apos;re running out of memory.</source>
         <translation>Reduce la memoria RAM usada por el solver a cambio de resolver más lento o con menor precisión numérica. Usalo solo si te quedás sin memoria.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="140"/>
+        <location filename="mainwindow.cpp" line="157"/>
         <source>Maximum number of times the solver recalculates the strategy. More iterations = more precision, but takes longer.</source>
         <translation>Cantidad máxima de veces que el solver recalcula la estrategia. Más iteraciones = más precisión, pero tarda más.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="141"/>
+        <location filename="mainwindow.cpp" line="158"/>
         <source>The solver stops early if it already reached a strategy with this error level (% of the pot) or less. A lower number is more precise but slower; 0.5% is already a very solid strategy.</source>
         <translation>El solver para antes si ya alcanzó una estrategia con este nivel de error (% del pozo) o menos. Un número más bajo es más preciso pero más lento; 0.5% ya es una estrategia muy sólida.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="159"/>
         <source>How often progress is shown in the console below, in iterations. Only affects how often you see updates, not the final result.</source>
         <translation>Cada cuántas iteraciones se muestra el progreso en la consola de abajo. Solo afecta qué tan seguido ves actualizaciones, no el resultado final.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="160"/>
         <source>Number of processor cores the solver can use at once. More threads = solves faster if your computer has free cores.</source>
         <translation>Cantidad de núcleos del procesador que puede usar el solver a la vez. Más threads = resuelve más rápido si tu computadora tiene núcleos libres.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="191"/>
+        <location filename="mainwindow.cpp" line="208"/>
         <source>You need a subscription</source>
         <translation>Necesitás una suscripción</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="193"/>
+        <location filename="mainwindow.cpp" line="210"/>
         <source>You haven&apos;t activated any subscription yet. You need the &quot;%1&quot; plan or higher for this.</source>
         <translation>Todavía no activaste ninguna suscripción. Necesitás el plan &quot;%1&quot; o superior para esto.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="211"/>
         <source>Your current plan doesn&apos;t include this. You need the &quot;%1&quot; plan or higher.</source>
         <translation>Tu plan actual no incluye esto. Necesitás el plan &quot;%1&quot; o superior.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="268"/>
-        <location filename="mainwindow.cpp" line="1089"/>
+        <location filename="mainwindow.cpp" line="285"/>
+        <location filename="mainwindow.cpp" line="1114"/>
         <source>Practice Mode</source>
         <translation>Modo Práctica</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="274"/>
+        <location filename="mainwindow.cpp" line="291"/>
         <source>🎯 What would you do here?</source>
         <translation>🎯 ¿Qué harías acá?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="287"/>
+        <location filename="mainwindow.cpp" line="304"/>
         <source>Your hand:</source>
         <translation>Tu mano:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="293"/>
+        <location filename="mainwindow.cpp" line="310"/>
         <source>Board:</source>
         <translation>Board:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="301"/>
+        <location filename="mainwindow.cpp" line="318"/>
         <source>What would you do with this hand?</source>
         <translation>¿Qué harías con esta mano?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="345"/>
+        <location filename="mainwindow.cpp" line="362"/>
         <source>Ranges</source>
         <translation>Rangos</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="346"/>
+        <location filename="mainwindow.cpp" line="363"/>
         <source>Tree Parameters</source>
         <translation>Parámetros del árbol</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="346"/>
+        <location filename="mainwindow.cpp" line="363"/>
         <source>Confirm and solve</source>
         <translation>Confirmar y resolver</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="349"/>
+        <location filename="mainwindow.cpp" line="366"/>
         <source>A &quot;range&quot; is the set of hands a player might have in this situation. IP (&quot;in position&quot;) is the player who acts last on the street; OOP (&quot;out of position&quot;) is the one who acts first. Tap a grid cell to add or remove that hand from the range (darker = played more often), or type the range by hand in the text box.</source>
         <translation>Un &quot;rango&quot; es el conjunto de manos que un jugador puede tener en esta situación. IP (&quot;in position&quot;) es el jugador que actúa último en la calle; OOP (&quot;out of position&quot;) es el que actúa primero. Tocá una celda de la grilla para agregar o quitar esa mano del rango (más oscuro = se juega con más frecuencia), o escribí el rango a mano en el cuadro de texto.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="350"/>
+        <location filename="mainwindow.cpp" line="367"/>
         <source>Choose the cards that already came out on the table (3 for flop, 4 for turn, 5 for river).</source>
         <translation>Elegí las cartas que ya salieron en la mesa (3 para flop, 4 para turn, 5 para river).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="351"/>
+        <location filename="mainwindow.cpp" line="368"/>
         <source>This step defines WHAT BET SIZES the solver can choose — you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) — that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
         <translation>Este paso define QUÉ TAMAÑOS DE APUESTA puede elegir el solver — no hace falta que entiendas todos los términos ahora, con los valores por defecto ya alcanza para probar. Ejemplo concreto: si el pozo tiene 100 fichas y ponés &quot;50&quot; en Bet Sizes, significa &quot;apostar el 50% del pozo&quot; = 50 fichas. Si después alguien sube con &quot;60&quot; en Raise Sizes, esas son 60% DEL POZO YA AGRANDADO por esa apuesta (no del pozo original) — por eso se expresa en % y no en fichas fijas, así sirve para cualquier tamaño de pozo. Hay 6 cajas porque el juego se divide en 3 calles (Flop, Turn, River) y en cada una IP y OOP pueden usar tamaños distintos; mirá los títulos ▸ arriba de cada fila para ubicarte. &quot;Donk Sizes&quot; es solo para OOP en Turn/River: son los tamaños que puede usar para apostar primero en esa calle nueva, aunque en la calle anterior haya sido el que no apostó (esa jugada se llama &quot;donk bet&quot;). &quot;Add Allin&quot; simplemente agrega, además de esos tamaños, la opción de ir directo all-in con todo el stack.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="352"/>
+        <location filename="mainwindow.cpp" line="369"/>
         <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision — leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
         <translation>&quot;Raise limit&quot; es la cantidad máxima de subidas seguidas que el solver va a considerar en una misma calle (más subidas = árbol más grande y más lento). &quot;Pot&quot; es el tamaño del pozo antes de empezar esta situación, y &quot;Effective Stack&quot; es la cantidad de fichas que le queda al jugador con menos stack (lo máximo que se puede llegar a apostar). &quot;Mode&quot; define el mazo: &quot;texas holdem&quot; (52 cartas) o &quot;shortdeck&quot; (36 cartas, sin 2-5). &quot;Allin threshold&quot; es un atajo: si a un jugador le queda menos de ese % del pozo, el solver directamente le ofrece ir all-in en vez de tamaños de apuesta intermedios, para no complicar el árbol innecesariamente. &quot;Use isomorphism&quot; es una optimización interna: agrupa cartas que son estratégicamente equivalentes (por ejemplo, dos palos que no forman color en ningún lado) para resolver más rápido sin perder precisión — dejalo tildado salvo que tengas una razón específica para desactivarlo. &quot;Save memory at cost of speed/accuracy&quot; reduce la memoria RAM usada a cambio de resolver un poco más lento o con menor precisión numérica; usalo solo si te quedás sin memoria. Al tocar &quot;Siguiente&quot; se construye el árbol de decisiones automáticamente con estos valores.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="353"/>
+        <location filename="mainwindow.cpp" line="370"/>
         <source>&quot;Iterations&quot; is the maximum number of times the solver will recalculate the strategy (more iterations = more precision, but more time). &quot;Stop solving when reach X% exploitability&quot; makes the solver stop early if it already reached a strategy close enough to optimal (a lower number = more precise but slower; 0.5% is already a very solid strategy to play). &quot;Log interval&quot; is how often progress is printed in the console below, it only affects how often you see updates, not the result. &quot;Threads&quot; is the number of processor cores the solver can use at once (more threads = solves faster if your computer has enough free cores). The default values work fine to start.</source>
         <translation>&quot;Iterations&quot; es el número máximo de veces que el solver va a recalcular la estrategia (más iteraciones = más precisión, pero más tiempo). &quot;Stop solving when reach X% exploitability&quot; hace que el solver pare antes si ya alcanzó una estrategia lo bastante cercana a la óptima (un número más bajo = más preciso pero más lento; 0.5% ya es una estrategia muy sólida para jugar). &quot;Log interval&quot; es cada cuántas iteraciones se imprime el progreso en la consola de abajo, solo afecta qué tan seguido ves actualizaciones, no el resultado. &quot;Threads&quot; es la cantidad de núcleos del procesador que puede usar el solver a la vez (más threads = resuelve más rápido si tu computadora tiene suficientes núcleos libres). Los valores por defecto funcionan bien para empezar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="354"/>
+        <location filename="mainwindow.cpp" line="371"/>
         <source>Review everything and tap &quot;Start solving&quot; so the solver calculates the optimal strategy.</source>
         <translation>Revisá todo y tocá &quot;Iniciar resolución&quot; para que el solver calcule la estrategia óptima.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="355"/>
+        <location filename="mainwindow.cpp" line="372"/>
         <source>Step %1 of 6: %2</source>
         <translation>Paso %1 de 6: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="358"/>
-        <location filename="mainwindow.cpp" line="1147"/>
+        <location filename="mainwindow.cpp" line="375"/>
+        <location filename="mainwindow.cpp" line="1172"/>
         <source>Done</source>
         <translation>Listo</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="363"/>
+        <location filename="mainwindow.cpp" line="380"/>
         <source>📌 Example: IP is a player on the button (BTN) who opened the hand with a typical opening range. OOP is the big blind (BB) who called that open with their defending range. Notice both ranges are already loaded in the grid.</source>
         <translation>📌 Ejemplo: IP es un jugador en el botón (BTN) que abrió la mano con un rango típico de apertura. OOP es la ciega grande (BB) que pagó esa apertura con su rango de defensa. Fijate que ambos rangos ya están cargados en la grilla.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="364"/>
+        <location filename="mainwindow.cpp" line="381"/>
         <source>📌 Example: the flop came Q♠ J♥ 2♥ — a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
         <translation>📌 Ejemplo: el flop salió Q♠ J♥ 2♥ — una carta alta (Q), una carta media que puede haber conectado con varias manos (J), y una carta baja que además trae proyecto de color a corazones.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="382"/>
         <source>📌 Example: we left the bet sizes at default (50% of the pot when betting, 60% when raising) to keep the example simple. In a real hand you&apos;d adjust this to how your tables usually play.</source>
         <translation>📌 Ejemplo: dejamos los tamaños de apuesta por defecto (50% del pozo al apostar, 60% al subir) para no complicar el ejemplo. En una mano real, ajustarías esto según cómo se suele jugar en tus mesas.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="366"/>
+        <location filename="mainwindow.cpp" line="383"/>
         <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left — round numbers chosen to make it easy to follow.</source>
         <translation>📌 Ejemplo: el pozo antes de esta situación es 50 fichas y a cada jugador le quedan 200 fichas de stack efectivo — números redondos pensados para que sea fácil de seguir.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="367"/>
+        <location filename="mainwindow.cpp" line="384"/>
         <source>📌 Example: we left 200 iterations, which is enough for the solver to converge quickly on a simple example like this (on a more complex hand you might need more).</source>
         <translation>📌 Ejemplo: dejamos 200 iteraciones, que alcanza para que el solver converja rápido en un ejemplo simple como este (en una mano más compleja, quizás necesites más).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="368"/>
+        <location filename="mainwindow.cpp" line="385"/>
         <source>📌 Example: tap &quot;Start solving&quot; and wait for it to finish (with these values it should take just seconds). Then tap &quot;ShowResult&quot; to see the recommended strategy.</source>
         <translation>📌 Ejemplo: tocá &quot;Iniciar resolución&quot; y esperá a que termine (con estos valores debería ser cuestión de segundos). Después tocá &quot;ShowResult&quot; para ver la estrategia recomendada.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="419"/>
+        <location filename="mainwindow.cpp" line="436"/>
         <source>Choose both seats</source>
         <translation>Elegí los dos asientos</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="419"/>
+        <location filename="mainwindow.cpp" line="436"/>
         <source>Tap your seat and then your opponent&apos;s before continuing.</source>
         <translation>Tocá tu asiento y después el del rival antes de seguir.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="427"/>
+        <location filename="mainwindow.cpp" line="444"/>
         <source>Choose 2 cards</source>
         <translation>Elegí 2 cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="427"/>
+        <location filename="mainwindow.cpp" line="444"/>
         <source>You need to tap exactly 2 cards for your hand before continuing.</source>
         <translation>Tenés que tocar exactamente 2 cartas para tu mano antes de seguir.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="520"/>
+        <location filename="mainwindow.cpp" line="537"/>
         <source>File selection invalid.</source>
         <translation>Selección de archivo no válida.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="525"/>
+        <location filename="mainwindow.cpp" line="542"/>
         <source>File open failed.</source>
         <translation>Error al abrir el archivo.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="644"/>
-        <location filename="mainwindow.cpp" line="657"/>
+        <location filename="mainwindow.cpp" line="661"/>
+        <location filename="mainwindow.cpp" line="674"/>
         <source>Open parameters file</source>
         <translation>Abrir archivo de parámetros</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="646"/>
-        <location filename="mainwindow.cpp" line="659"/>
+        <location filename="mainwindow.cpp" line="663"/>
+        <location filename="mainwindow.cpp" line="676"/>
         <source>Text files (*.txt)</source>
         <translation>Archivos de texto (*.txt)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="668"/>
+        <location filename="mainwindow.cpp" line="685"/>
         <source>Save Parameters</source>
         <translation>Guardar parámetros</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="670"/>
+        <location filename="mainwindow.cpp" line="687"/>
         <source>Text file (*.txt)</source>
         <translation>Archivo de texto (*.txt)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="842"/>
-        <location filename="mainwindow.cpp" line="1295"/>
+        <location filename="mainwindow.cpp" line="859"/>
+        <location filename="mainwindow.cpp" line="1320"/>
         <source>Your subscription expired</source>
         <translation>Tu suscripción venció</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="843"/>
+        <location filename="mainwindow.cpp" line="860"/>
         <source>Your Solverix subscription expired, so you can&apos;t keep solving. Reactivate it to continue.</source>
         <translation>Tu suscripción a Solverix venció, así que no se puede seguir resolviendo. Reactivala para continuar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="867"/>
-        <location filename="mainwindow.cpp" line="992"/>
+        <location filename="mainwindow.cpp" line="884"/>
+        <location filename="mainwindow.cpp" line="1009"/>
         <source>Invalid board</source>
         <translation>Board inválido</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="868"/>
-        <location filename="mainwindow.cpp" line="993"/>
+        <location filename="mainwindow.cpp" line="885"/>
+        <location filename="mainwindow.cpp" line="1010"/>
         <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection.</source>
         <translation>Un board necesita exactamente 3 cartas (flop), 4 (turn) o 5 (river) — ni más ni menos. Volvé atrás y corregí la selección del board.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1017"/>
+        <location filename="mainwindow.cpp" line="1034"/>
         <source>Please build tree first.</source>
         <translation>Primero construya el árbol.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1019"/>
-        <location filename="mainwindow.cpp" line="1022"/>
+        <location filename="mainwindow.cpp" line="1036"/>
+        <location filename="mainwindow.cpp" line="1039"/>
         <source>Estimated Memory Usage: </source>
         <translation>Uso de memoria estimado: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1019"/>
+        <location filename="mainwindow.cpp" line="1036"/>
         <source> Mb</source>
         <translation> Mb</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1020"/>
-        <location filename="mainwindow.cpp" line="1023"/>
+        <location filename="mainwindow.cpp" line="1037"/>
+        <location filename="mainwindow.cpp" line="1040"/>
         <source>
 Rebuild tree to have changed optimization options take effect!</source>
         <translation>
 ¡Reconstruya el árbol para que los cambios en las opciones de optimización surtan efecto!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1022"/>
+        <location filename="mainwindow.cpp" line="1039"/>
         <source> Gb</source>
         <translation> Gb</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1056"/>
+        <location filename="mainwindow.cpp" line="1073"/>
         <source>Solving the optimal strategy... this can take a few seconds.</source>
         <translation>Resolviendo la estrategia óptima... puede tardar unos segundos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1215"/>
+        <location filename="mainwindow.cpp" line="1240"/>
         <source>(OPPONENT)</source>
         <translation>(RIVAL)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1281"/>
+        <location filename="mainwindow.cpp" line="1306"/>
         <source>Selected: %1</source>
         <translation>Seleccionadas: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="307"/>
-        <location filename="mainwindow.cpp" line="1083"/>
+        <location filename="mainwindow.cpp" line="324"/>
+        <location filename="mainwindow.cpp" line="1108"/>
         <source>Fold</source>
         <translation type="unfinished">Retirarse</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="56"/>
+        <location filename="mainwindow.cpp" line="57"/>
         <source>Log</source>
         <translation>Registro</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="308"/>
-        <location filename="mainwindow.cpp" line="1084"/>
+        <location filename="mainwindow.cpp" line="325"/>
+        <location filename="mainwindow.cpp" line="1109"/>
         <source>Call / Check</source>
         <translation type="unfinished">Pagar / Pasar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="309"/>
-        <location filename="mainwindow.cpp" line="1085"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="1110"/>
         <source>Bet / Raise</source>
         <translation type="unfinished">Apostar / Subir</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1095"/>
+        <location filename="mainwindow.cpp" line="1120"/>
         <source>✅ You got it right!</source>
         <translation>✅ ¡Acertaste!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1095"/>
+        <location filename="mainwindow.cpp" line="1120"/>
         <source>❌ Not quite</source>
         <translation>❌ No acertaste</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1105"/>
+        <location filename="mainwindow.cpp" line="1130"/>
         <source>You said: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Vos dijiste: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1109"/>
+        <location filename="mainwindow.cpp" line="1134"/>
         <source>With the whole range, the most frequent play here is: &lt;b&gt;%1 (%2%)&lt;/b&gt;</source>
         <translation>Con todo el rango, lo más frecuente acá es: &lt;b&gt;%1 (%2%)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1118"/>
+        <location filename="mainwindow.cpp" line="1143"/>
         <source>Nice! Explore below to see the hand-by-hand detail.</source>
         <translation>¡Bien ahí! Explorá abajo para ver el detalle mano por mano.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1119"/>
+        <location filename="mainwindow.cpp" line="1144"/>
         <source>No worries, check the hand-by-hand detail below to understand why.</source>
         <translation>No pasa nada, mirá abajo el detalle mano por mano para entender por qué.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1124"/>
+        <location filename="mainwindow.cpp" line="1149"/>
         <source>See the detail →</source>
         <translation>Ver el detalle →</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1148"/>
+        <location filename="mainwindow.cpp" line="1173"/>
         <source>The solver finished calculating the strategy. Tap &quot;ShowResult&quot; to see it.</source>
         <translation>El solver terminó de calcular la estrategia. Tocá &quot;ShowResult&quot; para verla.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1213"/>
+        <location filename="mainwindow.cpp" line="1238"/>
         <source>(YOU)</source>
         <oldsource>(VOS)</oldsource>
         <translation>(VOS)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1236"/>
+        <location filename="mainwindow.cpp" line="1261"/>
         <source>Now choose your opponent&apos;s seat.</source>
         <translation>Ahora elegí el asiento del rival.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1273"/>
+        <location filename="mainwindow.cpp" line="1298"/>
         <source>You already chose 2 cards</source>
         <translation>Ya elegiste 2 cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1274"/>
+        <location filename="mainwindow.cpp" line="1299"/>
         <source>You can only choose 2 cards for your hand. Tap one of the already selected ones to remove it.</source>
         <translation>Solo podés elegir 2 cartas para tu mano. Tocá una de las ya seleccionadas para sacarla.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1296"/>
+        <location filename="mainwindow.cpp" line="1321"/>
         <source>Your Solverix subscription expired or was cancelled. You&apos;ll need to reactivate it to keep solving hands.</source>
         <translation>Tu suscripción a Solverix venció o fue cancelada. Vas a necesitar reactivarla para seguir resolviendo manos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1330"/>
+        <location filename="mainwindow.cpp" line="1355"/>
         <source>Situation</source>
         <translation>Situación</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1330"/>
+        <location filename="mainwindow.cpp" line="1355"/>
         <source>Your cards</source>
         <translation>Tus cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1330"/>
+        <location filename="mainwindow.cpp" line="1355"/>
         <source>Result</source>
         <translation>Resultado</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1331"/>
+        <location filename="mainwindow.cpp" line="1356"/>
         <source>Quick Mode — Step %1 of 4: %2</source>
         <translation>Modo Rápido — Paso %1 de 4: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1340"/>
+        <location filename="mainwindow.cpp" line="1365"/>
         <source>Solve →</source>
         <translation>Resolver →</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1355"/>
+        <location filename="mainwindow.cpp" line="1390"/>
+        <source>Turn card:</source>
+        <translation type="unfinished">Carta de turn:</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1390"/>
+        <source>River card:</source>
+        <translation type="unfinished">Carta de river:</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1391"/>
+        <source>Calculate turn →</source>
+        <translation type="unfinished">Calcular turn →</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1391"/>
+        <source>Calculate river →</source>
+        <translation type="unfinished">Calcular river →</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1426"/>
         <source>You need to choose the situation</source>
         <translation>Falta elegir la situación</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1356"/>
+        <location filename="mainwindow.cpp" line="1427"/>
         <source>No valid situation (seats) was chosen before solving. Go back to step 1 and choose your seat and your opponent&apos;s.</source>
         <translation>No se eligió una situación válida (asientos) antes de resolver. Volvé al paso 1 y elegí tu asiento y el del rival.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1418"/>
+        <location filename="mainwindow.cpp" line="1489"/>
         <source>Solving</source>
         <oldsource>Resolviendo</oldsource>
         <translation>Resolviendo</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1419"/>
+        <location filename="mainwindow.cpp" line="1490"/>
         <source>Building the decision tree...</source>
         <translation>Construyendo el árbol de decisiones...</translation>
     </message>
@@ -1313,14 +1333,14 @@ Rebuild tree to have changed optimization options take effect!</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="mainwindow.cpp" line="779"/>
+        <location filename="mainwindow.cpp" line="796"/>
         <location filename="rangeselector.cpp" line="164"/>
         <location filename="src/runtime/PokerSolver.cpp" line="144"/>
         <source>save success</source>
         <translation>guardado con éxito</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="781"/>
+        <location filename="mainwindow.cpp" line="798"/>
         <location filename="rangeselector.cpp" line="166"/>
         <location filename="src/runtime/PokerSolver.cpp" line="146"/>
         <source>save failed, file cannot be open</source>

@@ -23,6 +23,8 @@
 #include "include/ui/boardselectortabledelegate.h"
 #include <QProgressDialog>
 #include <QPushButton>
+#include <QComboBox>
+#include <QLabel>
 #include <QVector>
 
 namespace Ui {
@@ -106,10 +108,16 @@ private:
     BoardSelectorTableDelegate* handSelectorDelegate = NULL;
     QProgressDialog* quickModeProgressDialog = NULL;
     QTimer* subscriptionCheckTimer = NULL;
+    QWidget* quickRunoutBar = NULL;
+    QLabel* quickRunoutLabel = NULL;
+    QComboBox* quickRunoutCombo = NULL;
+    QPushButton* quickRunoutButton = NULL;
     void startQuickMode();
     void startPracticeQuiz();
     void showQuickModeStep(int index);
     void startQuickModeSolve(bool fastMode = false);
+    void updateQuickRunoutBar();
+    void onQuickRunoutButtonClicked();
     void resetSeatSelection();
     void updateSeatButtonStyles();
     void setupQuickSeatButtons(int tableSize);

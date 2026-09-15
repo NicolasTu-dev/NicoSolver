@@ -8,6 +8,7 @@
 #include <QToolTip>
 #include <QCursor>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QMap>
 #include <QGraphicsDropShadowEffect>
 #include <QRandomGenerator>
@@ -94,6 +95,22 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->quickStepSituation->setVisible(false);
     this->ui->quickStepHand->setVisible(false);
     this->ui->quickStepResults->setVisible(false);
+
+    // Runout bar: when the user only sent 3 cards (flop), lets them pick
+    // the turn and then the river from the results screen, re-solving after
+    // each pick instead of having to start a whole new hand.
+    this->quickRunoutBar = new QWidget(this->ui->quickStepResults);
+    QHBoxLayout* runoutLayout = new QHBoxLayout(this->quickRunoutBar);
+    runoutLayout->setContentsMargins(0, 0, 0, 0);
+    this->quickRunoutLabel = new QLabel(this->quickRunoutBar);
+    this->quickRunoutCombo = new QComboBox(this->quickRunoutBar);
+    this->quickRunoutButton = new QPushButton(this->quickRunoutBar);
+    runoutLayout->addWidget(this->quickRunoutLabel);
+    runoutLayout->addWidget(this->quickRunoutCombo, 1);
+    runoutLayout->addWidget(this->quickRunoutButton);
+    this->ui->quickStepResultsLayout->insertWidget(1, this->quickRunoutBar);
+    connect(this->quickRunoutButton, &QPushButton::clicked, this, &MainWindow::onQuickRunoutButtonClicked);
+    this->quickRunoutBar->setVisible(false);
 
     connect(this->ui->tableSize6Button, &QPushButton::clicked, this, &MainWindow::onTableSize6Clicked);
     connect(this->ui->tableSize9Button, &QPushButton::clicked, this, &MainWindow::onTableSize9Clicked);
@@ -1066,6 +1083,14 @@ void MainWindow::onSolverJobFinished()
             this->quickModeProgressDialog->deleteLater();
             this->quickModeProgressDialog = NULL;
         }
+        if(this->strategyExplorer != NULL){
+            // A previous runout (turn/river) solve already embedded a result
+            // widget here — drop it before swapping in the new one so we
+            // don't leak it or stack two explorers inside the container.
+            this->ui->quickResultsContainer->layout()->removeWidget(this->strategyExplorer);
+            this->strategyExplorer->deleteLater();
+            this->strategyExplorer = NULL;
+        }
         this->strategyExplorer = new StrategyExplorer(this, this->qSolverJob);
         this->strategyExplorer->setAttribute(Qt::WA_DeleteOnClose);
         this->strategyExplorer->selectRootNode();
@@ -1347,6 +1372,52 @@ void MainWindow::showQuickModeStep(int index){
         inputLayout->setStretch(9, index == 3 ? 1 : 0);
         inputLayout->setStretch(10, index == 3 ? 0 : 1);
     }
+
+    if(index == 3){
+        this->updateQuickRunoutBar();
+    }
+}
+
+void MainWindow::updateQuickRunoutBar(){
+    if(this->quickRunoutBar == NULL) return;
+    QStringList boardCards = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts);
+    int boardSize = boardCards.size();
+    if(!this->quickMode || (boardSize != 3 && boardSize != 4)){
+        this->quickRunoutBar->setVisible(false);
+        return;
+    }
+
+    this->quickRunoutLabel->setText(boardSize == 3 ? tr("Turn card:") : tr("River card:"));
+    this->quickRunoutButton->setText(boardSize == 3 ? tr("Calculate turn →") : tr("Calculate river →"));
+
+    QStringList ranks = QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(",");
+    QStringList suits = QString("c,d,h,s").split(",");
+    QStringList usedCards = boardCards;
+    if(!this->quickModeCard1.isEmpty()) usedCards << this->quickModeCard1;
+    if(!this->quickModeCard2.isEmpty()) usedCards << this->quickModeCard2;
+
+    this->quickRunoutCombo->blockSignals(true);
+    this->quickRunoutCombo->clear();
+    for(const QString& rank : ranks){
+        for(const QString& suit : suits){
+            QString card = rank + suit;
+            if(!usedCards.contains(card)){
+                this->quickRunoutCombo->addItem(card);
+            }
+        }
+    }
+    this->quickRunoutCombo->blockSignals(false);
+    this->quickRunoutBar->setVisible(true);
+}
+
+void MainWindow::onQuickRunoutButtonClicked(){
+    QString card = this->quickRunoutCombo->currentText();
+    if(card.isEmpty()) return;
+    QStringList boardCards = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts);
+    boardCards << card;
+    this->ui->boardText->setPlainText(boardCards.join(","));
+    this->quickRunoutBar->setVisible(false);
+    this->startQuickModeSolve();
 }
 
 void MainWindow::startQuickModeSolve(bool fastMode){
