@@ -527,8 +527,12 @@
     founderSearchTimer = setTimeout(async () => {
       if(!query){ founderResults.innerHTML = ''; return; }
       const result = await apiCall('/api/admin', { email: founderEmail, password: founderPassword, action: 'search', query });
-      if(!result.ok){ founderResults.innerHTML = ''; return; }
       const lang = currentLang();
+      if(!result.ok){
+        founderResults.innerHTML = '<div style="font-size:12.5px; color:#e05252; margin-top:8px;">' +
+          (lang === 'es' ? 'La búsqueda falló, probá de nuevo.' : 'Search failed, try again.') + '</div>';
+        return;
+      }
       founderResults.innerHTML = result.users.map(u => {
         const tag = u.streamer_code ? '<span class="fr-tag">🎥 ' + u.streamer_code.toUpperCase() + '</span>' : '';
         return '<div class="founder-result" data-email="' + u.email + '"><span>' + u.email + '</span>' + tag + '</div>';
