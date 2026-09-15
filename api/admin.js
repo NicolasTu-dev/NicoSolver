@@ -44,11 +44,19 @@ module.exports = async (req, res) => {
     if (action === 'search') {
       const { query } = req.body || {};
       const searchTerm = '%' + String(query || '').trim().toLowerCase() + '%';
+      // Matches on the account email OR on the streamer code/name tied to
+      // that account, since the founder often only remembers the
+      // streamer's alias, not the email they registered with.
       const rows = await sql`
         SELECT u.email, u.plan,
           (SELECT code FROM affiliates a WHERE a.owner_email = u.email) AS streamer_code
         FROM users u
         WHERE u.email ILIKE ${searchTerm}
+          OR EXISTS (
+            SELECT 1 FROM affiliates a
+            WHERE a.owner_email = u.email
+              AND (a.code ILIKE ${searchTerm} OR a.name ILIKE ${searchTerm})
+          )
         ORDER BY u.email
         LIMIT 20
       `;
