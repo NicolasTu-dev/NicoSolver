@@ -235,7 +235,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="136"/>
         <location filename="mainwindow.cpp" line="358"/>
-        <location filename="mainwindow.cpp" line="1324"/>
+        <location filename="mainwindow.cpp" line="1340"/>
         <source>Next →</source>
         <translation>Siguiente →</translation>
     </message>
@@ -256,7 +256,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="264"/>
-        <location filename="mainwindow.cpp" line="1209"/>
+        <location filename="mainwindow.cpp" line="1225"/>
         <source>Choose your seat.</source>
         <translation>Elegí tu asiento.</translation>
     </message>
@@ -267,9 +267,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="287"/>
-        <location filename="mainwindow.cpp" line="1241"/>
-        <location filename="mainwindow.cpp" line="1265"/>
-        <location filename="mainwindow.cpp" line="1301"/>
+        <location filename="mainwindow.cpp" line="1257"/>
+        <location filename="mainwindow.cpp" line="1281"/>
+        <location filename="mainwindow.cpp" line="1317"/>
         <source>Selected: (none)</source>
         <translation>Seleccionadas: (ninguna)</translation>
     </message>
@@ -324,7 +324,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="464"/>
         <location filename="mainwindow.cpp" line="345"/>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1330"/>
         <source>Board</source>
         <translation>Board</translation>
     </message>
@@ -945,7 +945,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="268"/>
-        <location filename="mainwindow.cpp" line="1073"/>
+        <location filename="mainwindow.cpp" line="1089"/>
         <source>Practice Mode</source>
         <translation>Modo Práctica</translation>
     </message>
@@ -1021,7 +1021,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="358"/>
-        <location filename="mainwindow.cpp" line="1131"/>
+        <location filename="mainwindow.cpp" line="1147"/>
         <source>Done</source>
         <translation>Listo</translation>
     </message>
@@ -1109,7 +1109,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="842"/>
-        <location filename="mainwindow.cpp" line="1279"/>
+        <location filename="mainwindow.cpp" line="1295"/>
         <source>Your subscription expired</source>
         <translation>Tu suscripción venció</translation>
     </message>
@@ -1119,52 +1119,64 @@ p, li { white-space: pre-wrap; }
         <translation>Tu suscripción a Solverix venció, así que no se puede seguir resolviendo. Reactivala para continuar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1001"/>
+        <location filename="mainwindow.cpp" line="867"/>
+        <location filename="mainwindow.cpp" line="992"/>
+        <source>Invalid board</source>
+        <translation>Board inválido</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="868"/>
+        <location filename="mainwindow.cpp" line="993"/>
+        <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection.</source>
+        <translation>Un board necesita exactamente 3 cartas (flop), 4 (turn) o 5 (river) — ni más ni menos. Volvé atrás y corregí la selección del board.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1017"/>
         <source>Please build tree first.</source>
         <translation>Primero construya el árbol.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1003"/>
-        <location filename="mainwindow.cpp" line="1006"/>
+        <location filename="mainwindow.cpp" line="1019"/>
+        <location filename="mainwindow.cpp" line="1022"/>
         <source>Estimated Memory Usage: </source>
         <translation>Uso de memoria estimado: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1003"/>
+        <location filename="mainwindow.cpp" line="1019"/>
         <source> Mb</source>
         <translation> Mb</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1004"/>
-        <location filename="mainwindow.cpp" line="1007"/>
+        <location filename="mainwindow.cpp" line="1020"/>
+        <location filename="mainwindow.cpp" line="1023"/>
         <source>
 Rebuild tree to have changed optimization options take effect!</source>
         <translation>
 ¡Reconstruya el árbol para que los cambios en las opciones de optimización surtan efecto!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1006"/>
+        <location filename="mainwindow.cpp" line="1022"/>
         <source> Gb</source>
         <translation> Gb</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1040"/>
+        <location filename="mainwindow.cpp" line="1056"/>
         <source>Solving the optimal strategy... this can take a few seconds.</source>
         <translation>Resolviendo la estrategia óptima... puede tardar unos segundos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1199"/>
+        <location filename="mainwindow.cpp" line="1215"/>
         <source>(OPPONENT)</source>
         <translation>(RIVAL)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1265"/>
+        <location filename="mainwindow.cpp" line="1281"/>
         <source>Selected: %1</source>
         <translation>Seleccionadas: %1</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="307"/>
-        <location filename="mainwindow.cpp" line="1067"/>
+        <location filename="mainwindow.cpp" line="1083"/>
         <source>Fold</source>
         <translation type="unfinished">Retirarse</translation>
     </message>
@@ -1175,125 +1187,125 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="308"/>
-        <location filename="mainwindow.cpp" line="1068"/>
+        <location filename="mainwindow.cpp" line="1084"/>
         <source>Call / Check</source>
         <translation type="unfinished">Pagar / Pasar</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="309"/>
-        <location filename="mainwindow.cpp" line="1069"/>
+        <location filename="mainwindow.cpp" line="1085"/>
         <source>Bet / Raise</source>
         <translation type="unfinished">Apostar / Subir</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1079"/>
+        <location filename="mainwindow.cpp" line="1095"/>
         <source>✅ You got it right!</source>
         <translation>✅ ¡Acertaste!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1079"/>
+        <location filename="mainwindow.cpp" line="1095"/>
         <source>❌ Not quite</source>
         <translation>❌ No acertaste</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1089"/>
+        <location filename="mainwindow.cpp" line="1105"/>
         <source>You said: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Vos dijiste: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1093"/>
+        <location filename="mainwindow.cpp" line="1109"/>
         <source>With the whole range, the most frequent play here is: &lt;b&gt;%1 (%2%)&lt;/b&gt;</source>
         <translation>Con todo el rango, lo más frecuente acá es: &lt;b&gt;%1 (%2%)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1102"/>
+        <location filename="mainwindow.cpp" line="1118"/>
         <source>Nice! Explore below to see the hand-by-hand detail.</source>
         <translation>¡Bien ahí! Explorá abajo para ver el detalle mano por mano.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1103"/>
+        <location filename="mainwindow.cpp" line="1119"/>
         <source>No worries, check the hand-by-hand detail below to understand why.</source>
         <translation>No pasa nada, mirá abajo el detalle mano por mano para entender por qué.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1108"/>
+        <location filename="mainwindow.cpp" line="1124"/>
         <source>See the detail →</source>
         <translation>Ver el detalle →</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1132"/>
+        <location filename="mainwindow.cpp" line="1148"/>
         <source>The solver finished calculating the strategy. Tap &quot;ShowResult&quot; to see it.</source>
         <translation>El solver terminó de calcular la estrategia. Tocá &quot;ShowResult&quot; para verla.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1197"/>
+        <location filename="mainwindow.cpp" line="1213"/>
         <source>(YOU)</source>
         <oldsource>(VOS)</oldsource>
         <translation>(VOS)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1220"/>
+        <location filename="mainwindow.cpp" line="1236"/>
         <source>Now choose your opponent&apos;s seat.</source>
         <translation>Ahora elegí el asiento del rival.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1257"/>
+        <location filename="mainwindow.cpp" line="1273"/>
         <source>You already chose 2 cards</source>
         <translation>Ya elegiste 2 cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1258"/>
+        <location filename="mainwindow.cpp" line="1274"/>
         <source>You can only choose 2 cards for your hand. Tap one of the already selected ones to remove it.</source>
         <translation>Solo podés elegir 2 cartas para tu mano. Tocá una de las ya seleccionadas para sacarla.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1280"/>
+        <location filename="mainwindow.cpp" line="1296"/>
         <source>Your Solverix subscription expired or was cancelled. You&apos;ll need to reactivate it to keep solving hands.</source>
         <translation>Tu suscripción a Solverix venció o fue cancelada. Vas a necesitar reactivarla para seguir resolviendo manos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1330"/>
         <source>Situation</source>
         <translation>Situación</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1330"/>
         <source>Your cards</source>
         <translation>Tus cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1330"/>
         <source>Result</source>
         <translation>Resultado</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1315"/>
+        <location filename="mainwindow.cpp" line="1331"/>
         <source>Quick Mode — Step %1 of 4: %2</source>
         <translation>Modo Rápido — Paso %1 de 4: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1324"/>
+        <location filename="mainwindow.cpp" line="1340"/>
         <source>Solve →</source>
         <translation>Resolver →</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1339"/>
+        <location filename="mainwindow.cpp" line="1355"/>
         <source>You need to choose the situation</source>
         <translation>Falta elegir la situación</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1340"/>
+        <location filename="mainwindow.cpp" line="1356"/>
         <source>No valid situation (seats) was chosen before solving. Go back to step 1 and choose your seat and your opponent&apos;s.</source>
         <translation>No se eligió una situación válida (asientos) antes de resolver. Volvé al paso 1 y elegí tu asiento y el del rival.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1402"/>
+        <location filename="mainwindow.cpp" line="1418"/>
         <source>Solving</source>
         <oldsource>Resolviendo</oldsource>
         <translation>Resolviendo</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1403"/>
+        <location filename="mainwindow.cpp" line="1419"/>
         <source>Building the decision tree...</source>
         <translation>Construyendo el árbol de decisiones...</translation>
     </message>
@@ -2414,9 +2426,14 @@ Si es tu primera vez, te recomendamos Modo Rápido.</translation>
         <translation>Limpiar board</translation>
     </message>
     <message>
-        <location filename="boardselector.cpp" line="9"/>
+        <location filename="boardselector.cpp" line="11"/>
         <source>BoardSelector</source>
         <translation>Selector de board</translation>
+    </message>
+    <message>
+        <location filename="boardselector.cpp" line="44"/>
+        <source>A board can only have up to 5 cards (flop + turn + river).</source>
+        <translation>Un board solo puede tener hasta 5 cartas (flop + turn + river).</translation>
     </message>
 </context>
 </TS>

@@ -858,6 +858,14 @@ void MainWindow::on_buildTreeButtom_clicked()
         qSolverJob->current_round = 3;
     }else{
         this->ui->logOutput->log_with_signal(QString::fromStdString(tfm::format("Error : board %s not recognized",qSolverJob->board)));
+        if(this->quickModeProgressDialog != NULL){
+            this->quickModeProgressDialog->close();
+            this->quickModeProgressDialog->deleteLater();
+            this->quickModeProgressDialog = NULL;
+            this->quickModePendingStage = QuickModeStage::None;
+        }
+        QMessageBox::warning(this, tr("Invalid board"),
+            tr("A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection."));
         return;
     }
     qSolverJob->raise_limit = this->ui->raiseLimitText->text().toInt();
@@ -978,6 +986,14 @@ float iso_corh(QString board){
 
 void MainWindow::on_estimateMemoryButtom_clicked()
 {
+    QString boardTextForEstimate = this->ui->boardText->toPlainText();
+    vector<string> estimateBoardArr = string_split(boardTextForEstimate.toStdString(),',');
+    if(estimateBoardArr.size() != 3 && estimateBoardArr.size() != 4 && estimateBoardArr.size() != 5){
+        QMessageBox::warning(this, tr("Invalid board"),
+            tr("A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection."));
+        return;
+    }
+
     long long memory_float = this->qSolverJob->estimate_tree_memory(this->ui->ipRangeText->toPlainText(),this->ui->oopRangeText->toPlainText(),this->ui->boardText->toPlainText());
     // float32 should take 4bytes
     float corh = 1;
