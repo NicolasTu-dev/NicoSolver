@@ -1,0 +1,39 @@
+SOLVERIX - TERMS OF USE (SUMMARY)
+
+Please read before installing.
+
+1. AGE REQUIREMENT
+   Solverix is intended for users 18 years of age or older. By clicking
+   "I accept the agreement" below, you confirm you meet this requirement.
+
+2. WHAT SOLVERIX IS
+   Solverix is an offline poker training and analysis tool based on CFR
+   (Counterfactual Regret Minimization), a game-theory algorithm. It does
+   not process real-money bets and is not a gambling platform. Using it
+   while actively playing a real-money hand may violate the rules of the
+   specific site/room you play on -- that is your responsibility to check.
+
+3. SUBSCRIPTION AND REFUNDS
+   Solverix requires an active paid subscription (Advanced Solver or
+   Complete plan), managed from solverix.com.ar/cuenta.html. Refunds can
+   be requested within 48-72 hours of payment by writing to
+   soporte@solverix.com.ar. After that window, payments are
+   non-refundable, though you can still cancel to avoid future charges.
+
+4. NO WARRANTY
+   Solverix is provided "as is", with no guarantee that a recommendation
+   is free of bugs or that following it guarantees any result at the
+   table. We are not responsible for losses from real-money play.
+
+5. FULL TERMS AND PRIVACY POLICY
+   The complete Terms of Service and Privacy Policy are available at:
+     https://solverix.com.ar/terminos.html
+     https://solverix.com.ar/privacidad.html
+
+   These Terms are governed by the laws of Argentina. Solverix is
+   operated by Nicolas Tu, an individual based in Argentina. Contact:
+   soporte@solverix.com.ar.
+
+By clicking "I accept the agreement", you confirm that you are 18 years
+of age or older and that you agree to the Terms of Service and Privacy
+Policy linked above.

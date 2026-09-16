@@ -1,0 +1,42 @@
+SOLVERIX - TERMINOS DE USO (RESUMEN)
+
+Por favor leé esto antes de instalar.
+
+1. REQUISITO DE EDAD
+   Solverix esta pensado para usuarios de 18 anios o mas. Al hacer clic
+   en "Acepto el acuerdo" mas abajo, confirmas que cumplis este requisito.
+
+2. QUE ES SOLVERIX
+   Solverix es una herramienta de entrenamiento y analisis de poker que
+   funciona sin conexion, basada en CFR (Minimizacion de Arrepentimiento
+   Contrafactual), un algoritmo de teoria de juegos. No procesa apuestas
+   con dinero real y no es una plataforma de apuestas. Usarlo mientras
+   jugas en vivo una mano con dinero real puede violar las reglas del
+   sitio/sala donde jugas -- es tu responsabilidad revisar eso.
+
+3. SUSCRIPCION Y REEMBOLSOS
+   Solverix requiere una suscripcion paga activa (plan Solver Avanzado o
+   Completo), gestionada desde solverix.com.ar/cuenta.html. Podes pedir
+   un reembolso dentro de las 48-72 horas de tu pago escribiendo a
+   soporte@solverix.com.ar. Pasado ese plazo, los pagos no son
+   reembolsables, aunque igual podes cancelar para evitar cobros futuros.
+
+4. SIN GARANTIA
+   Solverix se entrega "tal cual esta", sin garantia de que una
+   recomendacion este libre de errores ni de que seguirla garantice
+   ningun resultado en la mesa. No somos responsables por perdidas de
+   juego con dinero real.
+
+5. TERMINOS COMPLETOS Y POLITICA DE PRIVACIDAD
+   Los Terminos de Servicio y la Politica de Privacidad completos estan
+   disponibles en:
+     https://solverix.com.ar/terminos.html
+     https://solverix.com.ar/privacidad.html
+
+   Estos Terminos se rigen por las leyes de Argentina. Solverix es
+   operado por Nicolas Tu, persona fisica radicada en Argentina.
+   Contacto: soporte@solverix.com.ar.
+
+Al hacer clic en "Acepto el acuerdo", confirmas que sos mayor de 18 anios
+y que estas de acuerdo con los Terminos de Servicio y la Politica de
+Privacidad enlazados arriba.
