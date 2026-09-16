@@ -125,6 +125,13 @@
     background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright);
     font-size:11.5px; font-weight:700; padding:5px 11px; border-radius:99px;
   }
+  .streamer-earnings{
+    margin-top:10px; background:var(--bg-deep); border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+  }
+  .streamer-earnings .se-row{display:flex; justify-content:space-between; font-size:13px; margin-top:4px;}
+  .streamer-earnings .se-row:first-child{margin-top:0;}
+  .streamer-earnings .se-amount{font-weight:800; color:var(--gold-bright);}
+  .streamer-earnings .btn{margin-top:10px; width:100%; font-size:12.5px; padding:9px 14px;}
   .founder-panel{
     margin-top:20px; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:24px 26px;
   }
@@ -140,6 +147,17 @@
   .founder-assign{margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:none;}
   .founder-selected{font-weight:700; margin-bottom:10px;}
   .founder-subtitle{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--gold-bright); margin-bottom:8px;}
+  .payout-row{
+    padding:9px 12px; border-radius:8px; border:1px solid var(--border); margin-top:8px;
+    cursor:pointer; font-size:13px; background:var(--bg-deep);
+  }
+  .payout-row:hover{border-color:var(--gold);}
+  .payout-row .pr-head{display:flex; justify-content:space-between; align-items:center;}
+  .payout-row .pr-amounts{font-size:11.5px; color:var(--muted); margin-top:4px;}
+  .payout-detail{margin-top:10px; padding-top:10px; border-top:1px solid var(--border);}
+  .payout-sale{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); padding:4px 0;}
+  .payout-sale .ps-paid{color:var(--green);}
+  .payout-detail .btn{margin-top:8px; width:100%; font-size:12px; padding:8px 12px;}
 </style>
 </head>
 <body>
@@ -215,6 +233,13 @@
       <button class="btn btn-ghost" id="founderAssignBtn" style="margin-top:14px; width:100%;" data-i18n="founderAssignBtn">Assign streamer role</button>
     </div>
     <div class="acc-status" id="founderStatus"></div>
+
+    <div style="margin-top:22px; padding-top:16px; border-top:1px solid var(--border);">
+      <div class="founder-subtitle" data-i18n="founderPayoutsTitle">Streamer payouts</div>
+      <button class="btn btn-ghost" id="founderPayoutsToggle" style="width:100%;" data-i18n="founderPayoutsBtn">View streamer payouts</button>
+      <div id="founderPayoutsList" style="margin-top:10px;"></div>
+      <div class="acc-status" id="founderPayoutsStatus"></div>
+    </div>
   </div>
 </div>
 
@@ -254,6 +279,8 @@
     founderCodeLabel: 'Código de streamer',
     founderNameLabel: 'Nombre para mostrar',
     founderAssignBtn: 'Asignar rol de streamer',
+    founderPayoutsTitle: 'Pagos a streamers',
+    founderPayoutsBtn: 'Ver pagos a streamers',
   };
   const PT_TEXT = {
     backLink: '← Voltar para o início',
@@ -276,6 +303,8 @@
     founderCodeLabel: 'Código de streamer',
     founderNameLabel: 'Nome de exibição',
     founderAssignBtn: 'Atribuir papel de streamer',
+    founderPayoutsTitle: 'Pagamentos a streamers',
+    founderPayoutsBtn: 'Ver pagamentos a streamers',
   };
   const EN_TEXT = {};
   document.querySelectorAll('[data-i18n]').forEach(el => { EN_TEXT[el.getAttribute('data-i18n')] = el.innerHTML; });
@@ -407,12 +436,44 @@
     return res.json().catch(() => ({ ok: false, error: 'bad_response' }));
   }
 
+  const SUPPORT_EMAIL = 'soporte@solverix.com.ar';
+
   function renderStreamerBadge(streamer){
     const badgeEl = document.getElementById('streamerBadge');
     if(!streamer){ badgeEl.style.display = 'none'; badgeEl.innerHTML = ''; return; }
     const label = 'Streamer';
     badgeEl.style.display = 'block';
-    badgeEl.innerHTML = '<span class="streamer-badge">🎥 ' + label + ' · ' + streamer.code.toUpperCase() + '</span>';
+    let html = '<span class="streamer-badge">🎥 ' + label + ' · ' + streamer.code.toUpperCase() + '</span>';
+
+    const hasPending = streamer.pendingArs > 0 || streamer.pendingUsd > 0;
+    if(hasPending || streamer.paidArs > 0 || streamer.paidUsd > 0){
+      const pendingLabel = t('Pending', 'Pendiente', 'Pendente');
+      const paidLabel = t('Already paid', 'Ya cobrado', 'Já recebido');
+      let rows = '';
+      if(streamer.pendingArs > 0 || streamer.paidArs > 0){
+        rows += '<div class="se-row"><span>' + pendingLabel + ' (ARS)</span><span class="se-amount">$' + streamer.pendingArs.toLocaleString(t('en-US','es-AR','pt-BR')) + '</span></div>';
+        if(streamer.paidArs > 0) rows += '<div class="se-row"><span>' + paidLabel + ' (ARS)</span><span>$' + streamer.paidArs.toLocaleString(t('en-US','es-AR','pt-BR')) + '</span></div>';
+      }
+      if(streamer.pendingUsd > 0 || streamer.paidUsd > 0){
+        rows += '<div class="se-row"><span>' + pendingLabel + ' (USD)</span><span class="se-amount">$' + streamer.pendingUsd.toLocaleString(t('en-US','es-AR','pt-BR')) + '</span></div>';
+        if(streamer.paidUsd > 0) rows += '<div class="se-row"><span>' + paidLabel + ' (USD)</span><span>$' + streamer.paidUsd.toLocaleString(t('en-US','es-AR','pt-BR')) + '</span></div>';
+      }
+      html += '<div class="streamer-earnings">' + rows;
+      if(hasPending){
+        const subject = encodeURIComponent(t('Streamer payout request', 'Solicitud de pago de streamer', 'Solicitação de pagamento de streamer'));
+        const bodyLines = [
+          t('Hi, I\'d like to request my pending streamer payout.', 'Hola, quiero solicitar el pago pendiente de mi comisión de streamer.', 'Olá, gostaria de solicitar o pagamento pendente da minha comissão de streamer.'),
+          t('Code: ', 'Código: ', 'Código: ') + streamer.code.toUpperCase(),
+        ];
+        if(streamer.pendingArs > 0) bodyLines.push(t('Pending in ARS: $', 'Pendiente en ARS: $', 'Pendente em ARS: $') + streamer.pendingArs);
+        if(streamer.pendingUsd > 0) bodyLines.push(t('Pending in USD: $', 'Pendiente en USD: $', 'Pendente em USD: $') + streamer.pendingUsd);
+        const body = encodeURIComponent(bodyLines.join('\n'));
+        const mailLabel = t('✉ Request payout by email', '✉ Solicitar pago por mail', '✉ Solicitar pagamento por email');
+        html += '<a class="btn btn-ghost" href="mailto:' + SUPPORT_EMAIL + '?subject=' + subject + '&body=' + body + '">' + mailLabel + '</a>';
+      }
+      html += '</div>';
+    }
+    badgeEl.innerHTML = html;
   }
 
   function showLoggedIn(email, plan, expiresAt, streamer){
@@ -468,6 +529,11 @@
     document.getElementById('codeToggle').addEventListener('click', () => {
       document.getElementById('codeToggle').classList.toggle('open');
       document.getElementById('codeBody').classList.toggle('open');
+    });
+    document.getElementById('affiliateCodeInput').addEventListener('input', (e) => {
+      const value = e.target.value.trim().toLowerCase();
+      if(value) localStorage.setItem('solverix_ref', value);
+      else localStorage.removeItem('solverix_ref');
     });
     document.getElementById('pickAdvanced').onclick = () => showPaymentOptions(email, 'advanced');
     document.getElementById('pickComplete').onclick = () => showPaymentOptions(email, 'complete');
@@ -636,6 +702,101 @@
       return;
     }
     setFounderStatus('Subscription granted.', 'Suscripción otorgada.', 'Assinatura concedida.', 'ok');
+  });
+
+  // ---------- Founder panel: streamer payouts (view + mark paid) ----------
+  const founderPayoutsToggle = document.getElementById('founderPayoutsToggle');
+  const founderPayoutsList = document.getElementById('founderPayoutsList');
+  const founderPayoutsStatusEl = document.getElementById('founderPayoutsStatus');
+  let payoutsLoaded = false;
+
+  function setPayoutsStatus(msgEn, msgEs, msgPt, kind){
+    founderPayoutsStatusEl.textContent = t(msgEn, msgEs, msgPt);
+    founderPayoutsStatusEl.className = 'acc-status' + (kind ? ' ' + kind : '');
+  }
+
+  function money(n, currency){
+    return '$' + Number(n).toLocaleString(t('en-US','es-AR','pt-BR')) + ' ' + currency;
+  }
+
+  async function loadPayoutsList(){
+    founderPayoutsList.innerHTML = '<div style="font-size:12.5px; color:var(--muted-2);">' + t('Loading...', 'Cargando...', 'Carregando...') + '</div>';
+    const result = await apiCall('/api/admin', { email: founderEmail, password: founderPassword, action: 'affiliate-summary' });
+    if(!result.ok){
+      founderPayoutsList.innerHTML = '';
+      setPayoutsStatus('Couldn\'t load streamer payouts.', 'No se pudo cargar los pagos a streamers.', 'Não foi possível carregar os pagamentos aos streamers.', 'err');
+      return;
+    }
+    if(result.affiliates.length === 0){
+      founderPayoutsList.innerHTML = '<div style="font-size:12.5px; color:var(--muted-2);">' + t('No streamers yet.', 'Todavía no hay streamers.', 'Ainda não há streamers.') + '</div>';
+      return;
+    }
+    founderPayoutsList.innerHTML = result.affiliates.map(a => {
+      const pendingArs = Number(a.pending_ars), pendingUsd = Number(a.pending_usd);
+      const pendingText = (pendingArs > 0 ? money(pendingArs, 'ARS') : '') + (pendingArs > 0 && pendingUsd > 0 ? ' · ' : '') + (pendingUsd > 0 ? money(pendingUsd, 'USD') : '');
+      return '<div class="payout-row" data-code="' + a.code + '">' +
+        '<div class="pr-head"><span>🎥 ' + a.code.toUpperCase() + ' (' + a.sales_count + ')</span>' +
+        '<span class="se-amount">' + (pendingText || t('Nothing pending','Nada pendiente','Nada pendente')) + '</span></div>' +
+        '<div class="pr-amounts" id="payoutDetail_' + a.code + '"></div>' +
+        '</div>';
+    }).join('');
+    founderPayoutsList.querySelectorAll('.payout-row').forEach(row => {
+      row.addEventListener('click', () => togglePayoutDetail(row.getAttribute('data-code')));
+    });
+  }
+
+  async function togglePayoutDetail(code){
+    const detailEl = document.getElementById('payoutDetail_' + code);
+    if(detailEl.classList.contains('payout-detail')){
+      detailEl.innerHTML = '';
+      detailEl.classList.remove('payout-detail');
+      return;
+    }
+    detailEl.classList.add('payout-detail');
+    detailEl.innerHTML = t('Loading...', 'Cargando...', 'Carregando...');
+    const result = await apiCall('/api/admin', { email: founderEmail, password: founderPassword, action: 'affiliate-detail', code });
+    if(!result.ok){
+      detailEl.innerHTML = t('Couldn\'t load the detail.', 'No se pudo cargar el detalle.', 'Não foi possível carregar o detalhe.');
+      return;
+    }
+    const pendingArsCount = result.sales.filter(s => s.currency === 'ARS' && s.status === 'pending').length;
+    const pendingUsdCount = result.sales.filter(s => s.currency === 'USD' && s.status === 'pending').length;
+    let html = result.sales.map(s => {
+      const cls = s.status === 'paid' ? 'ps-paid' : '';
+      return '<div class="payout-sale"><span>' + s.buyer_email + ' · ' + s.plan + '</span>' +
+        '<span class="' + cls + '">' + money(s.commission_amount, s.currency) + (s.status === 'paid' ? ' ✓' : '') + '</span></div>';
+    }).join('') || t('No sales yet.', 'Todavía no hay ventas.', 'Ainda não há vendas.');
+    if(pendingArsCount > 0){
+      html += '<button class="btn btn-ghost" data-code="' + code + '" data-currency="ARS">' + t('Mark ARS as paid', 'Marcar ARS como pagado', 'Marcar ARS como pago') + '</button>';
+    }
+    if(pendingUsdCount > 0){
+      html += '<button class="btn btn-ghost" data-code="' + code + '" data-currency="USD">' + t('Mark USD as paid', 'Marcar USD como pagado', 'Marcar USD como pago') + '</button>';
+    }
+    detailEl.innerHTML = html;
+    detailEl.querySelectorAll('button[data-currency]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        setPayoutsStatus('Updating...', 'Actualizando...', 'Atualizando...', 'info');
+        const result2 = await apiCall('/api/admin', {
+          email: founderEmail, password: founderPassword, action: 'mark-commissions-paid',
+          code: btn.getAttribute('data-code'), currency: btn.getAttribute('data-currency'),
+        });
+        if(!result2.ok){
+          setPayoutsStatus('Couldn\'t update.', 'No se pudo actualizar.', 'Não foi possível atualizar.', 'err');
+          return;
+        }
+        setPayoutsStatus('Marked as paid.', 'Marcado como pagado.', 'Marcado como pago.', 'ok');
+        loadPayoutsList();
+      });
+    });
+  }
+
+  founderPayoutsToggle.addEventListener('click', () => {
+    payoutsLoaded = !payoutsLoaded;
+    founderPayoutsToggle.textContent = payoutsLoaded
+      ? t('Hide streamer payouts', 'Ocultar pagos a streamers', 'Ocultar pagamentos a streamers')
+      : t('View streamer payouts', 'Ver pagos a streamers', 'Ver pagamentos a streamers');
+    if(payoutsLoaded) loadPayoutsList();
+    else founderPayoutsList.innerHTML = '';
   });
 
   accRegisterBtn.addEventListener('click', async () => {
