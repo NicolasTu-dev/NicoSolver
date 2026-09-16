@@ -143,6 +143,17 @@ StrategyExplorer::StrategyExplorer(QWidget *parent,QSolverJob * qSolverJob) :
     this->ui->groupBox_2->setGraphicsEffect(summaryShadow);
 }
 
+void StrategyExplorer::stopAutoUpdate(){
+    if(this->timer != NULL) this->timer->stop();
+}
+
+void StrategyExplorer::setRunoutPickerVisible(bool visible){
+    this->ui->label->setVisible(visible);
+    this->ui->turnCardBox->setVisible(visible);
+    this->ui->label_2->setVisible(visible);
+    this->ui->riverCardBox->setVisible(visible);
+}
+
 StrategyExplorer::~StrategyExplorer()
 {
     delete ui;

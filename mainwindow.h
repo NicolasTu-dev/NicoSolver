@@ -109,8 +109,6 @@ private:
     QProgressDialog* quickModeProgressDialog = NULL;
     QTimer* subscriptionCheckTimer = NULL;
     QWidget* quickRunoutBar = NULL;
-    QLabel* quickRunoutLabel = NULL;
-    QComboBox* quickRunoutCombo = NULL;
     QPushButton* quickRunoutButton = NULL;
     void startQuickMode();
     void startPracticeQuiz();

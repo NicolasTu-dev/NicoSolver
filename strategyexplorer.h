@@ -42,6 +42,16 @@ public:
     // full aggregate strategy, 0..1 each. Used by the practice quiz to
     // compare the user's guess against the solver's recommendation.
     std::tuple<float,float,float> getRootActionSummary();
+    // Stops the 1s auto-refresh timer. Must be called before a re-solve
+    // starts rebuilding the same QSolverJob's tree in place — otherwise the
+    // timer keeps polling into the tree while it's being torn down/rebuilt
+    // on the background thread and crashes.
+    void stopAutoUpdate();
+    // Hides the manual turn/river runout picker (only meaningful when the
+    // whole tree, including every runout, was solved at once — which is
+    // what Quick Mode does. There, the picker duplicates the dedicated
+    // "choose the turn/river and re-solve" bar on the results screen).
+    void setRunoutPickerVisible(bool visible);
 
 private:
     void setAdvancedViewVisible(bool visible);

@@ -177,8 +177,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="464"/>
-        <location filename="mainwindow.cpp" line="362"/>
-        <location filename="mainwindow.cpp" line="1355"/>
+        <location filename="mainwindow.cpp" line="360"/>
+        <location filename="mainwindow.cpp" line="1359"/>
         <source>Board</source>
         <translation type="unfinished"></translation>
     </message>
@@ -299,8 +299,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="136"/>
-        <location filename="mainwindow.cpp" line="375"/>
-        <location filename="mainwindow.cpp" line="1365"/>
+        <location filename="mainwindow.cpp" line="373"/>
+        <location filename="mainwindow.cpp" line="1369"/>
         <source>Next →</source>
         <translation type="unfinished"></translation>
     </message>
@@ -321,7 +321,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="264"/>
-        <location filename="mainwindow.cpp" line="1250"/>
+        <location filename="mainwindow.cpp" line="1253"/>
         <source>Choose your seat.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -332,9 +332,9 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="287"/>
-        <location filename="mainwindow.cpp" line="1282"/>
-        <location filename="mainwindow.cpp" line="1306"/>
-        <location filename="mainwindow.cpp" line="1342"/>
+        <location filename="mainwindow.cpp" line="1285"/>
+        <location filename="mainwindow.cpp" line="1309"/>
+        <location filename="mainwindow.cpp" line="1346"/>
         <source>Selected: (none)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -545,7 +545,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="1255"/>
-        <location filename="mainwindow.cpp" line="363"/>
+        <location filename="mainwindow.cpp" line="361"/>
         <source>Solver Options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -651,7 +651,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.ui" line="1577"/>
-        <location filename="mainwindow.cpp" line="777"/>
+        <location filename="mainwindow.cpp" line="775"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -702,19 +702,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="661"/>
-        <location filename="mainwindow.cpp" line="674"/>
+        <location filename="mainwindow.cpp" line="659"/>
+        <location filename="mainwindow.cpp" line="672"/>
         <source>Open parameters file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="663"/>
-        <location filename="mainwindow.cpp" line="676"/>
+        <location filename="mainwindow.cpp" line="661"/>
+        <location filename="mainwindow.cpp" line="674"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="537"/>
+        <location filename="mainwindow.cpp" line="535"/>
         <source>File selection invalid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -723,7 +723,7 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Ranges</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="362"/>
+        <location filename="mainwindow.cpp" line="360"/>
         <source>Bet Sizings</source>
         <translation>Bet Sizes</translation>
     </message>
@@ -753,361 +753,371 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="mainwindow.cpp" line="125"/>
         <source>If you already saved a configuration before (a .json file), tap here to load it and skip every step.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="128"/>
+        <location filename="mainwindow.cpp" line="126"/>
         <source>The IP player&apos;s (the one who acts last) hand range shows up here as text. You can type it by hand or build it with the grid on the right by tapping &quot;Select IP&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="127"/>
         <source>The OOP player&apos;s (the one who acts first) hand range shows up here as text. You can type it by hand or build it with the grid on the right by tapping &quot;Select OOP&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="130"/>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Grid of possible hands for the IP player. Each cell is a card combination: tap a cell to include it (green) or exclude it from the range. The darker the green, the more often that hand is played.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="131"/>
+        <location filename="mainwindow.cpp" line="129"/>
         <source>Grid of possible hands for the OOP player. Each cell is a card combination: tap a cell to include it (green) or exclude it from the range. The darker the green, the more often that hand is played.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="132"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Opens the visual grid to build the IP player&apos;s range by tapping hands instead of typing text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="131"/>
         <source>Opens the visual grid to build the OOP player&apos;s range by tapping hands instead of typing text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="135"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>When checked (✓ green), the solver adds the option to go all-in with the whole stack on this street, in addition to the bet sizes defined above.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="141"/>
         <source>Flop = the first 3 community cards. Here you set which bet sizes IP (the player who acts last) can use when it&apos;s their turn to open the action on the flop. Example: entering &quot;50&quot; in Bet Sizes = betting 50% of the pot at that moment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="mainwindow.cpp" line="142"/>
         <source>Turn = the 4th community card. Bet sizes IP can use when opening the action on the turn. Same idea as the flop: the numbers are % of the pot, not fixed chips.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="145"/>
+        <location filename="mainwindow.cpp" line="143"/>
         <source>River = the 5th and last community card. Bet sizes IP can use when opening the action on the river.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="146"/>
+        <location filename="mainwindow.cpp" line="144"/>
         <source>Flop = the first 3 community cards. Bet sizes OOP (the player who acts first) can use when deciding to open betting on the flop, instead of checking.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="147"/>
+        <location filename="mainwindow.cpp" line="145"/>
         <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does — that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="148"/>
+        <location filename="mainwindow.cpp" line="146"/>
         <source>River = the 5th and last community card. Same case as the turn: &quot;Donk Sizes&quot; are the sizes OOP can use to bet first on the river after not betting on the turn.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
+        <location filename="mainwindow.cpp" line="148"/>
         <source>Maximum number of consecutive raises the solver considers on the same street. A higher number makes the tree much bigger and slower to solve.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="151"/>
+        <location filename="mainwindow.cpp" line="149"/>
         <source>Pot size before this situation, in chips.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
+        <location filename="mainwindow.cpp" line="150"/>
         <source>Chips left for the player with the smaller stack. That&apos;s the most that can be bet in the hand.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="151"/>
         <source>Deck to use: &quot;texas holdem&quot; (52 normal cards) or &quot;shortdeck&quot; (36 cards, no 2, 3, 4, or 5).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="154"/>
+        <location filename="mainwindow.cpp" line="152"/>
         <source>If a player&apos;s remaining stack is less than this % of the pot, the solver directly offers going all-in instead of intermediate bet sizes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="mainwindow.cpp" line="153"/>
         <source>Internal optimization that groups equivalent cards together to solve faster without losing precision. Recommended to leave checked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="156"/>
+        <location filename="mainwindow.cpp" line="154"/>
         <source>Reduces the RAM used by the solver at the cost of solving slower or with less numerical precision. Only use it if you&apos;re running out of memory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="157"/>
+        <location filename="mainwindow.cpp" line="155"/>
         <source>Maximum number of times the solver recalculates the strategy. More iterations = more precision, but takes longer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="158"/>
+        <location filename="mainwindow.cpp" line="156"/>
         <source>The solver stops early if it already reached a strategy with this error level (% of the pot) or less. A lower number is more precise but slower; 0.5% is already a very solid strategy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="159"/>
+        <location filename="mainwindow.cpp" line="157"/>
         <source>How often progress is shown in the console below, in iterations. Only affects how often you see updates, not the final result.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="160"/>
+        <location filename="mainwindow.cpp" line="158"/>
         <source>Number of processor cores the solver can use at once. More threads = solves faster if your computer has free cores.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="208"/>
+        <location filename="mainwindow.cpp" line="206"/>
         <source>You need a subscription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="210"/>
+        <location filename="mainwindow.cpp" line="208"/>
         <source>You haven&apos;t activated any subscription yet. You need the &quot;%1&quot; plan or higher for this.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="211"/>
+        <location filename="mainwindow.cpp" line="209"/>
         <source>Your current plan doesn&apos;t include this. You need the &quot;%1&quot; plan or higher.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="285"/>
-        <location filename="mainwindow.cpp" line="1114"/>
+        <location filename="mainwindow.cpp" line="283"/>
+        <location filename="mainwindow.cpp" line="1117"/>
         <source>Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="291"/>
+        <location filename="mainwindow.cpp" line="289"/>
         <source>🎯 What would you do here?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="304"/>
+        <location filename="mainwindow.cpp" line="302"/>
         <source>Your hand:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="310"/>
+        <location filename="mainwindow.cpp" line="308"/>
         <source>Board:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="318"/>
+        <location filename="mainwindow.cpp" line="316"/>
         <source>What would you do with this hand?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="884"/>
-        <location filename="mainwindow.cpp" line="1009"/>
+        <location filename="mainwindow.cpp" line="882"/>
+        <location filename="mainwindow.cpp" line="1007"/>
         <source>Invalid board</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="885"/>
-        <location filename="mainwindow.cpp" line="1010"/>
+        <location filename="mainwindow.cpp" line="883"/>
+        <location filename="mainwindow.cpp" line="1008"/>
         <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1240"/>
+        <location filename="mainwindow.cpp" line="1243"/>
         <source>(OPPONENT)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1306"/>
+        <location filename="mainwindow.cpp" line="1309"/>
         <source>Selected: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="362"/>
+        <location filename="mainwindow.cpp" line="1394"/>
+        <source>🎴 Choose the turn card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1394"/>
+        <source>🎴 Choose the river card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="360"/>
         <source>Ranges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="363"/>
+        <location filename="mainwindow.cpp" line="361"/>
         <source>Tree Parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="363"/>
+        <location filename="mainwindow.cpp" line="361"/>
         <source>Confirm and solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="366"/>
+        <location filename="mainwindow.cpp" line="364"/>
         <source>A &quot;range&quot; is the set of hands a player might have in this situation. IP (&quot;in position&quot;) is the player who acts last on the street; OOP (&quot;out of position&quot;) is the one who acts first. Tap a grid cell to add or remove that hand from the range (darker = played more often), or type the range by hand in the text box.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="367"/>
+        <location filename="mainwindow.cpp" line="365"/>
         <source>Choose the cards that already came out on the table (3 for flop, 4 for turn, 5 for river).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="368"/>
+        <location filename="mainwindow.cpp" line="366"/>
         <source>This step defines WHAT BET SIZES the solver can choose — you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) — that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="369"/>
+        <location filename="mainwindow.cpp" line="367"/>
         <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision — leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="370"/>
+        <location filename="mainwindow.cpp" line="368"/>
         <source>&quot;Iterations&quot; is the maximum number of times the solver will recalculate the strategy (more iterations = more precision, but more time). &quot;Stop solving when reach X% exploitability&quot; makes the solver stop early if it already reached a strategy close enough to optimal (a lower number = more precise but slower; 0.5% is already a very solid strategy to play). &quot;Log interval&quot; is how often progress is printed in the console below, it only affects how often you see updates, not the result. &quot;Threads&quot; is the number of processor cores the solver can use at once (more threads = solves faster if your computer has enough free cores). The default values work fine to start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="371"/>
+        <location filename="mainwindow.cpp" line="369"/>
         <source>Review everything and tap &quot;Start solving&quot; so the solver calculates the optimal strategy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="372"/>
+        <location filename="mainwindow.cpp" line="370"/>
         <source>Step %1 of 6: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="375"/>
-        <location filename="mainwindow.cpp" line="1172"/>
+        <location filename="mainwindow.cpp" line="373"/>
+        <location filename="mainwindow.cpp" line="1175"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="380"/>
+        <location filename="mainwindow.cpp" line="378"/>
         <source>📌 Example: IP is a player on the button (BTN) who opened the hand with a typical opening range. OOP is the big blind (BB) who called that open with their defending range. Notice both ranges are already loaded in the grid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="381"/>
+        <location filename="mainwindow.cpp" line="379"/>
         <source>📌 Example: the flop came Q♠ J♥ 2♥ — a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="382"/>
+        <location filename="mainwindow.cpp" line="380"/>
         <source>📌 Example: we left the bet sizes at default (50% of the pot when betting, 60% when raising) to keep the example simple. In a real hand you&apos;d adjust this to how your tables usually play.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="381"/>
         <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left — round numbers chosen to make it easy to follow.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="384"/>
+        <location filename="mainwindow.cpp" line="382"/>
         <source>📌 Example: we left 200 iterations, which is enough for the solver to converge quickly on a simple example like this (on a more complex hand you might need more).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="385"/>
+        <location filename="mainwindow.cpp" line="383"/>
         <source>📌 Example: tap &quot;Start solving&quot; and wait for it to finish (with these values it should take just seconds). Then tap &quot;ShowResult&quot; to see the recommended strategy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="436"/>
+        <location filename="mainwindow.cpp" line="434"/>
         <source>Choose both seats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="436"/>
+        <location filename="mainwindow.cpp" line="434"/>
         <source>Tap your seat and then your opponent&apos;s before continuing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="444"/>
+        <location filename="mainwindow.cpp" line="442"/>
         <source>Choose 2 cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="444"/>
+        <location filename="mainwindow.cpp" line="442"/>
         <source>You need to tap exactly 2 cards for your hand before continuing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="542"/>
+        <location filename="mainwindow.cpp" line="540"/>
         <source>File open failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="685"/>
+        <location filename="mainwindow.cpp" line="683"/>
         <source>Save Parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="687"/>
+        <location filename="mainwindow.cpp" line="685"/>
         <source>Text file (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="859"/>
-        <location filename="mainwindow.cpp" line="1320"/>
+        <location filename="mainwindow.cpp" line="857"/>
+        <location filename="mainwindow.cpp" line="1323"/>
         <source>Your subscription expired</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="860"/>
+        <location filename="mainwindow.cpp" line="858"/>
         <source>Your Solverix subscription expired, so you can&apos;t keep solving. Reactivate it to continue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1034"/>
+        <location filename="mainwindow.cpp" line="1032"/>
         <source>Please build tree first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1036"/>
-        <location filename="mainwindow.cpp" line="1039"/>
+        <location filename="mainwindow.cpp" line="1034"/>
+        <location filename="mainwindow.cpp" line="1037"/>
         <source>Estimated Memory Usage: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1036"/>
+        <location filename="mainwindow.cpp" line="1034"/>
         <source> Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1037"/>
-        <location filename="mainwindow.cpp" line="1040"/>
+        <location filename="mainwindow.cpp" line="1035"/>
+        <location filename="mainwindow.cpp" line="1038"/>
         <source>
 Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1039"/>
+        <location filename="mainwindow.cpp" line="1037"/>
         <source> Gb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1073"/>
+        <location filename="mainwindow.cpp" line="1071"/>
         <source>Solving the optimal strategy... this can take a few seconds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="324"/>
-        <location filename="mainwindow.cpp" line="1108"/>
+        <location filename="mainwindow.cpp" line="322"/>
+        <location filename="mainwindow.cpp" line="1111"/>
         <source>Fold</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1117,126 +1127,106 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="325"/>
-        <location filename="mainwindow.cpp" line="1109"/>
+        <location filename="mainwindow.cpp" line="323"/>
+        <location filename="mainwindow.cpp" line="1112"/>
         <source>Call / Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="326"/>
-        <location filename="mainwindow.cpp" line="1110"/>
+        <location filename="mainwindow.cpp" line="324"/>
+        <location filename="mainwindow.cpp" line="1113"/>
         <source>Bet / Raise</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1120"/>
+        <location filename="mainwindow.cpp" line="1123"/>
         <source>✅ You got it right!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1120"/>
+        <location filename="mainwindow.cpp" line="1123"/>
         <source>❌ Not quite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1130"/>
+        <location filename="mainwindow.cpp" line="1133"/>
         <source>You said: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1134"/>
+        <location filename="mainwindow.cpp" line="1137"/>
         <source>With the whole range, the most frequent play here is: &lt;b&gt;%1 (%2%)&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1143"/>
+        <location filename="mainwindow.cpp" line="1146"/>
         <source>Nice! Explore below to see the hand-by-hand detail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1144"/>
+        <location filename="mainwindow.cpp" line="1147"/>
         <source>No worries, check the hand-by-hand detail below to understand why.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1149"/>
+        <location filename="mainwindow.cpp" line="1152"/>
         <source>See the detail →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1173"/>
+        <location filename="mainwindow.cpp" line="1176"/>
         <source>The solver finished calculating the strategy. Tap &quot;ShowResult&quot; to see it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1238"/>
+        <location filename="mainwindow.cpp" line="1241"/>
         <source>(YOU)</source>
         <oldsource>(VOS)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1261"/>
+        <location filename="mainwindow.cpp" line="1264"/>
         <source>Now choose your opponent&apos;s seat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1298"/>
+        <location filename="mainwindow.cpp" line="1301"/>
         <source>You already chose 2 cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1299"/>
+        <location filename="mainwindow.cpp" line="1302"/>
         <source>You can only choose 2 cards for your hand. Tap one of the already selected ones to remove it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1321"/>
+        <location filename="mainwindow.cpp" line="1324"/>
         <source>Your Solverix subscription expired or was cancelled. You&apos;ll need to reactivate it to keep solving hands.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1355"/>
+        <location filename="mainwindow.cpp" line="1359"/>
         <source>Situation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1355"/>
+        <location filename="mainwindow.cpp" line="1359"/>
         <source>Your cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1355"/>
+        <location filename="mainwindow.cpp" line="1359"/>
         <source>Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1356"/>
+        <location filename="mainwindow.cpp" line="1360"/>
         <source>Quick Mode — Step %1 of 4: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1365"/>
+        <location filename="mainwindow.cpp" line="1369"/>
         <source>Solve →</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1390"/>
-        <source>Turn card:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1390"/>
-        <source>River card:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1391"/>
-        <source>Calculate turn →</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1391"/>
-        <source>Calculate river →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1379,14 +1369,14 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="796"/>
+        <location filename="mainwindow.cpp" line="794"/>
         <location filename="rangeselector.cpp" line="164"/>
         <location filename="src/runtime/PokerSolver.cpp" line="144"/>
         <source>save success</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="798"/>
+        <location filename="mainwindow.cpp" line="796"/>
         <location filename="rangeselector.cpp" line="166"/>
         <location filename="src/runtime/PokerSolver.cpp" line="146"/>
         <source>save failed, file cannot be open</source>
@@ -1463,77 +1453,77 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="406"/>
+        <location filename="strategyexplorer.cpp" line="417"/>
         <source>small</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="407"/>
+        <location filename="strategyexplorer.cpp" line="418"/>
         <source>medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="408"/>
+        <location filename="strategyexplorer.cpp" line="419"/>
         <source>big</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="409"/>
+        <location filename="strategyexplorer.cpp" line="420"/>
         <source>overbet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="414"/>
+        <location filename="strategyexplorer.cpp" line="425"/>
         <source>Fold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="415"/>
+        <location filename="strategyexplorer.cpp" line="426"/>
         <source>Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="416"/>
+        <location filename="strategyexplorer.cpp" line="427"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="417"/>
+        <location filename="strategyexplorer.cpp" line="428"/>
         <source>Bet %1% of the pot (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="418"/>
+        <location filename="strategyexplorer.cpp" line="429"/>
         <source>Raise to %1% of the pot (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="419"/>
+        <location filename="strategyexplorer.cpp" line="430"/>
         <source>Other action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="426"/>
+        <location filename="strategyexplorer.cpp" line="437"/>
         <source>the hand isn&apos;t good enough to continue, continuing costs more than it can win</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="428"/>
+        <location filename="strategyexplorer.cpp" line="439"/>
         <source>good enough to see the next card for free without risking more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="430"/>
+        <location filename="strategyexplorer.cpp" line="441"/>
         <source>the hand is good enough to continue, but not to bet more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="434"/>
+        <location filename="strategyexplorer.cpp" line="445"/>
         <source>builds the pot with a strong hand and pressures the opponent into a mistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="435"/>
+        <location filename="strategyexplorer.cpp" line="446"/>
         <source>mixed in occasionally to stay unpredictable with this hand</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1945,7 +1935,7 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="strategyexplorer.ui" line="47"/>
-        <location filename="strategyexplorer.cpp" line="564"/>
+        <location filename="strategyexplorer.cpp" line="575"/>
         <source>🔍 View decision tree and advanced options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2020,7 +2010,7 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="strategyexplorer.ui" line="353"/>
-        <location filename="strategyexplorer.cpp" line="190"/>
+        <location filename="strategyexplorer.cpp" line="201"/>
         <source>IP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2036,8 +2026,8 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="strategyexplorer.ui" line="271"/>
-        <location filename="strategyexplorer.cpp" line="527"/>
-        <location filename="strategyexplorer.cpp" line="532"/>
+        <location filename="strategyexplorer.cpp" line="538"/>
+        <location filename="strategyexplorer.cpp" line="543"/>
         <source>With your opponent&apos;s whole range at this point: how often it&apos;s correct to fold (blue), call (green), or bet/raise (red).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2048,7 +2038,7 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="strategyexplorer.ui" line="366"/>
-        <location filename="strategyexplorer.cpp" line="190"/>
+        <location filename="strategyexplorer.cpp" line="201"/>
         <source>OOP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2133,134 +2123,134 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="183"/>
+        <location filename="strategyexplorer.cpp" line="194"/>
         <source>board</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="190"/>
+        <location filename="strategyexplorer.cpp" line="201"/>
         <source> decision node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="194"/>
+        <location filename="strategyexplorer.cpp" line="205"/>
         <source>&lt;b&gt;Chance node&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="198"/>
+        <location filename="strategyexplorer.cpp" line="209"/>
         <source>&lt;b&gt;Terminal node&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="202"/>
+        <location filename="strategyexplorer.cpp" line="213"/>
         <source>&lt;b&gt;Showdown node&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="222"/>
+        <location filename="strategyexplorer.cpp" line="233"/>
         <source>Encountering error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="313"/>
+        <location filename="strategyexplorer.cpp" line="324"/>
         <source>FOLD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="314"/>
+        <location filename="strategyexplorer.cpp" line="325"/>
         <source>CALL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="315"/>
+        <location filename="strategyexplorer.cpp" line="326"/>
         <source>CHECK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="316"/>
+        <location filename="strategyexplorer.cpp" line="327"/>
         <source>BET</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="317"/>
+        <location filename="strategyexplorer.cpp" line="328"/>
         <source>RAISE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="324"/>
+        <location filename="strategyexplorer.cpp" line="335"/>
         <source>Can&apos;t calculate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="328"/>
+        <location filename="strategyexplorer.cpp" line="339"/>
         <source>EV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="497"/>
+        <location filename="strategyexplorer.cpp" line="508"/>
         <source> [costs ~%1 fewer chips than the best play]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="503"/>
+        <location filename="strategyexplorer.cpp" line="514"/>
         <source>With %1:&lt;br&gt;%2</source>
         <oldsource>Con %1:&lt;br&gt;%2</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="544"/>
+        <location filename="strategyexplorer.cpp" line="555"/>
         <source>Your opponent gets here and, with their whole range, folds %1% of the time, calls/checks %2%, and bets/raises %3%.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="563"/>
+        <location filename="strategyexplorer.cpp" line="574"/>
         <source>🔍 Hide decision tree and advanced options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="572"/>
+        <location filename="strategyexplorer.cpp" line="583"/>
         <source>solverix_play_%1.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="573"/>
+        <location filename="strategyexplorer.cpp" line="584"/>
         <source>Export as image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="573"/>
+        <location filename="strategyexplorer.cpp" line="584"/>
         <source>PNG image (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="578"/>
+        <location filename="strategyexplorer.cpp" line="589"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="578"/>
+        <location filename="strategyexplorer.cpp" line="589"/>
         <source>Image saved to:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="580"/>
+        <location filename="strategyexplorer.cpp" line="591"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="580"/>
+        <location filename="strategyexplorer.cpp" line="591"/>
         <source>Couldn&apos;t save the image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="585"/>
+        <location filename="strategyexplorer.cpp" line="596"/>
         <source>&lt;h3&gt;Quick glossary&lt;/h3&gt;&lt;p&gt;&lt;b&gt;EV (expected value):&lt;/b&gt; how much a play wins or loses on average, in chips, if repeated many times. A higher EV is better.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Range:&lt;/b&gt; the set of possible hands a player could have at a point in the hand, not an exact card.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Blocker:&lt;/b&gt; holding a card that makes it less likely your opponent has a certain strong hand (e.g. holding an Ace reduces the AA combos your opponent could have).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Indifference:&lt;/b&gt; a point where two plays give exactly the same expected result, which is why the solver sometimes mixes between two actions with the same hand.&lt;/p&gt;&lt;p&gt;&lt;b&gt;IP / OOP:&lt;/b&gt; IP (in position) is the player who acts last on the street; OOP (out of position) is the one who acts first. Playing in position (IP) is an advantage.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Combos:&lt;/b&gt; the number of exact card combinations that make up a hand (e.g. AKs has 4 combos, one per suit).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Frequency:&lt;/b&gt; how often the solver chooses an action with a given hand, expressed as a percentage.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="596"/>
+        <location filename="strategyexplorer.cpp" line="607"/>
         <source>Glossary</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2359,8 +2349,13 @@ If it&apos;s your first time, we recommend Quick Mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="boardselector.cpp" line="44"/>
+        <location filename="boardselector.cpp" line="50"/>
         <source>A board can only have up to 5 cards (flop + turn + river).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="boardselector.cpp" line="51"/>
+        <source>You can only add 1 card here.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

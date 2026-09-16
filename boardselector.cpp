@@ -34,14 +34,21 @@ boardselector::~boardselector()
     delete ui;
 }
 
+void boardselector::setMaxCards(int maxCards)
+{
+    this->maxCards = maxCards;
+}
+
 void boardselector::on_boardSelectorTable_clicked(const QModelIndex &index)
 {
     int row = index.row();
     int col = index.column();
     bool isSelecting = this->boardSelectorTableModel->getBoardAt(row,col) == 0;
     int currentCount = this->boardSelectorTableModel->getBoardText().split(",", Qt::SkipEmptyParts).size();
-    if(isSelecting && currentCount >= 5){
-        QToolTip::showText(QCursor::pos(), tr("A board can only have up to 5 cards (flop + turn + river)."));
+    if(isSelecting && currentCount >= this->maxCards){
+        QToolTip::showText(QCursor::pos(), this->maxCards >= 5
+            ? tr("A board can only have up to 5 cards (flop + turn + river).")
+            : tr("You can only add 1 card here."));
         return;
     }
     this->boardSelectorTableModel->setBoardAt(row,col,1 - this->boardSelectorTableModel->getBoardAt(row,col));

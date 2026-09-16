@@ -20,6 +20,10 @@ class boardselector : public QDialog
 public:
     explicit boardselector(QTextEdit* boardEdit,QSolverJob::Mode mode = QSolverJob::Mode::HOLDEM,QWidget *parent = 0);
     ~boardselector();
+    // Caps how many cards this picker allows selecting at once. Defaults to
+    // 5 (a full board); Quick Mode's turn/river runout picker sets this to
+    // the current board size + 1 so the user can only add exactly one card.
+    void setMaxCards(int maxCards);
 
 private slots:
     void on_boardSelectorTable_clicked(const QModelIndex &index);
@@ -41,6 +45,7 @@ private:
     QStringList rank_list;
     BoardSelectorTableModel * boardSelectorTableModel = NULL;
     BoardSelectorTableDelegate * boardSelectorTableDelegate = NULL;
+    int maxCards = 5;
 };
 
 #endif // BOARDSELECTOR_H

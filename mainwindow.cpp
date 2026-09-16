@@ -98,15 +98,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Runout bar: when the user only sent 3 cards (flop), lets them pick
     // the turn and then the river from the results screen, re-solving after
-    // each pick instead of having to start a whole new hand.
+    // each pick instead of having to start a whole new hand. The button
+    // opens the same card-grid picker used for the board itself, capped to
+    // adding exactly 1 card, instead of a plain text dropdown.
     this->quickRunoutBar = new QWidget(this->ui->quickStepResults);
     QHBoxLayout* runoutLayout = new QHBoxLayout(this->quickRunoutBar);
     runoutLayout->setContentsMargins(0, 0, 0, 0);
-    this->quickRunoutLabel = new QLabel(this->quickRunoutBar);
-    this->quickRunoutCombo = new QComboBox(this->quickRunoutBar);
     this->quickRunoutButton = new QPushButton(this->quickRunoutBar);
-    runoutLayout->addWidget(this->quickRunoutLabel);
-    runoutLayout->addWidget(this->quickRunoutCombo, 1);
     runoutLayout->addWidget(this->quickRunoutButton);
     this->ui->quickStepResultsLayout->insertWidget(1, this->quickRunoutBar);
     connect(this->quickRunoutButton, &QPushButton::clicked, this, &MainWindow::onQuickRunoutButtonClicked);
@@ -1084,9 +1082,10 @@ void MainWindow::onSolverJobFinished()
             this->quickModeProgressDialog = NULL;
         }
         if(this->strategyExplorer != NULL){
-            // A previous runout (turn/river) solve already embedded a result
-            // widget here — drop it before swapping in the new one so we
-            // don't leak it or stack two explorers inside the container.
+            // Normally already torn down by onQuickRunoutButtonClicked before
+            // the re-solve started; this is just a safety net so we never
+            // leak or stack two explorers inside the container.
+            this->strategyExplorer->stopAutoUpdate();
             this->ui->quickResultsContainer->layout()->removeWidget(this->strategyExplorer);
             this->strategyExplorer->deleteLater();
             this->strategyExplorer = NULL;
@@ -1095,6 +1094,10 @@ void MainWindow::onSolverJobFinished()
         this->strategyExplorer->setAttribute(Qt::WA_DeleteOnClose);
         this->strategyExplorer->selectRootNode();
         this->strategyExplorer->setHighlightedHand(this->quickModeCard1, this->quickModeCard2);
+        // The manual turn/river combo boxes duplicate the dedicated runout
+        // bar on the results screen (which re-solves for real); hide them
+        // in Quick Mode to avoid two confusing ways to do the same thing.
+        this->strategyExplorer->setRunoutPickerVisible(false);
         if(this->quizMode){
             this->quizMode = false;
             float foldPct, callPct, betPct;
@@ -1325,6 +1328,7 @@ void MainWindow::onSubscriptionCheckTimer(){
 
 void MainWindow::onNewHandButtonClicked(){
     if(this->strategyExplorer != NULL){
+        this->strategyExplorer->stopAutoUpdate();
         this->ui->quickResultsContainer->layout()->removeWidget(this->strategyExplorer);
         this->strategyExplorer->deleteLater();
         this->strategyExplorer = NULL;
@@ -1387,37 +1391,33 @@ void MainWindow::updateQuickRunoutBar(){
         return;
     }
 
-    this->quickRunoutLabel->setText(boardSize == 3 ? tr("Turn card:") : tr("River card:"));
-    this->quickRunoutButton->setText(boardSize == 3 ? tr("Calculate turn →") : tr("Calculate river →"));
-
-    QStringList ranks = QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(",");
-    QStringList suits = QString("c,d,h,s").split(",");
-    QStringList usedCards = boardCards;
-    if(!this->quickModeCard1.isEmpty()) usedCards << this->quickModeCard1;
-    if(!this->quickModeCard2.isEmpty()) usedCards << this->quickModeCard2;
-
-    this->quickRunoutCombo->blockSignals(true);
-    this->quickRunoutCombo->clear();
-    for(const QString& rank : ranks){
-        for(const QString& suit : suits){
-            QString card = rank + suit;
-            if(!usedCards.contains(card)){
-                this->quickRunoutCombo->addItem(card);
-            }
-        }
-    }
-    this->quickRunoutCombo->blockSignals(false);
+    this->quickRunoutButton->setText(boardSize == 3 ? tr("🎴 Choose the turn card") : tr("🎴 Choose the river card"));
     this->quickRunoutBar->setVisible(true);
 }
 
 void MainWindow::onQuickRunoutButtonClicked(){
-    QString card = this->quickRunoutCombo->currentText();
-    if(card.isEmpty()) return;
-    QStringList boardCards = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts);
-    boardCards << card;
-    this->ui->boardText->setPlainText(boardCards.join(","));
-    this->quickRunoutBar->setVisible(false);
-    this->startQuickModeSolve();
+    QSolverJob::Mode mode = this->ui->mode_box->currentIndex() == 0 ? QSolverJob::Mode::HOLDEM:QSolverJob::Mode::SHORTDECK;
+    int beforeSize = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts).size();
+    boardselector* picker = new boardselector(this->ui->boardText, mode, this);
+    picker->setAttribute(Qt::WA_DeleteOnClose);
+    picker->setMaxCards(beforeSize + 1);
+    connect(picker, &QObject::destroyed, this, [this, beforeSize](){
+        int afterSize = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts).size();
+        if(afterSize <= beforeSize) return; // cancelled, or closed without picking a card
+        this->quickRunoutBar->setVisible(false);
+        if(this->strategyExplorer != NULL){
+            // Stop the old result widget's auto-refresh timer *before*
+            // rebuilding the tree it points into — otherwise it keeps
+            // polling into the tree while the background thread is tearing
+            // it down/rebuilding it, which crashes the app.
+            this->strategyExplorer->stopAutoUpdate();
+            this->ui->quickResultsContainer->layout()->removeWidget(this->strategyExplorer);
+            this->strategyExplorer->deleteLater();
+            this->strategyExplorer = NULL;
+        }
+        this->startQuickModeSolve();
+    });
+    picker->show();
 }
 
 void MainWindow::startQuickModeSolve(bool fastMode){
