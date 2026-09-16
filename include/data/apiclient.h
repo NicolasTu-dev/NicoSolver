@@ -5,7 +5,7 @@
 #include <functional>
 
 // Talks to the real Solverix backend (Vercel + Postgres). Registering and
-// activating a plan happen on the website only — the app can log in and
+// activating a plan happen on the website only the app can log in and
 // re-check entitlement, nothing more.
 namespace ApiClient {
 

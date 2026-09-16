@@ -327,7 +327,7 @@ void StrategyExplorer::onMouseMoveEvent(int i,int j){
                     else if(one_action.getAction() == GameTreeNode::PokerActions::BET) action_name = QString("%1 %2").arg(tr("BET"),QString::number(one_action.getAmount()));
                     else if(one_action.getAction() == GameTreeNode::PokerActions::RAISE) action_name = QString("%1 %2").arg(tr("RAISE"),QString::number(one_action.getAmount()));
 
-                    // EV/equity detail is only shown in "advanced mode" — the basic tooltip
+                    // EV/equity detail is only shown in "advanced mode" the basic tooltip
                     // (combo + action %) always shows regardless of this->advancedMode.
                     if(this->advancedMode){
                         QString ev_str;
@@ -501,7 +501,7 @@ void StrategyExplorer::setHighlightedHand(QString card1, QString card2){
         GameActions action = std::get<0>(entry);
         QString piece = QString("%1 (%2%)").arg(actionLabel(action.getAction(), action.getAmount())).arg(pct);
         QString reason = actionReason(action.getAction(), isTop);
-        if(!reason.isEmpty()) piece += QString(" — %1").arg(reason);
+        if(!reason.isEmpty()) piece += QString(" %1").arg(reason);
         if(!isTop){
             float evLoss = topEv - std::get<2>(entry);
             if(evLoss > 0.01f){

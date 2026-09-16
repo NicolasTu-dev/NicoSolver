@@ -6,7 +6,7 @@
 
 // Reached mid-session (e.g. when a feature needs a higher plan, or the
 // subscription expired). Only shows status, a link to the website to
-// buy/renew a plan, a way to re-check status after paying, and logout —
+// buy/renew a plan, a way to re-check status after paying, and logout
 // activating a plan happens on the website, never here.
 class LicenseDialog : public QDialog
 {

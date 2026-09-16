@@ -76,7 +76,7 @@
     </message>
     <message>
         <location filename="licensedialog.cpp" line="45"/>
-        <source>I already got a plan — check again</source>
+        <source>I already got a plan check again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -91,7 +91,7 @@
     </message>
     <message>
         <location filename="licensedialog.cpp" line="65"/>
-        <source>Plan %1 — active. Expires in %2 day(s) (%3).</source>
+        <source>Plan %1 active. Expires in %2 day(s) (%3).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -104,7 +104,7 @@
     <name>LoginDialog</name>
     <message>
         <location filename="logindialog.cpp" line="15"/>
-        <source>Solverix — Log in</source>
+        <source>Solverix Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -849,7 +849,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="145"/>
-        <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does — that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
+        <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -962,7 +962,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.cpp" line="898"/>
         <location filename="mainwindow.cpp" line="1023"/>
-        <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection.</source>
+        <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) no more, no less. Go back and fix your board selection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1012,12 +1012,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="381"/>
-        <source>This step defines WHAT BET SIZES the solver can choose — you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) — that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
+        <source>This step defines WHAT BET SIZES the solver can choose you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="382"/>
-        <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision — leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
+        <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1048,7 +1048,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="394"/>
-        <source>📌 Example: the flop came Q♠ J♥ 2♥ — a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
+        <source>📌 Example: the flop came Q♠ J♥ 2♥ a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1058,7 +1058,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="396"/>
-        <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left — round numbers chosen to make it easy to follow.</source>
+        <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left round numbers chosen to make it easy to follow.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1256,7 +1256,7 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1375"/>
-        <source>Quick Mode — Step %1 of 4: %2</source>
+        <source>Quick Mode Step %1 of 4: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1887,12 +1887,12 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="settingeditor.ui" line="182"/>
-        <source>Iterations — Quick Mode</source>
+        <source>Iterations Quick Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="settingeditor.ui" line="206"/>
-        <source>Iterations — Practice Mode</source>
+        <source>Iterations Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2357,9 +2357,9 @@ You have two ways to use it:
 
 🚀 Quick Mode: load your 2 cards, the board, and pick from a list what happened before the flop (e.g. &quot;you opened from the Button and got called&quot;). We automatically build the typical ranges for that situation and show you straight away what to do with your hand.
 
-🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter — for when you want full control.
+🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter for when you want full control.
 
-🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you&apos;d do before seeing the solver&apos;s answer — to train.
+🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you&apos;d do before seeing the solver&apos;s answer to train.
 
 If it&apos;s your first time, we recommend Quick Mode.</source>
         <translation type="unfinished"></translation>

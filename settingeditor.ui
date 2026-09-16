@@ -179,7 +179,7 @@
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Iterations — Quick Mode</string>
+          <string>Iterations Quick Mode</string>
          </property>
         </widget>
        </item>
@@ -203,7 +203,7 @@
        <item>
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>Iterations — Practice Mode</string>
+          <string>Iterations Practice Mode</string>
          </property>
         </widget>
        </item>

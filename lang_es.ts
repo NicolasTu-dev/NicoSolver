@@ -76,8 +76,8 @@
     </message>
     <message>
         <location filename="licensedialog.cpp" line="45"/>
-        <source>I already got a plan — check again</source>
-        <translation>Ya adquirí un plan — revisar de nuevo</translation>
+        <source>I already got a plan check again</source>
+        <translation>Ya adquirí un plan revisar de nuevo</translation>
     </message>
     <message>
         <location filename="licensedialog.cpp" line="50"/>
@@ -91,8 +91,8 @@
     </message>
     <message>
         <location filename="licensedialog.cpp" line="65"/>
-        <source>Plan %1 — active. Expires in %2 day(s) (%3).</source>
-        <translation>Plan %1 — activo. Vence en %2 día(s) (%3).</translation>
+        <source>Plan %1 active. Expires in %2 day(s) (%3).</source>
+        <translation>Plan %1 activo. Vence en %2 día(s) (%3).</translation>
     </message>
     <message>
         <location filename="licensedialog.cpp" line="80"/>
@@ -104,8 +104,8 @@
     <name>LoginDialog</name>
     <message>
         <location filename="logindialog.cpp" line="15"/>
-        <source>Solverix — Log in</source>
-        <translation>Solverix — Iniciar sesión</translation>
+        <source>Solverix Log in</source>
+        <translation>Solverix Iniciar sesión</translation>
     </message>
     <message>
         <location filename="logindialog.cpp" line="22"/>
@@ -884,8 +884,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="145"/>
-        <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does — that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
-        <translation>Turn = la 4ta carta comunitaria. &quot;Donk Sizes&quot; es para este caso concreto: en el flop nadie apostó (ambos chequearon), llega el turn, y OOP decide apostar primero en vez de esperar a ver qué hace IP — a esa jugada se le dice &quot;donk bet&quot;. Los números son % del pozo en ese momento.</translation>
+        <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
+        <translation>Turn = la 4ta carta comunitaria. &quot;Donk Sizes&quot; es para este caso concreto: en el flop nadie apostó (ambos chequearon), llega el turn, y OOP decide apostar primero en vez de esperar a ver qué hace IP a esa jugada se le dice &quot;donk bet&quot;. Los números son % del pozo en ese momento.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="146"/>
@@ -1015,13 +1015,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="381"/>
-        <source>This step defines WHAT BET SIZES the solver can choose — you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) — that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
-        <translation>Este paso define QUÉ TAMAÑOS DE APUESTA puede elegir el solver — no hace falta que entiendas todos los términos ahora, con los valores por defecto ya alcanza para probar. Ejemplo concreto: si el pozo tiene 100 fichas y ponés &quot;50&quot; en Bet Sizes, significa &quot;apostar el 50% del pozo&quot; = 50 fichas. Si después alguien sube con &quot;60&quot; en Raise Sizes, esas son 60% DEL POZO YA AGRANDADO por esa apuesta (no del pozo original) — por eso se expresa en % y no en fichas fijas, así sirve para cualquier tamaño de pozo. Hay 6 cajas porque el juego se divide en 3 calles (Flop, Turn, River) y en cada una IP y OOP pueden usar tamaños distintos; mirá los títulos ▸ arriba de cada fila para ubicarte. &quot;Donk Sizes&quot; es solo para OOP en Turn/River: son los tamaños que puede usar para apostar primero en esa calle nueva, aunque en la calle anterior haya sido el que no apostó (esa jugada se llama &quot;donk bet&quot;). &quot;Add Allin&quot; simplemente agrega, además de esos tamaños, la opción de ir directo all-in con todo el stack.</translation>
+        <source>This step defines WHAT BET SIZES the solver can choose you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
+        <translation>Este paso define QUÉ TAMAÑOS DE APUESTA puede elegir el solver no hace falta que entiendas todos los términos ahora, con los valores por defecto ya alcanza para probar. Ejemplo concreto: si el pozo tiene 100 fichas y ponés &quot;50&quot; en Bet Sizes, significa &quot;apostar el 50% del pozo&quot; = 50 fichas. Si después alguien sube con &quot;60&quot; en Raise Sizes, esas son 60% DEL POZO YA AGRANDADO por esa apuesta (no del pozo original) por eso se expresa en % y no en fichas fijas, así sirve para cualquier tamaño de pozo. Hay 6 cajas porque el juego se divide en 3 calles (Flop, Turn, River) y en cada una IP y OOP pueden usar tamaños distintos; mirá los títulos ▸ arriba de cada fila para ubicarte. &quot;Donk Sizes&quot; es solo para OOP en Turn/River: son los tamaños que puede usar para apostar primero en esa calle nueva, aunque en la calle anterior haya sido el que no apostó (esa jugada se llama &quot;donk bet&quot;). &quot;Add Allin&quot; simplemente agrega, además de esos tamaños, la opción de ir directo all-in con todo el stack.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="382"/>
-        <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision — leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
-        <translation>&quot;Raise limit&quot; es la cantidad máxima de subidas seguidas que el solver va a considerar en una misma calle (más subidas = árbol más grande y más lento). &quot;Pot&quot; es el tamaño del pozo antes de empezar esta situación, y &quot;Effective Stack&quot; es la cantidad de fichas que le queda al jugador con menos stack (lo máximo que se puede llegar a apostar). &quot;Mode&quot; define el mazo: &quot;texas holdem&quot; (52 cartas) o &quot;shortdeck&quot; (36 cartas, sin 2-5). &quot;Allin threshold&quot; es un atajo: si a un jugador le queda menos de ese % del pozo, el solver directamente le ofrece ir all-in en vez de tamaños de apuesta intermedios, para no complicar el árbol innecesariamente. &quot;Use isomorphism&quot; es una optimización interna: agrupa cartas que son estratégicamente equivalentes (por ejemplo, dos palos que no forman color en ningún lado) para resolver más rápido sin perder precisión — dejalo tildado salvo que tengas una razón específica para desactivarlo. &quot;Save memory at cost of speed/accuracy&quot; reduce la memoria RAM usada a cambio de resolver un poco más lento o con menor precisión numérica; usalo solo si te quedás sin memoria. Al tocar &quot;Siguiente&quot; se construye el árbol de decisiones automáticamente con estos valores.</translation>
+        <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
+        <translation>&quot;Raise limit&quot; es la cantidad máxima de subidas seguidas que el solver va a considerar en una misma calle (más subidas = árbol más grande y más lento). &quot;Pot&quot; es el tamaño del pozo antes de empezar esta situación, y &quot;Effective Stack&quot; es la cantidad de fichas que le queda al jugador con menos stack (lo máximo que se puede llegar a apostar). &quot;Mode&quot; define el mazo: &quot;texas holdem&quot; (52 cartas) o &quot;shortdeck&quot; (36 cartas, sin 2-5). &quot;Allin threshold&quot; es un atajo: si a un jugador le queda menos de ese % del pozo, el solver directamente le ofrece ir all-in en vez de tamaños de apuesta intermedios, para no complicar el árbol innecesariamente. &quot;Use isomorphism&quot; es una optimización interna: agrupa cartas que son estratégicamente equivalentes (por ejemplo, dos palos que no forman color en ningún lado) para resolver más rápido sin perder precisión dejalo tildado salvo que tengas una razón específica para desactivarlo. &quot;Save memory at cost of speed/accuracy&quot; reduce la memoria RAM usada a cambio de resolver un poco más lento o con menor precisión numérica; usalo solo si te quedás sin memoria. Al tocar &quot;Siguiente&quot; se construye el árbol de decisiones automáticamente con estos valores.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="383"/>
@@ -1051,8 +1051,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="394"/>
-        <source>📌 Example: the flop came Q♠ J♥ 2♥ — a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
-        <translation>📌 Ejemplo: el flop salió Q♠ J♥ 2♥ — una carta alta (Q), una carta media que puede haber conectado con varias manos (J), y una carta baja que además trae proyecto de color a corazones.</translation>
+        <source>📌 Example: the flop came Q♠ J♥ 2♥ a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
+        <translation>📌 Ejemplo: el flop salió Q♠ J♥ 2♥ una carta alta (Q), una carta media que puede haber conectado con varias manos (J), y una carta baja que además trae proyecto de color a corazones.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="395"/>
@@ -1061,8 +1061,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="396"/>
-        <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left — round numbers chosen to make it easy to follow.</source>
-        <translation>📌 Ejemplo: el pozo antes de esta situación es 50 fichas y a cada jugador le quedan 200 fichas de stack efectivo — números redondos pensados para que sea fácil de seguir.</translation>
+        <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left round numbers chosen to make it easy to follow.</source>
+        <translation>📌 Ejemplo: el pozo antes de esta situación es 50 fichas y a cada jugador le quedan 200 fichas de stack efectivo números redondos pensados para que sea fácil de seguir.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="397"/>
@@ -1146,8 +1146,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.cpp" line="898"/>
         <location filename="mainwindow.cpp" line="1023"/>
-        <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection.</source>
-        <translation>Un board necesita exactamente 3 cartas (flop), 4 (turn) o 5 (river) — ni más ni menos. Volvé atrás y corregí la selección del board.</translation>
+        <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) no more, no less. Go back and fix your board selection.</source>
+        <translation>Un board necesita exactamente 3 cartas (flop), 4 (turn) o 5 (river) ni más ni menos. Volvé atrás y corregí la selección del board.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1047"/>
@@ -1309,8 +1309,8 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1375"/>
-        <source>Quick Mode — Step %1 of 4: %2</source>
-        <translation>Modo Rápido — Paso %1 de 4: %2</translation>
+        <source>Quick Mode Step %1 of 4: %2</source>
+        <translation>Modo Rápido Paso %1 de 4: %2</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1384"/>
@@ -1948,13 +1948,13 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="settingeditor.ui" line="182"/>
-        <source>Iterations — Quick Mode</source>
-        <translation>Iteraciones — Modo Rápido</translation>
+        <source>Iterations Quick Mode</source>
+        <translation>Iteraciones Modo Rápido</translation>
     </message>
     <message>
         <location filename="settingeditor.ui" line="206"/>
-        <source>Iterations — Practice Mode</source>
-        <translation>Iteraciones — Modo Práctica</translation>
+        <source>Iterations Practice Mode</source>
+        <translation>Iteraciones Modo Práctica</translation>
     </message>
     <message>
         <location filename="settingeditor.ui" line="230"/>
@@ -2415,9 +2415,9 @@ You have two ways to use it:
 
 🚀 Quick Mode: load your 2 cards, the board, and pick from a list what happened before the flop (e.g. &quot;you opened from the Button and got called&quot;). We automatically build the typical ranges for that situation and show you straight away what to do with your hand.
 
-🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter — for when you want full control.
+🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter for when you want full control.
 
-🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you&apos;d do before seeing the solver&apos;s answer — to train.
+🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you&apos;d do before seeing the solver&apos;s answer to train.
 
 If it&apos;s your first time, we recommend Quick Mode.</source>
         <translation>Solverix calcula, para una situación concreta de una mano, cuál es la forma matemáticamente más equilibrada de jugarla.
@@ -2426,9 +2426,9 @@ Tenés dos formas de usarlo:
 
 🚀 Modo Rápido: cargás tus 2 cartas, el board, y elegís de una lista qué pasó antes del flop (por ejemplo &quot;abriste desde el Botón y te pagaron&quot;). Nosotros armamos automáticamente los rangos típicos de esa situación y te mostramos directamente qué conviene hacer con tu mano.
 
-🔧 Modo Avanzado: configurás vos mismo los rangos exactos de cada jugador, el tamaño de las apuestas, y todos los demás parámetros — para cuando quieras control total.
+🔧 Modo Avanzado: configurás vos mismo los rangos exactos de cada jugador, el tamaño de las apuestas, y todos los demás parámetros para cuando quieras control total.
 
-🎯 Modo Práctica: te tira una situación al azar (posición, mano y board) y adivinás qué harías antes de ver la respuesta del solver — para entrenar.
+🎯 Modo Práctica: te tira una situación al azar (posición, mano y board) y adivinás qué harías antes de ver la respuesta del solver para entrenar.
 
 Si es tu primera vez, te recomendamos Modo Rápido.</translation>
     </message>

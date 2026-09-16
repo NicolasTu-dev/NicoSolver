@@ -12,7 +12,7 @@ static const char* WEBSITE_URL = "https://solverix-nicolastu-devs-projects.verce
 
 LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
 {
-    this->setWindowTitle(tr("Solverix — Log in"));
+    this->setWindowTitle(tr("Solverix Log in"));
     this->setMinimumSize(400, 320);
 
     QVBoxLayout* layout = new QVBoxLayout(this);
@@ -68,7 +68,7 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
 
     // Pre-fill and auto-attempt login with remembered credentials, if any.
     // Stored in plain QSettings (same as every other app setting) rather
-    // than an OS credential store — acceptable here since this is a
+    // than an OS credential store acceptable here since this is a
     // single-user desktop app with no other secure-storage dependency.
     QSettings setting("Solverix", "Setting");
     setting.beginGroup("solver");
@@ -124,7 +124,7 @@ void LoginDialog::onLoginClicked(){
         if(!result.ok){
             if(result.error == "invalid_credentials"){
                 // A remembered password stopped working (changed on the
-                // website, etc.) — stop auto-filling it on every launch.
+                // website, etc.) stop auto-filling it on every launch.
                 QSettings setting("Solverix", "Setting");
                 setting.beginGroup("solver");
                 setting.remove("savedPassword");

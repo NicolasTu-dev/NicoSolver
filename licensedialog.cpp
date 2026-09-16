@@ -42,7 +42,7 @@ LicenseDialog::LicenseDialog(QWidget *parent) : QDialog(parent)
     connect(openWebsiteBtn, &QPushButton::clicked, this, &LicenseDialog::onOpenWebsite);
     layout->addWidget(openWebsiteBtn);
 
-    QPushButton* recheckBtn = new QPushButton(tr("I already got a plan — check again"), this);
+    QPushButton* recheckBtn = new QPushButton(tr("I already got a plan check again"), this);
     recheckBtn->setStyleSheet("font-size:12.5px; padding:10px 10px;");
     connect(recheckBtn, &QPushButton::clicked, this, &LicenseDialog::onRecheckStatus);
     layout->addWidget(recheckBtn);
@@ -62,7 +62,7 @@ void LicenseDialog::refreshStatus(){
         this->statusLabel->setStyleSheet("font-size:15px; font-weight:700; color:#ff5c5c;");
     }else{
         int days = LicenseManager::daysRemaining();
-        this->statusLabel->setText(tr("Plan %1 — active. Expires in %2 day(s) (%3).")
+        this->statusLabel->setText(tr("Plan %1 active. Expires in %2 day(s) (%3).")
             .arg(LicenseManager::planDisplayName(plan))
             .arg(days)
             .arg(LicenseManager::expiryDate().toString("dd/MM/yyyy")));

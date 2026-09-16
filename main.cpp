@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     QString language_str = setting.value("language").toString();
     QTranslator trans;
 
-    // English by default on first launch — no picker dialog. Switchable
+    // English by default on first launch no picker dialog. Switchable
     // later from the Solver > Language menu (see MainWindow), which just
     // writes this same setting and asks for a restart.
     if(language_str == ""){
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
         trans.load(":/lang_pt.qm");
         a.installTranslator(&trans);
     }
-    // EN needs no translator — source strings are already English.
+    // EN needs no translator source strings are already English.
 
     QStringList validThemes;
     validThemes << "dark" << "light" << "pokerroom" << "violet" << "fintech";

@@ -8,7 +8,7 @@
 
 namespace ApiClient {
 
-// Separate, unprotected Vercel project — it has no landing page, only the
+// Separate, unprotected Vercel project it has no landing page, only the
 // register/login/activate/status functions, secured by real hashed
 // passwords instead of Vercel's deployment protection (which stays on for
 // the marketing site, a different project).

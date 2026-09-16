@@ -8,7 +8,7 @@
 #include <QCheckBox>
 
 // First screen shown on every launch. Only lets you log in with an
-// existing account — registering and activating a plan happen on the
+// existing account registering and activating a plan happen on the
 // Solverix website, never inside the app. If the account has no active
 // subscription, this shows a button that opens the website instead of
 // letting you in.

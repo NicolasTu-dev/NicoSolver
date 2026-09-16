@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Re-check the subscription against the server periodically. Checking
     // only the locally cached expiry date (set at login) can't detect an
-    // early cancellation made from another device — this closes that gap
+    // early cancellation made from another device this closes that gap
     // without needing to hit the network on every single action.
     this->subscriptionCheckTimer = new QTimer(this);
     this->subscriptionCheckTimer->setInterval(60 * 60 * 1000); // 1 hour
@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->ui->IpRangeTableView, SIGNAL(itemMouseChange(int,int)), this, SLOT(onIpRangeHover(int,int)));
     connect(this->ui->oopRangeTableView, SIGNAL(itemMouseChange(int,int)), this, SLOT(onOopRangeHover(int,int)));
 
-    // Quick-mode hand picker — reuses the existing board-card grid widget/model,
+    // Quick-mode hand picker reuses the existing board-card grid widget/model,
     // just pointed at a separate (initially empty) text buffer for "my 2 cards".
     this->handSelectorModel = new BoardSelectorTableModel(QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(","), "", this);
     this->ui->handSelectorTable->setModel(this->handSelectorModel);
@@ -142,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->groupBox_2->setToolTip(tr("Turn = the 4th community card. Bet sizes IP can use when opening the action on the turn. Same idea as the flop: the numbers are % of the pot, not fixed chips."));
     this->ui->groupBox_3->setToolTip(tr("River = the 5th and last community card. Bet sizes IP can use when opening the action on the river."));
     this->ui->groupBox_4->setToolTip(tr("Flop = the first 3 community cards. Bet sizes OOP (the player who acts first) can use when deciding to open betting on the flop, instead of checking."));
-    this->ui->groupBox_5->setToolTip(tr("Turn = the 4th community card. \"Donk Sizes\" is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does — that's called a \"donk bet\". The numbers are % of the pot at that moment."));
+    this->ui->groupBox_5->setToolTip(tr("Turn = the 4th community card. \"Donk Sizes\" is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does that's called a \"donk bet\". The numbers are % of the pot at that moment."));
     this->ui->groupBox_6->setToolTip(tr("River = the 5th and last community card. Same case as the turn: \"Donk Sizes\" are the sizes OOP can use to bet first on the river after not betting on the turn."));
 
     this->ui->raiseLimitText->setToolTip(tr("Maximum number of consecutive raises the solver considers on the same street. A higher number makes the tree much bigger and slower to solve."));
@@ -164,7 +164,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->wizardSteps[4] = this->ui->wizardStepSolverOptions;
     this->wizardSteps[5] = this->ui->wizardStepConfirm;
 
-    // Bigger, more discoverable mode-switch panel — only shown on step 1 of
+    // Bigger, more discoverable mode-switch panel only shown on step 1 of
     // the Advanced Solver, since that's the point where picking a different
     // mode still makes sense (nothing has been configured yet).
     this->ui->modeSelectorBanner->setStyleSheet(
@@ -378,8 +378,8 @@ void MainWindow::showWizardStep(int index)
     stepSubtitles
         << tr("A \"range\" is the set of hands a player might have in this situation. IP (\"in position\") is the player who acts last on the street; OOP (\"out of position\") is the one who acts first. Tap a grid cell to add or remove that hand from the range (darker = played more often), or type the range by hand in the text box.")
         << tr("Choose the cards that already came out on the table (3 for flop, 4 for turn, 5 for river).")
-        << tr("This step defines WHAT BET SIZES the solver can choose — you don't need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put \"50\" in Bet Sizes, that means \"bet 50% of the pot\" = 50 chips. If someone then raises with \"60\" in Raise Sizes, that's 60% of the pot AFTER it grew from that bet (not the original pot) — that's why it's expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. \"Donk Sizes\" is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn't bet on the previous street (that play is called a \"donk bet\"). \"Add Allin\" simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.")
-        << tr("\"Raise limit\" is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). \"Pot\" is the pot size before this situation starts, and \"Effective Stack\" is the number of chips left for the player with the smaller stack (the most that can be bet). \"Mode\" sets the deck: \"texas holdem\" (52 cards) or \"shortdeck\" (36 cards, no 2-5). \"Allin threshold\" is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. \"Use isomorphism\" is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don't make a flush anywhere) to solve faster without losing precision — leave it checked unless you have a specific reason to disable it. \"Save memory at cost of speed/accuracy\" reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you're running out of memory. Tapping \"Next\" builds the decision tree automatically with these values.")
+        << tr("This step defines WHAT BET SIZES the solver can choose you don't need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put \"50\" in Bet Sizes, that means \"bet 50% of the pot\" = 50 chips. If someone then raises with \"60\" in Raise Sizes, that's 60% of the pot AFTER it grew from that bet (not the original pot) that's why it's expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. \"Donk Sizes\" is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn't bet on the previous street (that play is called a \"donk bet\"). \"Add Allin\" simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.")
+        << tr("\"Raise limit\" is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). \"Pot\" is the pot size before this situation starts, and \"Effective Stack\" is the number of chips left for the player with the smaller stack (the most that can be bet). \"Mode\" sets the deck: \"texas holdem\" (52 cards) or \"shortdeck\" (36 cards, no 2-5). \"Allin threshold\" is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. \"Use isomorphism\" is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don't make a flush anywhere) to solve faster without losing precision leave it checked unless you have a specific reason to disable it. \"Save memory at cost of speed/accuracy\" reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you're running out of memory. Tapping \"Next\" builds the decision tree automatically with these values.")
         << tr("\"Iterations\" is the maximum number of times the solver will recalculate the strategy (more iterations = more precision, but more time). \"Stop solving when reach X% exploitability\" makes the solver stop early if it already reached a strategy close enough to optimal (a lower number = more precise but slower; 0.5% is already a very solid strategy to play). \"Log interval\" is how often progress is printed in the console below, it only affects how often you see updates, not the result. \"Threads\" is the number of processor cores the solver can use at once (more threads = solves faster if your computer has enough free cores). The default values work fine to start.")
         << tr("Review everything and tap \"Start solving\" so the solver calculates the optimal strategy.");
     this->ui->wizardStepLabel->setText(tr("Step %1 of 6: %2").arg(index + 1).arg(stepNames[index]));
@@ -391,9 +391,9 @@ void MainWindow::showWizardStep(int index)
         QStringList exampleTexts;
         exampleTexts
             << tr("📌 Example: IP is a player on the button (BTN) who opened the hand with a typical opening range. OOP is the big blind (BB) who called that open with their defending range. Notice both ranges are already loaded in the grid.")
-            << tr("📌 Example: the flop came Q♠ J♥ 2♥ — a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.")
+            << tr("📌 Example: the flop came Q♠ J♥ 2♥ a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.")
             << tr("📌 Example: we left the bet sizes at default (50% of the pot when betting, 60% when raising) to keep the example simple. In a real hand you'd adjust this to how your tables usually play.")
-            << tr("📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left — round numbers chosen to make it easy to follow.")
+            << tr("📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left round numbers chosen to make it easy to follow.")
             << tr("📌 Example: we left 200 iterations, which is enough for the solver to converge quickly on a simple example like this (on a more complex hand you might need more).")
             << tr("📌 Example: tap \"Start solving\" and wait for it to finish (with these values it should take just seconds). Then tap \"ShowResult\" to see the recommended strategy.");
         this->ui->exampleBanner->setText(exampleTexts[index]);
@@ -412,7 +412,7 @@ static QString rangeCellTooltip(int i, int j, float freq){
     if(i > j) hand += "o";
     else if(i < j) hand += "s";
     int pct = (int)(freq * 100 + 0.5f);
-    return QString("%1 — %2%").arg(hand).arg(pct);
+    return QString("%1 %2%").arg(hand).arg(pct);
 }
 
 void MainWindow::onIpRangeHover(int i, int j){
@@ -895,7 +895,7 @@ void MainWindow::on_buildTreeButtom_clicked()
             this->quickModePendingStage = QuickModeStage::None;
         }
         QMessageBox::warning(this, tr("Invalid board"),
-            tr("A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection."));
+            tr("A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) no more, no less. Go back and fix your board selection."));
         return;
     }
     qSolverJob->raise_limit = this->ui->raiseLimitText->text().toInt();
@@ -1020,7 +1020,7 @@ void MainWindow::on_estimateMemoryButtom_clicked()
     vector<string> estimateBoardArr = string_split(boardTextForEstimate.toStdString(),',');
     if(estimateBoardArr.size() != 3 && estimateBoardArr.size() != 4 && estimateBoardArr.size() != 5){
         QMessageBox::warning(this, tr("Invalid board"),
-            tr("A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection."));
+            tr("A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) no more, no less. Go back and fix your board selection."));
         return;
     }
 
@@ -1330,7 +1330,7 @@ void MainWindow::onSubscriptionCheckTimer(){
 
     bool wasActive = LicenseManager::isActive();
     ApiClient::checkStatus(email, [this, wasActive](ApiClient::LoginResult result){
-        if(!result.ok) return; // network hiccup or similar — keep the cached value, try again next hour
+        if(!result.ok) return; // network hiccup or similar keep the cached value, try again next hour
 
         LicenseManager::cacheFromServer(result.plan, result.expiresAt);
 
@@ -1372,7 +1372,7 @@ void MainWindow::showQuickModeStep(int index){
     }
     QStringList stepNames;
     stepNames << tr("Situation") << tr("Your cards") << tr("Board") << tr("Result");
-    this->ui->wizardStepLabel->setText(tr("Quick Mode — Step %1 of 4: %2").arg(index + 1).arg(stepNames[index]));
+    this->ui->wizardStepLabel->setText(tr("Quick Mode Step %1 of 4: %2").arg(index + 1).arg(stepNames[index]));
     this->ui->wizardStepSubtitle->setText("");
     this->ui->exampleBanner->setVisible(false);
     // Step 3 (results) has its own "nueva mano" control; the generic
@@ -1422,7 +1422,7 @@ void MainWindow::onQuickRunoutButtonClicked(){
         this->quickRunoutBar->setVisible(false);
         if(this->strategyExplorer != NULL){
             // Stop the old result widget's auto-refresh timer *before*
-            // rebuilding the tree it points into — otherwise it keeps
+            // rebuilding the tree it points into otherwise it keeps
             // polling into the tree while the background thread is tearing
             // it down/rebuilding it, which crashes the app.
             this->strategyExplorer->stopAutoUpdate();

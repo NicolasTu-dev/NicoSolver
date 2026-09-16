@@ -33,9 +33,9 @@ You have two ways to use it:
 
 🚀 Quick Mode: load your 2 cards, the board, and pick from a list what happened before the flop (e.g. "you opened from the Button and got called"). We automatically build the typical ranges for that situation and show you straight away what to do with your hand.
 
-🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter — for when you want full control.
+🔧 Advanced Mode: you configure the exact ranges for each player yourself, bet sizes, and every other parameter for when you want full control.
 
-🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you'd do before seeing the solver's answer — to train.
+🎯 Practice Mode: it throws a random situation at you (position, hand, and board) and you guess what you'd do before seeing the solver's answer to train.
 
 If it's your first time, we recommend Quick Mode.</string>
      </property>
