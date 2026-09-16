@@ -163,6 +163,21 @@ MainWindow::MainWindow(QWidget *parent) :
     this->wizardSteps[3] = this->ui->wizardStepTreeParams;
     this->wizardSteps[4] = this->ui->wizardStepSolverOptions;
     this->wizardSteps[5] = this->ui->wizardStepConfirm;
+
+    // Bigger, more discoverable mode-switch panel — only shown on step 1 of
+    // the Advanced Solver, since that's the point where picking a different
+    // mode still makes sense (nothing has been configured yet).
+    this->ui->modeSelectorBanner->setStyleSheet(
+        "QWidget#modeSelectorBanner{background:#132118; border:1px solid #2a4a38; "
+        "border-left:5px solid #d4af37; border-radius:6px; padding:14px 16px; margin-top:6px;}");
+    this->ui->modeSelectorTitle->setStyleSheet("font-size:15px; font-weight:800; color:#e8f0ea; background:transparent; border:none;");
+    this->ui->modeSelectorBody->setStyleSheet("font-size:12.5px; color:#a9c9b6; background:transparent; border:none; margin-top:4px;");
+    this->ui->modeSelectorButton->setStyleSheet(
+        "QPushButton{font-size:13px; font-weight:700; padding:9px 14px; margin-top:10px; "
+        "background:#d4af37; color:#14231a; border:none; border-radius:6px;}"
+        "QPushButton:hover{background:#e8c250;}");
+    connect(this->ui->modeSelectorButton, &QPushButton::clicked, this, &MainWindow::onModeSelectorButtonClicked);
+
     this->showWizardStep(0);
 
     this->showWelcomeIfNeeded();
@@ -176,7 +191,7 @@ void MainWindow::showWelcomeIfNeeded()
 
     if(!seen_welcome){
         setting.setValue("seen_welcome", true);
-        this->on_helpButton_clicked();
+        this->onModeSelectorButtonClicked();
     }
 }
 
@@ -215,7 +230,7 @@ bool MainWindow::requirePlan(LicenseManager::Plan minPlan){
         : (afterDialog == LicenseManager::Plan::Complete);
 }
 
-void MainWindow::on_helpButton_clicked()
+void MainWindow::onModeSelectorButtonClicked()
 {
     WelcomeDialog dialog(this);
     dialog.exec();

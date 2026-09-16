@@ -73,16 +73,6 @@
              </property>
             </spacer>
            </item>
-           <item>
-            <widget class="QPushButton" name="helpButton">
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="text">
-              <string>💡 See example / Help</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
          <item>
@@ -451,6 +441,39 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QWidget" name="modeSelectorBanner" native="true">
+          <layout class="QVBoxLayout" name="modeSelectorBannerLayout">
+           <item>
+            <widget class="QLabel" name="modeSelectorTitle">
+             <property name="text">
+              <string>🧭 Select Mode / Help</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="modeSelectorBody">
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Here you can pick which mode you want to use: Advanced Solver (full manual control), Quick Mode (preloaded situations), or Practice Mode (train by guessing). You can switch anytime.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="modeSelectorButton">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Choose a mode →</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
         </layout>
        </widget>

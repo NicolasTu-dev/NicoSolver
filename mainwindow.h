@@ -73,7 +73,7 @@ private slots:
     void on_wizardNextButton_clicked();
     void onIpRangeHover(int i, int j);
     void onOopRangeHover(int i, int j);
-    void on_helpButton_clicked();
+    void onModeSelectorButtonClicked();
     void onHandSelectorClicked(const QModelIndex &index);
     void onSeatClicked();
     void onTableSize6Clicked();

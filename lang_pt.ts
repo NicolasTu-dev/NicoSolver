@@ -186,78 +186,77 @@
         <translation type="unfinished">Passo 1 de 6: Ranges</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
         <source>💡 See example / Help</source>
-        <translation type="unfinished">💡 Ver exemplo / Ajuda</translation>
+        <translation type="obsolete">💡 Ver exemplo / Ajuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="94"/>
+        <location filename="mainwindow.ui" line="84"/>
         <source>Choose which hands each player plays before this decision.</source>
         <translation type="unfinished">Escolha quais mãos cada jogador joga antes dessa decisão.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="116"/>
+        <location filename="mainwindow.ui" line="106"/>
         <source>← Back</source>
         <translation type="unfinished">← Voltar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="136"/>
-        <location filename="mainwindow.cpp" line="373"/>
-        <location filename="mainwindow.cpp" line="1369"/>
+        <location filename="mainwindow.ui" line="126"/>
+        <location filename="mainwindow.cpp" line="388"/>
+        <location filename="mainwindow.cpp" line="1384"/>
         <source>Next →</source>
         <translation type="unfinished">Próximo →</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="154"/>
+        <location filename="mainwindow.ui" line="144"/>
         <source>Choose how many players are at the table, then tap your seat and your opponent&apos;s.</source>
         <translation type="unfinished">Escolha quantos jogadores tem na mesa e depois toque no seu assento e no do adversário.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="176"/>
+        <location filename="mainwindow.ui" line="166"/>
         <source>6-max (6 players)</source>
         <translation type="unfinished">6-max (6 jogadores)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="183"/>
+        <location filename="mainwindow.ui" line="173"/>
         <source>Full Ring (9 players)</source>
         <translation type="unfinished">Full Ring (9 jogadores)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
-        <location filename="mainwindow.cpp" line="1253"/>
+        <location filename="mainwindow.ui" line="254"/>
+        <location filename="mainwindow.cpp" line="1268"/>
         <source>Choose your seat.</source>
         <translation type="unfinished">Escolha seu assento.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="280"/>
+        <location filename="mainwindow.ui" line="270"/>
         <source>Tap exactly 2 cards: the ones you had in your hand.</source>
         <translation type="unfinished">Toque em exatamente 2 cartas: as que você tinha na mão.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="287"/>
-        <location filename="mainwindow.cpp" line="1285"/>
-        <location filename="mainwindow.cpp" line="1309"/>
-        <location filename="mainwindow.cpp" line="1346"/>
+        <location filename="mainwindow.ui" line="277"/>
+        <location filename="mainwindow.cpp" line="1300"/>
+        <location filename="mainwindow.cpp" line="1324"/>
+        <location filename="mainwindow.cpp" line="1361"/>
         <source>Selected: (none)</source>
         <translation type="unfinished">Selecionadas: (nenhuma)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="319"/>
+        <location filename="mainwindow.ui" line="309"/>
         <source>Load saved configuration</source>
         <translation type="unfinished">Carregar configuração salva</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="332"/>
+        <location filename="mainwindow.ui" line="322"/>
         <source>IP (acts last)</source>
         <translation type="unfinished">IP (age por último)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="335"/>
+        <location filename="mainwindow.ui" line="325"/>
         <source>IP = &quot;in position&quot;. The player who acts last on this street (has more information before deciding).</source>
         <translation type="unfinished">IP = &quot;in position&quot;. É o jogador que age por último nessa rua (tem mais informação antes de decidir).</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="341"/>
+        <location filename="mainwindow.ui" line="331"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -270,17 +269,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.AppleSystemUIFont&apos;; font-size:13pt;&quot;&gt;AA,KK,QQ,JJ,TT,99:0.75,88:0.75,77:0.5,66:0.25,55:0.25,AK,AQs,AQo:0.75,AJs,AJo:0.5,ATs:0.75,A6s:0.25,A5s:0.75,A4s:0.75,A3s:0.5,A2s:0.5,KQs,KQo:0.5,KJs,KTs:0.75,K5s:0.25,K4s:0.25,QJs:0.75,QTs:0.75,Q9s:0.5,JTs:0.75,J9s:0.75,J8s:0.75,T9s:0.75,T8s:0.75,T7s:0.75,98s:0.75,97s:0.75,96s:0.5,87s:0.75,86s:0.5,85s:0.5,76s:0.75,75s:0.5,65s:0.75,64s:0.5,54s:0.75,53s:0.5,43s:0.5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="353"/>
+        <location filename="mainwindow.ui" line="343"/>
         <source>OOP (acts first)</source>
         <translation type="unfinished">OOP (age primeiro)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="356"/>
+        <location filename="mainwindow.ui" line="346"/>
         <source>OOP = &quot;out of position&quot;. The player who acts first on this street (has less information before deciding).</source>
         <translation type="unfinished">OOP = &quot;out of position&quot;. É o jogador que age primeiro nessa rua (tem menos informação antes de decidir).</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="362"/>
+        <location filename="mainwindow.ui" line="352"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -293,29 +292,44 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.AppleSystemUIFont&apos;; font-size:13pt;&quot;&gt;QQ:0.5,JJ:0.75,TT,99,88,77,66,55,44,33,22,AKo:0.25,AQs,AQo:0.75,AJs,AJo:0.75,ATs,ATo:0.75,A9s,A8s,A7s,A6s,A5s,A4s,A3s,A2s,KQ,KJ,KTs,KTo:0.5,K9s,K8s,K7s,K6s,K5s,K4s:0.5,K3s:0.5,K2s:0.5,QJ,QTs,Q9s,Q8s,Q7s,JTs,JTo:0.5,J9s,J8s,T9s,T8s,T7s,98s,97s,96s,87s,86s,76s,75s,65s,64s,54s,53s,43s&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="401"/>
+        <location filename="mainwindow.ui" line="391"/>
         <source>Select IP</source>
         <translation type="unfinished">Selecionar IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="434"/>
+        <location filename="mainwindow.ui" line="424"/>
         <source>Select OOP</source>
         <translation type="unfinished">Selecionar OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="464"/>
-        <location filename="mainwindow.cpp" line="360"/>
-        <location filename="mainwindow.cpp" line="1359"/>
+        <location filename="mainwindow.ui" line="451"/>
+        <source>🧭 Select Mode / Help</source>
+        <translation type="unfinished">🧭 Selecionar modo / Ajuda</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="461"/>
+        <source>Here you can pick which mode you want to use: Advanced Solver (full manual control), Quick Mode (preloaded situations), or Practice Mode (train by guessing). You can switch anytime.</source>
+        <translation type="unfinished">Aqui você pode escolher o modo que quer usar: Solver Avançado (controle manual total), Modo Rápido (situações pré-carregadas) ou Modo Prática (treine adivinhando). Você pode trocar quando quiser.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="471"/>
+        <source>Choose a mode →</source>
+        <translation type="unfinished">Escolher modo →</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="487"/>
+        <location filename="mainwindow.cpp" line="375"/>
+        <location filename="mainwindow.cpp" line="1374"/>
         <source>Board</source>
         <translation type="unfinished">Board</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="474"/>
+        <location filename="mainwindow.ui" line="497"/>
         <source>Each card is written as &quot;value + suit&quot;. Example: Jh = J of hearts. Values: A=Ace, K=King, Q=Queen, J=Jack, T=10, and 9-2 as-is. Suits: s=spades, h=hearts, d=diamonds, c=clubs.</source>
         <translation type="unfinished">Cada carta é escrita como &quot;valor + naipe&quot;. Exemplo: Jh = valete de copas. Valores: A=Ás, K=Rei, Q=Dama, J=Valete, T=10, e 9-2 como estão. Naipes: s=espadas, h=copas, d=ouros, c=paus.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="481"/>
+        <location filename="mainwindow.ui" line="504"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -328,377 +342,377 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.AppleSystemUIFont&apos;; font-size:13pt;&quot;&gt;Qs,Jh,2h&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="492"/>
+        <location filename="mainwindow.ui" line="515"/>
         <source>Select Board Card</source>
         <translation type="unfinished">Selecionar carta do board</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="505"/>
+        <location filename="mainwindow.ui" line="528"/>
         <source>▸ When IP opens the betting (it&apos;s their turn to act first on this street)</source>
         <translation type="unfinished">▸ Quando IP abre a aposta (é a vez dele de agir primeiro nessa rua)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="516"/>
+        <location filename="mainwindow.ui" line="539"/>
         <source>Flop IP</source>
         <translation type="unfinished">Flop IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="524"/>
-        <location filename="mainwindow.ui" line="601"/>
-        <location filename="mainwindow.ui" line="678"/>
-        <location filename="mainwindow.ui" line="790"/>
-        <location filename="mainwindow.ui" line="867"/>
-        <location filename="mainwindow.ui" line="969"/>
+        <location filename="mainwindow.ui" line="547"/>
+        <location filename="mainwindow.ui" line="624"/>
+        <location filename="mainwindow.ui" line="701"/>
+        <location filename="mainwindow.ui" line="813"/>
+        <location filename="mainwindow.ui" line="890"/>
+        <location filename="mainwindow.ui" line="992"/>
         <source>Bet Sizes : </source>
         <translation type="unfinished">Tamanhos de aposta: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="531"/>
-        <location filename="mainwindow.ui" line="608"/>
-        <location filename="mainwindow.ui" line="685"/>
-        <location filename="mainwindow.ui" line="797"/>
-        <location filename="mainwindow.ui" line="874"/>
-        <location filename="mainwindow.ui" line="924"/>
-        <location filename="mainwindow.ui" line="976"/>
-        <location filename="mainwindow.ui" line="1026"/>
-        <location filename="mainwindow.ui" line="1105"/>
+        <location filename="mainwindow.ui" line="554"/>
+        <location filename="mainwindow.ui" line="631"/>
+        <location filename="mainwindow.ui" line="708"/>
+        <location filename="mainwindow.ui" line="820"/>
+        <location filename="mainwindow.ui" line="897"/>
+        <location filename="mainwindow.ui" line="947"/>
+        <location filename="mainwindow.ui" line="999"/>
+        <location filename="mainwindow.ui" line="1049"/>
+        <location filename="mainwindow.ui" line="1128"/>
         <source>50</source>
         <translation type="unfinished">50</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="538"/>
-        <location filename="mainwindow.ui" line="563"/>
-        <location filename="mainwindow.ui" line="615"/>
-        <location filename="mainwindow.ui" line="640"/>
-        <location filename="mainwindow.ui" line="692"/>
-        <location filename="mainwindow.ui" line="717"/>
-        <location filename="mainwindow.ui" line="804"/>
-        <location filename="mainwindow.ui" line="829"/>
-        <location filename="mainwindow.ui" line="881"/>
-        <location filename="mainwindow.ui" line="906"/>
-        <location filename="mainwindow.ui" line="931"/>
-        <location filename="mainwindow.ui" line="983"/>
-        <location filename="mainwindow.ui" line="1008"/>
-        <location filename="mainwindow.ui" line="1033"/>
+        <location filename="mainwindow.ui" line="561"/>
+        <location filename="mainwindow.ui" line="586"/>
+        <location filename="mainwindow.ui" line="638"/>
+        <location filename="mainwindow.ui" line="663"/>
+        <location filename="mainwindow.ui" line="715"/>
+        <location filename="mainwindow.ui" line="740"/>
+        <location filename="mainwindow.ui" line="827"/>
+        <location filename="mainwindow.ui" line="852"/>
+        <location filename="mainwindow.ui" line="904"/>
+        <location filename="mainwindow.ui" line="929"/>
+        <location filename="mainwindow.ui" line="954"/>
+        <location filename="mainwindow.ui" line="1006"/>
+        <location filename="mainwindow.ui" line="1031"/>
+        <location filename="mainwindow.ui" line="1056"/>
         <source>%</source>
         <translation type="unfinished">%</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="549"/>
-        <location filename="mainwindow.ui" line="626"/>
-        <location filename="mainwindow.ui" line="703"/>
-        <location filename="mainwindow.ui" line="815"/>
-        <location filename="mainwindow.ui" line="892"/>
-        <location filename="mainwindow.ui" line="994"/>
+        <location filename="mainwindow.ui" line="572"/>
+        <location filename="mainwindow.ui" line="649"/>
+        <location filename="mainwindow.ui" line="726"/>
+        <location filename="mainwindow.ui" line="838"/>
+        <location filename="mainwindow.ui" line="915"/>
+        <location filename="mainwindow.ui" line="1017"/>
         <source>Raise Sizes: </source>
         <translation type="unfinished">Tamanhos de aumento: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="556"/>
-        <location filename="mainwindow.ui" line="633"/>
-        <location filename="mainwindow.ui" line="822"/>
-        <location filename="mainwindow.ui" line="899"/>
+        <location filename="mainwindow.ui" line="579"/>
+        <location filename="mainwindow.ui" line="656"/>
+        <location filename="mainwindow.ui" line="845"/>
+        <location filename="mainwindow.ui" line="922"/>
         <source>60</source>
         <translation type="unfinished">60</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="574"/>
-        <location filename="mainwindow.ui" line="651"/>
-        <location filename="mainwindow.ui" line="728"/>
-        <location filename="mainwindow.ui" line="840"/>
-        <location filename="mainwindow.ui" line="942"/>
-        <location filename="mainwindow.ui" line="1044"/>
+        <location filename="mainwindow.ui" line="597"/>
+        <location filename="mainwindow.ui" line="674"/>
+        <location filename="mainwindow.ui" line="751"/>
+        <location filename="mainwindow.ui" line="863"/>
+        <location filename="mainwindow.ui" line="965"/>
+        <location filename="mainwindow.ui" line="1067"/>
         <source>Add Allin</source>
         <translation type="unfinished">Adicionar All-in</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="593"/>
+        <location filename="mainwindow.ui" line="616"/>
         <source>Turn IP</source>
         <translation type="unfinished">Turn IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="670"/>
+        <location filename="mainwindow.ui" line="693"/>
         <source>River IP</source>
         <translation type="unfinished">River IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="710"/>
-        <location filename="mainwindow.ui" line="1001"/>
+        <location filename="mainwindow.ui" line="733"/>
+        <location filename="mainwindow.ui" line="1024"/>
         <source>60 100</source>
         <translation type="unfinished">60 100</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="749"/>
+        <location filename="mainwindow.ui" line="772"/>
         <source>Copy from Ip to OOP</source>
         <translation type="unfinished">Copiar de IP para OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="771"/>
+        <location filename="mainwindow.ui" line="794"/>
         <source>▸ When OOP opens the betting (first on the street, or a &quot;donk bet&quot; after not betting the previous street)</source>
         <translation type="unfinished">▸ Quando OOP abre a aposta (primeiro na rua, ou um &quot;donk bet&quot; depois de não apostar na rua anterior)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="782"/>
+        <location filename="mainwindow.ui" line="805"/>
         <source>Flop OOP</source>
         <translation type="unfinished">Flop OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="859"/>
+        <location filename="mainwindow.ui" line="882"/>
         <source>Turn OOP</source>
         <translation type="unfinished">Turn OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="917"/>
-        <location filename="mainwindow.ui" line="1019"/>
+        <location filename="mainwindow.ui" line="940"/>
+        <location filename="mainwindow.ui" line="1042"/>
         <source>Donk Sizes: </source>
         <translation type="unfinished">Tamanhos de donk: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="961"/>
+        <location filename="mainwindow.ui" line="984"/>
         <source>River OOP</source>
         <translation type="unfinished">River OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1084"/>
+        <location filename="mainwindow.ui" line="1107"/>
         <source>raise limit: </source>
         <translation type="unfinished">limite de aumentos: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1091"/>
+        <location filename="mainwindow.ui" line="1114"/>
         <source>3</source>
         <translation type="unfinished">3</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1098"/>
+        <location filename="mainwindow.ui" line="1121"/>
         <source>times.      Pot: </source>
         <translation type="unfinished">vezes.      Pote: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1112"/>
+        <location filename="mainwindow.ui" line="1135"/>
         <source>Effective Stack: </source>
         <translation type="unfinished">Stack efetivo: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1119"/>
-        <location filename="mainwindow.ui" line="1270"/>
+        <location filename="mainwindow.ui" line="1142"/>
+        <location filename="mainwindow.ui" line="1293"/>
         <source>200</source>
         <translation type="unfinished">200</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1126"/>
+        <location filename="mainwindow.ui" line="1149"/>
         <source>  Mode: </source>
         <translation type="unfinished">  Modo: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1134"/>
+        <location filename="mainwindow.ui" line="1157"/>
         <source>texas holdem</source>
         <translation type="unfinished">texas holdem</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1139"/>
+        <location filename="mainwindow.ui" line="1162"/>
         <source>shortdeck</source>
         <translation type="unfinished">shortdeck</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1152"/>
+        <location filename="mainwindow.ui" line="1175"/>
         <source>allin threshold: </source>
         <translation type="unfinished">limiar de all-in: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1165"/>
+        <location filename="mainwindow.ui" line="1188"/>
         <source>0.67</source>
         <translation type="unfinished">0.67</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1172"/>
+        <location filename="mainwindow.ui" line="1195"/>
         <source>     use isomorphism</source>
         <translation type="unfinished">     usar isomorfismo</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1202"/>
+        <location filename="mainwindow.ui" line="1225"/>
         <source>Save memory at cost of</source>
         <translation type="unfinished">Economizar memória à custa de</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1210"/>
+        <location filename="mainwindow.ui" line="1233"/>
         <source>nothing (disabled)</source>
         <translation type="unfinished">nada (desativado)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1215"/>
+        <location filename="mainwindow.ui" line="1238"/>
         <source>speed</source>
         <translation type="unfinished">velocidade</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1220"/>
+        <location filename="mainwindow.ui" line="1243"/>
         <source>speed and accuracy</source>
         <translation type="unfinished">velocidade e precisão</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1233"/>
+        <location filename="mainwindow.ui" line="1256"/>
         <source>Build Tree</source>
         <translation type="unfinished">Construir árvore</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1240"/>
+        <location filename="mainwindow.ui" line="1263"/>
         <source>Estimate Solving Memory</source>
         <translation type="unfinished">Estimar memória de resolução</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1255"/>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.ui" line="1278"/>
+        <location filename="mainwindow.cpp" line="376"/>
         <source>Solver Options</source>
         <translation type="unfinished">Opções do Solver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1263"/>
+        <location filename="mainwindow.ui" line="1286"/>
         <source>iterations: </source>
         <translation type="unfinished">iterações: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1277"/>
+        <location filename="mainwindow.ui" line="1300"/>
         <source>times.    stop solving when reach </source>
         <translation type="unfinished">vezes.    parar de resolver ao atingir </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1284"/>
+        <location filename="mainwindow.ui" line="1307"/>
         <source>0.5</source>
         <translation type="unfinished">0.5</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1291"/>
+        <location filename="mainwindow.ui" line="1314"/>
         <source>% exploitability</source>
         <translation type="unfinished">% de exploitabilidade</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1315"/>
+        <location filename="mainwindow.ui" line="1338"/>
         <source>log interval:  </source>
         <translation type="unfinished">intervalo de log:  </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1322"/>
+        <location filename="mainwindow.ui" line="1345"/>
         <source>10</source>
         <translation type="unfinished">10</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1329"/>
+        <location filename="mainwindow.ui" line="1352"/>
         <source>threads: </source>
         <translation type="unfinished">threads: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1336"/>
+        <location filename="mainwindow.ui" line="1359"/>
         <source>8</source>
         <translation type="unfinished">8</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1373"/>
+        <location filename="mainwindow.ui" line="1396"/>
         <source>Start solving</source>
         <translation type="unfinished">Iniciar resolução</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1386"/>
+        <location filename="mainwindow.ui" line="1409"/>
         <source>Stop solving</source>
         <translation type="unfinished">Parar resolução</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1399"/>
+        <location filename="mainwindow.ui" line="1422"/>
         <source>ShowResult</source>
         <translation type="unfinished">Mostrar resultado</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1412"/>
+        <location filename="mainwindow.ui" line="1435"/>
         <source>🔄 Start a new hand</source>
         <translation type="unfinished">🔄 Começar uma mão nova</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1479"/>
+        <location filename="mainwindow.ui" line="1502"/>
         <source>Clear Log</source>
         <translation type="unfinished">Limpar log</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1507"/>
+        <location filename="mainwindow.ui" line="1530"/>
         <source>Solver</source>
         <translation type="unfinished">Solver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1514"/>
+        <location filename="mainwindow.ui" line="1537"/>
         <source>Parameters</source>
         <translation type="unfinished">Parâmetros</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1527"/>
+        <location filename="mainwindow.ui" line="1550"/>
         <source>import setting</source>
         <translation type="unfinished">importar configuração</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1532"/>
+        <location filename="mainwindow.ui" line="1555"/>
         <source>export current setting</source>
         <translation type="unfinished">exportar configuração atual</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1537"/>
+        <location filename="mainwindow.ui" line="1560"/>
         <source>ZN-CH</source>
         <translation type="unfinished">ZN-CH</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1542"/>
-        <location filename="mainwindow.ui" line="1547"/>
+        <location filename="mainwindow.ui" line="1565"/>
+        <location filename="mainwindow.ui" line="1570"/>
         <source>Enghish</source>
         <translation type="unfinished">Inglês</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1552"/>
+        <location filename="mainwindow.ui" line="1575"/>
         <source>Chinese</source>
         <translation type="unfinished">Chinês</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1557"/>
+        <location filename="mainwindow.ui" line="1580"/>
         <source>import IP range</source>
         <translation type="unfinished">importar range IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1562"/>
+        <location filename="mainwindow.ui" line="1585"/>
         <source>import OOP range</source>
         <translation type="unfinished">importar range OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1567"/>
+        <location filename="mainwindow.ui" line="1590"/>
         <source>export IP range</source>
         <translation type="unfinished">exportar range IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1572"/>
+        <location filename="mainwindow.ui" line="1595"/>
         <source>export OOP range</source>
         <translation type="unfinished">exportar range OOP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1577"/>
-        <location filename="mainwindow.cpp" line="775"/>
+        <location filename="mainwindow.ui" line="1600"/>
+        <location filename="mainwindow.cpp" line="790"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1582"/>
+        <location filename="mainwindow.ui" line="1605"/>
         <source>Import</source>
         <translation type="unfinished">Importar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1587"/>
+        <location filename="mainwindow.ui" line="1610"/>
         <source>Export</source>
         <translation type="unfinished">Exportar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1592"/>
+        <location filename="mainwindow.ui" line="1615"/>
         <source>Clear all</source>
         <translation type="unfinished">Limpar tudo</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1597"/>
+        <location filename="mainwindow.ui" line="1620"/>
         <source>Open parameters folder</source>
         <translation type="unfinished">Abrir pasta de parâmetros</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1602"/>
+        <location filename="mainwindow.ui" line="1625"/>
         <source>View log</source>
         <translation type="unfinished">Ver log</translation>
     </message>
@@ -838,391 +852,391 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Número de núcleos do processador que o solver pode usar de uma vez. Mais threads = resolve mais rápido se o seu computador tiver núcleos livres.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="206"/>
+        <location filename="mainwindow.cpp" line="221"/>
         <source>You need a subscription</source>
         <translation type="unfinished">Você precisa de uma assinatura</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="208"/>
+        <location filename="mainwindow.cpp" line="223"/>
         <source>You haven&apos;t activated any subscription yet. You need the &quot;%1&quot; plan or higher for this.</source>
         <translation type="unfinished">Você ainda não ativou nenhuma assinatura. Você precisa do plano &quot;%1&quot; ou superior para isso.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="209"/>
+        <location filename="mainwindow.cpp" line="224"/>
         <source>Your current plan doesn&apos;t include this. You need the &quot;%1&quot; plan or higher.</source>
         <translation type="unfinished">Seu plano atual não inclui isso. Você precisa do plano &quot;%1&quot; ou superior.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="283"/>
-        <location filename="mainwindow.cpp" line="1117"/>
+        <location filename="mainwindow.cpp" line="298"/>
+        <location filename="mainwindow.cpp" line="1132"/>
         <source>Practice Mode</source>
         <translation type="unfinished">Modo Prática</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="289"/>
+        <location filename="mainwindow.cpp" line="304"/>
         <source>🎯 What would you do here?</source>
         <translation type="unfinished">🎯 O que você faria aqui?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="302"/>
+        <location filename="mainwindow.cpp" line="317"/>
         <source>Your hand:</source>
         <translation type="unfinished">Sua mão:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="308"/>
+        <location filename="mainwindow.cpp" line="323"/>
         <source>Board:</source>
         <translation type="unfinished">Board:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="316"/>
+        <location filename="mainwindow.cpp" line="331"/>
         <source>What would you do with this hand?</source>
         <translation type="unfinished">O que você faria com essa mão?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="322"/>
-        <location filename="mainwindow.cpp" line="1111"/>
+        <location filename="mainwindow.cpp" line="337"/>
+        <location filename="mainwindow.cpp" line="1126"/>
         <source>Fold</source>
         <translation type="unfinished">Fold</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="323"/>
-        <location filename="mainwindow.cpp" line="1112"/>
+        <location filename="mainwindow.cpp" line="338"/>
+        <location filename="mainwindow.cpp" line="1127"/>
         <source>Call / Check</source>
         <translation type="unfinished">Pagar / Passar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="324"/>
-        <location filename="mainwindow.cpp" line="1113"/>
+        <location filename="mainwindow.cpp" line="339"/>
+        <location filename="mainwindow.cpp" line="1128"/>
         <source>Bet / Raise</source>
         <translation type="unfinished">Apostar / Aumentar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="360"/>
+        <location filename="mainwindow.cpp" line="375"/>
         <source>Ranges</source>
         <translation type="unfinished">Ranges</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="360"/>
+        <location filename="mainwindow.cpp" line="375"/>
         <source>Bet Sizings</source>
         <translation type="unfinished">Tamanhos de aposta</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="376"/>
         <source>Tree Parameters</source>
         <translation type="unfinished">Parâmetros da árvore</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="376"/>
         <source>Confirm and solve</source>
         <translation type="unfinished">Confirmar e resolver</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="364"/>
+        <location filename="mainwindow.cpp" line="379"/>
         <source>A &quot;range&quot; is the set of hands a player might have in this situation. IP (&quot;in position&quot;) is the player who acts last on the street; OOP (&quot;out of position&quot;) is the one who acts first. Tap a grid cell to add or remove that hand from the range (darker = played more often), or type the range by hand in the text box.</source>
         <translation type="unfinished">Um &quot;range&quot; é o conjunto de mãos que um jogador pode ter nessa situação. IP (&quot;in position&quot;) é o jogador que age por último na rua; OOP (&quot;out of position&quot;) é o que age primeiro. Toque em uma célula da grade para adicionar ou remover aquela mão do range (mais escuro = jogada com mais frequência), ou digite o range à mão na caixa de texto.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="380"/>
         <source>Choose the cards that already came out on the table (3 for flop, 4 for turn, 5 for river).</source>
         <translation type="unfinished">Escolha as cartas que já saíram na mesa (3 para flop, 4 para turn, 5 para river).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="366"/>
+        <location filename="mainwindow.cpp" line="381"/>
         <source>This step defines WHAT BET SIZES the solver can choose — you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) — that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
         <translation type="unfinished">Essa etapa define QUAIS TAMANHOS DE APOSTA o solver pode escolher — não é preciso entender todos os termos agora, os valores padrão já bastam para experimentar. Exemplo concreto: se o pote tem 100 fichas e você coloca &quot;50&quot; em Bet Sizes, isso significa &quot;apostar 50% do pote&quot; = 50 fichas. Se depois alguém aumenta com &quot;60&quot; em Raise Sizes, isso é 60% do pote DEPOIS que ele cresceu com essa aposta (não do pote original) — por isso é expresso em % em vez de fichas fixas, assim funciona para qualquer tamanho de pote. Existem 6 caixas porque o jogo se divide em 3 ruas (Flop, Turn, River) e em cada uma o IP e o OOP podem usar tamanhos diferentes; confira os títulos ▸ acima de cada linha para se orientar. &quot;Donk Sizes&quot; é só para o OOP no Turn/River: são os tamanhos que ele pode usar para apostar primeiro nessa nova rua, mesmo tendo sido quem não apostou na rua anterior (essa jogada se chama &quot;donk bet&quot;). &quot;Add Allin&quot; simplesmente adiciona, além desses tamanhos, a opção de ir direto all-in com todo o stack.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="367"/>
+        <location filename="mainwindow.cpp" line="382"/>
         <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision — leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
         <translation type="unfinished">&quot;Raise limit&quot; é a quantidade máxima de aumentos seguidos que o solver vai considerar na mesma rua (mais aumentos = árvore maior e mais lenta). &quot;Pot&quot; é o tamanho do pote antes de começar essa situação, e &quot;Effective Stack&quot; é a quantidade de fichas que resta ao jogador com o stack menor (o máximo que pode ser apostado). &quot;Mode&quot; define o baralho: &quot;texas holdem&quot; (52 cartas) ou &quot;shortdeck&quot; (36 cartas, sem 2-5). &quot;Allin threshold&quot; é um atalho: se restar a um jogador menos que essa % do pote, o solver oferece diretamente ir all-in em vez de tamanhos de aposta intermediários, para não complicar a árvore à toa. &quot;Use isomorphism&quot; é uma otimização interna: agrupa cartas que são estrategicamente equivalentes (por exemplo, dois naipes que não formam flush em lugar nenhum) para resolver mais rápido sem perder precisão — deixe marcado a menos que tenha um motivo específico para desativar. &quot;Save memory at cost of speed/accuracy&quot; reduz a memória RAM usada em troca de resolver um pouco mais devagar ou com menos precisão numérica; use somente se estiver ficando sem memória. Ao tocar em &quot;Next&quot;, a árvore de decisões é construída automaticamente com esses valores.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="368"/>
+        <location filename="mainwindow.cpp" line="383"/>
         <source>&quot;Iterations&quot; is the maximum number of times the solver will recalculate the strategy (more iterations = more precision, but more time). &quot;Stop solving when reach X% exploitability&quot; makes the solver stop early if it already reached a strategy close enough to optimal (a lower number = more precise but slower; 0.5% is already a very solid strategy to play). &quot;Log interval&quot; is how often progress is printed in the console below, it only affects how often you see updates, not the result. &quot;Threads&quot; is the number of processor cores the solver can use at once (more threads = solves faster if your computer has enough free cores). The default values work fine to start.</source>
         <translation type="unfinished">&quot;Iterations&quot; é o número máximo de vezes que o solver vai recalcular a estratégia (mais iterações = mais precisão, mas mais tempo). &quot;Stop solving when reach X% exploitability&quot; faz o solver parar antes se já alcançou uma estratégia próxima o bastante da ideal (um número mais baixo = mais preciso, mas mais lento; 0,5% já é uma estratégia bem sólida para jogar). &quot;Log interval&quot; é a cada quantas iterações o progresso é impresso no console abaixo, isso só afeta com que frequência você vê atualizações, não o resultado. &quot;Threads&quot; é a quantidade de núcleos do processador que o solver pode usar de uma vez (mais threads = resolve mais rápido se o seu computador tiver núcleos livres suficientes). Os valores padrão funcionam bem para começar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="369"/>
+        <location filename="mainwindow.cpp" line="384"/>
         <source>Review everything and tap &quot;Start solving&quot; so the solver calculates the optimal strategy.</source>
         <translation type="unfinished">Revise tudo e toque em &quot;Start solving&quot; para o solver calcular a estratégia ideal.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="370"/>
+        <location filename="mainwindow.cpp" line="385"/>
         <source>Step %1 of 6: %2</source>
         <translation type="unfinished">Passo %1 de 6: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="373"/>
-        <location filename="mainwindow.cpp" line="1175"/>
+        <location filename="mainwindow.cpp" line="388"/>
+        <location filename="mainwindow.cpp" line="1190"/>
         <source>Done</source>
         <translation type="unfinished">Concluído</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="378"/>
+        <location filename="mainwindow.cpp" line="393"/>
         <source>📌 Example: IP is a player on the button (BTN) who opened the hand with a typical opening range. OOP is the big blind (BB) who called that open with their defending range. Notice both ranges are already loaded in the grid.</source>
         <translation type="unfinished">📌 Exemplo: IP é um jogador no botão (BTN) que abriu a mão com um range típico de abertura. OOP é o big blind (BB) que pagou essa abertura com seu range de defesa. Repare que os dois ranges já estão carregados na grade.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="379"/>
+        <location filename="mainwindow.cpp" line="394"/>
         <source>📌 Example: the flop came Q♠ J♥ 2♥ — a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
         <translation type="unfinished">📌 Exemplo: o flop saiu Q♠ J♥ 2♥ — uma carta alta (Q), uma carta média que pode ter conectado com várias mãos (J), e uma carta baixa que também traz um projeto de flush em copas.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="380"/>
+        <location filename="mainwindow.cpp" line="395"/>
         <source>📌 Example: we left the bet sizes at default (50% of the pot when betting, 60% when raising) to keep the example simple. In a real hand you&apos;d adjust this to how your tables usually play.</source>
         <translation type="unfinished">📌 Exemplo: deixamos os tamanhos de aposta no padrão (50% do pote ao apostar, 60% ao aumentar) para manter o exemplo simples. Numa mão real, você ajustaria isso conforme o estilo de jogo das suas mesas.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="381"/>
+        <location filename="mainwindow.cpp" line="396"/>
         <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left — round numbers chosen to make it easy to follow.</source>
         <translation type="unfinished">📌 Exemplo: o pote antes dessa situação é 50 fichas e cada jogador tem 200 fichas de stack efetivo restante — números redondos escolhidos para facilitar o acompanhamento.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="382"/>
+        <location filename="mainwindow.cpp" line="397"/>
         <source>📌 Example: we left 200 iterations, which is enough for the solver to converge quickly on a simple example like this (on a more complex hand you might need more).</source>
         <translation type="unfinished">📌 Exemplo: deixamos 200 iterações, que é o bastante para o solver convergir rápido num exemplo simples como esse (numa mão mais complexa, talvez você precise de mais).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="398"/>
         <source>📌 Example: tap &quot;Start solving&quot; and wait for it to finish (with these values it should take just seconds). Then tap &quot;ShowResult&quot; to see the recommended strategy.</source>
         <translation type="unfinished">📌 Exemplo: toque em &quot;Start solving&quot; e espere terminar (com esses valores deve levar só alguns segundos). Depois toque em &quot;ShowResult&quot; para ver a estratégia recomendada.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="449"/>
         <source>Choose both seats</source>
         <translation type="unfinished">Escolha os dois assentos</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="449"/>
         <source>Tap your seat and then your opponent&apos;s before continuing.</source>
         <translation type="unfinished">Toque no seu assento e depois no do adversário antes de continuar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="442"/>
+        <location filename="mainwindow.cpp" line="457"/>
         <source>Choose 2 cards</source>
         <translation type="unfinished">Escolha 2 cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="442"/>
+        <location filename="mainwindow.cpp" line="457"/>
         <source>You need to tap exactly 2 cards for your hand before continuing.</source>
         <translation type="unfinished">Você precisa tocar em exatamente 2 cartas para sua mão antes de continuar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="535"/>
+        <location filename="mainwindow.cpp" line="550"/>
         <source>File selection invalid.</source>
         <translation type="unfinished">Seleção de arquivo inválida.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="540"/>
+        <location filename="mainwindow.cpp" line="555"/>
         <source>File open failed.</source>
         <translation type="unfinished">Falha ao abrir o arquivo.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="659"/>
-        <location filename="mainwindow.cpp" line="672"/>
+        <location filename="mainwindow.cpp" line="674"/>
+        <location filename="mainwindow.cpp" line="687"/>
         <source>Open parameters file</source>
         <translation type="unfinished">Abrir arquivo de parâmetros</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="661"/>
-        <location filename="mainwindow.cpp" line="674"/>
+        <location filename="mainwindow.cpp" line="676"/>
+        <location filename="mainwindow.cpp" line="689"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished">Arquivos de texto (*.txt)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="683"/>
+        <location filename="mainwindow.cpp" line="698"/>
         <source>Save Parameters</source>
         <translation type="unfinished">Salvar parâmetros</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="685"/>
+        <location filename="mainwindow.cpp" line="700"/>
         <source>Text file (*.txt)</source>
         <translation type="unfinished">Arquivo de texto (*.txt)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="857"/>
-        <location filename="mainwindow.cpp" line="1323"/>
+        <location filename="mainwindow.cpp" line="872"/>
+        <location filename="mainwindow.cpp" line="1338"/>
         <source>Your subscription expired</source>
         <translation type="unfinished">Sua assinatura expirou</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
+        <location filename="mainwindow.cpp" line="873"/>
         <source>Your Solverix subscription expired, so you can&apos;t keep solving. Reactivate it to continue.</source>
         <translation type="unfinished">Sua assinatura do Solverix expirou, então não é possível continuar resolvendo. Reative-a para continuar.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="882"/>
-        <location filename="mainwindow.cpp" line="1007"/>
+        <location filename="mainwindow.cpp" line="897"/>
+        <location filename="mainwindow.cpp" line="1022"/>
         <source>Invalid board</source>
         <translation type="unfinished">Board inválido</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="883"/>
-        <location filename="mainwindow.cpp" line="1008"/>
+        <location filename="mainwindow.cpp" line="898"/>
+        <location filename="mainwindow.cpp" line="1023"/>
         <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) — no more, no less. Go back and fix your board selection.</source>
         <translation type="unfinished">Um board precisa de exatamente 3 cartas (flop), 4 (turn) ou 5 (river) — nem mais, nem menos. Volte e corrija a seleção do board.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1032"/>
+        <location filename="mainwindow.cpp" line="1047"/>
         <source>Please build tree first.</source>
         <translation type="unfinished">Primeiro construa a árvore.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1034"/>
-        <location filename="mainwindow.cpp" line="1037"/>
+        <location filename="mainwindow.cpp" line="1049"/>
+        <location filename="mainwindow.cpp" line="1052"/>
         <source>Estimated Memory Usage: </source>
         <translation type="unfinished">Uso de memória estimado: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1034"/>
+        <location filename="mainwindow.cpp" line="1049"/>
         <source> Mb</source>
         <translation type="unfinished"> Mb</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1035"/>
-        <location filename="mainwindow.cpp" line="1038"/>
+        <location filename="mainwindow.cpp" line="1050"/>
+        <location filename="mainwindow.cpp" line="1053"/>
         <source>
 Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished">
 Reconstrua a árvore para que as mudanças nas opções de otimização tenham efeito!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1037"/>
+        <location filename="mainwindow.cpp" line="1052"/>
         <source> Gb</source>
         <translation type="unfinished"> Gb</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1071"/>
+        <location filename="mainwindow.cpp" line="1086"/>
         <source>Solving the optimal strategy... this can take a few seconds.</source>
         <translation type="unfinished">Resolvendo a estratégia ideal... isso pode levar alguns segundos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1123"/>
+        <location filename="mainwindow.cpp" line="1138"/>
         <source>✅ You got it right!</source>
         <translation type="unfinished">✅ Você acertou!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1123"/>
+        <location filename="mainwindow.cpp" line="1138"/>
         <source>❌ Not quite</source>
         <translation type="unfinished">❌ Não foi dessa vez</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1133"/>
+        <location filename="mainwindow.cpp" line="1148"/>
         <source>You said: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation type="unfinished">Você disse: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1137"/>
+        <location filename="mainwindow.cpp" line="1152"/>
         <source>With the whole range, the most frequent play here is: &lt;b&gt;%1 (%2%)&lt;/b&gt;</source>
         <translation type="unfinished">Com o range inteiro, a jogada mais frequente aqui é: &lt;b&gt;%1 (%2%)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1146"/>
+        <location filename="mainwindow.cpp" line="1161"/>
         <source>Nice! Explore below to see the hand-by-hand detail.</source>
         <translation type="unfinished">Boa! Explore abaixo para ver o detalhe mão a mão.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1147"/>
+        <location filename="mainwindow.cpp" line="1162"/>
         <source>No worries, check the hand-by-hand detail below to understand why.</source>
         <translation type="unfinished">Sem problemas, confira o detalhe mão a mão abaixo para entender o motivo.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1152"/>
+        <location filename="mainwindow.cpp" line="1167"/>
         <source>See the detail →</source>
         <translation type="unfinished">Ver o detalhe →</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1176"/>
+        <location filename="mainwindow.cpp" line="1191"/>
         <source>The solver finished calculating the strategy. Tap &quot;ShowResult&quot; to see it.</source>
         <translation type="unfinished">O solver terminou de calcular a estratégia. Toque em &quot;ShowResult&quot; para vê-la.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1241"/>
+        <location filename="mainwindow.cpp" line="1256"/>
         <source>(YOU)</source>
         <translation type="unfinished">(VOCÊ)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1243"/>
+        <location filename="mainwindow.cpp" line="1258"/>
         <source>(OPPONENT)</source>
         <translation type="unfinished">(ADVERSÁRIO)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1264"/>
+        <location filename="mainwindow.cpp" line="1279"/>
         <source>Now choose your opponent&apos;s seat.</source>
         <translation type="unfinished">Agora escolha o assento do adversário.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1301"/>
+        <location filename="mainwindow.cpp" line="1316"/>
         <source>You already chose 2 cards</source>
         <translation type="unfinished">Você já escolheu 2 cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1302"/>
+        <location filename="mainwindow.cpp" line="1317"/>
         <source>You can only choose 2 cards for your hand. Tap one of the already selected ones to remove it.</source>
         <translation type="unfinished">Você só pode escolher 2 cartas para sua mão. Toque em uma das já selecionadas para removê-la.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1309"/>
+        <location filename="mainwindow.cpp" line="1324"/>
         <source>Selected: %1</source>
         <translation type="unfinished">Selecionadas: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1324"/>
+        <location filename="mainwindow.cpp" line="1339"/>
         <source>Your Solverix subscription expired or was cancelled. You&apos;ll need to reactivate it to keep solving hands.</source>
         <translation type="unfinished">Sua assinatura do Solverix expirou ou foi cancelada. Você vai precisar reativá-la para continuar resolvendo mãos.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1359"/>
+        <location filename="mainwindow.cpp" line="1374"/>
         <source>Situation</source>
         <translation type="unfinished">Situação</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1359"/>
+        <location filename="mainwindow.cpp" line="1374"/>
         <source>Your cards</source>
         <translation type="unfinished">Suas cartas</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1359"/>
+        <location filename="mainwindow.cpp" line="1374"/>
         <source>Result</source>
         <translation type="unfinished">Resultado</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1360"/>
+        <location filename="mainwindow.cpp" line="1375"/>
         <source>Quick Mode — Step %1 of 4: %2</source>
         <translation type="unfinished">Modo Rápido — Passo %1 de 4: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1369"/>
+        <location filename="mainwindow.cpp" line="1384"/>
         <source>Solve →</source>
         <translation type="unfinished">Resolver →</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1394"/>
+        <location filename="mainwindow.cpp" line="1409"/>
         <source>🎴 Choose the turn card</source>
         <translation type="unfinished">🎴 Escolher a carta do turn</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1394"/>
+        <location filename="mainwindow.cpp" line="1409"/>
         <source>🎴 Choose the river card</source>
         <translation type="unfinished">🎴 Escolher a carta do river</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1426"/>
+        <location filename="mainwindow.cpp" line="1441"/>
         <source>You need to choose the situation</source>
         <translation type="unfinished">Falta escolher a situação</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1427"/>
+        <location filename="mainwindow.cpp" line="1442"/>
         <source>No valid situation (seats) was chosen before solving. Go back to step 1 and choose your seat and your opponent&apos;s.</source>
         <translation type="unfinished">Nenhuma situação válida (assentos) foi escolhida antes de resolver. Volte para o passo 1 e escolha seu assento e o do adversário.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1489"/>
+        <location filename="mainwindow.cpp" line="1504"/>
         <source>Solving</source>
         <translation type="unfinished">Resolvendo</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1490"/>
+        <location filename="mainwindow.cpp" line="1505"/>
         <source>Building the decision tree...</source>
         <translation type="unfinished">Construindo a árvore de decisões...</translation>
     </message>
@@ -1230,14 +1244,14 @@ Reconstrua a árvore para que as mudanças nas opções de otimização tenham e
 <context>
     <name>QObject</name>
     <message>
-        <location filename="mainwindow.cpp" line="794"/>
+        <location filename="mainwindow.cpp" line="809"/>
         <location filename="rangeselector.cpp" line="164"/>
         <location filename="src/runtime/PokerSolver.cpp" line="144"/>
         <source>save success</source>
         <translation type="unfinished">salvo com sucesso</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="796"/>
+        <location filename="mainwindow.cpp" line="811"/>
         <location filename="rangeselector.cpp" line="166"/>
         <location filename="src/runtime/PokerSolver.cpp" line="146"/>
         <source>save failed, file cannot be open</source>
