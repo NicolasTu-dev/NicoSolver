@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My account — Solverix</title>
+<title>My account Solverix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -287,7 +287,7 @@
 
   // Small helper for the many inline en/es/pt string choices scattered
   // through this file, so adding a language doesn't mean rewriting every
-  // ternary — call as t('English', 'Español', 'Português').
+  // ternary call as t('English', 'Español', 'Português').
   function t(en, es, pt){
     const lang = currentLang();
     if(lang === 'es') return es;
@@ -353,15 +353,15 @@
     if(!npStatus) return;
     const messages = {
       en: {
-        success: '✅ Payment sent! It can take a few minutes to confirm on-chain — log in below in a bit to see your active plan.',
+        success: '✅ Payment sent! It can take a few minutes to confirm on-chain log in below in a bit to see your active plan.',
         cancel: '❌ The payment wasn\'t completed. You can try again by logging in below.',
       },
       es: {
-        success: '✅ ¡Pago enviado! Puede tardar unos minutos en confirmarse en la blockchain — iniciá sesión en un rato para ver tu plan activo.',
+        success: '✅ ¡Pago enviado! Puede tardar unos minutos en confirmarse en la blockchain iniciá sesión en un rato para ver tu plan activo.',
         cancel: '❌ El pago no se completó. Podés intentarlo de nuevo iniciando sesión abajo.',
       },
       pt: {
-        success: '✅ Pagamento enviado! Pode levar alguns minutos para confirmar na blockchain — faça login daqui a pouco para ver seu plano ativo.',
+        success: '✅ Pagamento enviado! Pode levar alguns minutos para confirmar na blockchain faça login daqui a pouco para ver seu plano ativo.',
         cancel: '❌ O pagamento não foi concluído. Você pode tentar de novo fazendo login abaixo.',
       },
     };
@@ -431,7 +431,7 @@
       'O app desbloqueia seu plano automaticamente ao fazer login dentro dele.'
     );
     document.getElementById('accPlanDot').style.display = '';
-    document.getElementById('accPlanStatus').textContent = t(' — active', ' — activo', ' — ativo');
+    document.getElementById('accPlanStatus').textContent = t(' active', ' activo', ' ativo');
     renderStreamerBadge(streamer);
     accDownloadArea.innerHTML =
       '<a class="btn btn-gold acc-download-btn" href="' + DOWNLOAD_URL + '">' + dlLabel + '</a>' +
@@ -646,15 +646,15 @@
     const result = await apiCall('/api/register', { email, password });
     if(!result.ok){
       const messagesEn = {
-        email_already_registered: 'That email is already registered — log in instead.',
+        email_already_registered: 'That email is already registered log in instead.',
         password_too_short: 'The password needs at least 4 characters.',
       };
       const messagesEs = {
-        email_already_registered: 'Ese email ya está registrado — iniciá sesión.',
+        email_already_registered: 'Ese email ya está registrado iniciá sesión.',
         password_too_short: 'La contraseña necesita al menos 4 caracteres.',
       };
       const messagesPt = {
-        email_already_registered: 'Esse email já está cadastrado — faça login.',
+        email_already_registered: 'Esse email já está cadastrado faça login.',
         password_too_short: 'A senha precisa ter pelo menos 4 caracteres.',
       };
       setStatus(
