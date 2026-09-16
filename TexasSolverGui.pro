@@ -11,6 +11,17 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = SolverixGui
 TEMPLATE = app
 
+# Windows version-info resource metadata (Company/Product/Description/
+# Copyright). An exe with no version info at all is a stronger signal to
+# antivirus heuristics that it's suspicious filling this in is free and
+# helps reduce false-positive detections like Wacatac.B!ml on unsigned
+# MinGW builds.
+VERSION = 1.0.0.0
+QMAKE_TARGET_COMPANY = Solverix
+QMAKE_TARGET_PRODUCT = Solverix
+QMAKE_TARGET_DESCRIPTION = Solverix GTO Poker Solver
+QMAKE_TARGET_COPYRIGHT = Copyright (C) 2026 Solverix
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
