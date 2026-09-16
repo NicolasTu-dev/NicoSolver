@@ -103,67 +103,72 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="logindialog.cpp" line="13"/>
+        <location filename="logindialog.cpp" line="15"/>
         <source>Solverix — Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="20"/>
+        <location filename="logindialog.cpp" line="22"/>
         <source>♠ Solverix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="24"/>
+        <location filename="logindialog.cpp" line="26"/>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="27"/>
+        <location filename="logindialog.cpp" line="29"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="32"/>
+        <location filename="logindialog.cpp" line="34"/>
+        <source>Remember my email and password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logindialog.cpp" line="38"/>
         <source>Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="49"/>
+        <location filename="logindialog.cpp" line="55"/>
         <source>That account doesn&apos;t have an active subscription. Get a plan on the website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="50"/>
+        <location filename="logindialog.cpp" line="56"/>
         <source>Go to the website to get a plan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="56"/>
+        <location filename="logindialog.cpp" line="62"/>
         <source>Don&apos;t have an account? Sign up on the Solverix website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="72"/>
+        <location filename="logindialog.cpp" line="110"/>
         <source>Fill in your email and password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="79"/>
+        <location filename="logindialog.cpp" line="117"/>
         <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="88"/>
+        <location filename="logindialog.cpp" line="134"/>
         <source>Incorrect email or password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="89"/>
+        <location filename="logindialog.cpp" line="135"/>
         <source>Couldn&apos;t connect to the server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="99"/>
+        <location filename="logindialog.cpp" line="146"/>
         <source>Logged in successfully.</source>
         <translation type="unfinished"></translation>
     </message>

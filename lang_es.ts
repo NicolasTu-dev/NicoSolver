@@ -103,67 +103,72 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="logindialog.cpp" line="13"/>
+        <location filename="logindialog.cpp" line="15"/>
         <source>Solverix — Log in</source>
         <translation>Solverix — Iniciar sesión</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="20"/>
+        <location filename="logindialog.cpp" line="22"/>
         <source>♠ Solverix</source>
         <translation>♠ Solverix</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="24"/>
+        <location filename="logindialog.cpp" line="26"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="27"/>
+        <location filename="logindialog.cpp" line="29"/>
         <source>Password</source>
         <translation>Contraseña</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="32"/>
+        <location filename="logindialog.cpp" line="34"/>
+        <source>Remember my email and password</source>
+        <translation type="unfinished">Recordar mi email y contraseña</translation>
+    </message>
+    <message>
+        <location filename="logindialog.cpp" line="38"/>
         <source>Log in</source>
         <translation>Iniciar sesión</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="49"/>
+        <location filename="logindialog.cpp" line="55"/>
         <source>That account doesn&apos;t have an active subscription. Get a plan on the website.</source>
         <translation>Esa cuenta no tiene una suscripción activa. Adquirí un plan en la página.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="50"/>
+        <location filename="logindialog.cpp" line="56"/>
         <source>Go to the website to get a plan</source>
         <translation>Ir a la página para adquirir un plan</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="56"/>
+        <location filename="logindialog.cpp" line="62"/>
         <source>Don&apos;t have an account? Sign up on the Solverix website.</source>
         <translation>¿No tenés cuenta? Registrate desde la página de Solverix.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="72"/>
+        <location filename="logindialog.cpp" line="110"/>
         <source>Fill in your email and password.</source>
         <translation>Completá email y contraseña.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="79"/>
+        <location filename="logindialog.cpp" line="117"/>
         <source>Connecting...</source>
         <translation>Conectando...</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="88"/>
+        <location filename="logindialog.cpp" line="134"/>
         <source>Incorrect email or password.</source>
         <translation>Email o contraseña incorrectos.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="89"/>
+        <location filename="logindialog.cpp" line="135"/>
         <source>Couldn&apos;t connect to the server.</source>
         <translation>No se pudo conectar con el servidor.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="99"/>
+        <location filename="logindialog.cpp" line="146"/>
         <source>Logged in successfully.</source>
         <translation>Iniciaste sesión correctamente.</translation>
     </message>

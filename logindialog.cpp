@@ -5,6 +5,8 @@
 #include <QFrame>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QSettings>
+#include <QTimer>
 
 static const char* WEBSITE_URL = "https://solverix-nicolastu-devs-projects.vercel.app/cuenta.html";
 
@@ -28,6 +30,10 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
     this->loginPasswordField = new QLineEdit(this);
     this->loginPasswordField->setEchoMode(QLineEdit::Password);
     layout->addWidget(this->loginPasswordField);
+
+    this->rememberMeCheck = new QCheckBox(tr("Remember my email and password"), this);
+    this->rememberMeCheck->setChecked(true);
+    layout->addWidget(this->rememberMeCheck);
 
     this->loginButton = new QPushButton(tr("Log in"), this);
     this->loginButton->setStyleSheet("font-size:14px; font-weight:700; padding:12px 10px;");
@@ -59,10 +65,42 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
     layout->addWidget(noAccountNote);
 
     layout->addStretch();
+
+    // Pre-fill and auto-attempt login with remembered credentials, if any.
+    // Stored in plain QSettings (same as every other app setting) rather
+    // than an OS credential store — acceptable here since this is a
+    // single-user desktop app with no other secure-storage dependency.
+    QSettings setting("Solverix", "Setting");
+    setting.beginGroup("solver");
+    QString savedEmail = setting.value("savedEmail").toString();
+    QString savedPassword = setting.value("savedPassword").toString();
+    bool remember = setting.value("rememberMe", true).toBool();
+    setting.endGroup();
+    this->rememberMeCheck->setChecked(remember);
+    if(!savedEmail.isEmpty() && !savedPassword.isEmpty()){
+        this->loginEmailField->setText(savedEmail);
+        this->loginPasswordField->setText(savedPassword);
+        QTimer::singleShot(0, this, &LoginDialog::onLoginClicked);
+    }
 }
 
 void LoginDialog::setBusy(bool busy){
     this->loginButton->setEnabled(!busy);
+}
+
+void LoginDialog::saveOrClearRememberedCredentials(const QString& email, const QString& password){
+    QSettings setting("Solverix", "Setting");
+    setting.beginGroup("solver");
+    if(this->rememberMeCheck->isChecked()){
+        setting.setValue("savedEmail", email);
+        setting.setValue("savedPassword", password);
+        setting.setValue("rememberMe", true);
+    }else{
+        setting.remove("savedEmail");
+        setting.remove("savedPassword");
+        setting.setValue("rememberMe", false);
+    }
+    setting.endGroup();
 }
 
 void LoginDialog::onLoginClicked(){
@@ -81,9 +119,17 @@ void LoginDialog::onLoginClicked(){
     this->loginStatusLabel->setVisible(true);
     this->setBusy(true);
 
-    ApiClient::login(email, password, [this, email](ApiClient::LoginResult result){
+    ApiClient::login(email, password, [this, email, password](ApiClient::LoginResult result){
         this->setBusy(false);
         if(!result.ok){
+            if(result.error == "invalid_credentials"){
+                // A remembered password stopped working (changed on the
+                // website, etc.) — stop auto-filling it on every launch.
+                QSettings setting("Solverix", "Setting");
+                setting.beginGroup("solver");
+                setting.remove("savedPassword");
+                setting.endGroup();
+            }
             QString message = (result.error == "invalid_credentials")
                 ? tr("Incorrect email or password.")
                 : (result.error.isEmpty() ? tr("Couldn't connect to the server.") : result.error);
@@ -94,6 +140,7 @@ void LoginDialog::onLoginClicked(){
 
         LicenseManager::setCurrentUserEmail(email);
         LicenseManager::cacheFromServer(result.plan, result.expiresAt);
+        this->saveOrClearRememberedCredentials(email, password);
 
         if(!result.active){
             this->loginStatusLabel->setText(tr("Logged in successfully."));

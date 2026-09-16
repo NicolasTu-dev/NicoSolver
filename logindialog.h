@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QCheckBox>
 
 // First screen shown on every launch. Only lets you log in with an
 // existing account — registering and activating a plan happen on the
@@ -24,11 +25,13 @@ private slots:
 private:
     QLineEdit* loginEmailField;
     QLineEdit* loginPasswordField;
+    QCheckBox* rememberMeCheck;
     QPushButton* loginButton;
     QLabel* loginStatusLabel;
     QWidget* noPlanArea;
 
     void setBusy(bool busy);
+    void saveOrClearRememberedCredentials(const QString& email, const QString& password);
 };
 
 #endif // LOGINDIALOG_H
