@@ -44,11 +44,13 @@
   .back-link{font-size:13.5px; color:var(--muted); text-decoration:none;}
   .back-link:hover{color:var(--text);}
   .lang-switch{
-    background:transparent; border:1px solid var(--border); color:var(--muted);
+    background:var(--bg-deep); border:1px solid var(--border); color:var(--muted);
     font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:12.5px;
     padding:7px 12px; border-radius:8px; cursor:pointer;
+    -webkit-appearance:none; appearance:none;
   }
   .lang-switch:hover{border-color:var(--gold); color:var(--gold-bright);}
+  .lang-switch option{background:var(--bg-deep); color:var(--text);}
   .page-wrap{max-width:640px; margin:0 auto; padding:56px 24px;}
   .page-head{text-align:center; margin-bottom:32px;}
   .page-head h1{font-size:26px;}
@@ -146,7 +148,11 @@
   <div class="nav-row">
     <div class="brand"><span class="mark">♠</span> Solverix</div>
     <div class="nav-right">
-      <button class="lang-switch" id="langSwitch" type="button">ES</button>
+      <select class="lang-switch" id="langSwitch">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="pt">PT</option>
+      </select>
       <a class="back-link" href="index.html" data-i18n="backLink">← Back to home</a>
     </div>
   </div>
@@ -217,6 +223,7 @@
   const DOWNLOAD_URL = 'https://github.com/NicolasTu-dev/NicoSolver/releases/download/solverix-v1/SolverixSetup.exe';
   const PLAN_NAMES_EN = { none: 'No subscription', advanced: 'Advanced Solver', complete: 'Complete' };
   const PLAN_NAMES_ES = { none: 'Sin suscripción', advanced: 'Solver Avanzado', complete: 'Completo' };
+  const PLAN_NAMES_PT = { none: 'Sem assinatura', advanced: 'Solver Avançado', complete: 'Completo' };
 
   // Affiliate link tracking: ?ref=codigo gets remembered for checkout,
   // even if the visitor lands here directly instead of via the landing.
@@ -248,31 +255,64 @@
     founderNameLabel: 'Nombre para mostrar',
     founderAssignBtn: 'Asignar rol de streamer',
   };
+  const PT_TEXT = {
+    backLink: '← Voltar para o início',
+    pageTitle: '🔑 Minha conta',
+    pageSubtitle: 'Faça login ou cadastre-se para adquirir um plano e baixar o Solverix.',
+    labelEmail: 'Email',
+    labelPassword: 'Senha',
+    btnLogin: 'Entrar',
+    btnRegister: 'Cadastrar',
+    logoutLink: 'Sair',
+    founderTitle: 'Gerenciar contas',
+    founderSearchPlaceholder: 'Buscar por email...',
+    founderGrantTitle: 'Conceder assinatura',
+    founderPlanLabel: 'Plano',
+    founderPlanAdvanced: 'Solver Avançado',
+    founderPlanComplete: 'Completo',
+    founderDaysLabel: 'Dias',
+    founderGrantBtn: 'Conceder assinatura',
+    founderStreamerTitle: 'Atribuir papel de streamer',
+    founderCodeLabel: 'Código de streamer',
+    founderNameLabel: 'Nome de exibição',
+    founderAssignBtn: 'Atribuir papel de streamer',
+  };
   const EN_TEXT = {};
   document.querySelectorAll('[data-i18n]').forEach(el => { EN_TEXT[el.getAttribute('data-i18n')] = el.innerHTML; });
   const EN_PLACEHOLDERS = {};
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { EN_PLACEHOLDERS[el.getAttribute('data-i18n-placeholder')] = el.placeholder; });
+  const TEXT_DICTS = { en: EN_TEXT, es: ES_TEXT, pt: PT_TEXT };
 
   function currentLang(){ return localStorage.getItem('solverix_lang') || 'en'; }
 
+  // Small helper for the many inline en/es/pt string choices scattered
+  // through this file, so adding a language doesn't mean rewriting every
+  // ternary — call as t('English', 'Español', 'Português').
+  function t(en, es, pt){
+    const lang = currentLang();
+    if(lang === 'es') return es;
+    if(lang === 'pt') return pt;
+    return en;
+  }
+
   function applyLang(lang){
-    const dict = lang === 'es' ? ES_TEXT : EN_TEXT;
+    const dict = TEXT_DICTS[lang] || EN_TEXT;
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if(dict[key] !== undefined) el.innerHTML = dict[key];
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
-      const value = lang === 'es' ? ES_TEXT[key] : EN_PLACEHOLDERS[key];
+      const value = lang === 'en' ? EN_PLACEHOLDERS[key] : dict[key];
       if(value !== undefined) el.placeholder = value;
     });
     document.documentElement.lang = lang;
-    document.getElementById('langSwitch').textContent = lang === 'es' ? 'EN' : 'ES';
+    document.getElementById('langSwitch').value = lang;
     localStorage.setItem('solverix_lang', lang);
   }
   applyLang(currentLang());
-  document.getElementById('langSwitch').addEventListener('click', () => {
-    applyLang(currentLang() === 'es' ? 'en' : 'es');
+  document.getElementById('langSwitch').addEventListener('change', (e) => {
+    applyLang(e.target.value);
   });
 
   // ---------- Mercado Pago return handling ----------
@@ -290,6 +330,11 @@
         success: '✅ ¡Pago recibido! Iniciá sesión abajo para ver tu plan activo y descargar Solverix.',
         pending: '⏳ Tu pago está pendiente de aprobación. Iniciá sesión en unos minutos para ver el estado.',
         failure: '❌ El pago no se completó. Podés intentarlo de nuevo iniciando sesión abajo.',
+      },
+      pt: {
+        success: '✅ Pagamento recebido! Faça login abaixo para ver seu plano ativo e baixar o Solverix.',
+        pending: '⏳ Seu pagamento está pendente de aprovação. Faça login novamente em alguns minutos para ver o status.',
+        failure: '❌ O pagamento não foi concluído. Você pode tentar de novo fazendo login abaixo.',
       },
     };
     const set = messages[currentLang()] || messages.en;
@@ -315,6 +360,10 @@
         success: '✅ ¡Pago enviado! Puede tardar unos minutos en confirmarse en la blockchain — iniciá sesión en un rato para ver tu plan activo.',
         cancel: '❌ El pago no se completó. Podés intentarlo de nuevo iniciando sesión abajo.',
       },
+      pt: {
+        success: '✅ Pagamento enviado! Pode levar alguns minutos para confirmar na blockchain — faça login daqui a pouco para ver seu plano ativo.',
+        cancel: '❌ O pagamento não foi concluído. Você pode tentar de novo fazendo login abaixo.',
+      },
     };
     const set = messages[currentLang()] || messages.en;
     if(set[npStatus]){
@@ -338,8 +387,8 @@
   const accDownloadArea = document.getElementById('accDownloadArea');
   const accLogoutLink = document.getElementById('accLogoutLink');
 
-  function setStatus(msgEn, msgEs, kind){
-    accStatus.textContent = currentLang() === 'es' ? msgEs : msgEn;
+  function setStatus(msgEn, msgEs, msgPt, kind){
+    accStatus.textContent = t(msgEn, msgEs, msgPt);
     accStatus.className = 'acc-status' + (kind ? ' ' + kind : '');
   }
 
@@ -361,8 +410,7 @@
   function renderStreamerBadge(streamer){
     const badgeEl = document.getElementById('streamerBadge');
     if(!streamer){ badgeEl.style.display = 'none'; badgeEl.innerHTML = ''; return; }
-    const lang = currentLang();
-    const label = lang === 'es' ? 'Streamer' : 'Streamer';
+    const label = 'Streamer';
     badgeEl.style.display = 'block';
     badgeEl.innerHTML = '<span class="streamer-badge">🎥 ' + label + ' · ' + streamer.code.toUpperCase() + '</span>';
   }
@@ -371,16 +419,19 @@
     loginBlock.style.display = 'none';
     loggedInBlock.style.display = 'block';
     const lang = currentLang();
-    const planNames = lang === 'es' ? PLAN_NAMES_ES : PLAN_NAMES_EN;
+    const planNames = lang === 'es' ? PLAN_NAMES_ES : (lang === 'pt' ? PLAN_NAMES_PT : PLAN_NAMES_EN);
     accPlanName.textContent = planNames[plan] || plan;
-    accDays.textContent = daysUntil(expiresAt) + (lang === 'es' ? ' días restantes' : ' days left');
-    accExpiry.textContent = (lang === 'es' ? 'Vence el ' : 'Expires on ') + new Date(expiresAt).toLocaleDateString(lang === 'es' ? 'es-AR' : 'en-US');
-    const dlLabel = lang === 'es' ? '⬇ Descargar Solverix' : '⬇ Download Solverix';
-    const dlNote = lang === 'es'
-      ? 'La app desbloquea tu plan automáticamente al iniciar sesión adentro.'
-      : 'The app unlocks your plan automatically when you log in inside it.';
+    accDays.textContent = daysUntil(expiresAt) + t(' days left', ' días restantes', ' dias restantes');
+    accExpiry.textContent = t('Expires on ', 'Vence el ', 'Vence em ') +
+      new Date(expiresAt).toLocaleDateString(t('en-US', 'es-AR', 'pt-BR'));
+    const dlLabel = t('⬇ Download Solverix', '⬇ Descargar Solverix', '⬇ Baixar Solverix');
+    const dlNote = t(
+      'The app unlocks your plan automatically when you log in inside it.',
+      'La app desbloquea tu plan automáticamente al iniciar sesión adentro.',
+      'O app desbloqueia seu plano automaticamente ao fazer login dentro dele.'
+    );
     document.getElementById('accPlanDot').style.display = '';
-    document.getElementById('accPlanStatus').textContent = lang === 'es' ? ' — activo' : ' — active';
+    document.getElementById('accPlanStatus').textContent = t(' — active', ' — activo', ' — ativo');
     renderStreamerBadge(streamer);
     accDownloadArea.innerHTML =
       '<a class="btn btn-gold acc-download-btn" href="' + DOWNLOAD_URL + '">' + dlLabel + '</a>' +
@@ -392,16 +443,16 @@
     loginBlock.style.display = 'none';
     loggedInBlock.style.display = 'block';
     const lang = currentLang();
-    const planNames = lang === 'es' ? PLAN_NAMES_ES : PLAN_NAMES_EN;
+    const planNames = lang === 'es' ? PLAN_NAMES_ES : (lang === 'pt' ? PLAN_NAMES_PT : PLAN_NAMES_EN);
     accPlanName.textContent = planNames.none;
     document.getElementById('accPlanDot').style.display = 'none';
     document.getElementById('accPlanStatus').textContent = '';
     accDays.textContent = '';
-    accExpiry.textContent = lang === 'es' ? 'Adquirí un plan para poder descargar Solverix.' : 'Get a plan to download Solverix.';
-    const advLabel = lang === 'es' ? 'Adquirir Avanzado' : 'Get Advanced';
-    const compLabel = lang === 'es' ? 'Adquirir Completo' : 'Get Complete';
-    const codeToggleLabel = lang === 'es' ? '¿Tenés un código de streamer?' : 'Have a streamer code?';
-    const codeLabel = lang === 'es' ? 'Código de streamer' : 'Streamer code';
+    accExpiry.textContent = t('Get a plan to download Solverix.', 'Adquirí un plan para poder descargar Solverix.', 'Adquira um plano para poder baixar o Solverix.');
+    const advLabel = t('Get Advanced', 'Adquirir Avanzado', 'Adquirir Avançado');
+    const compLabel = t('Get Complete', 'Adquirir Completo', 'Adquirir Completo');
+    const codeToggleLabel = t('Have a streamer code?', '¿Tenés un código de streamer?', 'Tem um código de streamer?');
+    const codeLabel = t('Streamer code', 'Código de streamer', 'Código de streamer');
     const savedCode = localStorage.getItem('solverix_ref') || '';
     accDownloadArea.innerHTML =
       '<button type="button" class="code-toggle' + (savedCode ? ' open' : '') + '" id="codeToggle"><span class="arrow">▸</span>' + codeToggleLabel + '</button>' +
@@ -423,12 +474,15 @@
   }
 
   function showPaymentOptions(email, plan){
-    const lang = currentLang();
-    const backLabel = lang === 'es' ? '← Elegir otro plan' : '← Choose a different plan';
-    const cryptoRegion = lang === 'es' ? 'Resto del mundo' : 'Rest of the world';
-    const cryptoNote = lang === 'es' ? 'USDT desde cualquier wallet o exchange (incluye Binance)' : 'USDT from any wallet or exchange (including Binance)';
-    const mpRegion = lang === 'es' ? 'Argentina' : 'Argentina';
-    const mpNote = lang === 'es' ? 'Pesos argentinos, tarjeta o saldo en cuenta' : 'Argentine pesos, card or account balance';
+    const backLabel = t('← Choose a different plan', '← Elegir otro plan', '← Escolher outro plano');
+    const cryptoRegion = t('Rest of the world', 'Resto del mundo', 'Resto do mundo');
+    const cryptoNote = t(
+      'USDT from any wallet or exchange (including Binance)',
+      'USDT desde cualquier wallet o exchange (incluye Binance)',
+      'USDT de qualquer carteira ou exchange (incluindo a Binance)'
+    );
+    const mpRegion = 'Argentina';
+    const mpNote = t('Argentine pesos, card or account balance', 'Pesos argentinos, tarjeta o saldo en cuenta', 'Pesos argentinos, cartão ou saldo em conta');
     accDownloadArea.innerHTML =
       '<button type="button" class="pay-back" id="payBack">' + backLabel + '</button>' +
       '<button type="button" class="pay-option featured" id="payCrypto">' +
@@ -449,12 +503,11 @@
 
   async function startCheckout(email, plan){
     const statusEl = document.getElementById('checkoutStatus');
-    const lang = currentLang();
-    if(statusEl){ statusEl.textContent = lang === 'es' ? 'Abriendo Mercado Pago...' : 'Opening Mercado Pago...'; statusEl.className = 'acc-status info'; }
+    if(statusEl){ statusEl.textContent = t('Opening Mercado Pago...', 'Abriendo Mercado Pago...', 'Abrindo o Mercado Pago...'); statusEl.className = 'acc-status info'; }
     const ref = localStorage.getItem('solverix_ref') || undefined;
     const result = await apiCall('/api/create-checkout', { email, plan, ref });
     if(!result.ok || !result.checkoutUrl){
-      if(statusEl){ statusEl.textContent = lang === 'es' ? 'No se pudo iniciar el pago. Probá de nuevo.' : 'Couldn\'t start the payment. Try again.'; statusEl.className = 'acc-status err'; }
+      if(statusEl){ statusEl.textContent = t('Couldn\'t start the payment. Try again.', 'No se pudo iniciar el pago. Probá de nuevo.', 'Não foi possível iniciar o pagamento. Tente de novo.'); statusEl.className = 'acc-status err'; }
       return;
     }
     window.location.href = result.checkoutUrl;
@@ -462,12 +515,11 @@
 
   async function startCryptoCheckout(email, plan){
     const statusEl = document.getElementById('checkoutStatus');
-    const lang = currentLang();
-    if(statusEl){ statusEl.textContent = lang === 'es' ? 'Abriendo el pago en cripto...' : 'Opening the crypto payment...'; statusEl.className = 'acc-status info'; }
+    if(statusEl){ statusEl.textContent = t('Opening the crypto payment...', 'Abriendo el pago en cripto...', 'Abrindo o pagamento em cripto...'); statusEl.className = 'acc-status info'; }
     const ref = localStorage.getItem('solverix_ref') || undefined;
     const result = await apiCall('/api/create-checkout-crypto', { email, plan, ref });
     if(!result.ok || !result.checkoutUrl){
-      if(statusEl){ statusEl.textContent = lang === 'es' ? 'No se pudo iniciar el pago. Probá de nuevo.' : 'Couldn\'t start the payment. Try again.'; statusEl.className = 'acc-status err'; }
+      if(statusEl){ statusEl.textContent = t('Couldn\'t start the payment. Try again.', 'No se pudo iniciar el pago. Probá de nuevo.', 'Não foi possível iniciar o pagamento. Tente de novo.'); statusEl.className = 'acc-status err'; }
       return;
     }
     window.location.href = result.checkoutUrl;
@@ -476,14 +528,15 @@
   accLoginBtn.addEventListener('click', async () => {
     const email = accEmail.value.trim();
     const password = accPassword.value;
-    if(!email || !password){ setStatus('Fill in your email and password.', 'Completá email y contraseña.', 'err'); return; }
-    setStatus('Connecting...', 'Conectando...', 'info');
+    if(!email || !password){ setStatus('Fill in your email and password.', 'Completá email y contraseña.', 'Preencha seu email e senha.', 'err'); return; }
+    setStatus('Connecting...', 'Conectando...', 'Conectando...', 'info');
     const result = await apiCall('/api/login', { email, password });
     if(!result.ok){
       const invalid = result.error === 'invalid_credentials';
       setStatus(
         invalid ? 'Incorrect email or password.' : 'Couldn\'t connect.',
         invalid ? 'Email o contraseña incorrectos.' : 'No se pudo conectar.',
+        invalid ? 'Email ou senha incorretos.' : 'Não foi possível conectar.',
         'err'
       );
       return;
@@ -516,8 +569,8 @@
   const founderDaysInput = document.getElementById('founderDays');
   const founderStatusEl = document.getElementById('founderStatus');
 
-  function setFounderStatus(msgEn, msgEs, kind){
-    founderStatusEl.textContent = currentLang() === 'es' ? msgEs : msgEn;
+  function setFounderStatus(msgEn, msgEs, msgPt, kind){
+    founderStatusEl.textContent = t(msgEn, msgEs, msgPt);
     founderStatusEl.className = 'acc-status' + (kind ? ' ' + kind : '');
   }
 
@@ -527,16 +580,15 @@
     founderSearchTimer = setTimeout(async () => {
       if(!query){ founderResults.innerHTML = ''; return; }
       const result = await apiCall('/api/admin', { email: founderEmail, password: founderPassword, action: 'search', query });
-      const lang = currentLang();
       if(!result.ok){
         founderResults.innerHTML = '<div style="font-size:12.5px; color:#e05252; margin-top:8px;">' +
-          (lang === 'es' ? 'La búsqueda falló, probá de nuevo.' : 'Search failed, try again.') + '</div>';
+          t('Search failed, try again.', 'La búsqueda falló, probá de nuevo.', 'A busca falhou, tente de novo.') + '</div>';
         return;
       }
       founderResults.innerHTML = result.users.map(u => {
         const tag = u.streamer_code ? '<span class="fr-tag">🎥 ' + u.streamer_code.toUpperCase() + '</span>' : '';
         return '<div class="founder-result" data-email="' + u.email + '"><span>' + u.email + '</span>' + tag + '</div>';
-      }).join('') || '<div style="font-size:12.5px; color:var(--muted-2); margin-top:8px;">' + (lang === 'es' ? 'Sin resultados.' : 'No results.') + '</div>';
+      }).join('') || '<div style="font-size:12.5px; color:var(--muted-2); margin-top:8px;">' + t('No results.', 'Sin resultados.', 'Nenhum resultado.') + '</div>';
       founderResults.querySelectorAll('.founder-result').forEach(row => {
         row.addEventListener('click', () => {
           founderSelectedTarget = row.getAttribute('data-email');
@@ -546,7 +598,7 @@
           founderPlanInput.value = 'advanced';
           founderDaysInput.value = 30;
           founderAssign.style.display = 'block';
-          setFounderStatus('', '', '');
+          setFounderStatus('', '', '', '');
         });
       });
     }, 300);
@@ -557,40 +609,40 @@
     const code = founderCodeInput.value.trim();
     const name = founderNameInput.value.trim();
     if(!code || !name){
-      setFounderStatus('Fill in the code and the display name.', 'Completá el código y el nombre.', 'err');
+      setFounderStatus('Fill in the code and the display name.', 'Completá el código y el nombre.', 'Preencha o código e o nome de exibição.', 'err');
       return;
     }
-    setFounderStatus('Assigning...', 'Asignando...', 'info');
+    setFounderStatus('Assigning...', 'Asignando...', 'Atribuindo...', 'info');
     const result = await apiCall('/api/admin', {
       email: founderEmail, password: founderPassword, action: 'assign-streamer', targetEmail: founderSelectedTarget, code, name,
     });
     if(!result.ok){
-      setFounderStatus('Couldn\'t assign the streamer role.', 'No se pudo asignar el rol de streamer.', 'err');
+      setFounderStatus('Couldn\'t assign the streamer role.', 'No se pudo asignar el rol de streamer.', 'Não foi possível atribuir o papel de streamer.', 'err');
       return;
     }
-    setFounderStatus('Streamer role assigned.', 'Rol de streamer asignado.', 'ok');
+    setFounderStatus('Streamer role assigned.', 'Rol de streamer asignado.', 'Papel de streamer atribuído.', 'ok');
   });
 
   document.getElementById('founderGrantBtn').addEventListener('click', async () => {
     if(!founderSelectedTarget) return;
     const plan = founderPlanInput.value;
     const days = founderDaysInput.value;
-    setFounderStatus('Granting...', 'Otorgando...', 'info');
+    setFounderStatus('Granting...', 'Otorgando...', 'Concedendo...', 'info');
     const result = await apiCall('/api/admin', {
       email: founderEmail, password: founderPassword, action: 'grant-plan', targetEmail: founderSelectedTarget, plan, days,
     });
     if(!result.ok){
-      setFounderStatus('Couldn\'t grant the subscription.', 'No se pudo otorgar la suscripción.', 'err');
+      setFounderStatus('Couldn\'t grant the subscription.', 'No se pudo otorgar la suscripción.', 'Não foi possível conceder a assinatura.', 'err');
       return;
     }
-    setFounderStatus('Subscription granted.', 'Suscripción otorgada.', 'ok');
+    setFounderStatus('Subscription granted.', 'Suscripción otorgada.', 'Assinatura concedida.', 'ok');
   });
 
   accRegisterBtn.addEventListener('click', async () => {
     const email = accEmail.value.trim();
     const password = accPassword.value;
-    if(!email || !password){ setStatus('Fill in your email and password.', 'Completá email y contraseña.', 'err'); return; }
-    setStatus('Creating account...', 'Creando cuenta...', 'info');
+    if(!email || !password){ setStatus('Fill in your email and password.', 'Completá email y contraseña.', 'Preencha seu email e senha.', 'err'); return; }
+    setStatus('Creating account...', 'Creando cuenta...', 'Criando conta...', 'info');
     const result = await apiCall('/api/register', { email, password });
     if(!result.ok){
       const messagesEn = {
@@ -601,14 +653,19 @@
         email_already_registered: 'Ese email ya está registrado — iniciá sesión.',
         password_too_short: 'La contraseña necesita al menos 4 caracteres.',
       };
+      const messagesPt = {
+        email_already_registered: 'Esse email já está cadastrado — faça login.',
+        password_too_short: 'A senha precisa ter pelo menos 4 caracteres.',
+      };
       setStatus(
         messagesEn[result.error] || 'Couldn\'t register.',
         messagesEs[result.error] || 'No se pudo registrar.',
+        messagesPt[result.error] || 'Não foi possível cadastrar.',
         'err'
       );
       return;
     }
-    setStatus('Account created! Now tap "Log in".', '¡Cuenta creada! Ahora tocá "Iniciar sesión".', 'ok');
+    setStatus('Account created! Now tap "Log in".', '¡Cuenta creada! Ahora tocá "Iniciar sesión".', 'Conta criada! Agora toque em "Entrar".', 'ok');
   });
 
   accLogoutLink.addEventListener('click', (e) => {
@@ -617,7 +674,7 @@
     loginBlock.style.display = 'block';
     accEmail.value = '';
     accPassword.value = '';
-    setStatus('', '', '');
+    setStatus('', '', '', '');
     founderEmail = null;
     founderPassword = null;
     document.getElementById('founderPanel').style.display = 'none';
