@@ -114,61 +114,66 @@
     </message>
     <message>
         <location filename="logindialog.cpp" line="25"/>
+        <source>⚠ DO NOT RUN THIS APP WHILE ANY POKER CLIENT IS OPEN</source>
+        <translation type="unfinished">⚠ NO EJECUTES ESTA APP CON NINGÚN CLIENTE DE POKER ABIERTO</translation>
+    </message>
+    <message>
+        <location filename="logindialog.cpp" line="33"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="28"/>
+        <location filename="logindialog.cpp" line="36"/>
         <source>Password</source>
         <translation>Contraseña</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="33"/>
+        <location filename="logindialog.cpp" line="41"/>
         <source>Remember my email and password</source>
         <translation type="unfinished">Recordar mi email y contraseña</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="37"/>
+        <location filename="logindialog.cpp" line="45"/>
         <source>Log in</source>
         <translation>Iniciar sesión</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="54"/>
+        <location filename="logindialog.cpp" line="62"/>
         <source>That account doesn&apos;t have an active subscription. Get a plan on the website.</source>
         <translation>Esa cuenta no tiene una suscripción activa. Adquirí un plan en la página.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="55"/>
+        <location filename="logindialog.cpp" line="63"/>
         <source>Go to the website to get a plan</source>
         <translation>Ir a la página para adquirir un plan</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="61"/>
+        <location filename="logindialog.cpp" line="69"/>
         <source>Don&apos;t have an account? Sign up on the Solverix website.</source>
         <translation>¿No tenés cuenta? Registrate desde la página de Solverix.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="108"/>
+        <location filename="logindialog.cpp" line="116"/>
         <source>Fill in your email and password.</source>
         <translation>Completá email y contraseña.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="115"/>
+        <location filename="logindialog.cpp" line="123"/>
         <source>Connecting...</source>
         <translation>Conectando...</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="132"/>
+        <location filename="logindialog.cpp" line="140"/>
         <source>Incorrect email or password.</source>
         <translation>Email o contraseña incorrectos.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="133"/>
+        <location filename="logindialog.cpp" line="141"/>
         <source>Couldn&apos;t connect to the server.</source>
         <translation>No se pudo conectar con el servidor.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="144"/>
+        <location filename="logindialog.cpp" line="152"/>
         <source>Logged in successfully.</source>
         <translation>Iniciaste sesión correctamente.</translation>
     </message>
@@ -358,8 +363,13 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.AppleSystemUIFont&apos;; font-size:13pt;&quot;&gt;Qs,Jh,2h&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.AppleSystemUIFont&apos;; font-size:13pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;.AppleSystemUIFont&apos;; font-size:13pt;&quot;&gt;Qs,Jh,2h&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;

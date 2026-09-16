@@ -12,7 +12,7 @@ static const char* WEBSITE_URL = "https://solverix-nicolastu-devs-projects.verce
 LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
 {
     this->setWindowTitle(tr("Solverix Log in"));
-    this->setMinimumSize(400, 320);
+    this->setMinimumSize(440, 380);
 
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->setSpacing(14);
@@ -21,6 +21,14 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
     QLabel* title = new QLabel(tr("♠ Solverix"), this);
     title->setStyleSheet("font-size:24px; font-weight:800;");
     layout->addWidget(title);
+
+    QLabel* poolWarning = new QLabel(tr("⚠ DO NOT RUN THIS APP WHILE ANY POKER CLIENT IS OPEN"), this);
+    poolWarning->setWordWrap(true);
+    poolWarning->setAlignment(Qt::AlignCenter);
+    poolWarning->setStyleSheet(
+        "font-size:14px; font-weight:800; color:#ffffff; background:#c0392b; "
+        "border:2px solid #ffffff; border-radius:8px; padding:12px 14px;");
+    layout->addWidget(poolWarning);
 
     layout->addWidget(new QLabel(tr("Email"), this));
     this->loginEmailField = new QLineEdit(this);
