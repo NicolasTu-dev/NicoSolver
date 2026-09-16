@@ -1,7 +1,7 @@
 const { sql, ensureSchema } = require('../lib/db');
 
 // Lightweight re-check used while the app is already running (no password
-// needed — the user already authenticated at login; this just confirms
+// needed the user already authenticated at login; this just confirms
 // the subscription hasn't been cancelled/expired since then).
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

@@ -9,7 +9,7 @@ const REDIRECT_URI = 'https://solverix-api-nicolastu-devs-projects.vercel.app/ap
 // Creates the affiliate row if it doesn't exist yet (status stays 'pending'
 // until they finish the Mercado Pago OAuth flow) and returns the link to
 // send them. The optional email links this affiliate to a login account
-// (users.email) so that account shows a "streamer" badge — pass it again
+// (users.email) so that account shows a "streamer" badge pass it again
 // later to re-link an existing affiliate to a different or corrected email.
 module.exports = async (req, res) => {
   if (req.query.secret !== process.env.ADMIN_SECRET) {

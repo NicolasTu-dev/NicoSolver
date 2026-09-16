@@ -5,7 +5,7 @@ const REDIRECT_URI = 'https://solverix-api-nicolastu-devs-projects.vercel.app/ap
 
 // Mercado Pago redirects the affiliate here after they approve the OAuth
 // connection, with ?code=...&state=<our affiliate code>. We exchange that
-// code for their access/refresh tokens and mark the affiliate 'active' —
+// code for their access/refresh tokens and mark the affiliate 'active'
 // from then on their link works for checkout.
 module.exports = async (req, res) => {
   const { code: oauthCode, state: affiliateCode } = req.query;

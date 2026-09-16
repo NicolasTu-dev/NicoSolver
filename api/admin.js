@@ -6,7 +6,7 @@ const FOUNDER_EMAIL = 'nicolastu98@hotmail.com';
 const REDIRECT_URI = 'https://solverix-api-nicolastu-devs-projects.vercel.app/api/affiliate-oauth-callback';
 
 // Single endpoint for every founder-only action (search users, assign a
-// streamer code, grant a subscription) — merged into one Serverless
+// streamer code, grant a subscription) merged into one Serverless
 // Function instead of three, since the Vercel Hobby plan caps deployments
 // at 12 functions and each admin action used to be its own file.
 // Body: { email, password, action, ...action-specific fields }.

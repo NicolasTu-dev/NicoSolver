@@ -53,7 +53,7 @@ module.exports = async (req, res) => {
     `;
 
     // Crypto commissions are paid out manually (no marketplace split like
-    // Mercado Pago) — this just logs the sale so it shows up in the
+    // Mercado Pago) this just logs the sale so it shows up in the
     // affiliate-stats report for you to pay out later.
     if (refCode && refCode !== 'none') {
       const affiliateRows = await sql`SELECT commission_rate FROM affiliates WHERE code = ${refCode}`;
