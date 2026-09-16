@@ -103,72 +103,72 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="logindialog.cpp" line="15"/>
+        <location filename="logindialog.cpp" line="14"/>
         <source>Solverix Log in</source>
         <translation type="unfinished">Solverix Entrar</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="22"/>
+        <location filename="logindialog.cpp" line="21"/>
         <source>♠ Solverix</source>
         <translation type="unfinished">♠ Solverix</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="26"/>
+        <location filename="logindialog.cpp" line="25"/>
         <source>Email</source>
         <translation type="unfinished">E-mail</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="29"/>
+        <location filename="logindialog.cpp" line="28"/>
         <source>Password</source>
         <translation type="unfinished">Senha</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="34"/>
+        <location filename="logindialog.cpp" line="33"/>
         <source>Remember my email and password</source>
         <translation type="unfinished">Lembrar meu email e senha</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="38"/>
+        <location filename="logindialog.cpp" line="37"/>
         <source>Log in</source>
         <translation type="unfinished">Entrar</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="55"/>
+        <location filename="logindialog.cpp" line="54"/>
         <source>That account doesn&apos;t have an active subscription. Get a plan on the website.</source>
         <translation type="unfinished">Essa conta não tem uma assinatura ativa. Contrate um plano no site.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="56"/>
+        <location filename="logindialog.cpp" line="55"/>
         <source>Go to the website to get a plan</source>
         <translation type="unfinished">Acesse o site para contratar um plano</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="62"/>
+        <location filename="logindialog.cpp" line="61"/>
         <source>Don&apos;t have an account? Sign up on the Solverix website.</source>
         <translation type="unfinished">Não tem uma conta? Cadastre-se no site do Solverix.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="110"/>
+        <location filename="logindialog.cpp" line="108"/>
         <source>Fill in your email and password.</source>
         <translation type="unfinished">Preencha seu e-mail e senha.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="117"/>
+        <location filename="logindialog.cpp" line="115"/>
         <source>Connecting...</source>
         <translation type="unfinished">Conectando...</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="134"/>
+        <location filename="logindialog.cpp" line="132"/>
         <source>Incorrect email or password.</source>
         <translation type="unfinished">E-mail ou senha incorretos.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="135"/>
+        <location filename="logindialog.cpp" line="133"/>
         <source>Couldn&apos;t connect to the server.</source>
         <translation type="unfinished">Não foi possível conectar ao servidor.</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="146"/>
+        <location filename="logindialog.cpp" line="144"/>
         <source>Logged in successfully.</source>
         <translation type="unfinished">Login realizado com sucesso.</translation>
     </message>
@@ -1828,89 +1828,110 @@ Reconstrua a árvore para que as mudanças nas opções de otimização tenham e
     </message>
     <message>
         <location filename="settingeditor.ui" line="173"/>
+        <location filename="settingeditor.cpp" line="96"/>
+        <source>Log out</source>
+        <translation type="unfinished">Sair da conta</translation>
+    </message>
+    <message>
+        <location filename="settingeditor.ui" line="180"/>
         <source>Solver options (Quick Mode / Practice Mode)</source>
         <translation type="unfinished">Opções do solver (Modo Rápido / Modo Prática)</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="182"/>
+        <location filename="settingeditor.ui" line="189"/>
         <source>Iterations Quick Mode</source>
         <translation type="unfinished">Iterações Modo Rápido</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="206"/>
+        <location filename="settingeditor.ui" line="213"/>
         <source>Iterations Practice Mode</source>
         <translation type="unfinished">Iterações Modo Prática</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="230"/>
+        <location filename="settingeditor.ui" line="237"/>
         <source>Target exploitability</source>
         <translation type="unfinished">Exploitabilidade alvo</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="257"/>
+        <location filename="settingeditor.ui" line="264"/>
         <source>Log interval</source>
         <translation type="unfinished">Intervalo de log</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="281"/>
+        <location filename="settingeditor.ui" line="288"/>
         <source>Threads</source>
         <translation type="unfinished">Threads</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="305"/>
+        <location filename="settingeditor.ui" line="312"/>
         <source>Raise limit</source>
         <translation type="unfinished">Limite de aumentos</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="13"/>
+        <location filename="settingeditor.cpp" line="15"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="26"/>
+        <location filename="settingeditor.cpp" line="28"/>
         <source>Unknown language: </source>
         <translation type="unfinished">Idioma desconhecido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="26"/>
-        <location filename="settingeditor.cpp" line="41"/>
-        <location filename="settingeditor.cpp" line="106"/>
-        <location filename="settingeditor.cpp" line="123"/>
+        <location filename="settingeditor.cpp" line="28"/>
+        <location filename="settingeditor.cpp" line="43"/>
+        <location filename="settingeditor.cpp" line="132"/>
+        <location filename="settingeditor.cpp" line="149"/>
         <source>Setting fail</source>
         <translation type="unfinished">Erro de configuração</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="41"/>
+        <location filename="settingeditor.cpp" line="43"/>
         <source>Unknown theme: </source>
         <translation type="unfinished">Tema desconhecido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="48"/>
+        <location filename="settingeditor.cpp" line="50"/>
         <source>dump round error: </source>
         <translation type="unfinished">erro na rodada de dump: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="84"/>
+        <location filename="settingeditor.cpp" line="86"/>
         <source>Desktop shortcut created.</source>
         <translation type="unfinished">Atalho criado na área de trabalho.</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="86"/>
+        <location filename="settingeditor.cpp" line="88"/>
         <source>Couldn&apos;t create the desktop shortcut.</source>
         <translation type="unfinished">Não foi possível criar o atalho.</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="106"/>
+        <location filename="settingeditor.cpp" line="97"/>
+        <source>Log out of this account? The app will close and you&apos;ll need to log in again next time you open it.</source>
+        <translation type="unfinished">Sair desta conta? O app vai fechar e você vai precisar fazer login de novo na próxima vez que abrir.</translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="113"/>
+        <source>Logged out</source>
+        <translation type="unfinished">Sessão encerrada</translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="113"/>
+        <source>You&apos;re logged out. Solverix will close now.</source>
+        <translation type="unfinished">Você saiu da conta. O Solverix vai fechar agora.</translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="132"/>
         <source>Unknown language index: </source>
         <translation type="unfinished">Índice de idioma desconhecido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="123"/>
+        <location filename="settingeditor.cpp" line="149"/>
         <source>Unknown theme index: </source>
         <translation type="unfinished">Índice de tema desconhecido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="143"/>
+        <location filename="settingeditor.cpp" line="169"/>
         <source>Restart the program for your changes to take effect.</source>
         <translation type="unfinished">Reinicie o programa para que as mudanças tenham efeito.</translation>
     </message>

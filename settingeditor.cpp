@@ -1,9 +1,11 @@
 ﻿#include "settingeditor.h"
 #include "ui_settingeditor.h"
+#include "include/data/licensemanager.h"
 #include <QStandardPaths>
 #include <QCoreApplication>
 #include <QFile>
 #include <QDir>
+#include <QApplication>
 
 SettingEditor::SettingEditor(QWidget *parent) :
     QDialog(parent),
@@ -86,6 +88,30 @@ void SettingEditor::on_createShortcutButton_clicked()
         msgBox.setText(tr("Couldn't create the desktop shortcut."));
     }
     msgBox.exec();
+}
+
+void SettingEditor::on_logoutButton_clicked()
+{
+    QMessageBox::StandardButton confirm = QMessageBox::question(
+        this, tr("Log out"),
+        tr("Log out of this account? The app will close and you'll need to log in again next time you open it."),
+        QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+    if(confirm != QMessageBox::Yes) return;
+
+    // Forget any remembered login and cached entitlement so the login
+    // screen shows blank fields and re-checks the subscription next launch.
+    QSettings setting("Solverix", "Setting");
+    setting.beginGroup("solver");
+    setting.remove("savedEmail");
+    setting.remove("savedPassword");
+    setting.setValue("rememberMe", false);
+    setting.endGroup();
+
+    LicenseManager::deactivate();
+    LicenseManager::setCurrentUserEmail("");
+
+    QMessageBox::information(this, tr("Logged out"), tr("You're logged out. Solverix will close now."));
+    QApplication::quit();
 }
 
 void SettingEditor::on_confirmBox_accepted()

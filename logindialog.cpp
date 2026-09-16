@@ -6,7 +6,6 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QSettings>
-#include <QTimer>
 
 static const char* WEBSITE_URL = "https://solverix-nicolastu-devs-projects.vercel.app/cuenta.html";
 
@@ -66,7 +65,7 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
 
     layout->addStretch();
 
-    // Pre-fill and auto-attempt login with remembered credentials, if any.
+    // Pre-fill (but don't auto-submit) with remembered credentials, if any.
     // Stored in plain QSettings (same as every other app setting) rather
     // than an OS credential store acceptable here since this is a
     // single-user desktop app with no other secure-storage dependency.
@@ -80,7 +79,6 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent)
     if(!savedEmail.isEmpty() && !savedPassword.isEmpty()){
         this->loginEmailField->setText(savedEmail);
         this->loginPasswordField->setText(savedPassword);
-        QTimer::singleShot(0, this, &LoginDialog::onLoginClicked);
     }
 }
 

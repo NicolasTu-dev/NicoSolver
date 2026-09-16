@@ -21,6 +21,7 @@ public:
 private slots:
     void on_confirmBox_accepted();
     void on_createShortcutButton_clicked();
+    void on_logoutButton_clicked();
 
 private:
     Ui::SettingEditor *ui;

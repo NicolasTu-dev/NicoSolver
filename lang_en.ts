@@ -103,72 +103,72 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="logindialog.cpp" line="15"/>
+        <location filename="logindialog.cpp" line="14"/>
         <source>Solverix Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="22"/>
+        <location filename="logindialog.cpp" line="21"/>
         <source>♠ Solverix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="26"/>
+        <location filename="logindialog.cpp" line="25"/>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="29"/>
+        <location filename="logindialog.cpp" line="28"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="34"/>
+        <location filename="logindialog.cpp" line="33"/>
         <source>Remember my email and password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="38"/>
+        <location filename="logindialog.cpp" line="37"/>
         <source>Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="55"/>
+        <location filename="logindialog.cpp" line="54"/>
         <source>That account doesn&apos;t have an active subscription. Get a plan on the website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="56"/>
+        <location filename="logindialog.cpp" line="55"/>
         <source>Go to the website to get a plan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="62"/>
+        <location filename="logindialog.cpp" line="61"/>
         <source>Don&apos;t have an account? Sign up on the Solverix website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="110"/>
+        <location filename="logindialog.cpp" line="108"/>
         <source>Fill in your email and password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="117"/>
+        <location filename="logindialog.cpp" line="115"/>
         <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="134"/>
+        <location filename="logindialog.cpp" line="132"/>
         <source>Incorrect email or password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="135"/>
+        <location filename="logindialog.cpp" line="133"/>
         <source>Couldn&apos;t connect to the server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="146"/>
+        <location filename="logindialog.cpp" line="144"/>
         <source>Logged in successfully.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1854,89 +1854,110 @@ Rebuild tree to have changed optimization options take effect!</source>
     </message>
     <message>
         <location filename="settingeditor.ui" line="173"/>
+        <location filename="settingeditor.cpp" line="96"/>
+        <source>Log out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.ui" line="180"/>
         <source>Solver options (Quick Mode / Practice Mode)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="182"/>
+        <location filename="settingeditor.ui" line="189"/>
         <source>Iterations Quick Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="206"/>
+        <location filename="settingeditor.ui" line="213"/>
         <source>Iterations Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="230"/>
+        <location filename="settingeditor.ui" line="237"/>
         <source>Target exploitability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="257"/>
+        <location filename="settingeditor.ui" line="264"/>
         <source>Log interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="281"/>
+        <location filename="settingeditor.ui" line="288"/>
         <source>Threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="305"/>
+        <location filename="settingeditor.ui" line="312"/>
         <source>Raise limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="13"/>
+        <location filename="settingeditor.cpp" line="15"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="26"/>
+        <location filename="settingeditor.cpp" line="28"/>
         <source>Unknown language: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="26"/>
-        <location filename="settingeditor.cpp" line="41"/>
-        <location filename="settingeditor.cpp" line="106"/>
-        <location filename="settingeditor.cpp" line="123"/>
+        <location filename="settingeditor.cpp" line="28"/>
+        <location filename="settingeditor.cpp" line="43"/>
+        <location filename="settingeditor.cpp" line="132"/>
+        <location filename="settingeditor.cpp" line="149"/>
         <source>Setting fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="41"/>
+        <location filename="settingeditor.cpp" line="43"/>
         <source>Unknown theme: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="48"/>
+        <location filename="settingeditor.cpp" line="50"/>
         <source>dump round error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="84"/>
+        <location filename="settingeditor.cpp" line="86"/>
         <source>Desktop shortcut created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="86"/>
+        <location filename="settingeditor.cpp" line="88"/>
         <source>Couldn&apos;t create the desktop shortcut.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="106"/>
+        <location filename="settingeditor.cpp" line="97"/>
+        <source>Log out of this account? The app will close and you&apos;ll need to log in again next time you open it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="113"/>
+        <source>Logged out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="113"/>
+        <source>You&apos;re logged out. Solverix will close now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.cpp" line="132"/>
         <source>Unknown language index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="123"/>
+        <location filename="settingeditor.cpp" line="149"/>
         <source>Unknown theme index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="143"/>
+        <location filename="settingeditor.cpp" line="169"/>
         <source>Restart the program for your changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>

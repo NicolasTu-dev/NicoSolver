@@ -168,6 +168,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="logoutButton">
+       <property name="text">
+        <string>Log out</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="quickModeOptionsLabel">
        <property name="text">
         <string>Solver options (Quick Mode / Practice Mode)</string>
