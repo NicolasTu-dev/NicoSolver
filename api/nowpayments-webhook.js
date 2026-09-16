@@ -52,17 +52,17 @@ module.exports = async (req, res) => {
       WHERE email = ${email}
     `;
 
-    // Crypto commissions are paid out manually (no marketplace split like
-    // Mercado Pago) this just logs the sale so it shows up in the
-    // affiliate-stats report for you to pay out later.
+    // Logs the commission owed to the affiliate as 'pending', in USD the
+    // founder pays it out by hand later and marks it 'paid' from the
+    // founder panel.
     if (refCode && refCode !== 'none') {
-      const affiliateRows = await sql`SELECT commission_rate FROM affiliates WHERE code = ${refCode}`;
+      const affiliateRows = await sql`SELECT commission_rate FROM affiliates WHERE code = ${refCode} AND status = 'active'`;
       if (affiliateRows.length > 0) {
         const grossAmount = Number(req.body.price_amount || 0);
         const commissionAmount = Math.round(grossAmount * Number(affiliateRows[0].commission_rate) * 100) / 100;
         await sql`
-          INSERT INTO affiliate_commissions (affiliate_code, buyer_email, plan, gross_amount, commission_amount, payment_id)
-          VALUES (${refCode}, ${email}, ${plan}, ${grossAmount}, ${commissionAmount}, ${'np_' + String(req.body.payment_id || orderId)})
+          INSERT INTO affiliate_commissions (affiliate_code, buyer_email, plan, gross_amount, commission_amount, currency, source, payment_id)
+          VALUES (${refCode}, ${email}, ${plan}, ${grossAmount}, ${commissionAmount}, 'USD', 'crypto', ${'np_' + String(req.body.payment_id || orderId)})
           ON CONFLICT (payment_id) DO NOTHING
         `;
       }

@@ -37,18 +37,18 @@ module.exports = async (req, res) => {
       WHERE email = ${email}
     `;
 
-    // The commission itself was already paid out automatically by MP's
-    // marketplace split when the payment was created (see create-checkout).
-    // This just logs it for reporting ON CONFLICT guards against MP
-    // retrying the same notification and double-counting.
+    // Logs the commission owed to the affiliate as 'pending' the founder
+    // pays it out by hand later and marks it 'paid' from the founder panel.
+    // ON CONFLICT guards against MP retrying the same notification and
+    // double-counting.
     if (refCode && refCode !== 'none') {
       const affiliateRows = await sql`SELECT commission_rate FROM affiliates WHERE code = ${refCode} AND status = 'active'`;
       if (affiliateRows.length > 0) {
         const grossAmount = Number(payment.transaction_amount || 0);
         const commissionAmount = Math.round(grossAmount * Number(affiliateRows[0].commission_rate) * 100) / 100;
         await sql`
-          INSERT INTO affiliate_commissions (affiliate_code, buyer_email, plan, gross_amount, commission_amount, payment_id)
-          VALUES (${refCode}, ${email}, ${plan}, ${grossAmount}, ${commissionAmount}, ${String(paymentId)})
+          INSERT INTO affiliate_commissions (affiliate_code, buyer_email, plan, gross_amount, commission_amount, currency, source, payment_id)
+          VALUES (${refCode}, ${email}, ${plan}, ${grossAmount}, ${commissionAmount}, 'ARS', 'mercadopago', ${String(paymentId)})
           ON CONFLICT (payment_id) DO NOTHING
         `;
       }

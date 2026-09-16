@@ -1,9 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { sql, ensureSchema } = require('../lib/db');
-const { affiliateAuthorizeUrl } = require('../lib/mercadopago');
 
 const FOUNDER_EMAIL = 'nicolastu98@hotmail.com';
-const REDIRECT_URI = 'https://solverix-api-nicolastu-devs-projects.vercel.app/api/affiliate-oauth-callback';
 
 // Single endpoint for every founder-only action (search users, assign a
 // streamer code, grant a subscription) merged into one Serverless
@@ -79,14 +77,14 @@ module.exports = async (req, res) => {
       const normalizedCode = String(code).trim().toLowerCase();
       const trimmedName = String(name).trim();
       await sql`
-        INSERT INTO affiliates (code, name, owner_email)
-        VALUES (${normalizedCode}, ${trimmedName}, ${normalizedTarget})
+        INSERT INTO affiliates (code, name, owner_email, status)
+        VALUES (${normalizedCode}, ${trimmedName}, ${normalizedTarget}, 'active')
         ON CONFLICT (code) DO UPDATE SET
           name = EXCLUDED.name,
-          owner_email = EXCLUDED.owner_email
+          owner_email = EXCLUDED.owner_email,
+          status = 'active'
       `;
-      const authorizeUrl = affiliateAuthorizeUrl({ code: normalizedCode, redirectUri: REDIRECT_URI });
-      res.status(200).json({ ok: true, code: normalizedCode, authorizeUrl });
+      res.status(200).json({ ok: true, code: normalizedCode });
       return;
     }
 
@@ -114,6 +112,61 @@ module.exports = async (req, res) => {
         return;
       }
       res.status(200).json({ ok: true, plan: result[0].plan, expiresAt: result[0].expires_at });
+      return;
+    }
+
+    if (action === 'affiliate-summary') {
+      // One row per streamer with pending/paid totals split by currency,
+      // for the founder panel's payouts list.
+      const rows = await sql`
+        SELECT
+          a.code, a.name, a.status,
+          COUNT(c.id) AS sales_count,
+          COALESCE(SUM(CASE WHEN c.currency = 'ARS' AND c.status = 'pending' THEN c.commission_amount ELSE 0 END), 0) AS pending_ars,
+          COALESCE(SUM(CASE WHEN c.currency = 'ARS' AND c.status = 'paid' THEN c.commission_amount ELSE 0 END), 0) AS paid_ars,
+          COALESCE(SUM(CASE WHEN c.currency = 'USD' AND c.status = 'pending' THEN c.commission_amount ELSE 0 END), 0) AS pending_usd,
+          COALESCE(SUM(CASE WHEN c.currency = 'USD' AND c.status = 'paid' THEN c.commission_amount ELSE 0 END), 0) AS paid_usd
+        FROM affiliates a
+        LEFT JOIN affiliate_commissions c ON c.affiliate_code = a.code
+        GROUP BY a.code, a.name, a.status
+        ORDER BY (pending_ars + pending_usd) DESC, a.code
+      `;
+      res.status(200).json({ ok: true, affiliates: rows });
+      return;
+    }
+
+    if (action === 'affiliate-detail') {
+      const { code } = req.body || {};
+      if (!code) {
+        res.status(400).json({ ok: false, error: 'missing_fields' });
+        return;
+      }
+      const normalizedCode = String(code).trim().toLowerCase();
+      const rows = await sql`
+        SELECT buyer_email, plan, gross_amount, commission_amount, currency, source, status, created_at, paid_at
+        FROM affiliate_commissions
+        WHERE affiliate_code = ${normalizedCode}
+        ORDER BY created_at DESC
+        LIMIT 100
+      `;
+      res.status(200).json({ ok: true, sales: rows });
+      return;
+    }
+
+    if (action === 'mark-commissions-paid') {
+      const { code, currency } = req.body || {};
+      if (!code || !currency) {
+        res.status(400).json({ ok: false, error: 'missing_fields' });
+        return;
+      }
+      const normalizedCode = String(code).trim().toLowerCase();
+      const result = await sql`
+        UPDATE affiliate_commissions
+        SET status = 'paid', paid_at = now()
+        WHERE affiliate_code = ${normalizedCode} AND currency = ${currency} AND status = 'pending'
+        RETURNING id
+      `;
+      res.status(200).json({ ok: true, updated: result.length });
       return;
     }
 

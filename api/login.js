@@ -43,9 +43,25 @@ module.exports = async (req, res) => {
     const active = user.plan !== 'none' && expiresAt !== null && expiresAt.getTime() > Date.now();
 
     const affiliateRows = await sql`
-      SELECT code FROM affiliates WHERE owner_email = ${normalizedEmail}
+      SELECT
+        a.code, a.name,
+        COALESCE(SUM(CASE WHEN c.currency = 'ARS' AND c.status = 'pending' THEN c.commission_amount ELSE 0 END), 0) AS pending_ars,
+        COALESCE(SUM(CASE WHEN c.currency = 'ARS' AND c.status = 'paid' THEN c.commission_amount ELSE 0 END), 0) AS paid_ars,
+        COALESCE(SUM(CASE WHEN c.currency = 'USD' AND c.status = 'pending' THEN c.commission_amount ELSE 0 END), 0) AS pending_usd,
+        COALESCE(SUM(CASE WHEN c.currency = 'USD' AND c.status = 'paid' THEN c.commission_amount ELSE 0 END), 0) AS paid_usd
+      FROM affiliates a
+      LEFT JOIN affiliate_commissions c ON c.affiliate_code = a.code
+      WHERE a.owner_email = ${normalizedEmail}
+      GROUP BY a.code, a.name
     `;
-    const streamer = affiliateRows.length > 0 ? { code: affiliateRows[0].code } : null;
+    const streamer = affiliateRows.length > 0 ? {
+      code: affiliateRows[0].code,
+      name: affiliateRows[0].name,
+      pendingArs: Number(affiliateRows[0].pending_ars),
+      paidArs: Number(affiliateRows[0].paid_ars),
+      pendingUsd: Number(affiliateRows[0].pending_usd),
+      paidUsd: Number(affiliateRows[0].paid_usd),
+    } : null;
 
     res.status(200).json({
       ok: true,
