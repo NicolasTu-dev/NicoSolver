@@ -1863,92 +1863,97 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation>Español</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="67"/>
+        <location filename="settingeditor.ui" line="47"/>
+        <source>Português</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingeditor.ui" line="72"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="75"/>
+        <location filename="settingeditor.ui" line="80"/>
         <source>Dark</source>
         <translation>Oscuro</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="80"/>
+        <location filename="settingeditor.ui" line="85"/>
         <source>Light</source>
         <translation>Claro</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="85"/>
+        <location filename="settingeditor.ui" line="90"/>
         <source>Poker Room</source>
         <translation>Sala de Poker</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="90"/>
+        <location filename="settingeditor.ui" line="95"/>
         <source>Violet</source>
         <translation>Violeta</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="95"/>
+        <location filename="settingeditor.ui" line="100"/>
         <source>Fintech</source>
         <translation>Fintech</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="120"/>
+        <location filename="settingeditor.ui" line="125"/>
         <source>Dump round when saving strategy</source>
         <translation>Ronda de volcado al guardar la estrategia</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="128"/>
+        <location filename="settingeditor.ui" line="133"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="133"/>
+        <location filename="settingeditor.ui" line="138"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="138"/>
+        <location filename="settingeditor.ui" line="143"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="161"/>
+        <location filename="settingeditor.ui" line="166"/>
         <source>Create desktop shortcut</source>
         <translation>Crear acceso directo en el escritorio</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="168"/>
+        <location filename="settingeditor.ui" line="173"/>
         <source>Solver options (Quick Mode / Practice Mode)</source>
         <translation>Opciones del solver (Modo Rápido / Modo Práctica)</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="177"/>
+        <location filename="settingeditor.ui" line="182"/>
         <source>Iterations — Quick Mode</source>
         <translation>Iteraciones — Modo Rápido</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="201"/>
+        <location filename="settingeditor.ui" line="206"/>
         <source>Iterations — Practice Mode</source>
         <translation>Iteraciones — Modo Práctica</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="225"/>
+        <location filename="settingeditor.ui" line="230"/>
         <source>Target exploitability</source>
         <translation>Exploitabilidad objetivo</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="252"/>
+        <location filename="settingeditor.ui" line="257"/>
         <source>Log interval</source>
         <translation>Intervalo de log</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="276"/>
+        <location filename="settingeditor.ui" line="281"/>
         <source>Threads</source>
         <translation>Hilos (threads)</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="300"/>
+        <location filename="settingeditor.ui" line="305"/>
         <source>Raise limit</source>
         <translation>Límite de re-subidas</translation>
     </message>
@@ -1958,50 +1963,50 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="24"/>
+        <location filename="settingeditor.cpp" line="26"/>
         <source>Unknown language: </source>
         <translation>Idioma desconocido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="24"/>
-        <location filename="settingeditor.cpp" line="39"/>
-        <location filename="settingeditor.cpp" line="102"/>
-        <location filename="settingeditor.cpp" line="119"/>
+        <location filename="settingeditor.cpp" line="26"/>
+        <location filename="settingeditor.cpp" line="41"/>
+        <location filename="settingeditor.cpp" line="106"/>
+        <location filename="settingeditor.cpp" line="123"/>
         <source>Setting fail</source>
         <translation>Error de configuración</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="39"/>
+        <location filename="settingeditor.cpp" line="41"/>
         <source>Unknown theme: </source>
         <translation>Tema desconocido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="46"/>
+        <location filename="settingeditor.cpp" line="48"/>
         <source>dump round error: </source>
         <translation>error en la ronda de volcado: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="82"/>
+        <location filename="settingeditor.cpp" line="84"/>
         <source>Desktop shortcut created.</source>
         <translation>Acceso directo creado en el escritorio.</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="84"/>
+        <location filename="settingeditor.cpp" line="86"/>
         <source>Couldn&apos;t create the desktop shortcut.</source>
         <translation>No se pudo crear el acceso directo.</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="102"/>
+        <location filename="settingeditor.cpp" line="106"/>
         <source>Unknown language index: </source>
         <translation>Índice de idioma desconocido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="119"/>
+        <location filename="settingeditor.cpp" line="123"/>
         <source>Unknown theme index: </source>
         <translation>Índice de tema desconocido: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="139"/>
+        <location filename="settingeditor.cpp" line="143"/>
         <source>Restart the program for your changes to take effect.</source>
         <translation>Reiniciá el programa para que los cambios surtan efecto.</translation>
     </message>

@@ -20,6 +20,8 @@ SettingEditor::SettingEditor(QWidget *parent) :
         this->ui->languageBox->setCurrentIndex(1);
     }else if(language_str == "ES"){
         this->ui->languageBox->setCurrentIndex(2);
+    }else if(language_str == "PT"){
+        this->ui->languageBox->setCurrentIndex(3);
     }else{
         qDebug().noquote() << tr("Unknown language: ") << language_str << tr("Setting fail");
     }
@@ -98,6 +100,8 @@ void SettingEditor::on_confirmBox_accepted()
         language_str = "CN";
     }else if(lang_index == 2){
         language_str = "ES";
+    }else if(lang_index == 3){
+        language_str = "PT";
     }else{
         qDebug().noquote() << tr("Unknown language index: ") << lang_index << tr("Setting fail");
     }

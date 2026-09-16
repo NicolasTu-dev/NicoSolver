@@ -73,6 +73,9 @@ int main(int argc, char *argv[])
     }else if(language_str == "ES"){
         trans.load(":/lang_es.qm");
         a.installTranslator(&trans);
+    }else if(language_str == "PT"){
+        trans.load(":/lang_pt.qm");
+        a.installTranslator(&trans);
     }
     // EN needs no translator — source strings are already English.
 

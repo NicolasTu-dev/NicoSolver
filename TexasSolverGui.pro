@@ -24,7 +24,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 TRANSLATIONS =  lang_cn.ts\
                 lang_en.ts\
-                lang_es.ts
+                lang_es.ts\
+                lang_pt.ts
 
 
 macx: {
