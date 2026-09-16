@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy Solverix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a1810;
+    --bg-deep: #06120b;
+    --panel: #132118;
+    --border: #2a4a38;
+    --gold: #d4af37;
+    --gold-bright: #e8c250;
+    --text: #e8f0ea;
+    --muted: #8fb39f;
+    --muted-2: #5c7a6a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh;
+    background:
+      radial-gradient(1100px 520px at 82% -6%, rgba(212,175,55,0.08), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Inter","Segoe UI",sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--gold-bright);}
+  h1,h2{font-family:"Cinzel","Segoe UI",serif; font-weight:700; margin:0;}
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,24,16,0.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-row{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:760px; margin:0 auto; gap:14px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:"Cinzel",serif; font-weight:700; font-size:19px;}
+  .brand .mark{color:var(--gold); font-size:20px;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .back-link{font-size:13.5px; color:var(--muted); text-decoration:none;}
+  .back-link:hover{color:var(--text);}
+  .lang-switch{
+    background:var(--bg-deep); border:1px solid var(--border); color:var(--muted);
+    font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:12.5px;
+    padding:7px 12px; border-radius:8px; cursor:pointer;
+    -webkit-appearance:none; appearance:none;
+  }
+  .lang-switch option{background:var(--bg-deep); color:var(--text);}
+  .page-wrap{max-width:760px; margin:0 auto; padding:56px 24px 80px;}
+  .page-head h1{font-size:26px;}
+  .page-head p{color:var(--muted); font-size:13.5px; margin-top:10px;}
+  .doc-section{margin-top:30px;}
+  .doc-section h2{font-size:17px; color:var(--gold-bright); margin-bottom:10px;}
+  .doc-section p, .doc-section li{color:var(--text); font-size:14.5px;}
+  .doc-section ul{margin:8px 0; padding-left:20px;}
+  .doc-section li{margin-bottom:6px;}
+  .note{color:var(--muted); font-size:13px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-row">
+    <div class="brand"><span class="mark">♠</span> Solverix</div>
+    <div class="nav-right">
+      <select class="lang-switch" id="langSwitch">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="pt">PT</option>
+      </select>
+      <a class="back-link" href="index.html" data-i18n="backLink">← Back to home</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-head">
+    <h1 data-i18n="pageTitle">Privacy Policy</h1>
+    <p data-i18n="pageSubtitle">Last updated: September 2026</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s1Title">1. Who's responsible for this</h2>
+    <p data-i18n="s1Body">Solverix is operated by Nicolás Tu, an individual based in Argentina. Contact for anything privacy-related: soporte@solverix.com.ar.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s2Title">2. What we collect (and only that)</h2>
+    <p data-i18n="s2Body">We keep data collection to the minimum needed to run the service: your account email, your password (stored hashed, never in plain text), your subscription plan and its expiration date, a payment reference from the payment processor (we never see or store your card or wallet details directly), and, only if you use one, a streamer referral code. We don't ask for your real name, address, or phone number, and we don't need them to run Solverix.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s3Title">3. Solverix does not use artificial intelligence</h2>
+    <p data-i18n="s3Body">The solver itself is built on CFR (Counterfactual Regret Minimization), a game-theory algorithm that converges toward the Nash equilibrium it runs entirely on your own computer. It is not an AI or machine-learning model, and it does not send your hands, ranges, or usage data anywhere to "learn" from you.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s4Title">4. Cookies and local storage</h2>
+    <p data-i18n="s4Body">This website uses cookies and browser local storage strictly to make the site work: remembering your language choice, a referral code if you arrived through a streamer's link, and your login session on the account page. We don't use them for advertising or cross-site tracking. You can clear them anytime from your browser settings, though the site may ask for your language/login again afterward.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s5Title">5. Third-party services we rely on</h2>
+    <p data-i18n="s5Body">To run Solverix we use a small number of external providers, each only for a specific technical purpose:</p>
+    <ul>
+      <li data-i18n="s5Li1"><b>Mercado Pago</b> processes payments in Argentine pesos. We never see your card number.</li>
+      <li data-i18n="s5Li2"><b>NOWPayments</b> processes cryptocurrency (USDT) payments for the rest of the world.</li>
+      <li data-i18n="s5Li3"><b>Vercel</b> hosts this website and the backend that talks to it.</li>
+      <li data-i18n="s5Li4"><b>Neon</b> (via Vercel) hosts the database with your account and subscription data.</li>
+      <li data-i18n="s5Li5"><b>ImprovMX</b> and <b>Brevo</b> handle receiving and sending our support email (soporte@solverix.com.ar).</li>
+    </ul>
+    <p class="note" data-i18n="s5Note">Each of these providers has its own privacy policy governing how it processes the data it handles on our behalf.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s6Title">6. How long we keep your data</h2>
+    <p data-i18n="s6Body">We keep your account data for as long as your account exists. If you ask us to delete your account, we remove your personal data within 30 days, except anything we're legally required to keep for accounting or tax purposes (like payment records).</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s7Title">7. Your rights</h2>
+    <p data-i18n="s7Body">You can ask us, at any time, to access, correct, or delete your personal data. Just write to soporte@solverix.com.ar from the email associated with your account and we'll take care of it.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s8Title">8. Marketing emails</h2>
+    <p data-i18n="s8Body">We currently only send transactional emails (login-related notices, payment confirmations, subscription status). We don't run a marketing email list. If that ever changes, every marketing email will include a clear unsubscribe link.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s9Title">9. Changes to this policy</h2>
+    <p data-i18n="s9Body">We may update this page from time to time. The "last updated" date at the top always reflects the latest version.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2 data-i18n="s10Title">10. Credits</h2>
+    <p data-i18n="s10Body" class="note">This site uses the Cinzel, Inter, and Space Grotesk fonts from Google Fonts, licensed under the SIL Open Font License, free for commercial use.</p>
+  </div>
+</div>
+
+<script>
+  const ES_TEXT = {
+    backLink: '← Volver al inicio',
+    pageTitle: 'Política de Privacidad',
+    pageSubtitle: 'Última actualización: septiembre de 2026',
+    s1Title: '1. Quién es responsable de esto',
+    s1Body: 'Solverix es operado por Nicolás Tu, persona física radicada en Argentina. Contacto para todo lo relacionado con privacidad: soporte@solverix.com.ar.',
+    s2Title: '2. Qué datos pedimos (y solo esos)',
+    s2Body: 'Recolectamos lo mínimo necesario para que el servicio funcione: tu email de cuenta, tu contraseña (guardada hasheada, nunca en texto plano), tu plan de suscripción y su fecha de vencimiento, una referencia de pago del procesador (nunca vemos ni guardamos los datos de tu tarjeta o billetera directamente), y, solo si usás uno, un código de referido de streamer. No te pedimos tu nombre real, dirección ni teléfono, no los necesitamos para que Solverix funcione.',
+    s3Title: '3. Solverix no usa inteligencia artificial',
+    s3Body: 'El solver está construido sobre CFR (Minimización de Arrepentimiento Contrafactual), un algoritmo de teoría de juegos que converge hacia el equilibrio de Nash y corre enteramente en tu propia computadora. No es un modelo de IA ni de machine learning, y no manda tus manos, rangos ni datos de uso a ningún lado para "aprender" de vos.',
+    s4Title: '4. Cookies y almacenamiento local',
+    s4Body: 'Este sitio usa cookies y almacenamiento local del navegador estrictamente para que funcione: recordar tu idioma elegido, un código de referido si llegaste por el link de un streamer, y tu sesión de inicio en la página de cuenta. No los usamos para publicidad ni para rastrearte en otros sitios. Podés borrarlos cuando quieras desde la configuración de tu navegador, aunque el sitio te va a volver a pedir idioma/inicio de sesión después.',
+    s5Title: '5. Servicios de terceros que usamos',
+    s5Body: 'Para que Solverix funcione usamos unos pocos proveedores externos, cada uno con un propósito técnico específico:',
+    s5Li1: '<b>Mercado Pago</b> procesa los pagos en pesos argentinos. Nunca vemos el número de tu tarjeta.',
+    s5Li2: '<b>NOWPayments</b> procesa los pagos en criptomonedas (USDT) para el resto del mundo.',
+    s5Li3: '<b>Vercel</b> aloja este sitio web y el backend que lo conecta.',
+    s5Li4: '<b>Neon</b> (vía Vercel) aloja la base de datos con tu cuenta y datos de suscripción.',
+    s5Li5: '<b>ImprovMX</b> y <b>Brevo</b> manejan la recepción y el envío de nuestro correo de soporte (soporte@solverix.com.ar).',
+    s5Note: 'Cada uno de estos proveedores tiene su propia política de privacidad que rige cómo procesa los datos que maneja en nuestro nombre.',
+    s6Title: '6. Cuánto tiempo guardamos tus datos',
+    s6Body: 'Guardamos los datos de tu cuenta mientras la cuenta exista. Si nos pedís que la borremos, eliminamos tus datos personales dentro de los 30 días, excepto lo que estemos legalmente obligados a conservar por temas contables o impositivos (como los registros de pago).',
+    s7Title: '7. Tus derechos',
+    s7Body: 'Podés pedirnos, en cualquier momento, acceder, corregir o borrar tus datos personales. Solo escribinos a soporte@solverix.com.ar desde el mail asociado a tu cuenta y nos encargamos.',
+    s8Title: '8. Mails de marketing',
+    s8Body: 'Por ahora solo mandamos mails transaccionales (avisos de inicio de sesión, confirmaciones de pago, estado de la suscripción). No tenemos una lista de mails de marketing. Si eso cambia algún día, todo mail de marketing va a incluir un link claro para darse de baja.',
+    s9Title: '9. Cambios a esta política',
+    s9Body: 'Podemos actualizar esta página de tanto en tanto. La fecha de "última actualización" arriba de todo siempre refleja la versión más reciente.',
+    s10Title: '10. Créditos',
+    s10Body: 'Este sitio usa las tipografías Cinzel, Inter y Space Grotesk de Google Fonts, con licencia SIL Open Font License, de uso libre para fines comerciales.',
+  };
+  const PT_TEXT = {
+    backLink: '← Voltar para o início',
+    pageTitle: 'Política de Privacidade',
+    pageSubtitle: 'Última atualização: setembro de 2026',
+    s1Title: '1. Quem é o responsável por isto',
+    s1Body: 'O Solverix é operado por Nicolás Tu, pessoa física radicada na Argentina. Contato para tudo relacionado a privacidade: soporte@solverix.com.ar.',
+    s2Title: '2. Quais dados pedimos (e só esses)',
+    s2Body: 'Coletamos o mínimo necessário para que o serviço funcione: seu email de conta, sua senha (armazenada com hash, nunca em texto simples), seu plano de assinatura e data de vencimento, uma referência de pagamento do processador (nunca vemos nem guardamos os dados do seu cartão ou carteira diretamente), e, só se você usar um, um código de indicação de streamer. Não pedimos seu nome real, endereço ou telefone, não precisamos deles para o Solverix funcionar.',
+    s3Title: '3. O Solverix não usa inteligência artificial',
+    s3Body: 'O solver é construído sobre o CFR (Minimização de Arrependimento Contrafactual), um algoritmo de teoria dos jogos que converge para o equilíbrio de Nash e roda inteiramente no seu próprio computador. Não é um modelo de IA nem de machine learning, e não envia suas mãos, ranges ou dados de uso para nenhum lugar para "aprender" com você.',
+    s4Title: '4. Cookies e armazenamento local',
+    s4Body: 'Este site usa cookies e armazenamento local do navegador estritamente para funcionar: lembrar seu idioma escolhido, um código de indicação se você chegou pelo link de um streamer, e sua sessão de login na página de conta. Não os usamos para publicidade nem para rastrear você em outros sites. Você pode apagá-los quando quiser nas configurações do seu navegador, embora o site vá pedir idioma/login de novo depois.',
+    s5Title: '5. Serviços de terceiros que usamos',
+    s5Body: 'Para o Solverix funcionar usamos poucos provedores externos, cada um com um propósito técnico específico:',
+    s5Li1: '<b>Mercado Pago</b> processa os pagamentos em pesos argentinos. Nunca vemos o número do seu cartão.',
+    s5Li2: '<b>NOWPayments</b> processa os pagamentos em criptomoedas (USDT) para o resto do mundo.',
+    s5Li3: '<b>Vercel</b> hospeda este site e o backend que se conecta a ele.',
+    s5Li4: '<b>Neon</b> (via Vercel) hospeda o banco de dados com sua conta e dados de assinatura.',
+    s5Li5: '<b>ImprovMX</b> e <b>Brevo</b> cuidam do recebimento e envio do nosso email de suporte (soporte@solverix.com.ar).',
+    s5Note: 'Cada um desses provedores tem sua própria política de privacidade que rege como processa os dados que administra em nosso nome.',
+    s6Title: '6. Por quanto tempo guardamos seus dados',
+    s6Body: 'Guardamos os dados da sua conta enquanto a conta existir. Se você nos pedir para excluí-la, removemos seus dados pessoais em até 30 dias, exceto o que formos legalmente obrigados a manter por questões contábeis ou fiscais (como registros de pagamento).',
+    s7Title: '7. Seus direitos',
+    s7Body: 'Você pode nos pedir, a qualquer momento, para acessar, corrigir ou excluir seus dados pessoais. Basta escrever para soporte@solverix.com.ar a partir do email associado à sua conta e nós cuidamos disso.',
+    s8Title: '8. Emails de marketing',
+    s8Body: 'Por enquanto só enviamos emails transacionais (avisos de login, confirmações de pagamento, status da assinatura). Não temos uma lista de emails de marketing. Se isso mudar algum dia, todo email de marketing vai incluir um link claro para cancelar a inscrição.',
+    s9Title: '9. Mudanças nesta política',
+    s9Body: 'Podemos atualizar esta página de tempos em tempos. A data de "última atualização" no topo sempre reflete a versão mais recente.',
+    s10Title: '10. Créditos',
+    s10Body: 'Este site usa as fontes Cinzel, Inter e Space Grotesk do Google Fonts, licenciadas sob a SIL Open Font License, de uso livre para fins comerciais.',
+  };
+  const EN_TEXT = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { EN_TEXT[el.getAttribute('data-i18n')] = el.innerHTML; });
+  const TEXT_DICTS = { en: EN_TEXT, es: ES_TEXT, pt: PT_TEXT };
+  function applyLang(lang){
+    const dict = TEXT_DICTS[lang] || EN_TEXT;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.getElementById('langSwitch').value = lang;
+    localStorage.setItem('solverix_lang', lang);
+  }
+  const savedLang = localStorage.getItem('solverix_lang') || 'en';
+  applyLang(savedLang);
+  document.getElementById('langSwitch').addEventListener('change', (e) => applyLang(e.target.value));
+</script>
+
+</body>
+</html>

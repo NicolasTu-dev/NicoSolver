@@ -222,6 +222,20 @@
     .hero h1{font-size:34px;}
     .nav-links{display:none;}
   }
+
+  .footer-links{display:flex; gap:18px; font-size:12.5px; color:var(--muted-2);}
+  .footer-links a{color:var(--muted-2); text-decoration:none;}
+  .footer-links a:hover{color:var(--muted);}
+  .cookie-banner{
+    position:fixed; left:20px; right:20px; bottom:20px; z-index:200;
+    max-width:640px; margin:0 auto;
+    background:var(--panel-raised); border:1px solid var(--border); border-left:4px solid var(--gold);
+    border-radius:12px; padding:18px 22px; box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    display:none; flex-wrap:wrap; align-items:center; gap:14px;
+  }
+  .cookie-banner.show{display:flex;}
+  .cookie-banner p{margin:0; font-size:13px; color:var(--muted); flex:1; min-width:220px;}
+  .cookie-banner .btn{font-size:12.5px; padding:9px 16px;}
 </style>
 </head>
 <body>
@@ -495,8 +509,18 @@
 <footer>
   <div class="wrap footer-row">
     <div class="brand"><span class="mark" style="color:#d4af37;">♠</span> Solverix</div>
+    <div class="footer-links">
+      <a href="privacidad.html" data-i18n="footer.privacy">Privacy Policy</a>
+      <a href="terminos.html" data-i18n="footer.terms">Terms of Service</a>
+      <a href="mailto:soporte@solverix.com.ar">soporte@solverix.com.ar</a>
+    </div>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p id="cookieBannerText">This site uses cookies and local storage to remember your language and session. See our Privacy Policy.</p>
+  <button class="btn btn-gold" id="cookieAcceptBtn">Accept</button>
+</div>
 
 <script>
   // Affiliate link tracking: ?ref=codigo gets remembered so the purchase
@@ -598,6 +622,8 @@
     'finalCta.title': 'Andá a la próxima mesa sabiendo qué hacer',
     'finalCta.body': 'Probá Solverix y dejá de jugar de memoria.',
     'finalCta.cta': 'Ver planes',
+    'footer.privacy': 'Política de Privacidad',
+    'footer.terms': 'Términos de Servicio',
   };
 
   const PT = {
@@ -670,6 +696,8 @@
     'finalCta.title': 'Chegue na próxima mesa sabendo o que fazer',
     'finalCta.body': 'Experimente o Solverix e pare de jogar de memória.',
     'finalCta.cta': 'Ver planos',
+    'footer.privacy': 'Política de Privacidade',
+    'footer.terms': 'Termos de Serviço',
   };
 
   const EN = {};
@@ -696,6 +724,26 @@
   document.getElementById('langSwitch').addEventListener('change', (e) => {
     applyLang(e.target.value);
   });
+
+  // ---------- Cookie consent banner ----------
+  (function(){
+    const COOKIE_TEXT = {
+      en: { text: 'This site uses cookies and local storage to remember your language and your session. See our Privacy Policy.', btn: 'Accept' },
+      es: { text: 'Este sitio usa cookies y almacenamiento local para recordar tu idioma y tu sesión. Mirá nuestra Política de Privacidad.', btn: 'Aceptar' },
+      pt: { text: 'Este site usa cookies e armazenamento local para lembrar seu idioma e sua sessão. Veja nossa Política de Privacidade.', btn: 'Aceitar' },
+    };
+    if(localStorage.getItem('solverix_cookie_consent')) return;
+    const banner = document.getElementById('cookieBanner');
+    const lang = localStorage.getItem('solverix_lang') || 'en';
+    const set = COOKIE_TEXT[lang] || COOKIE_TEXT.en;
+    document.getElementById('cookieBannerText').textContent = set.text;
+    document.getElementById('cookieAcceptBtn').textContent = set.btn;
+    banner.classList.add('show');
+    document.getElementById('cookieAcceptBtn').addEventListener('click', () => {
+      localStorage.setItem('solverix_cookie_consent', '1');
+      banner.classList.remove('show');
+    });
+  })();
 </script>
 
 </body>
