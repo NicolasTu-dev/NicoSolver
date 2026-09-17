@@ -6,13 +6,17 @@ Por favor leé esto antes de instalar.
    Solverix esta pensado para usuarios de 18 anios o mas. Al hacer clic
    en "Acepto el acuerdo" mas abajo, confirmas que cumplis este requisito.
 
-2. QUE ES SOLVERIX
-   Solverix es una herramienta de entrenamiento y analisis de poker que
-   funciona sin conexion, basada en CFR (Minimizacion de Arrepentimiento
-   Contrafactual), un algoritmo de teoria de juegos. No procesa apuestas
-   con dinero real y no es una plataforma de apuestas. Usarlo mientras
-   jugas en vivo una mano con dinero real puede violar las reglas del
-   sitio/sala donde jugas -- es tu responsabilidad revisar eso.
+2. QUE ES SOLVERIX Y PROHIBICION DE USO EN TIEMPO REAL (RTA)
+   Solverix es una herramienta de ESTUDIO FUERA DE LA MESA, basada en CFR
+   (Minimizacion de Arrepentimiento Contrafactual), un algoritmo de teoria
+   de juegos. No procesa apuestas con dinero real y no es una plataforma
+   de apuestas.
+
+   Esta ESTRICTAMENTE PROHIBIDO ejecutar, consultar o interactuar con
+   Solverix mientras tengas abierto cualquier cliente de poker online
+   (dinero real o ficticio). No se puede usar como asistencia en tiempo
+   real (RTA) dentro de una mano. Incumplir esto puede resultar en la
+   suspension inmediata de tu cuenta sin reembolso.
 
 3. SUSCRIPCION Y REEMBOLSOS
    Solverix requiere una suscripcion paga activa (plan Solver Avanzado o

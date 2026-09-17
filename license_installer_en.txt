@@ -6,12 +6,16 @@ Please read before installing.
    Solverix is intended for users 18 years of age or older. By clicking
    "I accept the agreement" below, you confirm you meet this requirement.
 
-2. WHAT SOLVERIX IS
-   Solverix is an offline poker training and analysis tool based on CFR
-   (Counterfactual Regret Minimization), a game-theory algorithm. It does
-   not process real-money bets and is not a gambling platform. Using it
-   while actively playing a real-money hand may violate the rules of the
-   specific site/room you play on -- that is your responsibility to check.
+2. WHAT SOLVERIX IS AND THE BAN ON REAL-TIME ASSISTANCE (RTA)
+   Solverix is an OFF-TABLE STUDY TOOL based on CFR (Counterfactual Regret
+   Minimization), a game-theory algorithm. It does not process real-money
+   bets and is not a gambling platform.
+
+   Running, consulting, or interacting with Solverix while any online
+   poker client (real-money or play-money) is open is STRICTLY PROHIBITED.
+   It must never be used as real-time assistance (RTA) within a hand.
+   Breaking this rule may result in immediate suspension of your account
+   with no refund.
 
 3. SUBSCRIPTION AND REFUNDS
    Solverix requires an active paid subscription (Advanced Solver or
