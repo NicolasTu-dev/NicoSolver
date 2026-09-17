@@ -160,10 +160,12 @@ void DetailItemDelegate::paint_range(QPainter *painter, const QStyleOptionViewIt
 
     if(detailViewerModel->tableStrategyModel->treeItem != NULL){
         vector<pair<int,int>> card_cords;
-        if(this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::RANGE_IP){
-            card_cords = detailViewerModel->tableStrategyModel->ui_p1_range[this->detailWindowSetting->grid_i][this->detailWindowSetting->grid_j];
-        }else{
-            card_cords = detailViewerModel->tableStrategyModel->ui_p2_range[this->detailWindowSetting->grid_i][this->detailWindowSetting->grid_j];
+        if(this->detailWindowSetting->grid_i >= 0 && this->detailWindowSetting->grid_j >= 0){
+            if(this->detailWindowSetting->mode == DetailWindowSetting::DetailWindowMode::RANGE_IP){
+                card_cords = detailViewerModel->tableStrategyModel->ui_p1_range[this->detailWindowSetting->grid_i][this->detailWindowSetting->grid_j];
+            }else{
+                card_cords = detailViewerModel->tableStrategyModel->ui_p2_range[this->detailWindowSetting->grid_i][this->detailWindowSetting->grid_j];
+            }
         }
 
         int ind = index.row() * detailViewerModel->columns + index.column();
