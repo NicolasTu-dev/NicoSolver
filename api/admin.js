@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { sql, ensureSchema } = require('../lib/db');
 
-const FOUNDER_EMAIL = 'nicolastu98@hotmail.com';
+const FOUNDER_EMAILS = ['nicolastu98@hotmail.com', 'tuhungwei@hotmail.com'];
 
 // Single endpoint for every founder-only action (search users, assign a
 // streamer code, grant a subscription) merged into one Serverless
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
   }
 
   const normalizedEmail = String(email).trim().toLowerCase();
-  if (normalizedEmail !== FOUNDER_EMAIL) {
+  if (!FOUNDER_EMAILS.includes(normalizedEmail)) {
     res.status(403).json({ ok: false, error: 'forbidden' });
     return;
   }

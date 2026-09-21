@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { sql, ensureSchema } = require('../lib/db');
 
-const FOUNDER_EMAIL = 'nicolastu98@hotmail.com';
+const FOUNDER_EMAILS = ['nicolastu98@hotmail.com', 'tuhungwei@hotmail.com'];
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
       plan: active ? user.plan : 'none',
       expiresAt: expiresAt ? expiresAt.toISOString() : null,
       streamer,
-      isFounder: normalizedEmail === FOUNDER_EMAIL,
+      isFounder: FOUNDER_EMAILS.includes(normalizedEmail),
     });
   } catch (err) {
     console.error('login error', err);
