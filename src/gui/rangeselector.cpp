@@ -1,4 +1,4 @@
-﻿#include "rangeselector.h"
+﻿#include "include/gui/rangeselector.h"
 #include "ui_rangeselector.h"
 
 RangeSelector::RangeSelector(QTextEdit* rangeEdit,QWidget *parent,QSolverJob::Mode mode) :

@@ -1,4 +1,4 @@
-﻿#include "boardselector.h"
+﻿#include "include/gui/boardselector.h"
 #include "ui_boardselector.h"
 #include <QToolTip>
 #include <QCursor>

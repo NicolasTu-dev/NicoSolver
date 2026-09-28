@@ -130,14 +130,14 @@ SOURCES += \
     src/ui/roughstrategyitemdelegate.cpp \
     src/ui/droptextedit.cpp \
     src/ui/htmltablerangeview.cpp \
-    rangeselector.cpp \
+    src/gui/rangeselector.cpp \
     src/ui/rangeselectortablemodel.cpp \
     src/ui/rangeselectortabledelegate.cpp \
-    boardselector.cpp \
+    src/gui/boardselector.cpp \
     src/ui/boardselectortablemodel.cpp \
     src/ui/boardselectortabledelegate.cpp \
-    settingeditor.cpp \
-    welcomedialog.cpp \
+    src/gui/settingeditor.cpp \
+    src/gui/welcomedialog.cpp \
     src/data/quickmoderanges.cpp \
     src/data/licensemanager.cpp \
     licensedialog.cpp \
@@ -203,14 +203,14 @@ HEADERS += \
     include/ui/roughstrategyitemdelegate.h \
     include/ui/droptextedit.h \
     include/ui/htmltablerangeview.h \
-    rangeselector.h \
+    include/gui/rangeselector.h \
     include/ui/rangeselectortablemodel.h \
     include/ui/rangeselectortabledelegate.h \
-    boardselector.h \
+    include/gui/boardselector.h \
     include/ui/boardselectortablemodel.h \
     include/ui/boardselectortabledelegate.h \
-    settingeditor.h \
-    welcomedialog.h \
+    include/gui/settingeditor.h \
+    include/gui/welcomedialog.h \
     include/data/quickmoderanges.h \
     include/data/licensemanager.h \
     licensedialog.h \
@@ -220,10 +220,10 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     strategyexplorer.ui \
-    rangeselector.ui \
-    boardselector.ui \
-    settingeditor.ui \
-    welcomedialog.ui
+    src/gui/rangeselector.ui \
+    src/gui/boardselector.ui \
+    src/gui/settingeditor.ui \
+    src/gui/welcomedialog.ui
 
 RESOURCES += \
     translations.qrc \

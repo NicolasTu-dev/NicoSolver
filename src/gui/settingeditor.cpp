@@ -1,4 +1,4 @@
-﻿#include "settingeditor.h"
+﻿#include "include/gui/settingeditor.h"
 #include "ui_settingeditor.h"
 #include "include/data/licensemanager.h"
 #include <QStandardPaths>
