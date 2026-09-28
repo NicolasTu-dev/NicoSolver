@@ -418,10 +418,9 @@ void StrategyExplorer::selectRootNode(){
 }
 
 static QString sizeTag(double amount){
-    if(amount < 45) return QObject::tr("small");
-    if(amount <= 85) return QObject::tr("medium");
-    if(amount <= 130) return QObject::tr("big");
-    return QObject::tr("overbet");
+    if(amount < 45) return QObject::tr("SMALL");
+    if(amount <= 85) return QObject::tr("MID");
+    return QObject::tr("LARGE");
 }
 
 static QString actionLabel(GameTreeNode::PokerActions action, double amount){
@@ -429,8 +428,8 @@ static QString actionLabel(GameTreeNode::PokerActions action, double amount){
         case GameTreeNode::PokerActions::FOLD: return QObject::tr("Fold");
         case GameTreeNode::PokerActions::CHECK: return QObject::tr("Check");
         case GameTreeNode::PokerActions::CALL: return QObject::tr("Call");
-        case GameTreeNode::PokerActions::BET: return QObject::tr("Bet %1% of the pot (%2)").arg((int)amount).arg(sizeTag(amount));
-        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Raise to %1% of the pot (%2)").arg((int)amount).arg(sizeTag(amount));
+        case GameTreeNode::PokerActions::BET: return QObject::tr("Bet %1").arg(sizeTag(amount));
+        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Raise %1").arg(sizeTag(amount));
         default: return QObject::tr("Other action");
     }
 }
