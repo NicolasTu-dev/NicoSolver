@@ -1,4 +1,4 @@
-﻿#include "strategyexplorer.h"
+﻿#include "include/gui/strategyexplorer.h"
 #include "ui_strategyexplorer.h"
 #include "qstandarditemmodel.h"
 #include <QBrush>

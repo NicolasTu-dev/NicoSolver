@@ -1,4 +1,4 @@
-#include "licensedialog.h"
+#include "include/gui/licensedialog.h"
 #include "include/data/licensemanager.h"
 #include "include/data/apiclient.h"
 #include <QVBoxLayout>

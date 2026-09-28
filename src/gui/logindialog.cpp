@@ -1,4 +1,4 @@
-#include "logindialog.h"
+#include "include/gui/logindialog.h"
 #include "include/data/licensemanager.h"
 #include "include/data/apiclient.h"
 #include <QVBoxLayout>

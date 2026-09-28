@@ -8,7 +8,7 @@
 #include <QTextStream>
 #include <QFontDatabase>
 #include "include/ui/rangeselectortabledelegate.h"
-#include "logindialog.h"
+#include "include/gui/logindialog.h"
 
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)

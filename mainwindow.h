@@ -6,7 +6,7 @@
 #include <QPlainTextEdit>
 #include "include/runtime/qsolverjob.h"
 #include "include/gui/qstextedit.h"
-#include "strategyexplorer.h"
+#include "include/gui/strategyexplorer.h"
 #include "include/gui/rangeselector.h"
 #include <QMessageBox>
 #include "include/gui/boardselector.h"
@@ -17,7 +17,7 @@
 #include "include/data/quickmoderanges.h"
 #include "include/data/licensemanager.h"
 #include "include/data/apiclient.h"
-#include "licensedialog.h"
+#include "include/gui/licensedialog.h"
 #include <QTimer>
 #include "include/ui/boardselectortablemodel.h"
 #include "include/ui/boardselectortabledelegate.h"

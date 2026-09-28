@@ -115,7 +115,7 @@ SOURCES += \
     src/trainable/Trainable.cpp \
     src/runtime/qsolverjob.cpp \
     src/gui/qstextedit.cpp \
-    strategyexplorer.cpp \
+    src/gui/strategyexplorer.cpp \
     src/gui/qstreeview.cpp \
     src/ui/treeitem.cpp \
     src/ui/treemodel.cpp \
@@ -140,8 +140,8 @@ SOURCES += \
     src/gui/welcomedialog.cpp \
     src/data/quickmoderanges.cpp \
     src/data/licensemanager.cpp \
-    licensedialog.cpp \
-    logindialog.cpp \
+    src/gui/licensedialog.cpp \
+    src/gui/logindialog.cpp \
     src/data/apiclient.cpp
 
 HEADERS += \
@@ -188,7 +188,7 @@ HEADERS += \
     include/tools/qdebugstream.h \
     include/runtime/qsolverjob.h \
     include/gui/qstextedit.h \
-    strategyexplorer.h \
+    include/gui/strategyexplorer.h \
     include/gui/qstreeview.h \
     include/ui/treeitem.h \
     include/ui/treemodel.h \
@@ -213,13 +213,13 @@ HEADERS += \
     include/gui/welcomedialog.h \
     include/data/quickmoderanges.h \
     include/data/licensemanager.h \
-    licensedialog.h \
-    logindialog.h \
+    include/gui/licensedialog.h \
+    include/gui/logindialog.h \
     include/data/apiclient.h
 
 FORMS += \
         mainwindow.ui \
-    strategyexplorer.ui \
+    src/gui/strategyexplorer.ui \
     src/gui/rangeselector.ui \
     src/gui/boardselector.ui \
     src/gui/settingeditor.ui \
