@@ -1,78 +1,34 @@
+# Solverix
 
-# :rotating_light: This project still works but a much much faster new GPU version is available here: [TexasSolverGPU](https://bupticybee.github.io/texassolver_gpu_page)
+Solverix is a GTO (Game Theory Optimal) poker solver for offline study, built as a Windows desktop app on top of the CFR (Counterfactual Regret Minimization) algorithm. It runs entirely on your own machine — no cloud, no internet dependency to solve a hand.
 
-# CPP Texas Solver
+## Features
 
-[![release](https://img.shields.io/github/v/release/bupticybee/TexasSolver?style=flat-square)](https://github.com/bupticybee/TexasSolver/releases)
-[![license](https://img.shields.io/github/license/bupticybee/TexasSolver?style=flat-square)](https://github.com/bupticybee/TexasSolver/blob/master/LICENSE)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bupticybee/TexasSolver/blob/console/TexasSolverTechDemo.ipynb)
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/TexasSolver/TexasSolver)
+- **Advanced Solver**: full control over ranges, bet sizes, board and solving parameters through a guided setup wizard.
+- **Quick Mode**: pick a spot from a poker table, auto-filled ranges by position (6-max and full ring), get a direct recommendation without configuring a tree by hand.
+- **"What did your opponent do?"**: jump straight from a solved spot to the strategy for a specific villain action (check / small bet / big bet).
+- **Practice Mode**: quiz yourself against the solver's own output.
+- Multi-language UI: English, Spanish, Portuguese, Chinese.
+- 5 visual themes (Dark, Light, Poker Room, Violet, Fintech).
 
-README [English](README.md) | [中文](README.zh-CN.md)
+## Building
 
-## Introduction 
-A open sourced, extremely efficient Texas Hold'em and short deck solver. See this [Introduction video](https://youtu.be/IsSJNz7sRmQ) for more. Supports Windows,MacOs and Linux.
+Requires Qt 6 (Widgets, Network) and a MinGW or MSVC toolchain on Windows (MSVC on macOS/Linux is untested; the original engine this was built on top of also supported those platforms).
 
-![](imgs/solver_example.gif)
+```
+qmake TexasSolverGui.pro
+mingw32-make -j4 release
+```
 
-Features:
+## Project layout
 
-- In a tree with 1~2bets + allin, it's speed exceeds piosolver on flop
-- Support Mac, Linux and Windows
-- Support texas holdem and shortdeck
-- Support cross language calls
-- Result aliged with piosolver
-- Support dump strategy to json file
-- It's the c++ version of [TexasHoldemSolverJava](https://github.com/bupticybee/TexasHoldemSolverJava) with a ton of optimization, it's 5x faster than the java version and takes less than 1/3 memory.
+- `src/{solver,nodes,ranges,runtime,tools,trainable,compairer,console,pybind,experimental}` + matching `include/` folders: the CFR solving engine.
+- `src/gui` + `include/gui`: the desktop application layer (windows, dialogs, custom widgets).
+- `src/data` + `include/data`: licensing, account, and quick-mode range data.
+- `src/ui` + `include/ui`: Qt models/delegates used by both the engine's own views and the app layer.
+- `resources/`: themes (`.qss`) and fonts.
+- `installer.iss`: Inno Setup installer script.
 
-Feel free to mess with a toy solver [in google colab](https://colab.research.google.com/github/bupticybee/TexasSolver/blob/console/TexasSolverTechDemo.ipynb)
-
-
-## Install
-
-Download package according to your OS in [release package](https://github.com/bupticybee/TexasSolver/releases), unzip it, and install is done. It's that simple.
-
-## GUI version Usage
-
-After install the solver, double click the application binary (TexasSolverGui.exe in windows or TexasSolverGui.app in MacOS) to run TexasSolver.
-
-## Console version Usage
-
-Please check [console version document](https://github.com/bupticybee/TexasSolver/tree/console#usage) for more.
-
-## Speed benchmark with piosolver
-
-Piosolver and my TexasSolver(console version) run use the same settings (spr=10,flop game) and their result are aligned.
-
-|                                | Input config                                              | log                                                          | thread number | memory usage | accuracy | converge time |
-| ------------------------------ | --------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ------------ | -------- | ------------- |
-| piosolver 1.0                  | [config_piosolver](benchmark/benchmark_piosolver.txt)     | [log_piosolver](benchmark/benchmark_outputs/piosolver_log.txt) | 6             | 492Mb        | 0.29%    | 242s          |
-| TexasSolver 0.1.0 (Our solver) | [config_texassolver](benchmark/benchmark_texassolver.txt) | [log_texassolver](benchmark/benchmark_outputs/texassolver_log.txt) | 6             | 1600Mb       | 0.275%   | 172s          |
-
-The compare image of their results is  [here](benchmark/benchmark_outputs/result_compair.png). As you can see their result are very close.
-
-# License
+## License
 
 [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.en.html)
-
-This software is licensed to person/business here: 
- [licensed_list](licensed_list.txt)
-
-# Email
-
-icybee@yeah.net
-
-# Q & As
-
-1. Q: Is the solver really free?
-   - A: Yes, for personal users, the solver is completely opensourced and free.
-
-2. Q: Can I upload it to other websites or forums? Can I share it with my friend?
-   - A: No, you can only put the link of this project to other website, not the binary, this project is under AGPL-V3 license, and these kind of actions violates this license.
-
-3. Q: Can I integrate it to my software?
-   - A: If you integrate the release package (binary) into your software, Yes, you can do that. If you want to integrate the code of the solver into your software or provide service through internet, then you need to contact me for a commercial license, which is also the main profit-making method of this project.
-
-4. Q: What framework do you use to write the ui?
-   - A: I use QT 5.1.0 (opensourced edition) to build the GUI version. For the console version, I use Mingw + CMake.
-
