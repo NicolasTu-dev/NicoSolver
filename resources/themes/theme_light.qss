@@ -321,6 +321,17 @@ QSplitter::handle {
     color: #1a1d29;
 }
 
+#icmResultBanner {
+    background-color: #ffffff;
+    border-left: 6px solid #3d5afe;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1d29;
+}
+
 #ipBetSizesHeader, #oopBetSizesHeader {
     color: #3d5afe;
     font-weight: 700;
