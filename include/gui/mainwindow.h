@@ -80,6 +80,7 @@ private slots:
     void onTableSize9Clicked();
     void onNewHandButtonClicked();
     void onSubscriptionCheckTimer();
+    void onIcmPushFoldButtonClicked();
 
 private:
     void clear_all_params();

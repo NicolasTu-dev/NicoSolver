@@ -1,5 +1,6 @@
 ﻿#include "include/gui/mainwindow.h"
 #include "ui_mainwindow.h"
+#include "include/gui/icmpushfolddialog.h"
 #include "stdio.h"
 #include "include/runtime/qsolverjob.h"
 #include <QFileDialog>
@@ -92,6 +93,17 @@ MainWindow::MainWindow(QWidget *parent) :
     this->quickModeSteps[2] = this->ui->wizardStepBoard;
     this->quickModeSteps[3] = this->ui->quickStepResults;
     connect(this->ui->newHandButton, &QPushButton::clicked, this, &MainWindow::onNewHandButtonClicked);
+
+    // ICM push/fold helper: a final-table all-in decision is a preflop-only
+    // question valued in real prize money, not chips, so it's a separate
+    // calculation (icmcalculator/preflopequity/pushfoldranges) from the
+    // postflop CFR tree this wizard step otherwise leads into -- reachable
+    // from the same situation step since it's still "what do I do right
+    // now in Modo Rapido", just a different kind of spot.
+    QPushButton* icmPushFoldButton = new QPushButton(tr("¿Te tiraron un all-in preflop?"), this->ui->quickStepSituation);
+    connect(icmPushFoldButton, &QPushButton::clicked, this, &MainWindow::onIcmPushFoldButtonClicked);
+    this->ui->quickStepSituationLayout->addWidget(icmPushFoldButton);
+
     this->ui->quickStepSituation->setVisible(false);
     this->ui->quickStepHand->setVisible(false);
     this->ui->quickStepResults->setVisible(false);
@@ -1367,6 +1379,12 @@ void MainWindow::onNewHandButtonClicked(){
     }
     this->quickFacingActionBar->setVisible(false);
     this->startQuickMode();
+}
+
+void MainWindow::onIcmPushFoldButtonClicked(){
+    if(this->qSolverJob == NULL) return;
+    IcmPushFoldDialog dialog(this->qSolverJob->ps_holdem.getCompairer(), this);
+    dialog.exec();
 }
 
 void MainWindow::startQuickMode(){

@@ -143,8 +143,10 @@ SOURCES += \
     src/gui/licensedialog.cpp \
     src/gui/logindialog.cpp \
     src/data/apiclient.cpp \
+    src/data/icmcalculator.cpp \
     src/data/preflopequity.cpp \
-    src/data/pushfoldranges.cpp
+    src/data/pushfoldranges.cpp \
+    src/gui/icmpushfolddialog.cpp
 
 HEADERS += \
     include/tools/half-1-12-0.h \
@@ -218,8 +220,10 @@ HEADERS += \
     include/gui/licensedialog.h \
     include/gui/logindialog.h \
     include/data/apiclient.h \
+    include/data/icmcalculator.h \
     include/data/preflopequity.h \
-    include/data/pushfoldranges.h
+    include/data/pushfoldranges.h \
+    include/gui/icmpushfolddialog.h
 
 FORMS += \
         src/gui/mainwindow.ui \
