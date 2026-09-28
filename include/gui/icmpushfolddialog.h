@@ -12,6 +12,9 @@
 #include <memory>
 #include "include/data/pushfoldranges.h"
 #include "include/compairer/Compairer.h"
+#include "include/ui/rangeselectortablemodel.h"
+#include "include/ui/rangeselectortabledelegate.h"
+#include <QTableView>
 
 // Self-contained flow for the ICM push/fold helper: table/stacks ->
 // blinds/payouts -> hero's hand -> recommendation. Opened as a modal
@@ -60,7 +63,10 @@ private:
 
     // Page 4: result
     QLabel* resultLabel;
-    QLabel* rangeContextLabel;
+    QLabel* rangeMetaLabel;
+    QTableView* resultRangeView;
+    RangeSelectorTableModel* resultRangeModel = nullptr;
+    RangeSelectorTableDelegate* resultRangeDelegate = nullptr;
 };
 
 #endif // ICMPUSHFOLDDIALOG_H

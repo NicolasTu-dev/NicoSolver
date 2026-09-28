@@ -12,6 +12,8 @@
 #include <QMessageBox>
 #include <QDoubleValidator>
 #include <QHBoxLayout>
+#include <QApplication>
+#include <QHeaderView>
 
 IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidget* parent)
     : QDialog(parent), compairer(compairer)
@@ -143,13 +145,22 @@ IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidg
     QWidget* resultPage = new QWidget(this);
     QVBoxLayout* resultPageLayout = new QVBoxLayout(resultPage);
     this->resultLabel = new QLabel(resultPage);
+    this->resultLabel->setObjectName("icmResultBanner");
     this->resultLabel->setWordWrap(true);
-    this->resultLabel->setStyleSheet("font-size:16px; font-weight:700;");
     resultPageLayout->addWidget(this->resultLabel);
-    this->rangeContextLabel = new QLabel(resultPage);
-    this->rangeContextLabel->setWordWrap(true);
-    resultPageLayout->addWidget(this->rangeContextLabel);
-    resultPageLayout->addStretch();
+
+    this->resultRangeView = new QTableView(resultPage);
+    this->resultRangeView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->resultRangeView->setSelectionMode(QAbstractItemView::NoSelection);
+    this->resultRangeView->verticalHeader()->setMinimumSectionSize(1);
+    this->resultRangeView->horizontalHeader()->setMinimumSectionSize(1);
+    resultPageLayout->addWidget(this->resultRangeView);
+
+    this->rangeMetaLabel = new QLabel(resultPage);
+    this->rangeMetaLabel->setWordWrap(true);
+    this->rangeMetaLabel->setStyleSheet("color:#8fb39f; font-size:12px;");
+    resultPageLayout->addWidget(this->rangeMetaLabel);
+
     QPushButton* resultBack = new QPushButton(tr("← Atrás"), resultPage);
     connect(resultBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
     resultPageLayout->addWidget(resultBack);
@@ -292,17 +303,59 @@ void IcmPushFoldDialog::showResult(){
 
     float diff = comparison.evCall - comparison.evFold;
     QString verdict = diff >= 0.0f
-        ? tr("Pagar (+$%1 vs. foldear)").arg(QString::number(diff, 'f', 0))
-        : tr("Foldear (%1$ vs. pagar)").arg(QString::number(diff, 'f', 0));
+        ? tr("✓ Pagar +$%1 vs. foldear").arg(QString::number(diff, 'f', 0))
+        : tr("✕ Foldear (%1$ vs. pagar)").arg(QString::number(diff, 'f', 0));
     this->resultLabel->setText(verdict);
 
-    this->rangeContextLabel->setText(
-        tr("Rango asumido del rival (%1, %2bb efectivas): %3\nTu equity contra ese rango: %4%")
+    this->rangeMetaLabel->setText(
+        tr("Rango asumido del rival (%1, %2bb efectivas) · Tu equity: %3%")
             .arg(this->scenario == PushFoldScenario::OpenShove ? tr("all-in de entrada") : tr("re-shove sobre tu open"))
             .arg(QString::number(villainStackBB, 'f', 1))
-            .arg(villainRange)
             .arg(QString::number(equity * 100.0f, 'f', 1))
     );
+
+    // Compute the call/fold decision for all 169 hand types (one
+    // representative 2-card combo per type -- not all suited/offsuit
+    // combos -- fast enough for a visual grid and accurate enough since
+    // the type-level equity barely varies combo to combo).
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    QStringList ranks = QString("A,K,Q,J,T,9,8,7,6,5,4,3,2").split(",");
+    QStringList callingHands;
+    for(int row = 0; row < ranks.size(); row++){
+        for(int col = 0; col < ranks.size(); col++){
+            QString rank1 = ranks[row];
+            QString rank2 = ranks[col];
+            QVector<QString> combo;
+            QString handToken;
+            if(row == col){
+                combo = { rank1 + "h", rank1 + "d" };
+                handToken = rank1 + rank1;
+            }else if(row < col){
+                combo = { rank1 + "h", rank2 + "h" };
+                handToken = rank1 + rank2 + "s";
+            }else{
+                combo = { rank1 + "h", rank2 + "d" };
+                handToken = rank2 + rank1 + "o";
+            }
+            float handEquity = handVsRangeEquity(combo, villainRange, this->compairer);
+            IcmCallVsFold handComparison = compareCallVsFold(stacks, payouts, heroIndex, villainIndex, handEquity);
+            if(handComparison.evCall >= handComparison.evFold){
+                callingHands << handToken;
+            }
+        }
+    }
+    QApplication::restoreOverrideCursor();
+
+    if(this->resultRangeModel != nullptr){
+        this->resultRangeView->setModel(nullptr);
+        this->resultRangeView->setItemDelegate(nullptr);
+        delete this->resultRangeModel;
+        delete this->resultRangeDelegate;
+    }
+    this->resultRangeModel = new RangeSelectorTableModel(ranks, callingHands.join(","), this, true);
+    this->resultRangeDelegate = new RangeSelectorTableDelegate(ranks, this->resultRangeModel, this);
+    this->resultRangeView->setModel(this->resultRangeModel);
+    this->resultRangeView->setItemDelegate(this->resultRangeDelegate);
 
     this->stack->setCurrentIndex(4);
 }
