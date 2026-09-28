@@ -142,7 +142,8 @@ SOURCES += \
     src/data/licensemanager.cpp \
     src/gui/licensedialog.cpp \
     src/gui/logindialog.cpp \
-    src/data/apiclient.cpp
+    src/data/apiclient.cpp \
+    src/data/preflopequity.cpp
 
 HEADERS += \
     include/tools/half-1-12-0.h \
@@ -215,7 +216,8 @@ HEADERS += \
     include/data/licensemanager.h \
     include/gui/licensedialog.h \
     include/gui/logindialog.h \
-    include/data/apiclient.h
+    include/data/apiclient.h \
+    include/data/preflopequity.h
 
 FORMS += \
         src/gui/mainwindow.ui \

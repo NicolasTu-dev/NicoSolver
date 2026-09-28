@@ -54,6 +54,7 @@ public:
     shared_ptr<GameTree> get_game_tree(){return this->game_tree;};
     Deck* get_deck(){return &this->deck;}
     shared_ptr<Solver> get_solver(){return this->solver;}
+    shared_ptr<Compairer> getCompairer(){return this->compairer;}
 private:
     shared_ptr<Dic5Compairer> compairer;
     Deck deck;
