@@ -1,5 +1,5 @@
   const API_BASE = 'https://solverix-api-nicolastu-devs-projects.vercel.app';
-  const DOWNLOAD_URL = 'https://github.com/NicolasTu-dev/NicoSolver/releases/download/solverix-v1/SolverixSetup.exe';
+  const DOWNLOAD_URL = 'https://github.com/NicolasTu-dev/Solverix/releases/download/solverix-v1/SolverixSetup.exe';
   const PLAN_NAMES_EN = { none: 'No subscription', advanced: 'Advanced Solver', complete: 'Complete' };
   const PLAN_NAMES_ES = { none: 'Sin suscripción', advanced: 'Solver Avanzado', complete: 'Completo' };
   const PLAN_NAMES_PT = { none: 'Sem assinatura', advanced: 'Solver Avançado', complete: 'Completo' };
