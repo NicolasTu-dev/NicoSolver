@@ -15,6 +15,28 @@
 #include <QApplication>
 #include <QHeaderView>
 
+// Renders a card string like "Jh" as a small white "chip" (rank + colored
+// suit symbol on a light background), matching the card-chip motif already
+// used on the marketing site's hero banner mockup -- reads the same
+// regardless of which of the 5 app themes is active, since it's not
+// QSS-driven.
+static void styleCardChip(QLabel* chip, const QString& card){
+    if(card.length() != 2) return;
+    QString rank = card.left(1);
+    QChar suitChar = card.at(1);
+    QString suitSymbol;
+    QString suitColor = "#1a1d29";
+    if(suitChar == 'h'){ suitSymbol = "♥"; suitColor = "#d1352b"; }
+    else if(suitChar == 'd'){ suitSymbol = "♦"; suitColor = "#d1352b"; }
+    else if(suitChar == 'c'){ suitSymbol = "♣"; }
+    else if(suitChar == 's'){ suitSymbol = "♠"; }
+    chip->setText(QString("<div style=\"text-align:center;\">%1<br>%2</div>").arg(rank, suitSymbol));
+    chip->setStyleSheet(QString(
+        "background:#f5f2e8; color:%1; border-radius:6px;"
+        "font-size:18px; font-weight:700; font-family:'Segoe UI',sans-serif;"
+    ).arg(suitColor));
+}
+
 IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidget* parent)
     : QDialog(parent), compairer(compairer)
 {
@@ -144,10 +166,36 @@ IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidg
     // ---- Page 4: result ----
     QWidget* resultPage = new QWidget(this);
     QVBoxLayout* resultPageLayout = new QVBoxLayout(resultPage);
+
+    QHBoxLayout* handCardsLayout = new QHBoxLayout();
+    handCardsLayout->addStretch();
+    this->handCard1Chip = new QLabel(resultPage);
+    this->handCard2Chip = new QLabel(resultPage);
+    for(QLabel* chip : { this->handCard1Chip, this->handCard2Chip }){
+        chip->setFixedSize(52, 70);
+        chip->setAlignment(Qt::AlignCenter);
+    }
+    handCardsLayout->addWidget(this->handCard1Chip);
+    handCardsLayout->addWidget(this->handCard2Chip);
+    handCardsLayout->addStretch();
+    resultPageLayout->addLayout(handCardsLayout);
+
     this->resultLabel = new QLabel(resultPage);
     this->resultLabel->setObjectName("icmResultBanner");
-    this->resultLabel->setWordWrap(true);
+    this->resultLabel->setAlignment(Qt::AlignCenter);
     resultPageLayout->addWidget(this->resultLabel);
+
+    QHBoxLayout* statRow = new QHBoxLayout();
+    this->evCallBox = new QLabel(resultPage);
+    this->evFoldBox = new QLabel(resultPage);
+    for(QLabel* box : { this->evCallBox, this->evFoldBox }){
+        box->setAlignment(Qt::AlignCenter);
+        box->setWordWrap(true);
+    }
+    statRow->addWidget(this->evCallBox);
+    statRow->addWidget(this->evFoldBox);
+    resultPageLayout->addLayout(statRow);
+
     resultPageLayout->addStretch();
 
     QPushButton* resultBack = new QPushButton(tr("← Atrás"), resultPage);
@@ -290,11 +338,27 @@ void IcmPushFoldDialog::showResult(){
     float equity = handVsRangeEquity(heroCards, villainRange, this->compairer);
     IcmCallVsFold comparison = compareCallVsFold(stacks, payouts, heroIndex, villainIndex, equity);
 
-    float diff = comparison.evCall - comparison.evFold;
-    QString verdict = diff >= 0.0f
-        ? tr("✓ Pagar (+$%1 vs. foldear)").arg(QString::number(diff, 'f', 0))
-        : tr("✕ Foldear (%1$ vs. pagar)").arg(QString::number(diff, 'f', 0));
-    this->resultLabel->setText(verdict);
+    // Colored via inline HTML (not setStyleSheet) so the banner keeps the
+    // background/border it already gets from the #icmResultBanner QSS rule
+    // in every theme -- a widget-level setStyleSheet call would override
+    // that rule's background/border for just this widget.
+    bool shouldCall = comparison.evCall >= comparison.evFold;
+    QString verdictColor = shouldCall ? "#22c55e" : "#ff5c5c";
+    QString verdictText = shouldCall ? tr("✓ Pagar") : tr("✕ Foldear");
+    this->resultLabel->setText(QString("<span style=\"color:%1; font-size:22px; font-weight:800;\">%2</span>")
+        .arg(verdictColor, verdictText));
+
+    styleCardChip(this->handCard1Chip, heroCards[0]);
+    styleCardChip(this->handCard2Chip, heroCards[1]);
+
+    QString winBorder = "border:2px solid #d4af37;";
+    QString loseBorder = "border:1px solid #2a4a38;";
+    this->evCallBox->setText(tr("Pagar\n$%1").arg(QString::number(comparison.evCall, 'f', 0)));
+    this->evCallBox->setStyleSheet(QString("padding:10px; border-radius:8px; font-weight:700; %1")
+        .arg(shouldCall ? winBorder : loseBorder));
+    this->evFoldBox->setText(tr("Foldear\n$%1").arg(QString::number(comparison.evFold, 'f', 0)));
+    this->evFoldBox->setStyleSheet(QString("padding:10px; border-radius:8px; font-weight:700; %1")
+        .arg(shouldCall ? loseBorder : winBorder));
 
     this->stack->setCurrentIndex(4);
 }

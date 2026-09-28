@@ -60,6 +60,10 @@ private:
 
     // Page 4: result
     QLabel* resultLabel;
+    QLabel* handCard1Chip;
+    QLabel* handCard2Chip;
+    QLabel* evCallBox;
+    QLabel* evFoldBox;
 };
 
 #endif // ICMPUSHFOLDDIALOG_H
