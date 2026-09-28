@@ -1,0 +1,38 @@
+:root{
+  --bg: #0a1810;
+  --bg-deep: #06120b;
+  --panel: #132118;
+  --border: #2a4a38;
+  --gold: #d4af37;
+  --gold-bright: #e8c250;
+  --text: #e8f0ea;
+  --muted: #8fb39f;
+  --muted-2: #5c7a6a;
+}
+body{
+  margin:0; min-height:100vh;
+  background:
+    radial-gradient(1100px 520px at 82% -6%, rgba(212,175,55,0.08), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family:"Inter","Segoe UI",sans-serif;
+  line-height:1.6;
+}
+a{color:var(--gold-bright);}
+nav{background:rgba(10,24,16,0.9);}
+.nav-row{max-width:760px;}
+.nav-right{display:flex; align-items:center; gap:14px;}
+.page-wrap{max-width:760px; margin:0 auto; padding:56px 24px 80px;}
+.page-head h1{font-size:26px;}
+.page-head p{color:var(--muted); font-size:13.5px; margin-top:10px;}
+.doc-section{margin-top:30px;}
+.doc-section h2{font-size:17px; color:var(--gold-bright); margin-bottom:10px;}
+.doc-section p, .doc-section li{color:var(--text); font-size:14.5px;}
+.doc-section ul{margin:8px 0; padding-left:20px;}
+.doc-section li{margin-bottom:6px;}
+.age-badge{
+  display:inline-flex; align-items:center; gap:8px; margin-top:10px;
+  background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright);
+  font-size:13px; font-weight:700; padding:8px 14px; border-radius:99px;
+}
+.note{color:var(--muted); font-size:13px;}
