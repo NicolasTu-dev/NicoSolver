@@ -6,7 +6,7 @@
 #include "include/tools/CommandLineTool.h"
 #include <QTextEdit>
 #include <QPlainTextEdit>
-#include "qstextedit.h"
+#include "include/gui/qstextedit.h"
 #include <QDebug>
 #include <QSettings>
 

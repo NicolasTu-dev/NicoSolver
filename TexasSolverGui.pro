@@ -114,12 +114,12 @@ SOURCES += \
     src/trainable/DiscountedCfrTrainableSF.cpp \
     src/trainable/Trainable.cpp \
     src/runtime/qsolverjob.cpp \
-    qstextedit.cpp \
+    src/gui/qstextedit.cpp \
     strategyexplorer.cpp \
-    qstreeview.cpp \
+    src/gui/qstreeview.cpp \
     src/ui/treeitem.cpp \
     src/ui/treemodel.cpp \
-    htmltableview.cpp \
+    src/gui/htmltableview.cpp \
     src/ui/worditemdelegate.cpp \
     src/ui/tablestrategymodel.cpp \
     src/ui/strategyitemdelegate.cpp \
@@ -187,12 +187,12 @@ HEADERS += \
     include/tools/tinyformat.h \
     include/tools/qdebugstream.h \
     include/runtime/qsolverjob.h \
-    qstextedit.h \
+    include/gui/qstextedit.h \
     strategyexplorer.h \
-    qstreeview.h \
+    include/gui/qstreeview.h \
     include/ui/treeitem.h \
     include/ui/treemodel.h \
-    htmltableview.h \
+    include/gui/htmltableview.h \
     include/ui/worditemdelegate.h \
     include/ui/tablestrategymodel.h \
     include/ui/strategyitemdelegate.h \

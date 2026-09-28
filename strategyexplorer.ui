@@ -443,12 +443,12 @@
   <customwidget>
    <class>QSTreeView</class>
    <extends>QTreeView</extends>
-   <header>qstreeview.h</header>
+   <header>include/gui/qstreeview.h</header>
   </customwidget>
   <customwidget>
    <class>HtmlTableView</class>
    <extends>QTableView</extends>
-   <header>htmltableview.h</header>
+   <header>include/gui/htmltableview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

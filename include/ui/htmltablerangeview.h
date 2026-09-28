@@ -8,7 +8,7 @@
 #include <iostream>
 #include "htmltablerangeview.h"
 #include <QHeaderView>
-#include "htmltableview.h"
+#include "include/gui/htmltableview.h"
 #include "include/ui/rangeselectortablemodel.h"
 
 struct MouseTracker {

@@ -82,7 +82,7 @@
   <customwidget>
    <class>HtmlTableView</class>
    <extends>QTableView</extends>
-   <header>htmltableview.h</header>
+   <header>include/gui/htmltableview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

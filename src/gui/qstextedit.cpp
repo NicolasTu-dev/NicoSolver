@@ -1,4 +1,4 @@
-﻿#include "qstextedit.h"
+﻿#include "include/gui/qstextedit.h"
 #include <iostream>
 
 QSTextEdit::QSTextEdit(QWidget *parent) : QTextEdit(parent)

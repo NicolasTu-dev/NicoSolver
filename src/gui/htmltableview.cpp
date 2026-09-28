@@ -1,4 +1,4 @@
-#include "htmltableview.h"
+#include "include/gui/htmltableview.h"
 #include <iostream>
 
 HtmlTableView::HtmlTableView()

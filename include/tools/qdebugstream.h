@@ -5,7 +5,7 @@
 #include <streambuf>
 #include <string>
 #include <QScrollBar>
-#include "qstextedit.h"
+#include "include/gui/qstextedit.h"
 
 class QDebugStream : public std::basic_streambuf<char>
 {

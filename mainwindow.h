@@ -5,7 +5,7 @@
 #include <QTextEdit>
 #include <QPlainTextEdit>
 #include "include/runtime/qsolverjob.h"
-#include "qstextedit.h"
+#include "include/gui/qstextedit.h"
 #include "strategyexplorer.h"
 #include "rangeselector.h"
 #include <QMessageBox>

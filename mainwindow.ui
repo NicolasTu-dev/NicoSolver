@@ -1639,9 +1639,14 @@ p, li { white-space: pre-wrap; }
    <header>include/ui/htmltablerangeview.h</header>
   </customwidget>
   <customwidget>
+   <class>HtmlTableView</class>
+   <extends>QTableView</extends>
+   <header>include/gui/htmltableview.h</header>
+  </customwidget>
+  <customwidget>
    <class>QSTextEdit</class>
    <extends>QTextEdit</extends>
-   <header>qstextedit.h</header>
+   <header>include/gui/qstextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

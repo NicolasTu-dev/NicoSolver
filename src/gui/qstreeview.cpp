@@ -1,4 +1,4 @@
-#include "qstreeview.h"
+#include "include/gui/qstreeview.h"
 #include "qstylefactory.h"
 
 QSTreeView::QSTreeView(QWidget *parent) : QTreeView(parent)
