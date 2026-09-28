@@ -6,3 +6,11 @@ installer-output/
 .qtcreator/
 *.pro.user
 *.pro.user.*
+release/
+debug/
+Makefile
+Makefile.Debug
+Makefile.Release
+.qmake.stash
+SolverixGui_resource.rc
+ui_*.h

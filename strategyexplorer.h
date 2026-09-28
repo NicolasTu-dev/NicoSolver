@@ -52,9 +52,31 @@ public:
     // what Quick Mode does. There, the picker duplicates the dedicated
     // "choose the turn/river and re-solve" bar on the results screen).
     void setRunoutPickerVisible(bool visible);
+    // Labels for every action `villainPlayer` (0=IP, 1=OOP) can take at the
+    // next point it's their turn from the currently selected node -
+    // immediately if it's already their turn, or after assuming the other
+    // player checks first. Empty if no such node exists (e.g. it's already
+    // the river and the hand is over). Used to build the "what did your
+    // opponent do?" buttons in Quick Mode without exposing the raw tree.
+    QStringList getFacingActionOptions(int villainPlayer);
+    // Moves the current selection to the child reached by `villainPlayer`'s
+    // action at `optionIndex` (same index as getFacingActionOptions),
+    // refreshing the strategy grid exactly like clicking that node in the
+    // tree view would. Call setHighlightedHand() again afterwards to
+    // refresh the recommended-play banner for the resulting node.
+    void selectFacingAction(int villainPlayer, int optionIndex);
 
 private:
     void setAdvancedViewVisible(bool visible);
+    // The node where it's villainPlayer's (0=IP, 1=OOP) turn to act,
+    // reached from the currently selected node - itself if it's already
+    // their turn, or their response to hero checking otherwise. NULL if
+    // no such node exists.
+    TreeItem* findVillainDecisionNode(int villainPlayer);
+    // Shared by item_clicked (tree view clicks) and selectFacingAction
+    // (programmatic navigation) so both paths refresh the grid/banner/board
+    // identically.
+    void selectTreeItem(TreeItem* treeItem);
     bool advancedViewVisible = false;
     DetailWindowSetting detailWindowSetting;
     QTimer *timer;

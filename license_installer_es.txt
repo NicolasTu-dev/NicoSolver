@@ -1,46 +1,122 @@
-SOLVERIX - TERMINOS DE USO (RESUMEN)
+SOLVERIX - TERMINOS DE SERVICIO
 
-Por favor leé esto antes de instalar.
+Ultima actualizacion: septiembre de 2026
+Tenes que ser mayor de 18 anios para usar Solverix.
 
-1. REQUISITO DE EDAD
-   Solverix esta pensado para usuarios de 18 anios o mas. Al hacer clic
-   en "Acepto el acuerdo" mas abajo, confirmas que cumplis este requisito.
+Por favor lee esto con atencion antes de instalar. Al hacer clic en
+"Acepto el acuerdo" mas abajo, confirmas que leiste y estas de acuerdo
+con estos Terminos.
 
-2. QUE ES SOLVERIX Y PROHIBICION DE USO EN TIEMPO REAL (RTA)
-   Solverix es una herramienta de ESTUDIO FUERA DE LA MESA, basada en CFR
-   (Minimizacion de Arrepentimiento Contrafactual), un algoritmo de teoria
-   de juegos. No procesa apuestas con dinero real y no es una plataforma
-   de apuestas.
+1. ACEPTACION
+   Al crear una cuenta, descargar, instalar o usar Solverix (la app de
+   escritorio o la pagina solverix.com.ar), aceptas estos Terminos. Si
+   no estas de acuerdo, por favor no uses Solverix.
 
-   Esta ESTRICTAMENTE PROHIBIDO ejecutar, consultar o interactuar con
-   Solverix mientras tengas abierto cualquier cliente de poker online
-   (dinero real o ficticio). No se puede usar como asistencia en tiempo
-   real (RTA) dentro de una mano. Incumplir esto puede resultar en la
-   suspension inmediata de tu cuenta sin reembolso.
+2. REQUISITO DE EDAD
+   Solverix esta pensado para usuarios de 18 anios o mas. Al usar el
+   servicio, confirmas que cumplis con este requisito.
 
-3. SUSCRIPCION Y REEMBOLSOS
-   Solverix requiere una suscripcion paga activa (plan Solver Avanzado o
-   Completo), gestionada desde solverix.com.ar/cuenta.html. Podes pedir
-   un reembolso dentro de las 48-72 horas de tu pago escribiendo a
-   soporte@solverix.com.ar. Pasado ese plazo, los pagos no son
-   reembolsables, aunque igual podes cancelar para evitar cobros futuros.
+3. QUE ES SOLVERIX
+   Solverix es una herramienta de entrenamiento y analisis de poker
+   basada en CFR (Minimizacion de Arrepentimiento Contrafactual), un
+   algoritmo de teoria de juegos. Esta pensado estrictamente como una
+   HERRAMIENTA DE ESTUDIO FUERA DE LA MESA: para estudiar y revisar
+   manos fuera de linea, antes o despues de jugar. No procesa apuestas
+   con dinero real, no se conecta a ninguna sala de poker, y no es una
+   plataforma de apuestas.
 
-4. SIN GARANTIA
-   Solverix se entrega "tal cual esta", sin garantia de que una
-   recomendacion este libre de errores ni de que seguirla garantice
-   ningun resultado en la mesa. No somos responsables por perdidas de
-   juego con dinero real.
+3.1 PROHIBICION ESTRICTA DE ASISTENCIA EN TIEMPO REAL (RTA)
+   No podes ejecutar, consultar ni interactuar con Solverix al mismo
+   tiempo que tengas abierto cualquier cliente de poker online, con
+   dinero real o ficticio. Solverix nunca debe usarse como asistencia
+   dentro de una mano mientras estas sentado en una mesa online.
+   Incumplir esta regla puede resultar en la suspension inmediata e
+   irrevocable de tu cuenta sin reembolso, y, si la ley lo exige, en
+   colaboracion con el equipo de integridad o seguridad de la sala de
+   poker afectada.
 
-5. TERMINOS COMPLETOS Y POLITICA DE PRIVACIDAD
-   Los Terminos de Servicio y la Politica de Privacidad completos estan
-   disponibles en:
-     https://solverix.com.ar/terminos.html
-     https://solverix.com.ar/privacidad.html
+4. SUSCRIPCIONES Y PRECIOS
+   Solverix ofrece planes de suscripcion mensual (Solver Avanzado y
+   Completo) a los precios que aparecen en la web al momento de la
+   compra, cobrados en pesos argentinos (via Mercado Pago) o en
+   USD/USDT (via cripto). Los precios pueden cambiar para periodos
+   futuros de facturacion; siempre te vamos a mostrar el precio vigente
+   antes de que pagues.
 
+5. REEMBOLSOS
+   Podes pedir un reembolso completo dentro de las 48 a 72 horas de tu
+   pago, escribiendo a soporte@solverix.com.ar. Pasado ese plazo, los
+   pagos no son reembolsables, aunque igual podes cancelar para que no
+   se te cobre el mes siguiente.
+
+6. CANCELACION
+   Podes cancelar cuando quieras escribiendo a soporte@solverix.com.ar.
+   Tu plan sigue activo hasta el final del periodo que ya pagaste; no
+   hacemos reembolsos parciales por dias sin usar fuera de la ventana de
+   reembolso de arriba.
+
+7. PROGRAMA DE STREAMERS / REFERIDOS
+   Algunos usuarios pueden tener un codigo de referido para compartir
+   como streamer. Cualquier comision se registra internamente y la
+   pagamos nosotros manualmente a pedido - no es un pago automatico, y
+   los terminos de este programa (porcentaje de comision, elegibilidad)
+   pueden cambiar o discontinuarse en cualquier momento.
+
+8. PROPIEDAD INTELECTUAL Y LICENCIA
+   Sujeto al cumplimiento de estos Terminos y al pago de los honorarios
+   aplicables, te otorgamos una licencia personal, limitada, no
+   exclusiva, no transferible y revocable para usar Solverix. No podes:
+   - Copiar, modificar, decompilar, hacer ingenieria inversa, ni
+     intentar extraer el codigo fuente o los algoritmos de resolucion.
+   - Extraer masivamente ("scrapear"), automatizar la generacion de
+     soluciones, ni armar una base de datos derivada de arboles
+     resueltos para venderla o redistribuirla a terceros.
+   - Alquilar, vender, redistribuir o compartir el acceso al software o
+     tus credenciales de cuenta con terceros (sin cuentas compartidas:
+     cada suscripcion es para un solo usuario).
+
+9. USO ACEPTABLE
+   - No compartas tu cuenta ni contrasenia con otras personas; cada
+     suscripcion es para un solo usuario.
+   - No intentes hacer ingenieria inversa, decompilar ni redistribuir
+     el software.
+   - No uses Solverix para hacer trampa en tiempo real en una mano que
+     estes jugando activamente - ver la prohibicion de RTA mas arriba.
+
+10. SIN GARANTIA
+   Solverix se entrega "tal cual esta". Aunque el solver esta construido
+   sobre un algoritmo real de teoria de juegos, no garantizamos que cada
+   recomendacion este libre de errores ni que seguirla garantice ningun
+   resultado particular en la mesa. El poker involucra varianza y riesgo
+   financiero - no somos responsables por perdidas de juego con dinero
+   real.
+
+11. SANCIONES EN SALAS DE POKER DE TERCEROS
+   No nos hacemos responsables por sanciones, confiscacion de fondos o
+   baneos que sufras en sitios de poker de terceros debido a un uso
+   indebido de Solverix, al incumplimiento de los terminos de servicio
+   de ese sitio (incluyendo sus reglas sobre RTA), o a falsos positivos
+   de las herramientas de deteccion de ese sitio.
+
+12. LIMITE DE RESPONSABILIDAD
+   En la maxima medida permitida por la ley aplicable, nuestra
+   responsabilidad total frente a vos por cualquier reclamo no va a
+   superar el monto total que nos pagaste en los tres (3) meses
+   anteriores al hecho que origino el reclamo.
+
+13. LEY APLICABLE
    Estos Terminos se rigen por las leyes de Argentina. Solverix es
    operado por Nicolas Tu, persona fisica radicada en Argentina.
    Contacto: soporte@solverix.com.ar.
 
-Al hacer clic en "Acepto el acuerdo", confirmas que sos mayor de 18 anios
-y que estas de acuerdo con los Terminos de Servicio y la Politica de
-Privacidad enlazados arriba.
+14. CAMBIOS A ESTOS TERMINOS
+   Podemos actualizar estos Terminos de tanto en tanto. La version
+   completa y siempre actualizada esta disponible en:
+     https://solverix.com.ar/terminos.html
+     https://solverix.com.ar/privacidad.html
+   Seguir usando Solverix despues de un cambio significa que aceptas los
+   Terminos actualizados.
+
+Al hacer clic en "Acepto el acuerdo", confirmas que sos mayor de 18
+anios y que estas de acuerdo con los Terminos de Servicio y la Politica
+de Privacidad de arriba y enlazados aca.

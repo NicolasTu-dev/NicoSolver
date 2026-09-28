@@ -110,6 +110,22 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->quickRunoutButton, &QPushButton::clicked, this, &MainWindow::onQuickRunoutButtonClicked);
     this->quickRunoutBar->setVisible(false);
 
+    // "What did your opponent do?" bar: lets the user jump straight to the
+    // solved node for a check/small bet/big bet from the villain, instead of
+    // only ever seeing the strategy for the un-acted-on board (root node).
+    this->quickFacingActionBar = new QWidget(this->ui->quickStepResults);
+    QVBoxLayout* facingLayout = new QVBoxLayout(this->quickFacingActionBar);
+    facingLayout->setContentsMargins(0, 8, 0, 4);
+    QLabel* facingLabel = new QLabel(tr("¿Qué hizo tu rival en esta calle?"), this->quickFacingActionBar);
+    facingLabel->setStyleSheet("font-weight:700; color:#8fb39f; font-size:12.5px;");
+    facingLayout->addWidget(facingLabel);
+    this->quickFacingButtonsRow = new QWidget(this->quickFacingActionBar);
+    QHBoxLayout* facingButtonsLayout = new QHBoxLayout(this->quickFacingButtonsRow);
+    facingButtonsLayout->setContentsMargins(0, 0, 0, 0);
+    facingLayout->addWidget(this->quickFacingButtonsRow);
+    this->ui->quickStepResultsLayout->insertWidget(2, this->quickFacingActionBar);
+    this->quickFacingActionBar->setVisible(false);
+
     connect(this->ui->tableSize6Button, &QPushButton::clicked, this, &MainWindow::onTableSize6Clicked);
     connect(this->ui->tableSize9Button, &QPushButton::clicked, this, &MainWindow::onTableSize9Clicked);
     this->setupQuickSeatButtons(6);
@@ -1113,6 +1129,7 @@ void MainWindow::onSolverJobFinished()
         // bar on the results screen (which re-solves for real); hide them
         // in Quick Mode to avoid two confusing ways to do the same thing.
         this->strategyExplorer->setRunoutPickerVisible(false);
+        this->rebuildQuickFacingActionButtons();
         if(this->quizMode){
             this->quizMode = false;
             float foldPct, callPct, betPct;
@@ -1348,6 +1365,7 @@ void MainWindow::onNewHandButtonClicked(){
         this->strategyExplorer->deleteLater();
         this->strategyExplorer = NULL;
     }
+    this->quickFacingActionBar->setVisible(false);
     this->startQuickMode();
 }
 
@@ -1410,6 +1428,45 @@ void MainWindow::updateQuickRunoutBar(){
     this->quickRunoutBar->setVisible(true);
 }
 
+void MainWindow::rebuildQuickFacingActionButtons(){
+    if(this->quickFacingButtonsRow == NULL || this->strategyExplorer == NULL) return;
+
+    QLayout* layout = this->quickFacingButtonsRow->layout();
+    QLayoutItem* child;
+    while((child = layout->takeAt(0)) != NULL){
+        if(child->widget()) child->widget()->deleteLater();
+        delete child;
+    }
+
+    // ActionNode player convention: 0 = IP, 1 = OOP (see StrategyExplorer::process_treeclick).
+    int villainPlayer = this->quickModeHeroIsIP ? 1 : 0;
+    QStringList options = this->strategyExplorer->getFacingActionOptions(villainPlayer);
+    if(options.isEmpty()){
+        this->quickFacingActionBar->setVisible(false);
+        return;
+    }
+
+    for(int i = 0; i < options.size(); i++){
+        QPushButton* btn = new QPushButton(options[i], this->quickFacingButtonsRow);
+        btn->setStyleSheet("padding:8px 12px; font-size:12.5px;");
+        connect(btn, &QPushButton::clicked, this, [this, villainPlayer, i](){
+            this->strategyExplorer->selectFacingAction(villainPlayer, i);
+            this->strategyExplorer->setHighlightedHand(this->quickModeCard1, this->quickModeCard2);
+        });
+        layout->addWidget(btn);
+    }
+
+    QPushButton* resetBtn = new QPushButton(tr("↺ Todavía sin acción"), this->quickFacingButtonsRow);
+    resetBtn->setStyleSheet("padding:8px 12px; font-size:12.5px; color:#8fb39f;");
+    connect(resetBtn, &QPushButton::clicked, this, [this](){
+        this->strategyExplorer->selectRootNode();
+        this->strategyExplorer->setHighlightedHand(this->quickModeCard1, this->quickModeCard2);
+    });
+    layout->addWidget(resetBtn);
+
+    this->quickFacingActionBar->setVisible(true);
+}
+
 void MainWindow::onQuickRunoutButtonClicked(){
     QSolverJob::Mode mode = this->ui->mode_box->currentIndex() == 0 ? QSolverJob::Mode::HOLDEM:QSolverJob::Mode::SHORTDECK;
     int beforeSize = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts).size();
@@ -1420,6 +1477,7 @@ void MainWindow::onQuickRunoutButtonClicked(){
         int afterSize = this->ui->boardText->toPlainText().split(",", Qt::SkipEmptyParts).size();
         if(afterSize <= beforeSize) return; // cancelled, or closed without picking a card
         this->quickRunoutBar->setVisible(false);
+        this->quickFacingActionBar->setVisible(false);
         if(this->strategyExplorer != NULL){
             // Stop the old result widget's auto-refresh timer *before*
             // rebuilding the tree it points into otherwise it keeps
@@ -1447,6 +1505,7 @@ void MainWindow::startQuickModeSolve(bool fastMode){
     QString myRange = this->userIsOpener ? matchup.openerRange : matchup.callerRange;
     QString villainRange = this->userIsOpener ? matchup.callerRange : matchup.openerRange;
     bool myRangeIsIP = this->userIsOpener ? matchup.openerIsIP : !matchup.openerIsIP;
+    this->quickModeHeroIsIP = myRangeIsIP;
 
     if(myRangeIsIP){
         this->ui->ipRangeText->setPlainText(myRange);
@@ -1484,7 +1543,11 @@ void MainWindow::startQuickModeSolve(bool fastMode){
     QStringList raiseSizeFields = {"flop_ip_raise","turn_ip_raise","river_ip_raise","flop_oop_raise","turn_oop_raise","river_oop_raise"};
     for(const QString& name : betSizeFields){
         QLineEdit* field = this->findChild<QLineEdit*>(name);
-        if(field != NULL) field->setText("50");
+        if(field == NULL) continue;
+        // The flop gets two sizes (small/big) so the results screen can
+        // offer a "villain bet small/big" choice; turn/river keep a single
+        // size so the tree (and the live solve) doesn't balloon.
+        field->setText(name.startsWith("flop_") ? "33 75" : "50");
     }
     for(const QString& name : raiseSizeFields){
         QLineEdit* field = this->findChild<QLineEdit*>(name);

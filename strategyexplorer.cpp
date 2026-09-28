@@ -218,21 +218,25 @@ void StrategyExplorer::process_treeclick(TreeItem* treeitem){
 void StrategyExplorer::item_clicked(const QModelIndex& index){
     try{
         TreeItem * treeNode = static_cast<TreeItem*>(index.internalPointer());
-        this->process_treeclick(treeNode);
-        this->process_board(treeNode);
-        this->tableStrategyModel->setGameTreeNode(treeNode);
-        this->tableStrategyModel->updateStrategyData();
-        this->ui->strategyTableView->viewport()->update();
-        this->roughStrategyViewerModel->onchanged();
-        this->ui->roughStrategyView->triger_resize();
-        this->ui->roughStrategyView->viewport()->update();
-        this->updateRangeSummaryLabel();
+        this->selectTreeItem(treeNode);
     }
     catch (const runtime_error& error)
     {
         qDebug().noquote() << tr("Encountering error:");//.toStdString() << endl;
         qDebug().noquote() << error.what() << "\n";
     }
+}
+
+void StrategyExplorer::selectTreeItem(TreeItem* treeNode){
+    this->process_treeclick(treeNode);
+    this->process_board(treeNode);
+    this->tableStrategyModel->setGameTreeNode(treeNode);
+    this->tableStrategyModel->updateStrategyData();
+    this->ui->strategyTableView->viewport()->update();
+    this->roughStrategyViewerModel->onchanged();
+    this->ui->roughStrategyView->triger_resize();
+    this->ui->roughStrategyView->viewport()->update();
+    this->updateRangeSummaryLabel();
 }
 
 void StrategyExplorer::selection_changed(const QItemSelection &selected,
@@ -447,6 +451,49 @@ static QString actionReason(GameTreeNode::PokerActions action, bool isTopAction)
         default:
             return QString();
     }
+}
+
+TreeItem* StrategyExplorer::findVillainDecisionNode(int villainPlayer){
+    if(this->tableStrategyModel->treeItem == NULL) return NULL;
+    TreeItem* current = this->tableStrategyModel->treeItem;
+    shared_ptr<GameTreeNode> node = current->m_treedata.lock();
+    if(node->getType() != GameTreeNode::GameTreeNodeType::ACTION) return NULL;
+    shared_ptr<ActionNode> actionNode = static_pointer_cast<ActionNode>(node);
+    if(actionNode->getPlayer() == villainPlayer) return current;
+
+    // It's hero's turn at the current node (villain hasn't acted here yet).
+    // Assume hero checks to reach villain's response, since that's the only
+    // action that doesn't end the hand or require its own bet-size choice.
+    vector<GameActions>& actions = actionNode->getActions();
+    for(std::size_t k = 0; k < actions.size(); k++){
+        if(actions[k].getAction() == GameTreeNode::PokerActions::CHECK){
+            TreeItem* child = current->child((int)k);
+            shared_ptr<GameTreeNode> childNode = child->m_treedata.lock();
+            if(childNode->getType() == GameTreeNode::GameTreeNodeType::ACTION){
+                shared_ptr<ActionNode> childAction = static_pointer_cast<ActionNode>(childNode);
+                if(childAction->getPlayer() == villainPlayer) return child;
+            }
+            return NULL;
+        }
+    }
+    return NULL;
+}
+
+QStringList StrategyExplorer::getFacingActionOptions(int villainPlayer){
+    QStringList labels;
+    TreeItem* villainNode = this->findVillainDecisionNode(villainPlayer);
+    if(villainNode == NULL) return labels;
+    shared_ptr<ActionNode> actionNode = static_pointer_cast<ActionNode>(villainNode->m_treedata.lock());
+    for(GameActions& action : actionNode->getActions()){
+        labels << actionLabel(action.getAction(), action.getAmount());
+    }
+    return labels;
+}
+
+void StrategyExplorer::selectFacingAction(int villainPlayer, int optionIndex){
+    TreeItem* villainNode = this->findVillainDecisionNode(villainPlayer);
+    if(villainNode == NULL || optionIndex < 0 || optionIndex >= villainNode->childCount()) return;
+    this->selectTreeItem(villainNode->child(optionIndex));
 }
 
 void StrategyExplorer::setHighlightedHand(QString card1, QString card2){

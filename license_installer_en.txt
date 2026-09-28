@@ -1,43 +1,114 @@
-SOLVERIX - TERMS OF USE (SUMMARY)
+SOLVERIX - TERMS OF SERVICE
 
-Please read before installing.
+Last updated: September 2026
+You must be 18 years or older to use Solverix.
 
-1. AGE REQUIREMENT
-   Solverix is intended for users 18 years of age or older. By clicking
-   "I accept the agreement" below, you confirm you meet this requirement.
+Please read carefully before installing. By clicking "I accept the
+agreement" below, you confirm you have read and agree to these Terms.
 
-2. WHAT SOLVERIX IS AND THE BAN ON REAL-TIME ASSISTANCE (RTA)
-   Solverix is an OFF-TABLE STUDY TOOL based on CFR (Counterfactual Regret
-   Minimization), a game-theory algorithm. It does not process real-money
-   bets and is not a gambling platform.
+1. ACCEPTANCE
+   By creating an account, downloading, installing, or using Solverix
+   (the desktop app or the solverix.com.ar website), you accept these
+   Terms. If you don't agree with them, please don't use Solverix.
 
-   Running, consulting, or interacting with Solverix while any online
-   poker client (real-money or play-money) is open is STRICTLY PROHIBITED.
-   It must never be used as real-time assistance (RTA) within a hand.
-   Breaking this rule may result in immediate suspension of your account
-   with no refund.
+2. AGE REQUIREMENT
+   Solverix is intended for users 18 years of age or older. By using the
+   service, you confirm you meet this requirement.
 
-3. SUBSCRIPTION AND REFUNDS
-   Solverix requires an active paid subscription (Advanced Solver or
-   Complete plan), managed from solverix.com.ar/cuenta.html. Refunds can
-   be requested within 48-72 hours of payment by writing to
-   soporte@solverix.com.ar. After that window, payments are
-   non-refundable, though you can still cancel to avoid future charges.
+3. WHAT SOLVERIX IS
+   Solverix is a poker training and analysis tool based on CFR
+   (Counterfactual Regret Minimization), a game-theory algorithm. It is
+   meant strictly as an OFF-TABLE STUDY TOOL: for studying and reviewing
+   hands offline, before or after you play. It does not process
+   real-money bets, does not connect to any poker room, and is not a
+   gambling platform.
 
-4. NO WARRANTY
-   Solverix is provided "as is", with no guarantee that a recommendation
-   is free of bugs or that following it guarantees any result at the
-   table. We are not responsible for losses from real-money play.
+3.1 STRICT PROHIBITION ON REAL-TIME ASSISTANCE (RTA)
+   You must not run, consult, or interact with Solverix at the same time
+   as any real-money or play-money online poker client is open on your
+   device. Solverix must never be used as in-hand assistance while you
+   are seated at an online table. Breaking this rule may result in
+   immediate, irrevocable suspension of your account with no refund,
+   and, where legally required, cooperation with the affected poker
+   room's integrity or security team.
 
-5. FULL TERMS AND PRIVACY POLICY
-   The complete Terms of Service and Privacy Policy are available at:
-     https://solverix.com.ar/terminos.html
-     https://solverix.com.ar/privacidad.html
+4. SUBSCRIPTIONS AND PRICING
+   Solverix offers monthly subscription plans (Advanced Solver and
+   Complete) at the prices shown on the website at the time of purchase,
+   billed either in Argentine pesos (via Mercado Pago) or in USD/USDT
+   (via crypto). Prices may change for future billing periods; we will
+   always show the current price before you pay.
 
+5. REFUNDS
+   You can request a full refund within 48 to 72 hours of your payment
+   by writing to soporte@solverix.com.ar. After that window, payments
+   are non-refundable, though you can still cancel to avoid being
+   charged again the following month.
+
+6. CANCELLATION
+   You can cancel anytime by writing to soporte@solverix.com.ar. Your
+   plan stays active until the end of the period you already paid for;
+   we don't do partial refunds for unused days outside the refund window
+   above.
+
+7. STREAMER / REFERRAL PROGRAM
+   Some users may get a referral code to share as a streamer. Any
+   commission is tracked internally and paid out manually by us on
+   request - it's not an automatic payment, and the terms of this
+   program (commission rate, eligibility) may change or be discontinued
+   at any time.
+
+8. INTELLECTUAL PROPERTY AND LICENSE
+   Subject to your compliance with these Terms and payment of the
+   applicable fees, we grant you a personal, limited, non-exclusive,
+   non-transferable, revocable license to use Solverix. You may not:
+   - Copy, modify, decompile, reverse-engineer, or attempt to extract
+     the source code or the solving algorithms.
+   - Mass-scrape, automate solution generation, or build a derivative
+     database of solved trees to sell or redistribute to third parties.
+   - Rent, sell, redistribute, or share access to the software or your
+     account credentials with third parties (no shared accounts - each
+     subscription is for one user).
+
+9. ACCEPTABLE USE
+   - Don't share your account or password with other people; each
+     subscription is for one user.
+   - Don't try to reverse-engineer, decompile, or redistribute the
+     software.
+   - Don't use Solverix to cheat in real-time in a hand you're actively
+     playing - see the RTA prohibition above.
+
+10. NO WARRANTY
+   Solverix is provided "as is". While the solver is built on a real
+   game-theory algorithm, we don't guarantee that every recommendation
+   is free of bugs or that following it guarantees any particular result
+   at the table. Poker involves variance and financial risk - we are not
+   responsible for losses from real-money play.
+
+11. SANCTIONS FROM THIRD-PARTY POKER ROOMS
+   We are not responsible for penalties, fund confiscation, or bans that
+   you may suffer on third-party poker sites due to misuse of Solverix,
+   breaking that site's own terms of service (including its rules on
+   RTA), or false positives from that site's own detection tools.
+
+12. LIMITATION OF LIABILITY
+   To the maximum extent allowed by applicable law, our total liability
+   to you for any claim will not exceed the total amount you paid us in
+   the three (3) months before the event giving rise to the claim.
+
+13. GOVERNING LAW
    These Terms are governed by the laws of Argentina. Solverix is
    operated by Nicolas Tu, an individual based in Argentina. Contact:
    soporte@solverix.com.ar.
 
+14. CHANGES TO THESE TERMS
+   We may update these Terms from time to time. The full, always
+   up-to-date version is available at:
+     https://solverix.com.ar/terminos.html
+     https://solverix.com.ar/privacidad.html
+   Continuing to use Solverix after a change means you accept the
+   updated Terms.
+
 By clicking "I accept the agreement", you confirm that you are 18 years
 of age or older and that you agree to the Terms of Service and Privacy
-Policy linked above.
+Policy above and linked here.

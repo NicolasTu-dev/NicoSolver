@@ -110,6 +110,10 @@ private:
     QTimer* subscriptionCheckTimer = NULL;
     QWidget* quickRunoutBar = NULL;
     QPushButton* quickRunoutButton = NULL;
+    bool quickModeHeroIsIP = true;
+    QWidget* quickFacingActionBar = NULL;
+    QWidget* quickFacingButtonsRow = NULL;
+    void rebuildQuickFacingActionButtons();
     void startQuickMode();
     void startPracticeQuiz();
     void showQuickModeStep(int index);
