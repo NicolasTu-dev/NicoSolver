@@ -16,7 +16,7 @@
 IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidget* parent)
     : QDialog(parent), compairer(compairer)
 {
-    this->setWindowTitle(tr("All-in preflop / ICM"));
+    this->setWindowTitle(tr("Tournament Games Pre-Flop"));
     this->resize(480, 560);
 
     QVBoxLayout* outer = new QVBoxLayout(this);

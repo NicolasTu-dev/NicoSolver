@@ -100,7 +100,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // postflop CFR tree this wizard step otherwise leads into -- reachable
     // from the same situation step since it's still "what do I do right
     // now in Modo Rapido", just a different kind of spot.
-    QPushButton* icmPushFoldButton = new QPushButton(tr("¿Te tiraron un all-in preflop?"), this->ui->quickStepSituation);
+    QPushButton* icmPushFoldButton = new QPushButton(tr("Tournament Games Pre-Flop"), this->ui->quickStepSituation);
     connect(icmPushFoldButton, &QPushButton::clicked, this, &MainWindow::onIcmPushFoldButtonClicked);
     this->ui->quickStepSituationLayout->addWidget(icmPushFoldButton);
 
