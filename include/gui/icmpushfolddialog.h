@@ -26,9 +26,8 @@ public:
 private slots:
     void onScenarioContinue();
     void onPlayerCountChanged(int count);
-    void onStacksContinue();
     void onPayoutCountChanged(int count);
-    void onPayoutsContinue();
+    void onStacksAndPayoutsContinue();
     void onPickHandClicked();
     void onHandPickerClosed();
     void onBack();

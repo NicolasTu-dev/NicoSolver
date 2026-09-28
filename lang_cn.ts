@@ -13,89 +13,267 @@
     <name>DetailItemDelegate</name>
     <message>
         <location filename="src/ui/detailitemdelegate.cpp" line="124"/>
-        <location filename="src/ui/detailitemdelegate.cpp" line="329"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="331"/>
         <source>FOLD</source>
         <translation>弃牌</translation>
     </message>
     <message>
         <location filename="src/ui/detailitemdelegate.cpp" line="127"/>
-        <location filename="src/ui/detailitemdelegate.cpp" line="332"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="334"/>
         <source>CALL</source>
         <translation>跟注</translation>
     </message>
     <message>
         <location filename="src/ui/detailitemdelegate.cpp" line="130"/>
-        <location filename="src/ui/detailitemdelegate.cpp" line="335"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="337"/>
         <source>CHECK</source>
         <translation>过牌</translation>
     </message>
     <message>
         <location filename="src/ui/detailitemdelegate.cpp" line="133"/>
-        <location filename="src/ui/detailitemdelegate.cpp" line="338"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="340"/>
         <source>BET</source>
         <translation>下注</translation>
     </message>
     <message>
         <location filename="src/ui/detailitemdelegate.cpp" line="136"/>
-        <location filename="src/ui/detailitemdelegate.cpp" line="341"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="343"/>
         <source>RAISE</source>
         <translation>加注</translation>
     </message>
     <message>
-        <location filename="src/ui/detailitemdelegate.cpp" line="326"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="328"/>
         <source>Can&apos;t calculate</source>
         <translation>无法计算</translation>
     </message>
     <message>
-        <location filename="src/ui/detailitemdelegate.cpp" line="327"/>
+        <location filename="src/ui/detailitemdelegate.cpp" line="329"/>
         <source>EV</source>
         <translation>价值</translation>
     </message>
 </context>
 <context>
+    <name>IcmPushFoldDialog</name>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="43"/>
+        <source>Tournament Games Pre-Flop</source>
+        <translation>Tournament Games Pre-Flop</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="53"/>
+        <source>&lt;b&gt;What happened?&lt;/b&gt;</source>
+        <translation>&lt;b&gt;发生了什么?&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="54"/>
+        <source>Someone shoved all-in first (no raise before it)</source>
+        <translation>有人直接全下(之前没人加注)</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="55"/>
+        <source>I raised and got shoved on</source>
+        <translation>我加注后被对手全下</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="63"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="112"/>
+        <source>Next →</source>
+        <translation>下一步 →</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="75"/>
+        <source>&lt;b&gt;How many players are left at the table?&lt;/b&gt;</source>
+        <translation>&lt;b&gt;牌桌上还剩几名玩家?&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="93"/>
+        <source>Current big blind:</source>
+        <translation>当前大盲:</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="96"/>
+        <source>&lt;b&gt;How many places get paid?&lt;/b&gt;</source>
+        <translation>&lt;b&gt;有几个名次能获得奖金?&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="111"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="136"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="188"/>
+        <source>← Back</source>
+        <translation>← 返回</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="126"/>
+        <source>&lt;b&gt;Your hand&lt;/b&gt;</source>
+        <translation>&lt;b&gt;你的手牌&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="129"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="298"/>
+        <source>(not chosen)</source>
+        <translation>(未选择)</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="131"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="146"/>
+        <source>Choose your hand</source>
+        <translation>选择你的手牌</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="137"/>
+        <source>See result →</source>
+        <translation>查看结果 →</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="146"/>
+        <source>You need to choose 2 cards before continuing.</source>
+        <translation>继续之前需要选择2张牌。</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="210"/>
+        <source>Player %1:</source>
+        <translation>玩家 %1:</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="213"/>
+        <source>chips</source>
+        <translation>筹码</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="217"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="222"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="267"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="311"/>
+        <source>You</source>
+        <translation>你</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="218"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="223"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="268"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="312"/>
+        <source>Opponent</source>
+        <translation>对手</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="246"/>
+        <source>Place %1:</source>
+        <translation>名次 %1:</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="249"/>
+        <source>$</source>
+        <translation>$</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="264"/>
+        <source>Missing data</source>
+        <translation>缺少数据</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="264"/>
+        <source>Enter the stack for every player.</source>
+        <translation>请输入每位玩家的筹码量。</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="271"/>
+        <source>Mark yourself and your opponent</source>
+        <translation>标记你自己和对手</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="272"/>
+        <source>Mark exactly one seat as &apos;You&apos; and exactly one as &apos;Opponent&apos;.</source>
+        <translation>必须将一个座位标记为&apos;你&apos;,另一个标记为&apos;对手&apos;。</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="276"/>
+        <source>Missing big blind</source>
+        <translation>缺少大盲信息</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="276"/>
+        <source>Enter the current big blind.</source>
+        <translation>请输入当前大盲。</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="281"/>
+        <source>Missing payouts</source>
+        <translation>缺少奖金信息</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="281"/>
+        <source>Enter the payout for every paid place.</source>
+        <translation>请输入每个获奖名次的奖金。</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="335"/>
+        <source>✓ Call</source>
+        <translation>✓ 跟注</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="335"/>
+        <source>✕ Fold</source>
+        <translation>✕ 弃牌</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="344"/>
+        <source>Your value if you call
+$%1</source>
+        <translation>跟注后的价值
+$%1</translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="347"/>
+        <source>Your value if you fold
+$%1</source>
+        <translation>弃牌后的价值
+$%1</translation>
+    </message>
+</context>
+<context>
     <name>LicenseDialog</name>
     <message>
-        <location filename="licensedialog.cpp" line="14"/>
+        <location filename="src/gui/licensedialog.cpp" line="14"/>
         <source>My subscription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="21"/>
+        <location filename="src/gui/licensedialog.cpp" line="21"/>
         <source>🔑 My subscription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="25"/>
+        <location filename="src/gui/licensedialog.cpp" line="25"/>
         <source>Account: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="40"/>
+        <location filename="src/gui/licensedialog.cpp" line="40"/>
         <source>Go to the website to get or renew a plan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="45"/>
+        <location filename="src/gui/licensedialog.cpp" line="45"/>
         <source>I already got a plan check again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="50"/>
+        <location filename="src/gui/licensedialog.cpp" line="50"/>
         <source>Log out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="61"/>
+        <location filename="src/gui/licensedialog.cpp" line="61"/>
         <source>No active subscription. Get a plan on the website to keep using the solver.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="65"/>
+        <location filename="src/gui/licensedialog.cpp" line="65"/>
         <source>Plan %1 active. Expires in %2 day(s) (%3).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="licensedialog.cpp" line="80"/>
+        <location filename="src/gui/licensedialog.cpp" line="80"/>
         <source>Checking...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -103,77 +281,77 @@
 <context>
     <name>LoginDialog</name>
     <message>
-        <location filename="logindialog.cpp" line="14"/>
+        <location filename="src/gui/logindialog.cpp" line="14"/>
         <source>Solverix Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="21"/>
+        <location filename="src/gui/logindialog.cpp" line="21"/>
         <source>♠ Solverix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="25"/>
+        <location filename="src/gui/logindialog.cpp" line="25"/>
         <source>⚠ DO NOT RUN THIS APP WHILE ANY POKER CLIENT IS OPEN</source>
         <translation type="unfinished">⚠ 打开任何扑克客户端时请勿运行此应用</translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="33"/>
+        <location filename="src/gui/logindialog.cpp" line="33"/>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="36"/>
+        <location filename="src/gui/logindialog.cpp" line="36"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="41"/>
+        <location filename="src/gui/logindialog.cpp" line="41"/>
         <source>Remember my email and password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="45"/>
+        <location filename="src/gui/logindialog.cpp" line="45"/>
         <source>Log in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="62"/>
+        <location filename="src/gui/logindialog.cpp" line="62"/>
         <source>That account doesn&apos;t have an active subscription. Get a plan on the website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="63"/>
+        <location filename="src/gui/logindialog.cpp" line="63"/>
         <source>Go to the website to get a plan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="69"/>
+        <location filename="src/gui/logindialog.cpp" line="69"/>
         <source>Don&apos;t have an account? Sign up on the Solverix website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="116"/>
+        <location filename="src/gui/logindialog.cpp" line="116"/>
         <source>Fill in your email and password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="123"/>
+        <location filename="src/gui/logindialog.cpp" line="123"/>
         <source>Connecting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="140"/>
+        <location filename="src/gui/logindialog.cpp" line="140"/>
         <source>Incorrect email or password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="141"/>
+        <location filename="src/gui/logindialog.cpp" line="141"/>
         <source>Couldn&apos;t connect to the server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="logindialog.cpp" line="152"/>
+        <location filename="src/gui/logindialog.cpp" line="152"/>
         <source>Logged in successfully.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -181,7 +359,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="src/gui/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
@@ -202,164 +380,164 @@
         <translation type="vanished">选择先行玩家(OOP)范围</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="487"/>
-        <location filename="mainwindow.cpp" line="375"/>
-        <location filename="mainwindow.cpp" line="1374"/>
+        <location filename="src/gui/mainwindow.ui" line="487"/>
+        <location filename="src/gui/mainwindow.cpp" line="403"/>
+        <location filename="src/gui/mainwindow.cpp" line="1410"/>
         <source>Board</source>
         <translation>公共牌</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="515"/>
+        <location filename="src/gui/mainwindow.ui" line="515"/>
         <source>Select Board Card</source>
         <translation>选择公共牌</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="539"/>
+        <location filename="src/gui/mainwindow.ui" line="539"/>
         <source>Flop IP</source>
         <translation>翻牌 后行玩家(IP) 配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="547"/>
-        <location filename="mainwindow.ui" line="624"/>
-        <location filename="mainwindow.ui" line="701"/>
-        <location filename="mainwindow.ui" line="813"/>
-        <location filename="mainwindow.ui" line="890"/>
-        <location filename="mainwindow.ui" line="992"/>
+        <location filename="src/gui/mainwindow.ui" line="547"/>
+        <location filename="src/gui/mainwindow.ui" line="624"/>
+        <location filename="src/gui/mainwindow.ui" line="701"/>
+        <location filename="src/gui/mainwindow.ui" line="813"/>
+        <location filename="src/gui/mainwindow.ui" line="890"/>
+        <location filename="src/gui/mainwindow.ui" line="992"/>
         <source>Bet Sizes : </source>
         <translation>下注尺度: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="554"/>
-        <location filename="mainwindow.ui" line="631"/>
-        <location filename="mainwindow.ui" line="708"/>
-        <location filename="mainwindow.ui" line="820"/>
-        <location filename="mainwindow.ui" line="897"/>
-        <location filename="mainwindow.ui" line="947"/>
-        <location filename="mainwindow.ui" line="999"/>
-        <location filename="mainwindow.ui" line="1049"/>
-        <location filename="mainwindow.ui" line="1128"/>
+        <location filename="src/gui/mainwindow.ui" line="554"/>
+        <location filename="src/gui/mainwindow.ui" line="631"/>
+        <location filename="src/gui/mainwindow.ui" line="708"/>
+        <location filename="src/gui/mainwindow.ui" line="820"/>
+        <location filename="src/gui/mainwindow.ui" line="897"/>
+        <location filename="src/gui/mainwindow.ui" line="947"/>
+        <location filename="src/gui/mainwindow.ui" line="999"/>
+        <location filename="src/gui/mainwindow.ui" line="1049"/>
+        <location filename="src/gui/mainwindow.ui" line="1128"/>
         <source>50</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="572"/>
-        <location filename="mainwindow.ui" line="649"/>
-        <location filename="mainwindow.ui" line="726"/>
-        <location filename="mainwindow.ui" line="838"/>
-        <location filename="mainwindow.ui" line="915"/>
-        <location filename="mainwindow.ui" line="1017"/>
+        <location filename="src/gui/mainwindow.ui" line="572"/>
+        <location filename="src/gui/mainwindow.ui" line="649"/>
+        <location filename="src/gui/mainwindow.ui" line="726"/>
+        <location filename="src/gui/mainwindow.ui" line="838"/>
+        <location filename="src/gui/mainwindow.ui" line="915"/>
+        <location filename="src/gui/mainwindow.ui" line="1017"/>
         <source>Raise Sizes: </source>
         <translation>加注尺度: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="579"/>
-        <location filename="mainwindow.ui" line="656"/>
-        <location filename="mainwindow.ui" line="845"/>
-        <location filename="mainwindow.ui" line="922"/>
+        <location filename="src/gui/mainwindow.ui" line="579"/>
+        <location filename="src/gui/mainwindow.ui" line="656"/>
+        <location filename="src/gui/mainwindow.ui" line="845"/>
+        <location filename="src/gui/mainwindow.ui" line="922"/>
         <source>60</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="597"/>
-        <location filename="mainwindow.ui" line="674"/>
-        <location filename="mainwindow.ui" line="751"/>
-        <location filename="mainwindow.ui" line="863"/>
-        <location filename="mainwindow.ui" line="965"/>
-        <location filename="mainwindow.ui" line="1067"/>
+        <location filename="src/gui/mainwindow.ui" line="597"/>
+        <location filename="src/gui/mainwindow.ui" line="674"/>
+        <location filename="src/gui/mainwindow.ui" line="751"/>
+        <location filename="src/gui/mainwindow.ui" line="863"/>
+        <location filename="src/gui/mainwindow.ui" line="965"/>
+        <location filename="src/gui/mainwindow.ui" line="1067"/>
         <source>Add Allin</source>
         <translation>允许全下</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="561"/>
-        <location filename="mainwindow.ui" line="586"/>
-        <location filename="mainwindow.ui" line="638"/>
-        <location filename="mainwindow.ui" line="663"/>
-        <location filename="mainwindow.ui" line="715"/>
-        <location filename="mainwindow.ui" line="740"/>
-        <location filename="mainwindow.ui" line="827"/>
-        <location filename="mainwindow.ui" line="852"/>
-        <location filename="mainwindow.ui" line="904"/>
-        <location filename="mainwindow.ui" line="929"/>
-        <location filename="mainwindow.ui" line="954"/>
-        <location filename="mainwindow.ui" line="1006"/>
-        <location filename="mainwindow.ui" line="1031"/>
-        <location filename="mainwindow.ui" line="1056"/>
+        <location filename="src/gui/mainwindow.ui" line="561"/>
+        <location filename="src/gui/mainwindow.ui" line="586"/>
+        <location filename="src/gui/mainwindow.ui" line="638"/>
+        <location filename="src/gui/mainwindow.ui" line="663"/>
+        <location filename="src/gui/mainwindow.ui" line="715"/>
+        <location filename="src/gui/mainwindow.ui" line="740"/>
+        <location filename="src/gui/mainwindow.ui" line="827"/>
+        <location filename="src/gui/mainwindow.ui" line="852"/>
+        <location filename="src/gui/mainwindow.ui" line="904"/>
+        <location filename="src/gui/mainwindow.ui" line="929"/>
+        <location filename="src/gui/mainwindow.ui" line="954"/>
+        <location filename="src/gui/mainwindow.ui" line="1006"/>
+        <location filename="src/gui/mainwindow.ui" line="1031"/>
+        <location filename="src/gui/mainwindow.ui" line="1056"/>
         <source>%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="59"/>
+        <location filename="src/gui/mainwindow.ui" line="59"/>
         <source>Step 1 of 6: Ranges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="84"/>
+        <location filename="src/gui/mainwindow.ui" line="84"/>
         <source>Choose which hands each player plays before this decision.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="106"/>
+        <location filename="src/gui/mainwindow.ui" line="106"/>
         <source>← Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="126"/>
-        <location filename="mainwindow.cpp" line="388"/>
-        <location filename="mainwindow.cpp" line="1384"/>
+        <location filename="src/gui/mainwindow.ui" line="126"/>
+        <location filename="src/gui/mainwindow.cpp" line="416"/>
+        <location filename="src/gui/mainwindow.cpp" line="1420"/>
         <source>Next →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="144"/>
+        <location filename="src/gui/mainwindow.ui" line="144"/>
         <source>Choose how many players are at the table, then tap your seat and your opponent&apos;s.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="166"/>
+        <location filename="src/gui/mainwindow.ui" line="166"/>
         <source>6-max (6 players)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="173"/>
+        <location filename="src/gui/mainwindow.ui" line="173"/>
         <source>Full Ring (9 players)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="254"/>
-        <location filename="mainwindow.cpp" line="1268"/>
+        <location filename="src/gui/mainwindow.ui" line="254"/>
+        <location filename="src/gui/mainwindow.cpp" line="1297"/>
         <source>Choose your seat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="270"/>
+        <location filename="src/gui/mainwindow.ui" line="270"/>
         <source>Tap exactly 2 cards: the ones you had in your hand.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="277"/>
-        <location filename="mainwindow.cpp" line="1300"/>
-        <location filename="mainwindow.cpp" line="1324"/>
-        <location filename="mainwindow.cpp" line="1361"/>
+        <location filename="src/gui/mainwindow.ui" line="277"/>
+        <location filename="src/gui/mainwindow.cpp" line="1329"/>
+        <location filename="src/gui/mainwindow.cpp" line="1353"/>
+        <location filename="src/gui/mainwindow.cpp" line="1397"/>
         <source>Selected: (none)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="309"/>
+        <location filename="src/gui/mainwindow.ui" line="309"/>
         <source>Load saved configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="322"/>
+        <location filename="src/gui/mainwindow.ui" line="322"/>
         <source>IP (acts last)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="325"/>
+        <location filename="src/gui/mainwindow.ui" line="325"/>
         <source>IP = &quot;in position&quot;. The player who acts last on this street (has more information before deciding).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="331"/>
+        <location filename="src/gui/mainwindow.ui" line="331"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -368,17 +546,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="343"/>
+        <location filename="src/gui/mainwindow.ui" line="343"/>
         <source>OOP (acts first)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="346"/>
+        <location filename="src/gui/mainwindow.ui" line="346"/>
         <source>OOP = &quot;out of position&quot;. The player who acts first on this street (has less information before deciding).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="352"/>
+        <location filename="src/gui/mainwindow.ui" line="352"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -387,37 +565,37 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="391"/>
+        <location filename="src/gui/mainwindow.ui" line="391"/>
         <source>Select IP</source>
         <translation>选择Ip范围</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="424"/>
+        <location filename="src/gui/mainwindow.ui" line="424"/>
         <source>Select OOP</source>
         <translation>选择OOP范围</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="451"/>
+        <location filename="src/gui/mainwindow.ui" line="451"/>
         <source>🧭 Select Mode / Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="461"/>
+        <location filename="src/gui/mainwindow.ui" line="461"/>
         <source>Here you can pick which mode you want to use: Advanced Solver (full manual control), Quick Mode (preloaded situations), or Practice Mode (train by guessing). You can switch anytime.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="471"/>
+        <location filename="src/gui/mainwindow.ui" line="471"/>
         <source>Choose a mode →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="497"/>
+        <location filename="src/gui/mainwindow.ui" line="497"/>
         <source>Each card is written as &quot;value + suit&quot;. Example: Jh = J of hearts. Values: A=Ace, K=King, Q=Queen, J=Jack, T=10, and 9-2 as-is. Suits: s=spades, h=hearts, d=diamonds, c=clubs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="504"/>
+        <location filename="src/gui/mainwindow.ui" line="504"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -431,175 +609,175 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="528"/>
+        <location filename="src/gui/mainwindow.ui" line="528"/>
         <source>▸ When IP opens the betting (it&apos;s their turn to act first on this street)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="616"/>
+        <location filename="src/gui/mainwindow.ui" line="616"/>
         <source>Turn IP</source>
         <translation>转牌 后行玩家(IP) 配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="693"/>
+        <location filename="src/gui/mainwindow.ui" line="693"/>
         <source>River IP</source>
         <translation>河牌 后行玩家(IP) 配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="733"/>
-        <location filename="mainwindow.ui" line="1024"/>
+        <location filename="src/gui/mainwindow.ui" line="733"/>
+        <location filename="src/gui/mainwindow.ui" line="1024"/>
         <source>60 100</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="772"/>
+        <location filename="src/gui/mainwindow.ui" line="772"/>
         <source>Copy from Ip to OOP</source>
         <translation>从IP到OOP拷贝配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="794"/>
+        <location filename="src/gui/mainwindow.ui" line="794"/>
         <source>▸ When OOP opens the betting (first on the street, or a &quot;donk bet&quot; after not betting the previous street)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="805"/>
+        <location filename="src/gui/mainwindow.ui" line="805"/>
         <source>Flop OOP</source>
         <translation>翻牌 先行玩家(OOP) 配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="882"/>
+        <location filename="src/gui/mainwindow.ui" line="882"/>
         <source>Turn OOP</source>
         <translation>转牌 先行玩家(OOP) 配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="940"/>
-        <location filename="mainwindow.ui" line="1042"/>
+        <location filename="src/gui/mainwindow.ui" line="940"/>
+        <location filename="src/gui/mainwindow.ui" line="1042"/>
         <source>Donk Sizes: </source>
         <translation>反主動下注尺度: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="984"/>
+        <location filename="src/gui/mainwindow.ui" line="984"/>
         <source>River OOP</source>
         <translation>河牌 先行玩家(OOP) 配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1107"/>
+        <location filename="src/gui/mainwindow.ui" line="1107"/>
         <source>raise limit: </source>
         <translation>加注最大次数: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1114"/>
+        <location filename="src/gui/mainwindow.ui" line="1114"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1121"/>
+        <location filename="src/gui/mainwindow.ui" line="1121"/>
         <source>times.      Pot: </source>
         <translation>次.      底池(pot)筹码量: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1135"/>
+        <location filename="src/gui/mainwindow.ui" line="1135"/>
         <source>Effective Stack: </source>
         <translation>有效筹码量: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1142"/>
-        <location filename="mainwindow.ui" line="1293"/>
+        <location filename="src/gui/mainwindow.ui" line="1142"/>
+        <location filename="src/gui/mainwindow.ui" line="1293"/>
         <source>200</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1149"/>
+        <location filename="src/gui/mainwindow.ui" line="1149"/>
         <source>  Mode: </source>
         <translation>  软件模式: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1157"/>
+        <location filename="src/gui/mainwindow.ui" line="1157"/>
         <source>texas holdem</source>
         <translation>德州扑克</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1162"/>
+        <location filename="src/gui/mainwindow.ui" line="1162"/>
         <source>shortdeck</source>
         <translation>短牌</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1175"/>
+        <location filename="src/gui/mainwindow.ui" line="1175"/>
         <source>allin threshold: </source>
         <translation>全下阈值(%): </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1188"/>
+        <location filename="src/gui/mainwindow.ui" line="1188"/>
         <source>0.67</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1195"/>
+        <location filename="src/gui/mainwindow.ui" line="1195"/>
         <source>     use isomorphism</source>
         <translation>     利用游戏对称性加速</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1225"/>
+        <location filename="src/gui/mainwindow.ui" line="1225"/>
         <source>Save memory at cost of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1233"/>
+        <location filename="src/gui/mainwindow.ui" line="1233"/>
         <source>nothing (disabled)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1238"/>
+        <location filename="src/gui/mainwindow.ui" line="1238"/>
         <source>speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1243"/>
+        <location filename="src/gui/mainwindow.ui" line="1243"/>
         <source>speed and accuracy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1256"/>
+        <location filename="src/gui/mainwindow.ui" line="1256"/>
         <source>Build Tree</source>
         <translation>构建游戏树</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1263"/>
+        <location filename="src/gui/mainwindow.ui" line="1263"/>
         <source>Estimate Solving Memory</source>
         <translation>估计求解需要的内存</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1435"/>
+        <location filename="src/gui/mainwindow.ui" line="1435"/>
         <source>🔄 Start a new hand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1537"/>
+        <location filename="src/gui/mainwindow.ui" line="1537"/>
         <source>Parameters</source>
         <translation>参数</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1605"/>
+        <location filename="src/gui/mainwindow.ui" line="1605"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1610"/>
+        <location filename="src/gui/mainwindow.ui" line="1610"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1615"/>
+        <location filename="src/gui/mainwindow.ui" line="1615"/>
         <source>Clear all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1620"/>
+        <location filename="src/gui/mainwindow.ui" line="1620"/>
         <source>Open parameters folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1625"/>
+        <location filename="src/gui/mainwindow.ui" line="1625"/>
         <source>View log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -612,8 +790,8 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">打开参数目录</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1600"/>
-        <location filename="mainwindow.cpp" line="790"/>
+        <location filename="src/gui/mainwindow.ui" line="1600"/>
+        <location filename="src/gui/mainwindow.cpp" line="818"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
@@ -626,58 +804,58 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">展示游戏树</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1278"/>
-        <location filename="mainwindow.cpp" line="376"/>
+        <location filename="src/gui/mainwindow.ui" line="1278"/>
+        <location filename="src/gui/mainwindow.cpp" line="404"/>
         <source>Solver Options</source>
         <translation>求解器选项</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1286"/>
+        <location filename="src/gui/mainwindow.ui" line="1286"/>
         <source>iterations: </source>
         <translation>迭代次数: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1300"/>
+        <location filename="src/gui/mainwindow.ui" line="1300"/>
         <source>times.    stop solving when reach </source>
         <translation>次.         当达到 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1307"/>
+        <location filename="src/gui/mainwindow.ui" line="1307"/>
         <source>0.5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1314"/>
+        <location filename="src/gui/mainwindow.ui" line="1314"/>
         <source>% exploitability</source>
         <translation>%底池的剥削度后停止程序</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1338"/>
+        <location filename="src/gui/mainwindow.ui" line="1338"/>
         <source>log interval:  </source>
         <translation>打印间隔:  </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1345"/>
+        <location filename="src/gui/mainwindow.ui" line="1345"/>
         <source>10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1352"/>
+        <location filename="src/gui/mainwindow.ui" line="1352"/>
         <source>threads: </source>
         <translation>进程数: </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1359"/>
+        <location filename="src/gui/mainwindow.ui" line="1359"/>
         <source>8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1396"/>
+        <location filename="src/gui/mainwindow.ui" line="1396"/>
         <source>Start solving</source>
         <translation>开始求解</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1409"/>
+        <location filename="src/gui/mainwindow.ui" line="1409"/>
         <source>Stop solving</source>
         <translation>停止求解</translation>
     </message>
@@ -686,17 +864,17 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">开始求解局面</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1422"/>
+        <location filename="src/gui/mainwindow.ui" line="1422"/>
         <source>ShowResult</source>
         <translation>显示结果</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1502"/>
+        <location filename="src/gui/mainwindow.ui" line="1502"/>
         <source>Clear Log</source>
         <translation>清除日志</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1530"/>
+        <location filename="src/gui/mainwindow.ui" line="1530"/>
         <source>Solver</source>
         <translation type="unfinished"></translation>
     </message>
@@ -713,48 +891,48 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">保存策略到文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1550"/>
+        <location filename="src/gui/mainwindow.ui" line="1550"/>
         <source>import setting</source>
         <translation>导入参数</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1555"/>
+        <location filename="src/gui/mainwindow.ui" line="1555"/>
         <source>export current setting</source>
         <translation>导出当前参数</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1560"/>
+        <location filename="src/gui/mainwindow.ui" line="1560"/>
         <source>ZN-CH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1565"/>
-        <location filename="mainwindow.ui" line="1570"/>
+        <location filename="src/gui/mainwindow.ui" line="1565"/>
+        <location filename="src/gui/mainwindow.ui" line="1570"/>
         <source>Enghish</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1575"/>
+        <location filename="src/gui/mainwindow.ui" line="1575"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1580"/>
+        <location filename="src/gui/mainwindow.ui" line="1580"/>
         <source>import IP range</source>
         <translation>导入后行玩家(IP)range</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1585"/>
+        <location filename="src/gui/mainwindow.ui" line="1585"/>
         <source>import OOP range</source>
         <translation>导入先行玩家(OOP)range</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1590"/>
+        <location filename="src/gui/mainwindow.ui" line="1590"/>
         <source>export IP range</source>
         <translation>导出后行玩家(IP)range</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1595"/>
+        <location filename="src/gui/mainwindow.ui" line="1595"/>
         <source>export OOP range</source>
         <translation>导出先行玩家(OOP)range</translation>
     </message>
@@ -771,506 +949,516 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Json 文件 (*.json)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="674"/>
-        <location filename="mainwindow.cpp" line="687"/>
+        <location filename="src/gui/mainwindow.cpp" line="702"/>
+        <location filename="src/gui/mainwindow.cpp" line="715"/>
         <source>Open parameters file</source>
         <translation>打开参数文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="676"/>
-        <location filename="mainwindow.cpp" line="689"/>
+        <location filename="src/gui/mainwindow.cpp" line="704"/>
+        <location filename="src/gui/mainwindow.cpp" line="717"/>
         <source>Text files (*.txt)</source>
         <translation>文本 files (*.txt)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="550"/>
+        <location filename="src/gui/mainwindow.cpp" line="578"/>
         <source>File selection invalid.</source>
         <translation>文件选择无效.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="375"/>
+        <location filename="src/gui/mainwindow.cpp" line="403"/>
         <source>Bet Sizings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="42"/>
+        <location filename="src/gui/mainwindow.cpp" line="43"/>
         <source>Solverix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="125"/>
+        <location filename="src/gui/mainwindow.cpp" line="103"/>
+        <source>Tournament Games Pre-Flop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/mainwindow.cpp" line="131"/>
+        <source>¿Qué hizo tu rival en esta calle?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/mainwindow.cpp" line="153"/>
         <source>If you already saved a configuration before (a .json file), tap here to load it and skip every step.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="126"/>
+        <location filename="src/gui/mainwindow.cpp" line="154"/>
         <source>The IP player&apos;s (the one who acts last) hand range shows up here as text. You can type it by hand or build it with the grid on the right by tapping &quot;Select IP&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="127"/>
+        <location filename="src/gui/mainwindow.cpp" line="155"/>
         <source>The OOP player&apos;s (the one who acts first) hand range shows up here as text. You can type it by hand or build it with the grid on the right by tapping &quot;Select OOP&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="128"/>
+        <location filename="src/gui/mainwindow.cpp" line="156"/>
         <source>Grid of possible hands for the IP player. Each cell is a card combination: tap a cell to include it (green) or exclude it from the range. The darker the green, the more often that hand is played.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="src/gui/mainwindow.cpp" line="157"/>
         <source>Grid of possible hands for the OOP player. Each cell is a card combination: tap a cell to include it (green) or exclude it from the range. The darker the green, the more often that hand is played.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="130"/>
+        <location filename="src/gui/mainwindow.cpp" line="158"/>
         <source>Opens the visual grid to build the IP player&apos;s range by tapping hands instead of typing text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="131"/>
+        <location filename="src/gui/mainwindow.cpp" line="159"/>
         <source>Opens the visual grid to build the OOP player&apos;s range by tapping hands instead of typing text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="src/gui/mainwindow.cpp" line="161"/>
         <source>When checked (✓ green), the solver adds the option to go all-in with the whole stack on this street, in addition to the bet sizes defined above.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="141"/>
+        <location filename="src/gui/mainwindow.cpp" line="169"/>
         <source>Flop = the first 3 community cards. Here you set which bet sizes IP (the player who acts last) can use when it&apos;s their turn to open the action on the flop. Example: entering &quot;50&quot; in Bet Sizes = betting 50% of the pot at that moment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="src/gui/mainwindow.cpp" line="170"/>
         <source>Turn = the 4th community card. Bet sizes IP can use when opening the action on the turn. Same idea as the flop: the numbers are % of the pot, not fixed chips.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="src/gui/mainwindow.cpp" line="171"/>
         <source>River = the 5th and last community card. Bet sizes IP can use when opening the action on the river.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="144"/>
+        <location filename="src/gui/mainwindow.cpp" line="172"/>
         <source>Flop = the first 3 community cards. Bet sizes OOP (the player who acts first) can use when deciding to open betting on the flop, instead of checking.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="145"/>
+        <location filename="src/gui/mainwindow.cpp" line="173"/>
         <source>Turn = the 4th community card. &quot;Donk Sizes&quot; is for this specific case: nobody bet on the flop (both checked), the turn arrives, and OOP decides to bet first instead of waiting to see what IP does that&apos;s called a &quot;donk bet&quot;. The numbers are % of the pot at that moment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="146"/>
+        <location filename="src/gui/mainwindow.cpp" line="174"/>
         <source>River = the 5th and last community card. Same case as the turn: &quot;Donk Sizes&quot; are the sizes OOP can use to bet first on the river after not betting on the turn.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="148"/>
+        <location filename="src/gui/mainwindow.cpp" line="176"/>
         <source>Maximum number of consecutive raises the solver considers on the same street. A higher number makes the tree much bigger and slower to solve.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="149"/>
+        <location filename="src/gui/mainwindow.cpp" line="177"/>
         <source>Pot size before this situation, in chips.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
+        <location filename="src/gui/mainwindow.cpp" line="178"/>
         <source>Chips left for the player with the smaller stack. That&apos;s the most that can be bet in the hand.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="151"/>
+        <location filename="src/gui/mainwindow.cpp" line="179"/>
         <source>Deck to use: &quot;texas holdem&quot; (52 normal cards) or &quot;shortdeck&quot; (36 cards, no 2, 3, 4, or 5).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
+        <location filename="src/gui/mainwindow.cpp" line="180"/>
         <source>If a player&apos;s remaining stack is less than this % of the pot, the solver directly offers going all-in instead of intermediate bet sizes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="src/gui/mainwindow.cpp" line="181"/>
         <source>Internal optimization that groups equivalent cards together to solve faster without losing precision. Recommended to leave checked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="154"/>
+        <location filename="src/gui/mainwindow.cpp" line="182"/>
         <source>Reduces the RAM used by the solver at the cost of solving slower or with less numerical precision. Only use it if you&apos;re running out of memory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="src/gui/mainwindow.cpp" line="183"/>
         <source>Maximum number of times the solver recalculates the strategy. More iterations = more precision, but takes longer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="156"/>
+        <location filename="src/gui/mainwindow.cpp" line="184"/>
         <source>The solver stops early if it already reached a strategy with this error level (% of the pot) or less. A lower number is more precise but slower; 0.5% is already a very solid strategy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="157"/>
+        <location filename="src/gui/mainwindow.cpp" line="185"/>
         <source>How often progress is shown in the console below, in iterations. Only affects how often you see updates, not the final result.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="158"/>
+        <location filename="src/gui/mainwindow.cpp" line="186"/>
         <source>Number of processor cores the solver can use at once. More threads = solves faster if your computer has free cores.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="221"/>
+        <location filename="src/gui/mainwindow.cpp" line="249"/>
         <source>You need a subscription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="223"/>
+        <location filename="src/gui/mainwindow.cpp" line="251"/>
         <source>You haven&apos;t activated any subscription yet. You need the &quot;%1&quot; plan or higher for this.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="224"/>
+        <location filename="src/gui/mainwindow.cpp" line="252"/>
         <source>Your current plan doesn&apos;t include this. You need the &quot;%1&quot; plan or higher.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="298"/>
-        <location filename="mainwindow.cpp" line="1132"/>
+        <location filename="src/gui/mainwindow.cpp" line="326"/>
+        <location filename="src/gui/mainwindow.cpp" line="1161"/>
         <source>Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="304"/>
+        <location filename="src/gui/mainwindow.cpp" line="332"/>
         <source>🎯 What would you do here?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="317"/>
+        <location filename="src/gui/mainwindow.cpp" line="345"/>
         <source>Your hand:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="323"/>
+        <location filename="src/gui/mainwindow.cpp" line="351"/>
         <source>Board:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="331"/>
+        <location filename="src/gui/mainwindow.cpp" line="359"/>
         <source>What would you do with this hand?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="897"/>
-        <location filename="mainwindow.cpp" line="1022"/>
+        <location filename="src/gui/mainwindow.cpp" line="925"/>
+        <location filename="src/gui/mainwindow.cpp" line="1050"/>
         <source>Invalid board</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="898"/>
-        <location filename="mainwindow.cpp" line="1023"/>
+        <location filename="src/gui/mainwindow.cpp" line="926"/>
+        <location filename="src/gui/mainwindow.cpp" line="1051"/>
         <source>A board needs exactly 3 cards (flop), 4 (turn), or 5 (river) no more, no less. Go back and fix your board selection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1258"/>
+        <location filename="src/gui/mainwindow.cpp" line="1287"/>
         <source>(OPPONENT)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1324"/>
+        <location filename="src/gui/mainwindow.cpp" line="1353"/>
         <source>Selected: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1409"/>
+        <location filename="src/gui/mainwindow.cpp" line="1445"/>
         <source>🎴 Choose the turn card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1409"/>
+        <location filename="src/gui/mainwindow.cpp" line="1445"/>
         <source>🎴 Choose the river card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="375"/>
+        <location filename="src/gui/mainwindow.cpp" line="403"/>
         <source>Ranges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
+        <location filename="src/gui/mainwindow.cpp" line="404"/>
         <source>Tree Parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="376"/>
+        <location filename="src/gui/mainwindow.cpp" line="404"/>
         <source>Confirm and solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="379"/>
+        <location filename="src/gui/mainwindow.cpp" line="407"/>
         <source>A &quot;range&quot; is the set of hands a player might have in this situation. IP (&quot;in position&quot;) is the player who acts last on the street; OOP (&quot;out of position&quot;) is the one who acts first. Tap a grid cell to add or remove that hand from the range (darker = played more often), or type the range by hand in the text box.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="380"/>
+        <location filename="src/gui/mainwindow.cpp" line="408"/>
         <source>Choose the cards that already came out on the table (3 for flop, 4 for turn, 5 for river).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="381"/>
+        <location filename="src/gui/mainwindow.cpp" line="409"/>
         <source>This step defines WHAT BET SIZES the solver can choose you don&apos;t need to understand every term now, the default values are already enough to try it out. Concrete example: if the pot has 100 chips and you put &quot;50&quot; in Bet Sizes, that means &quot;bet 50% of the pot&quot; = 50 chips. If someone then raises with &quot;60&quot; in Raise Sizes, that&apos;s 60% of the pot AFTER it grew from that bet (not the original pot) that&apos;s why it&apos;s expressed in % instead of fixed chips, so it works for any pot size. There are 6 boxes because the game splits into 3 streets (Flop, Turn, River) and on each one IP and OOP can use different sizes; check the ▸ titles above each row to orient yourself. &quot;Donk Sizes&quot; is only for OOP on Turn/River: those are the sizes it can use to bet first on that new street, even though it was the one who didn&apos;t bet on the previous street (that play is called a &quot;donk bet&quot;). &quot;Add Allin&quot; simply adds, in addition to those sizes, the option to go straight all-in with the whole stack.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="382"/>
+        <location filename="src/gui/mainwindow.cpp" line="410"/>
         <source>&quot;Raise limit&quot; is the maximum number of consecutive raises the solver will consider on the same street (more raises = bigger, slower tree). &quot;Pot&quot; is the pot size before this situation starts, and &quot;Effective Stack&quot; is the number of chips left for the player with the smaller stack (the most that can be bet). &quot;Mode&quot; sets the deck: &quot;texas holdem&quot; (52 cards) or &quot;shortdeck&quot; (36 cards, no 2-5). &quot;Allin threshold&quot; is a shortcut: if a player has less than that % of the pot left, the solver directly offers going all-in instead of intermediate bet sizes, to avoid unnecessarily complicating the tree. &quot;Use isomorphism&quot; is an internal optimization: it groups cards that are strategically equivalent (e.g. two suits that don&apos;t make a flush anywhere) to solve faster without losing precision leave it checked unless you have a specific reason to disable it. &quot;Save memory at cost of speed/accuracy&quot; reduces the RAM used in exchange for solving a bit slower or with less numerical precision; only use it if you&apos;re running out of memory. Tapping &quot;Next&quot; builds the decision tree automatically with these values.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="src/gui/mainwindow.cpp" line="411"/>
         <source>&quot;Iterations&quot; is the maximum number of times the solver will recalculate the strategy (more iterations = more precision, but more time). &quot;Stop solving when reach X% exploitability&quot; makes the solver stop early if it already reached a strategy close enough to optimal (a lower number = more precise but slower; 0.5% is already a very solid strategy to play). &quot;Log interval&quot; is how often progress is printed in the console below, it only affects how often you see updates, not the result. &quot;Threads&quot; is the number of processor cores the solver can use at once (more threads = solves faster if your computer has enough free cores). The default values work fine to start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="384"/>
+        <location filename="src/gui/mainwindow.cpp" line="412"/>
         <source>Review everything and tap &quot;Start solving&quot; so the solver calculates the optimal strategy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="385"/>
+        <location filename="src/gui/mainwindow.cpp" line="413"/>
         <source>Step %1 of 6: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="388"/>
-        <location filename="mainwindow.cpp" line="1190"/>
+        <location filename="src/gui/mainwindow.cpp" line="416"/>
+        <location filename="src/gui/mainwindow.cpp" line="1219"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="393"/>
+        <location filename="src/gui/mainwindow.cpp" line="421"/>
         <source>📌 Example: IP is a player on the button (BTN) who opened the hand with a typical opening range. OOP is the big blind (BB) who called that open with their defending range. Notice both ranges are already loaded in the grid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="394"/>
+        <location filename="src/gui/mainwindow.cpp" line="422"/>
         <source>📌 Example: the flop came Q♠ J♥ 2♥ a high card (Q), a middle card that could have connected with several hands (J), and a low card that also brings a flush draw in hearts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="395"/>
+        <location filename="src/gui/mainwindow.cpp" line="423"/>
         <source>📌 Example: we left the bet sizes at default (50% of the pot when betting, 60% when raising) to keep the example simple. In a real hand you&apos;d adjust this to how your tables usually play.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="396"/>
+        <location filename="src/gui/mainwindow.cpp" line="424"/>
         <source>📌 Example: the pot before this situation is 50 chips and each player has 200 chips of effective stack left round numbers chosen to make it easy to follow.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="397"/>
+        <location filename="src/gui/mainwindow.cpp" line="425"/>
         <source>📌 Example: we left 200 iterations, which is enough for the solver to converge quickly on a simple example like this (on a more complex hand you might need more).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="398"/>
+        <location filename="src/gui/mainwindow.cpp" line="426"/>
         <source>📌 Example: tap &quot;Start solving&quot; and wait for it to finish (with these values it should take just seconds). Then tap &quot;ShowResult&quot; to see the recommended strategy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="src/gui/mainwindow.cpp" line="477"/>
         <source>Choose both seats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="src/gui/mainwindow.cpp" line="477"/>
         <source>Tap your seat and then your opponent&apos;s before continuing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="457"/>
+        <location filename="src/gui/mainwindow.cpp" line="485"/>
         <source>Choose 2 cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="457"/>
+        <location filename="src/gui/mainwindow.cpp" line="485"/>
         <source>You need to tap exactly 2 cards for your hand before continuing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="555"/>
+        <location filename="src/gui/mainwindow.cpp" line="583"/>
         <source>File open failed.</source>
         <translation>文件打开失败.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="698"/>
+        <location filename="src/gui/mainwindow.cpp" line="726"/>
         <source>Save Parameters</source>
         <translation>保存参数</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="700"/>
+        <location filename="src/gui/mainwindow.cpp" line="728"/>
         <source>Text file (*.txt)</source>
         <translation>文本文件 (*.txt)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="872"/>
-        <location filename="mainwindow.cpp" line="1338"/>
+        <location filename="src/gui/mainwindow.cpp" line="900"/>
+        <location filename="src/gui/mainwindow.cpp" line="1367"/>
         <source>Your subscription expired</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="873"/>
+        <location filename="src/gui/mainwindow.cpp" line="901"/>
         <source>Your Solverix subscription expired, so you can&apos;t keep solving. Reactivate it to continue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1047"/>
+        <location filename="src/gui/mainwindow.cpp" line="1075"/>
         <source>Please build tree first.</source>
         <translation>请先建树.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1049"/>
-        <location filename="mainwindow.cpp" line="1052"/>
+        <location filename="src/gui/mainwindow.cpp" line="1077"/>
+        <location filename="src/gui/mainwindow.cpp" line="1080"/>
         <source>Estimated Memory Usage: </source>
         <translation>估计的内存消耗: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1049"/>
+        <location filename="src/gui/mainwindow.cpp" line="1077"/>
         <source> Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1050"/>
-        <location filename="mainwindow.cpp" line="1053"/>
+        <location filename="src/gui/mainwindow.cpp" line="1078"/>
+        <location filename="src/gui/mainwindow.cpp" line="1081"/>
         <source>
 Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1052"/>
+        <location filename="src/gui/mainwindow.cpp" line="1080"/>
         <source> Gb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1086"/>
+        <location filename="src/gui/mainwindow.cpp" line="1114"/>
         <source>Solving the optimal strategy... this can take a few seconds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="337"/>
-        <location filename="mainwindow.cpp" line="1126"/>
+        <location filename="src/gui/mainwindow.cpp" line="365"/>
+        <location filename="src/gui/mainwindow.cpp" line="1155"/>
         <source>Fold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="57"/>
+        <location filename="src/gui/mainwindow.cpp" line="58"/>
         <source>Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="338"/>
-        <location filename="mainwindow.cpp" line="1127"/>
+        <location filename="src/gui/mainwindow.cpp" line="366"/>
+        <location filename="src/gui/mainwindow.cpp" line="1156"/>
         <source>Call / Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="339"/>
-        <location filename="mainwindow.cpp" line="1128"/>
+        <location filename="src/gui/mainwindow.cpp" line="367"/>
+        <location filename="src/gui/mainwindow.cpp" line="1157"/>
         <source>Bet / Raise</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1138"/>
+        <location filename="src/gui/mainwindow.cpp" line="1167"/>
         <source>✅ You got it right!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1138"/>
+        <location filename="src/gui/mainwindow.cpp" line="1167"/>
         <source>❌ Not quite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1148"/>
+        <location filename="src/gui/mainwindow.cpp" line="1177"/>
         <source>You said: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1152"/>
+        <location filename="src/gui/mainwindow.cpp" line="1181"/>
         <source>With the whole range, the most frequent play here is: &lt;b&gt;%1 (%2%)&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1161"/>
+        <location filename="src/gui/mainwindow.cpp" line="1190"/>
         <source>Nice! Explore below to see the hand-by-hand detail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1162"/>
+        <location filename="src/gui/mainwindow.cpp" line="1191"/>
         <source>No worries, check the hand-by-hand detail below to understand why.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1167"/>
+        <location filename="src/gui/mainwindow.cpp" line="1196"/>
         <source>See the detail →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1191"/>
+        <location filename="src/gui/mainwindow.cpp" line="1220"/>
         <source>The solver finished calculating the strategy. Tap &quot;ShowResult&quot; to see it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1256"/>
+        <location filename="src/gui/mainwindow.cpp" line="1285"/>
         <source>(YOU)</source>
         <oldsource>(VOS)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1279"/>
+        <location filename="src/gui/mainwindow.cpp" line="1308"/>
         <source>Now choose your opponent&apos;s seat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1316"/>
+        <location filename="src/gui/mainwindow.cpp" line="1345"/>
         <source>You already chose 2 cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1317"/>
+        <location filename="src/gui/mainwindow.cpp" line="1346"/>
         <source>You can only choose 2 cards for your hand. Tap one of the already selected ones to remove it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1339"/>
+        <location filename="src/gui/mainwindow.cpp" line="1368"/>
         <source>Your Solverix subscription expired or was cancelled. You&apos;ll need to reactivate it to keep solving hands.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1374"/>
+        <location filename="src/gui/mainwindow.cpp" line="1410"/>
         <source>Situation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1374"/>
+        <location filename="src/gui/mainwindow.cpp" line="1410"/>
         <source>Your cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1374"/>
+        <location filename="src/gui/mainwindow.cpp" line="1410"/>
         <source>Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1375"/>
+        <location filename="src/gui/mainwindow.cpp" line="1411"/>
         <source>Quick Mode Step %1 of 4: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1384"/>
+        <location filename="src/gui/mainwindow.cpp" line="1420"/>
         <source>Solve →</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1279,23 +1467,23 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="obsolete">河牌发牌:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1441"/>
+        <location filename="src/gui/mainwindow.cpp" line="1509"/>
         <source>You need to choose the situation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1442"/>
+        <location filename="src/gui/mainwindow.cpp" line="1510"/>
         <source>No valid situation (seats) was chosen before solving. Go back to step 1 and choose your seat and your opponent&apos;s.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1504"/>
+        <location filename="src/gui/mainwindow.cpp" line="1577"/>
         <source>Solving</source>
         <oldsource>Resolviendo</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1505"/>
+        <location filename="src/gui/mainwindow.cpp" line="1578"/>
         <source>Building the decision tree...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1422,15 +1610,15 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation>请先构建游戏树.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="809"/>
-        <location filename="rangeselector.cpp" line="164"/>
+        <location filename="src/gui/mainwindow.cpp" line="837"/>
+        <location filename="src/gui/rangeselector.cpp" line="164"/>
         <location filename="src/runtime/PokerSolver.cpp" line="144"/>
         <source>save success</source>
         <translation>保存成功</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="811"/>
-        <location filename="rangeselector.cpp" line="166"/>
+        <location filename="src/gui/mainwindow.cpp" line="839"/>
+        <location filename="src/gui/rangeselector.cpp" line="166"/>
         <location filename="src/runtime/PokerSolver.cpp" line="146"/>
         <source>save failed, file cannot be open</source>
         <translation>保存失败，文件无法打开</translation>
@@ -1506,77 +1694,72 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="417"/>
-        <source>small</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="strategyexplorer.cpp" line="418"/>
-        <source>medium</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="strategyexplorer.cpp" line="419"/>
-        <source>big</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="strategyexplorer.cpp" line="420"/>
-        <source>overbet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="strategyexplorer.cpp" line="425"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="428"/>
         <source>Fold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="426"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="429"/>
         <source>Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="427"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="430"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="428"/>
-        <source>Bet %1% of the pot (%2)</source>
+        <location filename="src/gui/strategyexplorer.cpp" line="421"/>
+        <source>SMALL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="429"/>
-        <source>Raise to %1% of the pot (%2)</source>
+        <location filename="src/gui/strategyexplorer.cpp" line="422"/>
+        <source>MID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="430"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="423"/>
+        <source>LARGE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/strategyexplorer.cpp" line="431"/>
+        <source>Bet %1 · %2%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/strategyexplorer.cpp" line="432"/>
+        <source>Raise %1 · %2%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/strategyexplorer.cpp" line="433"/>
         <source>Other action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="437"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="440"/>
         <source>the hand isn&apos;t good enough to continue, continuing costs more than it can win</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="439"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="442"/>
         <source>good enough to see the next card for free without risking more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="441"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="444"/>
         <source>the hand is good enough to continue, but not to bet more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="445"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="448"/>
         <source>builds the pot with a strong hand and pressures the opponent into a mistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="446"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="449"/>
         <source>mixed in occasionally to stay unpredictable with this hand</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1657,82 +1840,82 @@ Rebuild tree to have changed optimization options take effect!</source>
 <context>
     <name>RangeSelector</name>
     <message>
-        <location filename="rangeselector.ui" line="14"/>
+        <location filename="src/gui/rangeselector.ui" line="14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="22"/>
+        <location filename="src/gui/rangeselector.ui" line="22"/>
         <source>Range Text</source>
         <translation>范围</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="36"/>
+        <location filename="src/gui/rangeselector.ui" line="36"/>
         <source>Confirm</source>
         <translation>确认</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="43"/>
+        <location filename="src/gui/rangeselector.ui" line="43"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="50"/>
+        <location filename="src/gui/rangeselector.ui" line="50"/>
         <source>Clear range</source>
         <translation>清空范围</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="57"/>
+        <location filename="src/gui/rangeselector.ui" line="57"/>
         <source>Export Range</source>
         <translation>导出范围</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="64"/>
+        <location filename="src/gui/rangeselector.ui" line="64"/>
         <source>Import Range</source>
         <translation>导入范围</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="71"/>
+        <location filename="src/gui/rangeselector.ui" line="71"/>
         <source>Open Range Folder</source>
         <translation>打开范围目录</translation>
     </message>
     <message>
-        <location filename="rangeselector.ui" line="107"/>
+        <location filename="src/gui/rangeselector.ui" line="107"/>
         <source>Range Number</source>
         <translation>范围数字</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="27"/>
+        <location filename="src/gui/rangeselector.cpp" line="27"/>
         <source>RangeSelector</source>
         <translation>范围选择器</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="149"/>
+        <location filename="src/gui/rangeselector.cpp" line="149"/>
         <source>Save Range</source>
         <translation>保存范围</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="151"/>
+        <location filename="src/gui/rangeselector.cpp" line="151"/>
         <source>Text file (*.txt)</source>
         <translation>文本文件 (*.txt)</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="200"/>
+        <location filename="src/gui/rangeselector.cpp" line="200"/>
         <source>Open range file</source>
         <translation>打开范围文件</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="202"/>
+        <location filename="src/gui/rangeselector.cpp" line="202"/>
         <source>Text files (*.txt)</source>
         <translation>文本文件 (*.txt)</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="182"/>
+        <location filename="src/gui/rangeselector.cpp" line="182"/>
         <source>File selection invalid.</source>
         <translation>文件选择无效.</translation>
     </message>
     <message>
-        <location filename="rangeselector.cpp" line="187"/>
+        <location filename="src/gui/rangeselector.cpp" line="187"/>
         <source>File open failed.</source>
         <translation>文件打开失败.</translation>
     </message>
@@ -1806,196 +1989,196 @@ Rebuild tree to have changed optimization options take effect!</source>
 <context>
     <name>SettingEditor</name>
     <message>
-        <location filename="settingeditor.ui" line="14"/>
+        <location filename="src/gui/settingeditor.ui" line="14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="24"/>
+        <location filename="src/gui/settingeditor.ui" line="24"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="32"/>
+        <location filename="src/gui/settingeditor.ui" line="32"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="37"/>
+        <location filename="src/gui/settingeditor.ui" line="37"/>
         <source>Chinese</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="42"/>
+        <location filename="src/gui/settingeditor.ui" line="42"/>
         <source>Español</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="47"/>
+        <location filename="src/gui/settingeditor.ui" line="47"/>
         <source>Português</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="72"/>
+        <location filename="src/gui/settingeditor.ui" line="72"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="80"/>
+        <location filename="src/gui/settingeditor.ui" line="80"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="85"/>
+        <location filename="src/gui/settingeditor.ui" line="85"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="90"/>
+        <location filename="src/gui/settingeditor.ui" line="90"/>
         <source>Poker Room</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="95"/>
+        <location filename="src/gui/settingeditor.ui" line="95"/>
         <source>Violet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="100"/>
+        <location filename="src/gui/settingeditor.ui" line="100"/>
         <source>Fintech</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="125"/>
+        <location filename="src/gui/settingeditor.ui" line="125"/>
         <source>Dump round when saving strategy</source>
         <translation>保存策略时的保存轮数</translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="133"/>
+        <location filename="src/gui/settingeditor.ui" line="133"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="138"/>
+        <location filename="src/gui/settingeditor.ui" line="138"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="143"/>
+        <location filename="src/gui/settingeditor.ui" line="143"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="166"/>
+        <location filename="src/gui/settingeditor.ui" line="166"/>
         <source>Create desktop shortcut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="173"/>
-        <location filename="settingeditor.cpp" line="96"/>
+        <location filename="src/gui/settingeditor.ui" line="173"/>
+        <location filename="src/gui/settingeditor.cpp" line="96"/>
         <source>Log out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="180"/>
+        <location filename="src/gui/settingeditor.ui" line="180"/>
         <source>Solver options (Quick Mode / Practice Mode)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="189"/>
+        <location filename="src/gui/settingeditor.ui" line="189"/>
         <source>Iterations Quick Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="213"/>
+        <location filename="src/gui/settingeditor.ui" line="213"/>
         <source>Iterations Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="237"/>
+        <location filename="src/gui/settingeditor.ui" line="237"/>
         <source>Target exploitability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="264"/>
+        <location filename="src/gui/settingeditor.ui" line="264"/>
         <source>Log interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="288"/>
+        <location filename="src/gui/settingeditor.ui" line="288"/>
         <source>Threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.ui" line="312"/>
+        <location filename="src/gui/settingeditor.ui" line="312"/>
         <source>Raise limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="15"/>
+        <location filename="src/gui/settingeditor.cpp" line="15"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="28"/>
+        <location filename="src/gui/settingeditor.cpp" line="28"/>
         <source>Unknown language: </source>
         <translation>未知语言: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="28"/>
-        <location filename="settingeditor.cpp" line="43"/>
-        <location filename="settingeditor.cpp" line="132"/>
-        <location filename="settingeditor.cpp" line="149"/>
+        <location filename="src/gui/settingeditor.cpp" line="28"/>
+        <location filename="src/gui/settingeditor.cpp" line="43"/>
+        <location filename="src/gui/settingeditor.cpp" line="132"/>
+        <location filename="src/gui/settingeditor.cpp" line="149"/>
         <source>Setting fail</source>
         <translation>设置失败</translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="43"/>
+        <location filename="src/gui/settingeditor.cpp" line="43"/>
         <source>Unknown theme: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="50"/>
+        <location filename="src/gui/settingeditor.cpp" line="50"/>
         <source>dump round error: </source>
         <translation>保存轮数错误: </translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="86"/>
+        <location filename="src/gui/settingeditor.cpp" line="86"/>
         <source>Desktop shortcut created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="88"/>
+        <location filename="src/gui/settingeditor.cpp" line="88"/>
         <source>Couldn&apos;t create the desktop shortcut.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="97"/>
+        <location filename="src/gui/settingeditor.cpp" line="97"/>
         <source>Log out of this account? The app will close and you&apos;ll need to log in again next time you open it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="113"/>
+        <location filename="src/gui/settingeditor.cpp" line="113"/>
         <source>Logged out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="113"/>
+        <location filename="src/gui/settingeditor.cpp" line="113"/>
         <source>You&apos;re logged out. Solverix will close now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="132"/>
+        <location filename="src/gui/settingeditor.cpp" line="132"/>
         <source>Unknown language index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="149"/>
+        <location filename="src/gui/settingeditor.cpp" line="149"/>
         <source>Unknown theme index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingeditor.cpp" line="169"/>
+        <location filename="src/gui/settingeditor.cpp" line="169"/>
         <source>Restart the program for your changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2007,58 +2190,58 @@ Rebuild tree to have changed optimization options take effect!</source>
 <context>
     <name>StrategyExplorer</name>
     <message>
-        <location filename="strategyexplorer.ui" line="14"/>
+        <location filename="src/gui/strategyexplorer.ui" line="14"/>
         <source>StrategyExplorer</source>
         <translation>策略浏览器</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="25"/>
+        <location filename="src/gui/strategyexplorer.ui" line="25"/>
         <source>This is the solver&apos;s result. The grid below shows, for every possible hand your opponent could have (AA top-left to 22 bottom-right on the diagonal = pairs; above the diagonal = suited; below = offsuit), how often each action is correct (blue = fold, green = call, red = bet/raise). Gray means that hand isn&apos;t part of the opponent&apos;s range at this point (they wouldn&apos;t get here with those cards). Tap &quot;View decision tree and advanced options&quot; to explore other points in the hand.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="47"/>
-        <location filename="strategyexplorer.cpp" line="575"/>
+        <location filename="src/gui/strategyexplorer.ui" line="47"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="621"/>
         <source>🔍 View decision tree and advanced options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="54"/>
+        <location filename="src/gui/strategyexplorer.ui" line="54"/>
         <source>🖼️ Export as image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="61"/>
+        <location filename="src/gui/strategyexplorer.ui" line="61"/>
         <source>📖 Glossary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="70"/>
+        <location filename="src/gui/strategyexplorer.ui" line="70"/>
         <source>Game Tree</source>
         <translation>游戏树</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="94"/>
+        <location filename="src/gui/strategyexplorer.ui" line="94"/>
         <source>  Turn card:</source>
         <translation>  转牌发牌:</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="104"/>
+        <location filename="src/gui/strategyexplorer.ui" line="104"/>
         <source>River card:</source>
         <translation>河牌发牌:</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="138"/>
+        <location filename="src/gui/strategyexplorer.ui" line="138"/>
         <source>Fold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="164"/>
+        <location filename="src/gui/strategyexplorer.ui" line="164"/>
         <source>Call / Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="190"/>
+        <location filename="src/gui/strategyexplorer.ui" line="190"/>
         <source>Bet / Raise</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2067,66 +2250,66 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="vanished">大致策略</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="304"/>
+        <location filename="src/gui/strategyexplorer.ui" line="304"/>
         <source>board:</source>
         <translation>牌面:</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="315"/>
+        <location filename="src/gui/strategyexplorer.ui" line="315"/>
         <source>NoNodeChosen</source>
         <translation>尚未选择节点</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="377"/>
+        <location filename="src/gui/strategyexplorer.ui" line="377"/>
         <source>Strategy &amp; EVs:</source>
         <translation>策略和价值:</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="403"/>
+        <location filename="src/gui/strategyexplorer.ui" line="403"/>
         <source>Ev + strategy</source>
         <translation>策略 + 价值</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="416"/>
+        <location filename="src/gui/strategyexplorer.ui" line="416"/>
         <source>Ev</source>
         <translation>价值</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="353"/>
-        <location filename="strategyexplorer.cpp" line="201"/>
+        <location filename="src/gui/strategyexplorer.ui" line="353"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="201"/>
         <source>IP</source>
         <translation>后行动玩家(IP)</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="216"/>
+        <location filename="src/gui/strategyexplorer.ui" line="216"/>
         <source>Out of range (doesn&apos;t play this hand here)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="259"/>
+        <location filename="src/gui/strategyexplorer.ui" line="259"/>
         <source>Recommended play (overall summary)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="271"/>
-        <location filename="strategyexplorer.cpp" line="538"/>
-        <location filename="strategyexplorer.cpp" line="543"/>
+        <location filename="src/gui/strategyexplorer.ui" line="271"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="584"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="589"/>
         <source>With your opponent&apos;s whole range at this point: how often it&apos;s correct to fold (blue), call (green), or bet/raise (red).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="326"/>
+        <location filename="src/gui/strategyexplorer.ui" line="326"/>
         <source>Advanced mode (hover over a cell to see the EV)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="366"/>
-        <location filename="strategyexplorer.cpp" line="201"/>
+        <location filename="src/gui/strategyexplorer.ui" line="366"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="201"/>
         <source>OOP</source>
         <translation>先行动玩家(OOP)</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="340"/>
+        <location filename="src/gui/strategyexplorer.ui" line="340"/>
         <source>Range:</source>
         <translation>范围:</translation>
     </message>
@@ -2135,7 +2318,7 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="vanished">策略:</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.ui" line="390"/>
+        <location filename="src/gui/strategyexplorer.ui" line="390"/>
         <source>strategy</source>
         <translation>策略</translation>
     </message>
@@ -2148,204 +2331,204 @@ Rebuild tree to have changed optimization options take effect!</source>
         <translation type="vanished">范围</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="27"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="27"/>
         <source>The hand&apos;s decision tree. Each level is a street (flop/turn/river) and each node is a point where a player acts. Tap a node to see the solver&apos;s strategy at that exact point.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="28"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="28"/>
         <source>Choose which card came on the turn to see the strategy for that specific runout.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="29"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="29"/>
         <source>Choose which card came on the river to see the strategy for that specific runout.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="30"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="30"/>
         <source>Recommended strategy for every possible hand your opponent could have at the selected node. Blue = fold, green = call, red = bet/raise. The size of each color inside the cell is how often that action is chosen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="31"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="31"/>
         <source>Simplified summary: how often, overall, the opponent folds, calls, or bets/raises with their whole range at this node.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="32"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="32"/>
         <source>The community cards on the table at this point in the hand.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="33"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="33"/>
         <source>What action led to this node (e.g. &quot;OOP bet 50%&quot;) and whose turn it is to act.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="34"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="34"/>
         <source>If checked, hovering over a cell also shows the EV (expected value in chips) of each action, not just the frequency %.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="35"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="35"/>
         <source>View the full range of cards the IP player could have at this node.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="36"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="36"/>
         <source>View the full range of cards the OOP player could have at this node.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="37"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="37"/>
         <source>Show only the strategy (how often each action is chosen) in the grid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="38"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="38"/>
         <source>Show the strategy together with the EV (expected value) of each action.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="39"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="39"/>
         <source>Show only the EV (expected value) of each hand, without the strategy detail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="40"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="40"/>
         <source>Combo-by-combo detail of the hand selected in the strategy grid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="194"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="194"/>
         <source>board</source>
         <translation>牌面</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="201"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="201"/>
         <source> decision node</source>
         <translation> 决策节点</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="205"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="205"/>
         <source>&lt;b&gt;Chance node&lt;/b&gt;</source>
         <translation>&lt;b&gt;发牌节点&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="209"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="209"/>
         <source>&lt;b&gt;Terminal node&lt;/b&gt;</source>
         <translation>&lt;b&gt;Fold节点&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="213"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="213"/>
         <source>&lt;b&gt;Showdown node&lt;/b&gt;</source>
         <translation>&lt;b&gt;摊牌节点&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="233"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="225"/>
         <source>Encountering error:</source>
         <translation>遇到错误:</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="324"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="328"/>
         <source>FOLD</source>
         <translation type="unfinished">弃牌</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="325"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="329"/>
         <source>CALL</source>
         <translation type="unfinished">跟注</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="326"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="330"/>
         <source>CHECK</source>
         <translation type="unfinished">过牌</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="327"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="331"/>
         <source>BET</source>
         <translation type="unfinished">下注</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="328"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="332"/>
         <source>RAISE</source>
         <translation type="unfinished">加注</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="335"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="339"/>
         <source>Can&apos;t calculate</source>
         <translation type="unfinished">无法计算</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="339"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="343"/>
         <source>EV</source>
         <translation type="unfinished">价值</translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="508"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="554"/>
         <source> [costs ~%1 fewer chips than the best play]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="514"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="560"/>
         <source>With %1:&lt;br&gt;%2</source>
         <oldsource>Con %1:&lt;br&gt;%2</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="555"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="601"/>
         <source>Your opponent gets here and, with their whole range, folds %1% of the time, calls/checks %2%, and bets/raises %3%.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="574"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="620"/>
         <source>🔍 Hide decision tree and advanced options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="583"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="629"/>
         <source>solverix_play_%1.png</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="584"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="630"/>
         <source>Export as image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="584"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="630"/>
         <source>PNG image (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="589"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="635"/>
         <source>Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="589"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="635"/>
         <source>Image saved to:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="591"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="637"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="591"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="637"/>
         <source>Couldn&apos;t save the image.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="596"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="642"/>
         <source>&lt;h3&gt;Quick glossary&lt;/h3&gt;&lt;p&gt;&lt;b&gt;EV (expected value):&lt;/b&gt; how much a play wins or loses on average, in chips, if repeated many times. A higher EV is better.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Range:&lt;/b&gt; the set of possible hands a player could have at a point in the hand, not an exact card.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Blocker:&lt;/b&gt; holding a card that makes it less likely your opponent has a certain strong hand (e.g. holding an Ace reduces the AA combos your opponent could have).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Indifference:&lt;/b&gt; a point where two plays give exactly the same expected result, which is why the solver sometimes mixes between two actions with the same hand.&lt;/p&gt;&lt;p&gt;&lt;b&gt;IP / OOP:&lt;/b&gt; IP (in position) is the player who acts last on the street; OOP (out of position) is the one who acts first. Playing in position (IP) is an advantage.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Combos:&lt;/b&gt; the number of exact card combinations that make up a hand (e.g. AKs has 4 combos, one per suit).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Frequency:&lt;/b&gt; how often the solver chooses an action with a given hand, expressed as a percentage.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="strategyexplorer.cpp" line="607"/>
+        <location filename="src/gui/strategyexplorer.cpp" line="653"/>
         <source>Glossary</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2371,17 +2554,17 @@ Rebuild tree to have changed optimization options take effect!</source>
 <context>
     <name>WelcomeDialog</name>
     <message>
-        <location filename="welcomedialog.ui" line="14"/>
+        <location filename="src/gui/welcomedialog.ui" line="14"/>
         <source>Welcome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="welcomedialog.ui" line="20"/>
+        <location filename="src/gui/welcomedialog.ui" line="20"/>
         <source>What is Solverix?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="welcomedialog.ui" line="30"/>
+        <location filename="src/gui/welcomedialog.ui" line="30"/>
         <source>Solverix works out, for a specific hand situation, the mathematically balanced way to play it.
 
 You have two ways to use it:
@@ -2396,22 +2579,22 @@ If it&apos;s your first time, we recommend Quick Mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="welcomedialog.ui" line="62"/>
+        <location filename="src/gui/welcomedialog.ui" line="62"/>
         <source>🔧 Advanced Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="welcomedialog.ui" line="69"/>
+        <location filename="src/gui/welcomedialog.ui" line="69"/>
         <source>🚀 Quick Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="welcomedialog.ui" line="76"/>
+        <location filename="src/gui/welcomedialog.ui" line="76"/>
         <source>🎯 Practice Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="welcomedialog.cpp" line="9"/>
+        <location filename="src/gui/welcomedialog.cpp" line="9"/>
         <source>Welcome to Solverix</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2419,37 +2602,37 @@ If it&apos;s your first time, we recommend Quick Mode.</source>
 <context>
     <name>boardselector</name>
     <message>
-        <location filename="boardselector.ui" line="14"/>
+        <location filename="src/gui/boardselector.ui" line="14"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="boardselector.ui" line="29"/>
+        <location filename="src/gui/boardselector.ui" line="29"/>
         <source>Confirm</source>
         <translation>确认</translation>
     </message>
     <message>
-        <location filename="boardselector.ui" line="36"/>
+        <location filename="src/gui/boardselector.ui" line="36"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="boardselector.ui" line="43"/>
+        <location filename="src/gui/boardselector.ui" line="43"/>
         <source>Clear Board</source>
         <translation>清除公共牌</translation>
     </message>
     <message>
-        <location filename="boardselector.cpp" line="11"/>
+        <location filename="src/gui/boardselector.cpp" line="11"/>
         <source>BoardSelector</source>
         <translation>公共牌选择器</translation>
     </message>
     <message>
-        <location filename="boardselector.cpp" line="50"/>
+        <location filename="src/gui/boardselector.cpp" line="50"/>
         <source>A board can only have up to 5 cards (flop + turn + river).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="boardselector.cpp" line="51"/>
+        <location filename="src/gui/boardselector.cpp" line="51"/>
         <source>You can only add 1 card here.</source>
         <translation type="unfinished"></translation>
     </message>
