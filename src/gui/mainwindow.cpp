@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+﻿#include "include/gui/mainwindow.h"
 #include "ui_mainwindow.h"
 #include "stdio.h"
 #include "include/runtime/qsolverjob.h"

@@ -75,8 +75,8 @@ QMAKE_CXXFLAGS_RELEASE *= -O2
 QMAKE_LFLAGS += -v
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp \
+    src/gui/main.cpp \
+    src/gui/mainwindow.cpp \
     src/Deck.cpp \
     src/Card.cpp \
     src/console.cpp \
@@ -148,7 +148,7 @@ HEADERS += \
     include/tools/half-1-12-0.h \
     include/trainable/DiscountedCfrTrainableHF.h \
     include/trainable/DiscountedCfrTrainableSF.h \
-    mainwindow.h \
+    include/gui/mainwindow.h \
     include/Card.h \
     include/GameTree.h \
     include/Deck.h \
@@ -218,7 +218,7 @@ HEADERS += \
     include/data/apiclient.h
 
 FORMS += \
-        mainwindow.ui \
+        src/gui/mainwindow.ui \
     src/gui/strategyexplorer.ui \
     src/gui/rangeselector.ui \
     src/gui/boardselector.ui \

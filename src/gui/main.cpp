@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+﻿#include "include/gui/mainwindow.h"
 #include <QApplication>
 #include <QTranslator>
 #include <QInputDialog>
