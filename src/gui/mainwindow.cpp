@@ -1456,14 +1456,6 @@ void MainWindow::rebuildQuickFacingActionButtons(){
         layout->addWidget(btn);
     }
 
-    QPushButton* resetBtn = new QPushButton(tr("↺ Todavía sin acción"), this->quickFacingButtonsRow);
-    resetBtn->setStyleSheet("padding:8px 12px; font-size:12.5px; color:#8fb39f;");
-    connect(resetBtn, &QPushButton::clicked, this, [this](){
-        this->strategyExplorer->selectRootNode();
-        this->strategyExplorer->setHighlightedHand(this->quickModeCard1, this->quickModeCard2);
-    });
-    layout->addWidget(resetBtn);
-
     this->quickFacingActionBar->setVisible(true);
 }
 

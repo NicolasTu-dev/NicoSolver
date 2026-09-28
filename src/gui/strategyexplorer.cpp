@@ -428,8 +428,8 @@ static QString actionLabel(GameTreeNode::PokerActions action, double amount){
         case GameTreeNode::PokerActions::FOLD: return QObject::tr("Fold");
         case GameTreeNode::PokerActions::CHECK: return QObject::tr("Check");
         case GameTreeNode::PokerActions::CALL: return QObject::tr("Call");
-        case GameTreeNode::PokerActions::BET: return QObject::tr("Bet %1").arg(sizeTag(amount));
-        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Raise %1").arg(sizeTag(amount));
+        case GameTreeNode::PokerActions::BET: return QObject::tr("Bet %1 · %2%").arg(sizeTag(amount)).arg((int)amount);
+        case GameTreeNode::PokerActions::RAISE: return QObject::tr("Raise %1 · %2%").arg(sizeTag(amount)).arg((int)amount);
         default: return QObject::tr("Other action");
     }
 }
