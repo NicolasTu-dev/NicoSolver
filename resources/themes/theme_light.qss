@@ -332,6 +332,25 @@ QSplitter::handle {
     color: #1a1d29;
 }
 
+#icmProgressDotOn {
+    background-color: #3d5afe;
+    border-radius: 2px;
+}
+#icmProgressDotOff {
+    background-color: #e2e4ea;
+    border-radius: 2px;
+}
+#icmStepCard {
+    background-color: #eef0f4;
+    border: 2px solid #e2e4ea;
+    border-radius: 10px;
+}
+#icmStepCardHighlight {
+    background-color: #eef0f4;
+    border: 2px solid #3d5afe;
+    border-radius: 10px;
+}
+
 #ipBetSizesHeader, #oopBetSizesHeader {
     color: #3d5afe;
     font-weight: 700;
