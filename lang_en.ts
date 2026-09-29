@@ -55,174 +55,185 @@
 <context>
     <name>IcmPushFoldDialog</name>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="43"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="44"/>
         <source>Tournament Games Pre-Flop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="53"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="54"/>
         <source>&lt;b&gt;What happened?&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="54"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="55"/>
         <source>Someone shoved all-in first (no raise before it)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="55"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="56"/>
         <source>I raised and got shoved on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="63"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="112"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="64"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="85"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="135"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="161"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="187"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="215"/>
         <source>Next →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="75"/>
-        <source>&lt;b&gt;How many players are left at the table?&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="93"/>
-        <source>Current big blind:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="96"/>
-        <source>&lt;b&gt;How many places get paid?&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="111"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="136"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="188"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="83"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="133"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="159"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="185"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="213"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="238"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="291"/>
         <source>← Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="126"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="98"/>
+        <source>&lt;h3&gt;How many chips do you&lt;br&gt;and your opponent have?&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="107"/>
+        <source>YOU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="119"/>
+        <source>OPPONENT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="148"/>
+        <source>&lt;h3&gt;How many chips does&lt;br&gt;everyone else have?&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="174"/>
+        <source>&lt;h3&gt;What&apos;s the current&lt;br&gt;big blind?&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="200"/>
+        <source>&lt;h3&gt;How much does each&lt;br&gt;place pay?&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="228"/>
         <source>&lt;b&gt;Your hand&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="129"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="298"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="231"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="455"/>
         <source>(not chosen)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="131"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="146"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="233"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="249"/>
         <source>Choose your hand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="137"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="240"/>
         <source>See result →</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="146"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="249"/>
         <source>You need to choose 2 cards before continuing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="210"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="362"/>
+        <source>Enter both stacks before continuing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="385"/>
         <source>Player %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="213"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="112"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="124"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="181"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="388"/>
         <source>chips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="217"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="222"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="267"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="311"/>
-        <source>You</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="218"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="223"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="268"/>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="312"/>
-        <source>Opponent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="246"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="417"/>
         <source>Place %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="249"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="420"/>
         <source>$</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="264"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="362"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="398"/>
         <source>Missing data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="264"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="77"/>
+        <source>&lt;h3&gt;How many players are&lt;br&gt;left at the table?&lt;/h3&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="398"/>
         <source>Enter the stack for every player.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="271"/>
-        <source>Mark yourself and your opponent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="272"/>
-        <source>Mark exactly one seat as &apos;You&apos; and exactly one as &apos;Opponent&apos;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="276"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="429"/>
         <source>Missing big blind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="276"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="429"/>
         <source>Enter the current big blind.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="281"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="438"/>
         <source>Missing payouts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="281"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="438"/>
         <source>Enter the payout for every paid place.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="335"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="494"/>
         <source>✓ Call</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="335"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="494"/>
         <source>✕ Fold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="344"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="503"/>
         <source>Your value if you call
 $%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/gui/icmpushfolddialog.cpp" line="347"/>
+        <location filename="src/gui/icmpushfolddialog.cpp" line="506"/>
         <source>Your value if you fold
 $%1</source>
         <translation type="unfinished"></translation>

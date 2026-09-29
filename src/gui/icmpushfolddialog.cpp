@@ -14,6 +14,7 @@
 #include <QHBoxLayout>
 #include <QApplication>
 #include <QHeaderView>
+#include <QFrame>
 
 // Renders a card string like "Jh" as a small white "chip" (rank + colored
 // suit symbol on a light background), matching the card-chip motif already
@@ -69,58 +70,159 @@ IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidg
     });
     this->stack->addWidget(scenarioPage);
 
-    // ---- Page 1: players/stacks + blinds/payouts (merged into one step) ----
-    QWidget* stacksPage = new QWidget(this);
-    QVBoxLayout* stacksPageLayout = new QVBoxLayout(stacksPage);
-    stacksPageLayout->addWidget(new QLabel(tr("<b>How many players are left at the table?</b>"), stacksPage));
-    QSpinBox* playerCountSpin = new QSpinBox(stacksPage);
-    playerCountSpin->setRange(2, 9);
-    playerCountSpin->setValue(6);
-    stacksPageLayout->addWidget(playerCountSpin);
+    // ---- Page 1: how many players ----
+    QWidget* countPage = new QWidget(this);
+    QVBoxLayout* countPageLayout = new QVBoxLayout(countPage);
+    countPageLayout->addWidget(this->buildProgressDots(0));
+    QLabel* countTitle = new QLabel(tr("<h3>How many players are<br>left at the table?</h3>"), countPage);
+    countTitle->setAlignment(Qt::AlignCenter);
+    countPageLayout->addWidget(countTitle);
+    countPageLayout->addStretch();
+    countPageLayout->addWidget(this->buildStepperRow(&this->playerCount, 2, 9, &this->playerCountLabel, [](){}));
+    countPageLayout->addStretch();
+    QPushButton* countBack = new QPushButton(tr("← Back"), countPage);
+    countBack->setObjectName("wizardBackButton");
+    QPushButton* countNext = new QPushButton(tr("Next →"), countPage);
+    QHBoxLayout* countNav = new QHBoxLayout();
+    countNav->addWidget(countBack);
+    countNav->addWidget(countNext);
+    countPageLayout->addLayout(countNav);
+    connect(countBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
+    connect(countNext, &QPushButton::clicked, this, [this](){ this->goToPage(2); });
+    this->stack->addWidget(countPage);
 
-    QScrollArea* stackScroll = new QScrollArea(stacksPage);
-    stackScroll->setWidgetResizable(true);
-    QWidget* stackRowsWidget = new QWidget(stackScroll);
-    this->stackRowsLayout = new QVBoxLayout(stackRowsWidget);
-    stackScroll->setWidget(stackRowsWidget);
-    stacksPageLayout->addWidget(stackScroll);
+    // ---- Page 2: your stack and your opponent's ----
+    QWidget* heroVillainPage = new QWidget(this);
+    QVBoxLayout* heroVillainLayout = new QVBoxLayout(heroVillainPage);
+    heroVillainLayout->addWidget(this->buildProgressDots(1));
+    QLabel* heroVillainTitle = new QLabel(tr("<h3>How many chips do you<br>and your opponent have?</h3>"), heroVillainPage);
+    heroVillainTitle->setAlignment(Qt::AlignCenter);
+    heroVillainLayout->addWidget(heroVillainTitle);
+    heroVillainLayout->addStretch();
 
-    connect(playerCountSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &IcmPushFoldDialog::onPlayerCountChanged);
+    QHBoxLayout* heroVillainCards = new QHBoxLayout();
+    QWidget* heroCard = new QWidget(heroVillainPage);
+    heroCard->setObjectName("icmStepCardHighlight");
+    QVBoxLayout* heroCardLayout = new QVBoxLayout(heroCard);
+    QLabel* heroTag = new QLabel(tr("YOU"), heroCard);
+    heroTag->setAlignment(Qt::AlignCenter);
+    this->heroStackInput = new QLineEdit(heroCard);
+    this->heroStackInput->setValidator(new QDoubleValidator(0, 100000000, 0, this->heroStackInput));
+    this->heroStackInput->setAlignment(Qt::AlignCenter);
+    this->heroStackInput->setPlaceholderText(tr("chips"));
+    heroCardLayout->addWidget(heroTag);
+    heroCardLayout->addWidget(this->heroStackInput);
 
-    QFormLayout* blindForm = new QFormLayout();
-    this->bigBlindInput = new QLineEdit(stacksPage);
+    QWidget* villainCard = new QWidget(heroVillainPage);
+    villainCard->setObjectName("icmStepCard");
+    QVBoxLayout* villainCardLayout = new QVBoxLayout(villainCard);
+    QLabel* villainTag = new QLabel(tr("OPPONENT"), villainCard);
+    villainTag->setAlignment(Qt::AlignCenter);
+    this->villainStackInput = new QLineEdit(villainCard);
+    this->villainStackInput->setValidator(new QDoubleValidator(0, 100000000, 0, this->villainStackInput));
+    this->villainStackInput->setAlignment(Qt::AlignCenter);
+    this->villainStackInput->setPlaceholderText(tr("chips"));
+    villainCardLayout->addWidget(villainTag);
+    villainCardLayout->addWidget(this->villainStackInput);
+
+    heroVillainCards->addWidget(heroCard);
+    heroVillainCards->addWidget(villainCard);
+    heroVillainLayout->addLayout(heroVillainCards);
+    heroVillainLayout->addStretch();
+
+    QPushButton* heroVillainBack = new QPushButton(tr("← Back"), heroVillainPage);
+    heroVillainBack->setObjectName("wizardBackButton");
+    QPushButton* heroVillainNext = new QPushButton(tr("Next →"), heroVillainPage);
+    QHBoxLayout* heroVillainNav = new QHBoxLayout();
+    heroVillainNav->addWidget(heroVillainBack);
+    heroVillainNav->addWidget(heroVillainNext);
+    heroVillainLayout->addLayout(heroVillainNav);
+    connect(heroVillainBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
+    connect(heroVillainNext, &QPushButton::clicked, this, &IcmPushFoldDialog::onHeroVillainContinue);
+    this->stack->addWidget(heroVillainPage);
+
+    // ---- Page 3: the rest of the table (skipped if playerCount == 2) ----
+    QWidget* othersPage = new QWidget(this);
+    QVBoxLayout* othersLayout = new QVBoxLayout(othersPage);
+    othersLayout->addWidget(this->buildProgressDots(2));
+    QLabel* othersTitle = new QLabel(tr("<h3>How many chips does<br>everyone else have?</h3>"), othersPage);
+    othersTitle->setAlignment(Qt::AlignCenter);
+    othersLayout->addWidget(othersTitle);
+
+    QScrollArea* othersScroll = new QScrollArea(othersPage);
+    othersScroll->setWidgetResizable(true);
+    QWidget* othersRowsWidget = new QWidget(othersScroll);
+    this->otherPlayersLayout = new QVBoxLayout(othersRowsWidget);
+    othersScroll->setWidget(othersRowsWidget);
+    othersLayout->addWidget(othersScroll);
+
+    QPushButton* othersBack = new QPushButton(tr("← Back"), othersPage);
+    othersBack->setObjectName("wizardBackButton");
+    QPushButton* othersNext = new QPushButton(tr("Next →"), othersPage);
+    QHBoxLayout* othersNav = new QHBoxLayout();
+    othersNav->addWidget(othersBack);
+    othersNav->addWidget(othersNext);
+    othersLayout->addLayout(othersNav);
+    connect(othersBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
+    connect(othersNext, &QPushButton::clicked, this, &IcmPushFoldDialog::onOtherPlayersContinue);
+    this->stack->addWidget(othersPage);
+
+    // ---- Page 4: big blind ----
+    QWidget* blindPage = new QWidget(this);
+    QVBoxLayout* blindPageLayout = new QVBoxLayout(blindPage);
+    blindPageLayout->addWidget(this->buildProgressDots(3));
+    QLabel* blindTitle = new QLabel(tr("<h3>What's the current<br>big blind?</h3>"), blindPage);
+    blindTitle->setAlignment(Qt::AlignCenter);
+    blindPageLayout->addWidget(blindTitle);
+    blindPageLayout->addStretch();
+    this->bigBlindInput = new QLineEdit(blindPage);
     this->bigBlindInput->setValidator(new QDoubleValidator(0.01, 1000000, 2, this->bigBlindInput));
-    blindForm->addRow(tr("Current big blind:"), this->bigBlindInput);
-    stacksPageLayout->addLayout(blindForm);
+    this->bigBlindInput->setAlignment(Qt::AlignCenter);
+    this->bigBlindInput->setPlaceholderText(tr("chips"));
+    this->bigBlindInput->setStyleSheet("font-size:26px; font-weight:800; padding:14px;");
+    blindPageLayout->addWidget(this->bigBlindInput);
+    blindPageLayout->addStretch();
+    QPushButton* blindBack = new QPushButton(tr("← Back"), blindPage);
+    blindBack->setObjectName("wizardBackButton");
+    QPushButton* blindNext = new QPushButton(tr("Next →"), blindPage);
+    QHBoxLayout* blindNav = new QHBoxLayout();
+    blindNav->addWidget(blindBack);
+    blindNav->addWidget(blindNext);
+    blindPageLayout->addLayout(blindNav);
+    connect(blindBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
+    connect(blindNext, &QPushButton::clicked, this, &IcmPushFoldDialog::onBigBlindContinue);
+    this->stack->addWidget(blindPage);
 
-    stacksPageLayout->addWidget(new QLabel(tr("<b>How many places get paid?</b>"), stacksPage));
-    QSpinBox* payoutCountSpin = new QSpinBox(stacksPage);
-    payoutCountSpin->setRange(1, 9);
-    payoutCountSpin->setValue(3);
-    stacksPageLayout->addWidget(payoutCountSpin);
+    // ---- Page 5: payouts ----
+    QWidget* payoutsPage = new QWidget(this);
+    QVBoxLayout* payoutsPageLayout = new QVBoxLayout(payoutsPage);
+    payoutsPageLayout->addWidget(this->buildProgressDots(4));
+    QLabel* payoutsTitle = new QLabel(tr("<h3>How much does each<br>place pay?</h3>"), payoutsPage);
+    payoutsTitle->setAlignment(Qt::AlignCenter);
+    payoutsPageLayout->addWidget(payoutsTitle);
+    payoutsPageLayout->addWidget(this->buildStepperRow(&this->payoutCount, 1, 9, &this->payoutCountLabel,
+        [this](){ this->rebuildPayoutRows(); }));
 
-    QScrollArea* payoutScroll = new QScrollArea(stacksPage);
+    QScrollArea* payoutScroll = new QScrollArea(payoutsPage);
     payoutScroll->setWidgetResizable(true);
     QWidget* payoutRowsWidget = new QWidget(payoutScroll);
     this->payoutRowsLayout = new QVBoxLayout(payoutRowsWidget);
     payoutScroll->setWidget(payoutRowsWidget);
-    stacksPageLayout->addWidget(payoutScroll);
+    payoutsPageLayout->addWidget(payoutScroll);
 
-    connect(payoutCountSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &IcmPushFoldDialog::onPayoutCountChanged);
+    QPushButton* payoutsBack = new QPushButton(tr("← Back"), payoutsPage);
+    payoutsBack->setObjectName("wizardBackButton");
+    QPushButton* payoutsNext = new QPushButton(tr("Next →"), payoutsPage);
+    QHBoxLayout* payoutsNav = new QHBoxLayout();
+    payoutsNav->addWidget(payoutsBack);
+    payoutsNav->addWidget(payoutsNext);
+    payoutsPageLayout->addLayout(payoutsNav);
+    connect(payoutsBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
+    connect(payoutsNext, &QPushButton::clicked, this, &IcmPushFoldDialog::onPayoutsContinue);
+    this->stack->addWidget(payoutsPage);
+    this->rebuildPayoutRows();
 
-    QPushButton* stacksBack = new QPushButton(tr("← Back"), stacksPage);
-    QPushButton* stacksNext = new QPushButton(tr("Next →"), stacksPage);
-    QHBoxLayout* stacksNav = new QHBoxLayout();
-    stacksNav->addWidget(stacksBack);
-    stacksNav->addWidget(stacksNext);
-    stacksPageLayout->addLayout(stacksNav);
-    connect(stacksBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
-    connect(stacksNext, &QPushButton::clicked, this, &IcmPushFoldDialog::onStacksAndPayoutsContinue);
-    this->stack->addWidget(stacksPage);
-    this->onPlayerCountChanged(playerCountSpin->value());
-    this->onPayoutCountChanged(payoutCountSpin->value());
-
-    // ---- Page 2: hand ----
+    // ---- Page 6: hand ----
     QWidget* handPage = new QWidget(this);
     QVBoxLayout* handPageLayout = new QVBoxLayout(handPage);
     handPageLayout->addWidget(new QLabel(tr("<b>Your hand</b>"), handPage));
@@ -134,6 +236,7 @@ IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidg
     handPageLayout->addStretch();
 
     QPushButton* handBack = new QPushButton(tr("← Back"), handPage);
+    handBack->setObjectName("wizardBackButton");
     QPushButton* handNext = new QPushButton(tr("See result →"), handPage);
     QHBoxLayout* handNav = new QHBoxLayout();
     handNav->addWidget(handBack);
@@ -150,7 +253,7 @@ IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidg
     });
     this->stack->addWidget(handPage);
 
-    // ---- Page 3: result ----
+    // ---- Page 7: result ----
     QWidget* resultPage = new QWidget(this);
     QVBoxLayout* resultPageLayout = new QVBoxLayout(resultPage);
 
@@ -186,53 +289,120 @@ IcmPushFoldDialog::IcmPushFoldDialog(std::shared_ptr<Compairer> compairer, QWidg
     resultPageLayout->addStretch();
 
     QPushButton* resultBack = new QPushButton(tr("← Back"), resultPage);
+    resultBack->setObjectName("wizardBackButton");
     connect(resultBack, &QPushButton::clicked, this, &IcmPushFoldDialog::onBack);
     resultPageLayout->addWidget(resultBack);
     this->stack->addWidget(resultPage);
 }
 
-void IcmPushFoldDialog::onScenarioContinue(){
-    this->stack->setCurrentIndex(1);
+QWidget* IcmPushFoldDialog::buildProgressDots(int currentStep){
+    QWidget* row = new QWidget();
+    QHBoxLayout* layout = new QHBoxLayout(row);
+    layout->setAlignment(Qt::AlignCenter);
+    layout->setSpacing(6);
+    for(int i = 0; i < 5; i++){
+        QFrame* dot = new QFrame(row);
+        dot->setObjectName(i <= currentStep ? "icmProgressDotOn" : "icmProgressDotOff");
+        dot->setFixedSize(22, 4);
+        layout->addWidget(dot);
+    }
+    return row;
 }
 
-void IcmPushFoldDialog::rebuildStackRows(int count){
+QWidget* IcmPushFoldDialog::buildStepperRow(int* value, int minValue, int maxValue, QLabel** outValueLabel, std::function<void()> onChange){
+    QWidget* row = new QWidget();
+    QHBoxLayout* layout = new QHBoxLayout(row);
+    layout->setAlignment(Qt::AlignCenter);
+    layout->setSpacing(20);
+
+    QPushButton* minusButton = new QPushButton("−", row);
+    minusButton->setFixedSize(38, 38);
+
+    QLabel* valueLabel = new QLabel(QString::number(*value), row);
+    valueLabel->setAlignment(Qt::AlignCenter);
+    valueLabel->setMinimumWidth(50);
+    valueLabel->setStyleSheet("font-size:32px; font-weight:800;");
+    *outValueLabel = valueLabel;
+
+    QPushButton* plusButton = new QPushButton("+", row);
+    plusButton->setFixedSize(38, 38);
+
+    connect(minusButton, &QPushButton::clicked, this, [value, minValue, valueLabel, onChange](){
+        if(*value > minValue){
+            (*value)--;
+            valueLabel->setText(QString::number(*value));
+            onChange();
+        }
+    });
+    connect(plusButton, &QPushButton::clicked, this, [value, maxValue, valueLabel, onChange](){
+        if(*value < maxValue){
+            (*value)++;
+            valueLabel->setText(QString::number(*value));
+            onChange();
+        }
+    });
+
+    layout->addWidget(minusButton);
+    layout->addWidget(valueLabel);
+    layout->addWidget(plusButton);
+    return row;
+}
+
+void IcmPushFoldDialog::goToPage(int index){
+    this->navHistory.append(this->stack->currentIndex());
+    this->stack->setCurrentIndex(index);
+}
+
+void IcmPushFoldDialog::onScenarioContinue(){
+    this->goToPage(1);
+}
+
+void IcmPushFoldDialog::onHeroVillainContinue(){
+    if(this->heroStackInput->text().trimmed().isEmpty() || this->villainStackInput->text().trimmed().isEmpty()){
+        QMessageBox::information(this, tr("Missing data"), tr("Enter both stacks before continuing."));
+        return;
+    }
+    if(this->playerCount > 2){
+        this->rebuildOtherPlayerRows();
+        this->goToPage(3);
+    }else{
+        this->goToPage(4);
+    }
+}
+
+void IcmPushFoldDialog::rebuildOtherPlayerRows(){
     QLayoutItem* child;
-    while((child = this->stackRowsLayout->takeAt(0)) != nullptr){
+    while((child = this->otherPlayersLayout->takeAt(0)) != nullptr){
         if(child->widget()) child->widget()->deleteLater();
         delete child;
     }
-    this->stackInputs.clear();
-    this->roleInputs.clear();
+    this->otherPlayerInputs.clear();
 
-    for(int i = 0; i < count; i++){
+    for(int i = 0; i < this->playerCount - 2; i++){
         QWidget* row = new QWidget();
+        row->setObjectName("icmStepCard");
         QHBoxLayout* rowLayout = new QHBoxLayout(row);
-        rowLayout->addWidget(new QLabel(tr("Player %1:").arg(i + 1)));
+        rowLayout->addWidget(new QLabel(tr("Player %1:").arg(i + 3)));
         QLineEdit* stackEdit = new QLineEdit(row);
         stackEdit->setValidator(new QDoubleValidator(0, 100000000, 0, stackEdit));
         stackEdit->setPlaceholderText(tr("chips"));
         rowLayout->addWidget(stackEdit);
-        QComboBox* roleCombo = new QComboBox(row);
-        roleCombo->addItem("");
-        roleCombo->addItem(tr("You"));
-        roleCombo->addItem(tr("Opponent"));
-        // Defaults save the common case a click: row 1 is usually "you"
-        // (the player using the app) and row 2 is whoever you're comparing
-        // against -- change it if that's not your situation.
-        if(i == 0) roleCombo->setCurrentText(tr("You"));
-        else if(i == 1) roleCombo->setCurrentText(tr("Opponent"));
-        rowLayout->addWidget(roleCombo);
-        this->stackRowsLayout->addWidget(row);
-        this->stackInputs.append(stackEdit);
-        this->roleInputs.append(roleCombo);
+        this->otherPlayersLayout->addWidget(row);
+        this->otherPlayerInputs.append(stackEdit);
     }
 }
 
-void IcmPushFoldDialog::onPlayerCountChanged(int count){
-    this->rebuildStackRows(count);
+void IcmPushFoldDialog::onOtherPlayersContinue(){
+    for(QLineEdit* stackEdit : this->otherPlayerInputs){
+        if(stackEdit->text().trimmed().isEmpty()){
+            QMessageBox::information(this, tr("Missing data"), tr("Enter the stack for every player."));
+            return;
+        }
+    }
+    this->goToPage(4);
 }
 
-void IcmPushFoldDialog::rebuildPayoutRows(int count){
+void IcmPushFoldDialog::rebuildPayoutRows(){
     QLayoutItem* child;
     while((child = this->payoutRowsLayout->takeAt(0)) != nullptr){
         if(child->widget()) child->widget()->deleteLater();
@@ -240,8 +410,9 @@ void IcmPushFoldDialog::rebuildPayoutRows(int count){
     }
     this->payoutInputs.clear();
 
-    for(int i = 0; i < count; i++){
+    for(int i = 0; i < this->payoutCount; i++){
         QWidget* row = new QWidget();
+        row->setObjectName("icmStepCard");
         QHBoxLayout* rowLayout = new QHBoxLayout(row);
         rowLayout->addWidget(new QLabel(tr("Place %1:").arg(i + 1)));
         QLineEdit* payoutEdit = new QLineEdit(row);
@@ -253,36 +424,22 @@ void IcmPushFoldDialog::rebuildPayoutRows(int count){
     }
 }
 
-void IcmPushFoldDialog::onPayoutCountChanged(int count){
-    this->rebuildPayoutRows(count);
-}
-
-void IcmPushFoldDialog::onStacksAndPayoutsContinue(){
-    int heroCount = 0, villainCount = 0;
-    for(int i = 0; i < this->stackInputs.size(); i++){
-        if(this->stackInputs[i]->text().trimmed().isEmpty()){
-            QMessageBox::information(this, tr("Missing data"), tr("Enter the stack for every player."));
-            return;
-        }
-        if(this->roleInputs[i]->currentText() == tr("You")) heroCount++;
-        if(this->roleInputs[i]->currentText() == tr("Opponent")) villainCount++;
-    }
-    if(heroCount != 1 || villainCount != 1){
-        QMessageBox::information(this, tr("Mark yourself and your opponent"),
-            tr("Mark exactly one seat as 'You' and exactly one as 'Opponent'."));
-        return;
-    }
+void IcmPushFoldDialog::onBigBlindContinue(){
     if(this->bigBlindInput->text().trimmed().isEmpty()){
         QMessageBox::information(this, tr("Missing big blind"), tr("Enter the current big blind."));
         return;
     }
+    this->goToPage(5);
+}
+
+void IcmPushFoldDialog::onPayoutsContinue(){
     for(QLineEdit* payoutEdit : this->payoutInputs){
         if(payoutEdit->text().trimmed().isEmpty()){
             QMessageBox::information(this, tr("Missing payouts"), tr("Enter the payout for every paid place."));
             return;
         }
     }
-    this->stack->setCurrentIndex(2);
+    this->goToPage(6);
 }
 
 void IcmPushFoldDialog::onPickHandClicked(){
@@ -299,18 +456,20 @@ void IcmPushFoldDialog::onHandPickerClosed(){
 }
 
 void IcmPushFoldDialog::onBack(){
-    int current = this->stack->currentIndex();
-    if(current > 0) this->stack->setCurrentIndex(current - 1);
+    if(this->navHistory.isEmpty()) return;
+    int previous = this->navHistory.takeLast();
+    this->stack->setCurrentIndex(previous);
 }
 
 void IcmPushFoldDialog::showResult(){
     QVector<float> stacks;
-    int heroIndex = -1, villainIndex = -1;
-    for(int i = 0; i < this->stackInputs.size(); i++){
-        stacks.append(this->stackInputs[i]->text().toFloat());
-        if(this->roleInputs[i]->currentText() == tr("You")) heroIndex = stacks.size() - 1;
-        if(this->roleInputs[i]->currentText() == tr("Opponent")) villainIndex = stacks.size() - 1;
+    stacks.append(this->heroStackInput->text().toFloat());
+    stacks.append(this->villainStackInput->text().toFloat());
+    for(QLineEdit* stackEdit : this->otherPlayerInputs){
+        stacks.append(stackEdit->text().toFloat());
     }
+    int heroIndex = 0;
+    int villainIndex = 1;
 
     QVector<float> payouts;
     for(QLineEdit* payoutEdit : this->payoutInputs) payouts.append(payoutEdit->text().toFloat());
@@ -348,5 +507,5 @@ void IcmPushFoldDialog::showResult(){
     this->evFoldBox->setStyleSheet(QString("padding:10px; border-radius:8px; font-weight:700; %1")
         .arg(shouldCall ? loseBorder : winBorder));
 
-    this->stack->setCurrentIndex(3);
+    this->goToPage(7);
 }
